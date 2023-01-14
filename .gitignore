@@ -5,6 +5,9 @@ lib/
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# JDBC
+JDBCUtil.java
+
 # Package Files #
 *.jar
 *.war
