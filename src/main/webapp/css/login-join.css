@@ -1,0 +1,295 @@
+* {
+	font-family: GmarketSansMedium;
+}
+
+a.sub_content:link {
+	color: #000;
+	text-decoration: none
+}
+
+a.sub_content:visited {
+	color: #000;
+	text-decoration: none
+}
+
+a.sub_content:hover {
+	color: #7ab4de;
+	text-decoration: none
+}
+
+a.sub_content:active {
+	text-decoration: none
+}
+
+.sub_content {
+	position: relative;
+	width: 1200px;
+	margin: 0 auto;
+	padding: 0 0;
+	font-size: 12px;
+}
+
+.context_box {
+	float: left;
+	width: 100%;
+}
+
+.member_wrap {
+	width: 593px;
+	margin: 20px auto 40px auto;
+}
+
+.member_title h2 {
+	font-size: 28px;
+	margin: 0 0 20px 0;
+	font-weight: bold;
+}
+
+.member_cont {
+	padding: 70px 60px;
+	border: 1px solid #dbdbdb;
+}
+
+.member_cont .member_login_box h3 {
+	font-weight: normal;
+	font-size: 18px;
+	color: #222222;
+}
+
+.member_cont .member_login_box .login_input_sec {
+	overflow: hidden;
+}
+
+.member_cont .member_login_box .login_input_sec>div {
+	float: left;
+}
+
+.member_cont .member_login_box .login_input_sec input {
+	display: block;
+	width: 292px;
+	height: 36px;
+	margin: 15px 0 10px 0;
+	padding: 0 0 0 8px;
+	border: 1px solid #d0d0d0;
+	color: #979d9d;
+}
+
+.find_password_box .login_input .member_warning {
+    width: 370px;
+    margin: 0 0 0 100px;
+}
+
+.find_password_box .login_input, .user_certify_box  .login_input {
+	border-top: 1px solid #dbdbdb;
+    padding: 30px 0 0 0;
+}
+
+.member_cont .member_login_box .login_input_sec button {
+	float: right;
+	width: 158px;
+	height: 91px;
+	margin: 15px 0 0 0;
+	/* border: 1px solid #0188cb;
+	background: #0188cb; */
+	border: 1px solid #7ab4de;
+	background: #7ab4de;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.member_cont .member_login_box .id_chk {
+	padding: 0 0 26px 0;
+}
+
+.member_cont .member_login_box .id_chk span {
+	display: inline-block;
+}
+
+.member_cont .member_login_box .id_chk input {
+	display: none;
+}
+
+.form_element input {
+	position: absolute;
+	top: 3px;
+	left: 1px;
+	width: 0;
+	z-index: -1;
+}
+
+.form_element {
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+}
+
+span.form_element {
+	display: inline-block;
+}
+
+.form_element label.check {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	min-height: 20px;
+	min-width: 20px;
+	padding: 0 0 0 27px;
+	background: url('../images/check_off.png') no-repeat 1px top;
+}
+
+.form_element label.check:hover {
+	background: url('../images/check_over.png') no-repeat 1px top;
+}
+
+.form_element label.check.on {
+	background: url('../images/check_on.png') no-repeat 1px top;
+}
+
+
+.member_cont .member_login_box .id_chk p {
+	padding: 6px 0 0 0;
+}
+
+.member_cont .member_login_box .member_login_shop {
+	margin: 0 0 20px 0;
+	padding: 0 0 20px 0;
+	border-bottom: 1px solid #dcdcdc;
+}
+
+.shop_mall_join {
+	display: block;
+	padding: 20px 0 20px 0;
+	font-size: 15px;
+	text-align: center;
+	border: 1px solid #cccccc;
+	background: #ffffff;
+	color: #3e3d3c;
+}
+
+.member_sns_login>*:first-child {
+	margin-top: 0;
+}
+
+.member_sns_login>* {
+	display: block;
+	margin-top: 12px;
+}
+
+.member_sns_login img {
+	border: 0 none;
+	vertical-align: top;
+}
+
+.btn_login_box {
+	overflow: hidden;
+	margin: 20px 0 0 0;
+	padding: 20px 0 0 0;
+	border-top: 1px solid #dcdcdc;
+}
+
+.btn_login_box li {
+	float: left;
+	margin: 0 0 0 10px;
+}
+
+.btn_login_box li:first-child {
+	margin: 0;
+}
+
+.btn_member_join, .btn_member_next, .user_certify_box .btn_member_sec li button {
+	width: 150px;
+	height: 45px;
+	margin: 0;
+	color: #ffffff;
+	font-size: 14px;
+	border: 1px solid #7ab4de;
+	background: #7ab4de;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.btn_member_white {
+	width: 150px;
+	height: 45px;
+	color: #3e3d3c;
+	font-weight: bold;
+	font-size: 13px;
+	border: 1px solid #cccccc;
+	background: #fff;
+	cursor: pointer;
+}
+
+.chk_none {
+	font-size: 12px;
+	display: block;
+	min-height: 17px;
+	margin: 10px 0 0 0;
+	padding: 5px 0 5px 19px;
+	color: #181818;
+	font-weight: normal;
+	background: url("../images/icon_warning.png") no-repeat left 8px;
+}
+
+.member_guide_txt {
+	text-align: center;
+	padding: 18px 0 20px 0;
+	color: #666666;
+}
+
+
+.member_cont h3 {
+    font-weight: normal;
+    font-size: 18px;
+    color: #222222;
+}
+
+.member_cont h3 + p {
+    padding: 5px 0 8px 0;
+    color: #bebebc;
+}
+
+.find_password_box .login_input input[type=text], .find_password_box .login_input input[type=password] {
+    width: 263px;
+    margin: 10px 0 0 0;
+}
+
+.find_password_box #memberId {
+	height: 31px;
+	border: 1px solid #d6d6d6;
+    line-height: 31px;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 0 10px;
+    outline: none;
+    font-size: 12px;
+}
+
+.info_again {
+    padding: 5px 0 0 0;
+    text-align: left;
+    color: #929292;
+}
+
+.info_again a {
+    color: #181818;
+    text-decoration: underline;
+}
+
+.member_cont .btn_center_box, .member_warning + .btn_center_box {
+    margin: 35px 0 0 0;
+}
+
+.btn_center_box {
+    text-align: center;
+}
+
+.user_certify_box .btn_member_sec ul {
+    overflow: hidden;
+    margin: 20px 0 0 0;
+    text-align: center;
+    font-size: 0;
+}
