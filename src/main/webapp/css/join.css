@@ -1,3 +1,27 @@
+title, div, ol, ul, li, a, nav, button, i, header, span, select, option,
+	input, label, form, h1, h2, h3, h4, h5, h6, table, tbody, tr, th, td,
+	.btn_center_box, .btn_member_sec {
+	font-family: 'GmarketSansMedium';
+}
+
+.text_warning {
+	margin-top: 5px;
+	color: red;
+}
+
+.text_affirm {
+	margin-top: 5px;
+	color: #0188CB;
+}
+
+.hidden {
+	display: none;
+}
+
+#formJoin input:focus {
+	border: #0188CB 2px solid;
+}
+/*-------------------------------------------------------------*/
 /* a css 죽이기 */
 .sub_content a:link {
 	color: #000;
@@ -10,7 +34,7 @@
 }
 
 .sub_content a:hover {
-	color: #7ab4de;
+	color: #0188CB;
 	text-decoration: none
 }
 
@@ -33,7 +57,7 @@
 
 .member_wrap>.member_cont {
 	width: 593px;
-	margin: 20px auto 40px auto;
+	margin: 80px auto 40px auto;
 }
 
 .content_box .member_tit {
@@ -143,8 +167,7 @@
 	color: #222222;
 }
 
-.member_cont .btn_center_box,
-.member_warning+.btn_center_box {
+.member_cont .btn_center_box, .member_warning+.btn_center_box {
 	margin: 35px 0 0 0;
 }
 
@@ -152,8 +175,8 @@
 	width: 100%;
 }
 
-.base_info_sec table th:first-child,
-.base_info_sec table td:first-child {
+.base_info_sec table th:first-child, .base_info_sec table td:first-child
+	{
 	border-left: none;
 }
 
@@ -182,26 +205,27 @@
 	position: relative;
 }
 
-.member_email .member_warning,
-.find_address {
+.member_email .member_warning, .find_address {
 	width: 380px;
 	display: flex;
 	justify-content: space-between;
 }
 
-.member_email .member_warning #email,
-#sample3_postcode {
-	width: 75%;
+.member_email .member_warning #email, #sample3_postcode {
+	width: 65%;
 }
 
-#emailDomain,
-#find_address {
-	width: 24%;
+#emailDomain, #find_address {
+	width: 34%;
 	border-width: 1px;
 	border-style: solid;
-	border-color: #7ab4de;
+	border-color: #0188CB;
 	border-image: initial;
 	border-radius: 2px;
+}
+
+#emailDomain {
+	padding-left: 5px;
 }
 
 .member_address .address_input input {
@@ -212,15 +236,13 @@
 	width: 380px;
 }
 
-input[type="text"],
-input[type="password"] {
+input[type="text"], input[type="password"] {
 	padding: 0 10px;
 	outline: none;
 	font-size: 12px;
 }
 
-input[type="text"],
-input[type="password"] {
+input[type="text"], input[type="password"] {
 	height: 31px;
 	padding: 0 5px;
 	color: #333333;
@@ -232,7 +254,8 @@ input[type="password"] {
 }
 
 .join_base_wrap .important {
-	background: url("../../images/icons/icon_dot_03.png") no-repeat 0 center;
+	background: url("/ModooShop/images/icons/icon_dot_03.png") no-repeat 0
+		center;
 }
 
 .base_info_box>span {
@@ -284,7 +307,8 @@ input[type="button"] {
 /* join-ok */
 .join_ok_box .join_ok_tit {
 	text-align: center;
-	background: url('../../images/icons/img_join_ok.png') no-repeat center 0;
+	background: url('/ModooShop/images/icons/img_join_ok.png') no-repeat
+		center 0;
 	padding: 50px 0 0 0;
 }
 
@@ -336,8 +360,7 @@ input[type="button"] {
 }
 
 /* 이전/다음 취소/회원가입 */
-.btn_center_box,
-.member_warning+.btn_center_box {
+.btn_center_box, .member_warning+.btn_center_box {
 	margin: 35px 0 0 0;
 }
 
@@ -345,37 +368,37 @@ input[type="button"] {
 	text-align: center;
 }
 
-.btn_center_box button+button,
-.btn_left_box button+button,
-.btn_right_box button+button {
+.btn_center_box button+button, .btn_left_box button+button,
+	.btn_right_box button+button {
 	margin-left: 6px;
 }
+/*성훈님 추가*/
+.btn_center_box button:hover {
+	background: #0188CB;
+	color: #fff;
+}
 
-.btn_member_prev,
-.btn_member_cancel,
-#btnHome {
+.btn_member_prev, .btn_member_cancel, .btnHome {
 	width: 150px;
 	height: 45px;
 	margin: 35px 0 0 0;
-	color: #3e3d3c;
+	color: #222;
 	font-size: 14px;
-	border: 1px solid #cccccc;
+	border: 1px solid #0188CB;
 	background: #ffffff;
 	cursor: pointer;
 }
 
-.btn_member_next,
-.btn_comfirm,
-.btn_login {
+.btn_member_next, .btn_comfirm, .btn_login {
 	width: 150px;
 	height: 45px;
 	margin: 35px 0 0 0;
-	color: #ffffff;
+	color: #222;
 	font-size: 14px;
-	border: 1px solid #7ab4de;
-	background: #7ab4de;
+	border: 1px solid #0188CB;
+	background: #ffffff;
 	cursor: pointer;
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 
 .form_element label {
@@ -389,27 +412,33 @@ input[type="button"] {
 .form_element label.check {
 	min-width: 20px;
 	padding: 0 0 0 27px;
-	background: url('/images/icons/check_off.png') no-repeat 1px top;
+	background: url('/ModooShop/images/icons/check_off.png') no-repeat 1px
+		top;
 }
 
 .form_element label.check:hover {
-	background: url('/images/icons/check_over.png') no-repeat 1px top;
+	background: url('/ModooShop/images/icons/check_over.png') no-repeat 1px
+		top;
 }
 
 .form_element label.check.on {
-	background: url('/images/icons/check_on.png') no-repeat 1px top;
+	background: url('/ModooShop/images/icons/check_on.png') no-repeat 1px
+		top;
 }
 
 .form_element label.check_s {
-    min-width: 13px;
-    padding: 0 0 0 22px;
-    background: url('/images/icons/check_off_small.png') no-repeat 1px top;
+	min-width: 13px;
+	padding: 0 0 0 22px;
+	background: url('/ModooShop/images/icons/check_off_small.png') no-repeat
+		1px top;
 }
 
 .form_element label.check_s:hover {
-	background: url('/images/icons/check_over_small.png') no-repeat 1px top;
+	background: url('/ModooShop/images/icons/check_over_small.png')
+		no-repeat 1px top;
 }
 
 .form_element label.check_s.on {
-	background: url('/images/icons/check_on_small.png') no-repeat 1px top;
+	background: url('/ModooShop/images/icons/check_on_small.png') no-repeat
+		1px top;
 }
