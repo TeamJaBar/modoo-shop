@@ -14,7 +14,7 @@ public class DibDAO {
 	PreparedStatement pstmt;
 
 	final String INSERT = "INSERT INTO DIB VALUES((SELECT NVL(MAX(DIBNUM),1)+1 FROM DIB), ?, ?, ?)";
-	final String SELECTALL = "SELECT * FROM DIB D, PRODUCT P WHERE D.PNUM=P.PNUM ORDER BY DIBNUM ASC";
+	final String SELECTALL = "SELECT DIBNUM, PIMG, PNAME, SELPRICE, DCNT FROM DIB D, PRODUCT P WHERE D.PNUM=P.PNUM ORDER BY DIBNUM ASC";
 	final String UPDATE = "UPDATE DIB SET DCNT=? WHERE DIBNUM=?";
 	final String DELETE = "DELETE FROM DIB WHERE DIBNUM=?";
 
@@ -46,6 +46,7 @@ public class DibDAO {
 			while (rs.next()) {
 				DibVO data = new DibVO();
 				data = new DibVO();
+				data.setDibNum(rs.getInt("DIBNUM"));
 				data.setpNumPimg(rs.getString("PIMG"));
 				data.setpNumPname(rs.getString("PNAME"));
 				data.setpNumSelPrice(rs.getInt("SELPRICE"));
