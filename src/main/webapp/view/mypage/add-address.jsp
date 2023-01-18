@@ -1011,19 +1011,13 @@ label[for="defaultFl"] {
 											<th scope="row"><span class="important">받으실 곳</span></th>
 											<td class="member_address">
 													<div class="address_postcode find_address">
-														<input type="text" name="zonecode" id="sample3_postcode"
-															placeholder="우편번호" value="" required> <input
-															type="button" id="find_address"
-															onclick="sample3_execDaumPostcode()" value="우편번호 찾기"
-															required>
+														<input type="text" name="zonecode" id="sample3_postcode" placeholder="우편번호" value="" required> 
+														<input type="button" id="find_address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required>
 													</div>
-													<div id="wrapPost"
-														style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
-														<img
-															src="//t1.daumcdn.net/postcode/resource/images/close.png"
-															id="btnFoldWrap"
-															style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
-															onclick="foldDaumPostcode()" alt="접기 버튼">
+													<div id="wrapPost" style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
+														<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" 
+															 style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
+															 onclick="foldDaumPostcode()" alt="접기 버튼">
 													</div>
 													<div class="address_input detailed_address">
 														<div class="member_warning">
@@ -1031,13 +1025,11 @@ label[for="defaultFl"] {
 																placeholder="주소" value="" required>
 														</div>
 														<div class="member_warning js_address_sub">
-															<input type="text" name="addressSub"
-																id="sample3_detailAddress" placeholder="상세주소" value=""
-																required> <input type="text"
-																id="sample3_extraAddress" placeholder="참고항목">
+															<input type="text" name="addressSub" id="sample3_detailAddress" placeholder="상세주소" value="" required> 
+															<input type="text" id="sample3_extraAddress" placeholder="참고항목">
 														</div>
 													</div>
-												</td>
+											</td>
 										</tr>
 										<tr>
 											<th scope="row"><span class="important">전화번호</span></th>
@@ -1075,8 +1067,7 @@ label[for="defaultFl"] {
 						</div>
 					</div>
 
-					<script
-								src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 							<script>
 									// 우편번호 찾기 찾기 화면을 넣을 element
 									var element_wrap = document
