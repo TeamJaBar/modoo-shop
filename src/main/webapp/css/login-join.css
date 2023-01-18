@@ -1,5 +1,5 @@
-* {
-	font-family: GmarketSansMedium;
+h3, div, input, button {
+	font-family: 'GmarketSansMedium';
 }
 
 a.sub_content:link {
@@ -13,7 +13,7 @@ a.sub_content:visited {
 }
 
 a.sub_content:hover {
-	color: #0188CB;
+	color: #7ab4de;
 	text-decoration: none
 }
 
@@ -50,10 +50,20 @@ a.sub_content:active {
 	border: 1px solid #dbdbdb;
 }
 
-.member_cont .member_login_box h3 {
+.member_cont h3 {
 	font-weight: normal;
 	font-size: 18px;
 	color: #222222;
+}
+
+.member_findPW_box h3 {
+	font-weight: normal;
+	font-size: 18px;
+	color: #222222;
+}
+
+.member_findPW_box input {
+	display: inline;
 }
 
 .member_cont .member_login_box .login_input_sec {
@@ -64,7 +74,7 @@ a.sub_content:active {
 	float: left;
 }
 
-.member_cont .member_login_box .login_input_sec input {
+.member_cont .member_login_box input {
 	display: block;
 	width: 292px;
 	height: 36px;
@@ -74,14 +84,14 @@ a.sub_content:active {
 	color: #979d9d;
 }
 
-.find_password_box .login_input .member_warning {
-	width: 370px;
-	margin: 0 0 0 100px;
-}
-
-.find_password_box .login_input, .user_certify_box .login_input {
-	border-top: 1px solid #dbdbdb;
-	padding: 30px 0 0 0;
+.member_cont .member_login_box .findpw_box input {
+	display: block;
+	width: 292px;
+	height: 36px;
+	padding: 0 0 0 8px;
+	border: 1px solid #d0d0d0;
+	color: #979d9d;
+	margin: 0 auto;
 }
 
 .member_cont .member_login_box .login_input_sec button {
@@ -89,8 +99,6 @@ a.sub_content:active {
 	width: 158px;
 	height: 91px;
 	margin: 15px 0 0 0;
-	/* border: 1px solid #0188cb;
-	background: #0188cb; */
 	border: 1px solid #0188CB;
 	background: #0188CB;
 	color: #ffffff;
@@ -137,18 +145,15 @@ span.form_element {
 	min-height: 20px;
 	min-width: 20px;
 	padding: 0 0 0 27px;
-	background: url('/ModooShop/images/icons/check_off.png') no-repeat 1px
-		top;
+	background: url('/ModooShop/images/icons/check_off.png') no-repeat 1px top !important;
 }
 
 .form_element label.check:hover {
-	background: url('/ModooShop/images/icons/check_over.png') no-repeat 1px
-		top;
+	background: url('/ModooShop/images/icons/check_over.png') no-repeat 1px top !important;
 }
 
 .form_element label.check.on {
-	background: url('/ModooShop/images/icons/check_on.png') no-repeat 1px
-		top;
+	background: url('/ModooShop/images/icons/check_on.png') no-repeat 1px top !important;
 }
 
 .member_cont .member_login_box .id_chk p {
@@ -161,14 +166,14 @@ span.form_element {
 	border-bottom: 1px solid #dcdcdc;
 }
 
-.shop_mall_join {
-	display: block;
-	padding: 20px 0 20px 0;
-	font-size: 15px;
-	text-align: center;
-	border: 1px solid #cccccc;
-	background: #ffffff;
-	color: #3e3d3c;
+.shop_mall_join {/*color랑 border 바꿈*/
+   display: block;
+   padding: 20px 0 20px 0;
+   font-size: 15px;
+   text-align: center;
+   border: 1px solid #0188CB;
+   background: #ffffff;
+   color: #222;
 }
 
 .member_sns_login>*:first-child {
@@ -201,8 +206,7 @@ span.form_element {
 	margin: 0;
 }
 
-.btn_member_join, .btn_member_next, .user_certify_box .btn_member_sec li button
-	{
+.btn_member_join {
 	width: 150px;
 	height: 45px;
 	margin: 0;
@@ -212,6 +216,17 @@ span.form_element {
 	background: #0188CB;
 	cursor: pointer;
 	font-weight: bold;
+}
+
+.btn_member_blue {
+	width: 150px;
+	height: 45px;
+	margin: 0;
+	color: #ffffff;
+	font-size: 13px;
+	border: 1px solid #0188CB;
+	background: #0188CB;
+	cursor: pointer;
 }
 
 .btn_member_white {
@@ -225,6 +240,28 @@ span.form_element {
 	cursor: pointer;
 }
 
+.btn_member_next {
+	width: 158px;
+	height: 45px;
+	border: 1px solid #0188CB;
+	margin-top: 40px;
+	background: #0188CB;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.btn_submit:hover {
+	border-color: #0188CB !important;
+	background-color: #fff !important;
+	color: #0188CB !important;
+}
+
+.btn-center-box > button {
+	margin-top:40px;
+}
+
 .chk_none {
 	font-size: 12px;
 	display: block;
@@ -233,8 +270,7 @@ span.form_element {
 	padding: 5px 0 5px 19px;
 	color: #181818;
 	font-weight: normal;
-	background: url("/ModooShop/images/icons/icon_warning.png") no-repeat
-		left 8px;
+	background: url("/ModooShop/images/icon_warning.png") no-repeat left 8px;
 }
 
 .member_guide_txt {
@@ -243,57 +279,53 @@ span.form_element {
 	color: #666666;
 }
 
-.member_cont h3 {
-	font-weight: normal;
-	font-size: 18px;
-	color: #222222;
+.result-container {
+	text-align: center;
+	font-size: 17px;
 }
 
-.member_cont h3+p {
-	padding: 5px 0 8px 0;
-	color: #bebebc;
+.result-container>#name {
+	font-weight: bold;
 }
 
-.find_password_box .login_input input[type=text], .find_password_box .login_input input[type=password]
-	{
-	width: 263px;
-	margin: 10px 0 0 0;
+.result {
+	margin-top: 8px;
 }
 
-.find_password_box #memberId {
-	height: 31px;
-	border: 1px solid #d6d6d6;
-	line-height: 31px;
+.findpw_box {
+	display: block;
+	text-align: center;
 }
 
-input[type="text"], input[type="password"] {
-	padding: 0 10px;
-	outline: none;
-	font-size: 12px;
+.result>span {
+	color: #0188CB;
 }
 
 .info_again {
-	padding: 5px 0 0 0;
+	width: 292px;
 	text-align: left;
-	color: #929292;
+	margin: 10px auto;
+	color: #bebebc;
 }
 
-.info_again a {
-	color: #181818;
-	text-decoration: underline;
+.findPw-info {
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #dcdcdc;
+	color: #bebebc;
 }
 
-.member_cont .btn_center_box, .member_warning+.btn_center_box {
-	margin: 35px 0 0 0;
+.btn-center-box {
+	text-align: center !important;
 }
 
-.btn_center_box {
-	text-align: center;
+label[for="authEmail"] {
+	position: relative;
+	top: -3px;
+	display: inline;
 }
 
-.user_certify_box .btn_member_sec ul {
-	overflow: hidden;
-	margin: 20px 0 0 0;
-	text-align: center;
-	font-size: 0;
+#newPwRe {
+	margin-top:10px;
 }

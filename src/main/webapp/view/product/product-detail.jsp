@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Product Detail</title>
+<title>제품상세</title>
 <style>
 
 /* 판매가 */
@@ -328,13 +328,13 @@
 						<div class="p-t-33">
 							<div class="row flex-c">
 								<button
-									class="flex-c-m m-r-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-detail">
+									class="flex-c-m m-r-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addcart-detail">
 									장바구니</button>
 								<button
-									class="flex-c-m m-lr-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-b2">
+									class="flex-c-m m-lr-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addwish-b2">
 									찜하기</button>
 								<button
-									class="flex-c-m m-l-10 stext-104 cl0 size-101 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">
+									class="flex-c-m m-l-10 stext-105 cl0 size-101 bg1 bor20 hov-btn4 p-lr-15 trans-04 ">
 									결제하기</button>
 							</div>
 						</div>
@@ -350,9 +350,6 @@
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item p-b-10"><a class="nav-link active"
 						data-toggle="tab" href="#description" role="tab">제품소개</a></li>
-
-					<li class="nav-item p-b-10"><a class="nav-link"
-						data-toggle="tab" href="#information" role="tab">추가정보</a></li>
 
 					<li class="nav-item p-b-10"><a class="nav-link"
 						data-toggle="tab" href="#delivery" role="tab">배송정보</a></li>
@@ -372,94 +369,6 @@
 					</div>
 
 					<!-- - -->
-					<div class="tab-pane fade" id="information" role="tabpanel">
-						<div class="row">
-							<div class="how-pos2 flex-c  p-lr-15-md">
-								<div class="detail_info_box">
-									<div class="datail_table">
-										<table class="left_table_type">
-											<colgroup>
-												<col />
-												<col />
-											</colgroup>
-											<tbody>
-												<tr>
-													<th style="width: 20%">품명 및 모델명</th>
-													<td colspan="3" style="width: 80%">할리갈리
-														카카오프렌즈/KBG-CH04AZ6</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">색상</th>
-													<td colspan="3" style="width: 80%">혼합색상</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">제조사(수입자/병행수입)</th>
-													<td colspan="3" style="width: 80%">아미고/코리아보드게임즈</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">제조국</th>
-													<td colspan="3" style="width: 80%">중국</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">품질보증기준</th>
-													<td colspan="3" style="width: 80%">손상이 있거나 제품의 성능에 이상이
-														있는 상태로 유통된 제품은 교환/환불 가능. 관련법 및 소비자분쟁해결기준에 따름.</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">A/S 책임자와 전화번호</th>
-													<td colspan="3" style="width: 80%">보드게임몰/ 1668-1054</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">KC안전인증 대상 유무</th>
-													<td colspan="3" style="width: 80%">유</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">동일모델 출시년월</th>
-													<td colspan="3" style="width: 80%">2021.08.10</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">안전인증번호</th>
-													<td colspan="3" style="width: 80%">CB061R2807-9003</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">용량(중량), 수량, 크기</th>
-													<td colspan="3" style="width: 80%">127x170x55mm/500g</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">재질</th>
-													<td colspan="3" style="width: 80%">종이</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">사용연령</th>
-													<td colspan="3" style="width: 80%">6세이상</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">수입여부</th>
-													<td colspan="3" style="width: 80%">Y</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">취급방법 및 주의사항</th>
-													<td colspan="3" style="width: 80%">파손되거나 변형된 제품은 안전을
-														위해 사용하지 마세요. 화재의 위험이 있으니 절대로 불 가까운 곳에서 사용하지 마세요. 삼키면 질식할
-														위험이 있으니 절대로 내용물을 입에 넣지 마세요.</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">사용 용도</th>
-													<td colspan="3" style="width: 80%">보드게임</td>
-												</tr>
-												<tr>
-													<th style="width: 20%">사은품 구성</th>
-													<td colspan="3" style="width: 80%">해당없음</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- - -->
 					<div class="tab-pane fade" id="delivery" role="tabpanel">
 						<div class="row">
 							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto flex-c ">
@@ -474,7 +383,7 @@
 											</p>
 										</div>
 
-
+										<!-- 
 										<h3 class="ltext-102 m-t-40">교환/반품안내</h3>
 										<div class="admin_msg">
 											<p>
@@ -491,7 +400,7 @@
 													style="clear: both;">&nbsp;
 											</p>
 										</div>
-
+										-->
 									</div>
 								</div>
 							</div>
