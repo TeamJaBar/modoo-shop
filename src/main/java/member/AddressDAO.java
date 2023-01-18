@@ -14,7 +14,7 @@ public class AddressDAO {
 	PreparedStatement pstmt;
 
 	final String INSERT = "INSERT INTO ADDRESS VALUES((SELECT NVL(MAX(ANUM),1)+1 FROM ADDRESS), ?, ?, ?, ?, ?, ?, ?)";
-	final String SELECTALL = "SELECT * FROM ADDRESS ORDER BY ANUM ASC";
+	final String SELECTALL = "SELECT ANUM, SHIPNAME, DESTINATION, ZIPCODE, USERADDR, DETAILADDR, TEL FROM ADDRESS ORDER BY ANUM ASC";
 	final String UPDATE = "UPDATE ADDRESS SET SHPNAME=?, DESTINATION=?, ZIPCODE=?, USERADDR=?, DETAILADDR=?, TEL=? WHERE ANUM=?";
 	final String DELETE = "DELETE FROM ADDRESS WHERE ANUM=?";
 
@@ -50,6 +50,7 @@ public class AddressDAO {
 			while (rs.next()) {
 				AddressVO data = new AddressVO();
 				data = new AddressVO();
+				data.setaNum(rs.getInt("ANUM"));
 				data.setShipName(rs.getString("SHIPNAME"));
 				data.setDestination(rs.getNString("DESTINATION"));
 				data.setZipCode(rs.getNString("ZIPCODE"));
