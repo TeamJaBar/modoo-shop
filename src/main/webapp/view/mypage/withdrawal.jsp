@@ -171,6 +171,7 @@ input[type="text"], input[type="password"] {
 }
 
 .hack_out .mypage_unregister .hack_out_list li {
+	display:flex;
 	float: left;
 	width: 35%;
 	padding: 0 0 7px 0;
@@ -708,8 +709,29 @@ address, caption, cite, code, dfn, em, var {
 .sub_menu_box_tit h2 {
 	font-size: 18px;
 }
+
+.check-s {
+	margin-left:6px;
+	position:relative;
+	top:-2.5px;
+}
+
 </style>
 <%@include file="../common/header.jsp"%>
+
+<script>
+	function check() {
+		var result = confirm("정말 탈퇴 하시겠습니까?");
+
+		if (result) {
+			alert("탈퇴가 완료되었습니다");
+			location.href="/ModooShop/view/main.jsp";
+		} else {
+			alert("취소 되었습니다.");
+			history.go(-1);
+		}		
+	}
+</script>
 
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92"
@@ -779,40 +801,34 @@ address, caption, cite, code, dfn, em, var {
 																	<td>
 																		<div class="form_element">
 																			<ul class="hack_out_list">
-																				<li><input type="checkbox"
-																					id="reasonCd01003001" name="reasonCd[]"
-																					class="checkbox" value="01003001"><label
-																					for="reasonCd01003001" class="check-s">고객서비스(상담,포장
-																						등) 불만</label></li>
-																				<li><input type="checkbox"
-																					id="reasonCd01003002" name="reasonCd[]"
-																					class="checkbox" value="01003002"><label
-																					for="reasonCd01003002" class="check-s">배송불만</label></li>
-																				<li><input type="checkbox"
-																					id="reasonCd01003003" name="reasonCd[]"
-																					class="checkbox" value="01003003"><label
-																					for="reasonCd01003003" class="check-s">교환/환불/반품
-																						불만</label></li>
-																				<li><input type="checkbox"
-																					id="reasonCd01003004" name="reasonCd[]"
-																					class="checkbox" value="01003004"><label
-																					for="reasonCd01003004" class="check-s">방문
-																						빈도가 낮음</label></li>
-																				<li><input type="checkbox"
-																					id="reasonCd01003005" name="reasonCd[]"
-																					class="checkbox" value="01003005"><label
-																					for="reasonCd01003005" class="check-s">상품가격
-																						불만</label></li>
-																				<li><input type="checkbox"
-																					id="reasonCd01003006" name="reasonCd[]"
-																					class="checkbox" value="01003006"><label
-																					for="reasonCd01003006" class="check-s">개인
-																						정보유출 우려</label></li>
-																				<li><input type="checkbox"
-																					id="reasonCd01003007" name="reasonCd[]"
-																					class="checkbox" value="01003007"><label
-																					for="reasonCd01003007" class="check-s">쇼핑몰의
-																						신뢰도 불만</label></li>
+																				<li>
+																					<input type="checkbox" id="reasonCd01003001" name="reasonCd[]" class="checkbox" value="01003001">
+																					<label for="reasonCd01003001" class="check-s">고객서비스(상담,포장 등) 불만</label>
+																				</li>
+																				<li>
+																					<input type="checkbox" id="reasonCd01003002" name="reasonCd[]" class="checkbox" value="01003002">
+																					<label for="reasonCd01003002" class="check-s">배송불만</label>
+																				</li>
+																				<li>
+																					<input type="checkbox" id="reasonCd01003003" name="reasonCd[]" class="checkbox" value="01003003">
+																					<label for="reasonCd01003003" class="check-s">교환/환불/반품 불만</label>
+																				</li>
+																				<li>
+																					<input type="checkbox" id="reasonCd01003004" name="reasonCd[]" class="checkbox" value="01003004">
+																					<label for="reasonCd01003004" class="check-s">방문 빈도가 낮음</label>
+																				</li>
+																				<li>
+																					<input type="checkbox" id="reasonCd01003005" name="reasonCd[]" class="checkbox" value="01003005">
+																					<label for="reasonCd01003005" class="check-s">상품가격 불만</label>
+																				</li>
+																				<li>
+																					<input type="checkbox" id="reasonCd01003006" name="reasonCd[]" class="checkbox" value="01003006">
+																					<label for="reasonCd01003006" class="check-s">개인 정보유출 우려</label>
+																				</li>
+																				<li>
+																					<input type="checkbox" id="reasonCd01003007" name="reasonCd[]" class="checkbox" value="01003007">
+																					<label for="reasonCd01003007" class="check-s">쇼핑몰의 신뢰도 불만</label>
+																				</li>
 																			</ul>
 																		</div>
 																	</td>
@@ -832,8 +848,7 @@ address, caption, cite, code, dfn, em, var {
 
 											<div class="btn_center_box flex-c">
 												<a href="#;" class="btn_claim_cancel btn_prev hov-btn3"><em>이전으로</em></a>
-												<button type='submit' onclick="check()"
-													class="btn_claim_ok hov-btn3">탈퇴</button>
+												<button type='submit' onclick="check()" class="btn_claim_ok hov-btn3">탈퇴</button>
 											</div>
 										</form>
 									</div>
