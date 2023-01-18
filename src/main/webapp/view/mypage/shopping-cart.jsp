@@ -4,121 +4,8 @@
 <head>
 <title>장바구니</title>
 
-	<style>
-.order-wrap {
-	width: 593px;
-	margin: 20px auto 40px auto;
-}
-
-.order-agreement-wrap .order-title {
-	overflow: hidden;
-	border-bottom: 1px solid #999999;
-}
-
-.order-title h2 {
-	font-size: 28px;
-	margin: 0 0 20px 0;
-	font-weight: bold;
-}
-
-.order-ok-box .order-ok-title {
-	text-align: center;
-	background: url(images/img_order_ok.png) no-repeat center 0;
-	padding: 50px 0 0 0;
-}
-
-.order-ok-box .order-ok-title p {
-	padding: 20px 0 20px 0;
-	color: #989898;
-	letter-spacing: -0.5px;
-}
-
-.order-ok-box .order-ok-title p span {
-	font-weight: bold;
-	color: #222222;
-}
-
-.order-ok-box .order-ok-title.complete {
-	padding: 20px 0 0 0;
-	font-size: 18px;
-	color: #222222;
-}
-
-.order-ok-box .order-ok-titlep {
-	padding: 20px 0 20px 0;
-	color: #989898;
-	letter-spacing: -0.5px;
-}
-
-.order-ok-box .order-ok-title.complete strong {
-	font-weight: bold;
-}
-
-.order-ok-box .order-ok-titlep span {
-	font-weight: bold;
-	color: #222222;
-}
-
-.order-ok-box .btn-order-section {
-	border-top: 1px solid #dbdbdb;
-}
-
-.order-ok-box .btn-order-section ul {
-	overflow: hidden;
-	margin: 20px 0 0 0;
-	text-align: center;
-	font-size: 0;
-}
-
-.order-ok-box .btn-order-section li:first-child {
-	margin: 0;
-}
-
-.order-ok-box .btn-order-section li {
-	display: inline-block;
-	margin: 0 0 0 10px;
-}
-
-.order-ok-box .btn-order-section li button {
-	width: 150px;
-	height: 42px;
-	border: 1px solid #cccccc;
-	background: #fff;
-	color: #3e3d3c;
-	font-weight: bold;
-	font-size: 13px;
-	cursor: pointer;
-}
-
-.order-ok-box .btn-order-section .btn-login {
-	background: #181818;
-	border: 1px solid #181818;
-	color: #fff;
-}
-
-.table-shopping-cart .table_head th {
-	font-family: Poppins-Bold;
-	font-size: 10px;
-	color: #555;
-	text-transform: uppercase;
-	line-height: 1.6;
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-
-.order-content .btn-center-box, .order-warning+.btn-center-box {
-	margin: 35px 0 0 0;
-}
-
-.order-content {
-	padding: 70px 60px;
-	border: 1px solid #dbdbdb;
-}
-
-.order-ok-box .btn-order-section {
-	border-top: 1px solid #dbdbdb;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="../../css/shopping-cart.css">
+	
 
 
 <%@include file="../common/header.jsp"%>
@@ -139,16 +26,6 @@ function isDelete(){
 	</section>
 
 
-	<!-- breadcrumb -->
-	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04"> Home
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a> <span class="stext-109 cl4"> 장바구니 </span>
-		</div>
-	</div>
-
-
 	<!-- Shoping Cart -->
 	<form class="bg0 p-t-75 p-b-85" action="order.html">
 		<div class="container">
@@ -161,64 +38,65 @@ function isDelete(){
 									<th class="column-1">선택</th>
 									<th class="column-2">상품 / 옵션 정보</th>
 									<th class="column-3">상품 / 할인 금액</th>
-									<th class="column-4">수량</th>
+									<th class="column-4" style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수량</th>
 									<th class="column-5">합계금액</th>
 								</tr>
 
-								<tr class="table_row">
+								<tr class="cartTable_row">
 									<td class="column-1">
-										<input type="checkbox" id="chk" name="chk"/>
+										<input type="checkbox" id="chk" name="chk" checked />
 									</td>
-									<td class="column-2"><img src="images/p001.jpg" alt="IMG" style="width: 50px; height: 50px;">샘플 데이터1</td>
-									<td class="column-3"> 40,000원 /<br><span style="font-size: 10px; text-align: right;">12,800원</span></td>
+									<td class="column-2"><img src="/ModooShop/images/p001.jpg" alt="샘플 데이터1" style="width: 90px; height: 70px;"></td>
+									<td class="column-3"><span id="price">40,000</span>원<br><span style="font-size: 10px; text-align: right;">/ <span id="salePrice">12,800</span>원</span></td>
 									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
+										<div class="wrap-num-product flex-w m-tb-10 m-l-30">
+										<div
+											class="btn-num-cart-down cl8 hov-btn3 trans-04 flex-c-m">
+											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
+
+										<input class="mtext-104 cl3 txt-center num-product"
+											type="number" name="num-product" value="1">
+
+										<div
+											class="btn-num-cart-up cl8 hov-btn3 trans-04 flex-c-m ">
+											<i class="fs-16 zmdi zmdi-plus"></i>
+										</div>
+									</div>
 									</td>
-									<td class="column-5">27,200원</td>
+									<td class="column-5"><span id="totalPrice">40,000</span>원<br></td>		
 								</tr>
 
-								<tr class="table_row">
+								<tr class="cartTable_row">
 									<td class="column-1">
-										<input type="checkbox" id="chk" name="chk"/>
+										<input type="checkbox" id="chk" name="chk" checked />
 									</td>
-									<td class="column-2"><img src="images/p002.jpg" alt="IMG" style="width: 50px; height: 50px;">샘플 데이터2</td>
-									<td class="column-3"> 7,000원 /<br><span style="font-size: 10px; text-align: right;">2,800원</span></td>
+									<td class="column-2"><img src="/ModooShop/images/p002.jpg" alt="샘플 데이터2" style="width: 90px; height: 70px;"></td>
+									<td class="column-3"><span id="price2">7,000</span>원<br><span style="font-size: 10px; text-align: right;">/ <span id="salePrice2">2,800</span>원</span></td>
 									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+										<div class="wrap-num-product flex-w m-tb-10 m-l-30">
+											<div class="btn-num-cart-down2 cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
+											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
 
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+											<div class="btn-num-cart-up2 cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
 									</td>
-									<td class="column-5">4,200원</td>
+									<td class="column-5"><span id="totalPrice2">7,000</span>원<br><span id="totalSaleprice3" style="font-size: 10px; text-align: right;"></span></td>
 								</tr>
 							</table>
 						</div>
 
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-								<a onclick="del()" href="#">선택 상품 삭제</a>
-							</div>
+							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer"
+							onclick="del()" href="#">선택 상품 삭제 </div>
 							
-							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-								<a href="product.html">쇼핑 계속하기</a>
-							</div>
+							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
+								onclick="#" href="product.jsp">쇼핑 계속하기 </div>
 						</div>
 						
 					</div>
@@ -231,62 +109,55 @@ function isDelete(){
 						</h4>
 
 						<div class="flex-w flex-t bor12 p-b-13">
-							<div class="size-208">
+							<div class="size-210">
 								<span class="stext-110 cl2" style="font-size: 12px;">
-									총 2개의 상품금액:
+									총 상품금액:
 								</span>
 							</div>
 
-							<div class="size-209">
-								<span class="mtext-110 cl2">
-									&nbsp;47,000원
-								</span>
+							<div class="size-210">
+								<span class="mtext-110 cl2"><span id="sumPrice">
+									&nbsp;47,000</span>원</span>
 							</div>
 
-							<div class="size-208">
+							<div class="size-210">
 								<span class="stext-110 cl2" style="font-size: 12px;">
 									할인금액:
 								</span>
 							</div>
 
-							<div class="size-209">
-								<span class="mtext-110 cl2">
-									-15,600원
+							<div class="size-210">
+								<span class="mtext-110 cl2" >
+									-<span id="totalSale">15,600</span>원
 								</span>
 							</div>
 
-							<div class="size-208">
+							<div class="size-210">
 								<span class="stext-110 cl2" style="font-size: 12px;">
 									배송비:
 								</span>
 							</div>
 
-							<div class="size-209">
-								<span class="mtext-110 cl2">
-									&nbsp;&nbsp;2,500원
-								</span>
+							<div class="size-210">
+								<span class="mtext-110 cl2"><span id="deliverFee">&nbsp;&nbsp;&nbsp;2500</span>원</span>
 							</div>
 						</div>
 
 						<div class="flex-w flex-t p-t-27 p-b-33">
-							<div class="size-208">
-								<span class="mtext-101 cl2">
-									합계:
-								</span>
+							<div class="size-210">
+								<span class="mtext-101 cl2">합계</span>
 							</div>
 
-							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
-									24,500원
-								</span>
+							<div class="size-210 p-t-1">
+								<span class="mtext-110 cl2"><span id="totalPrice3">33,900</span>원</span>
 							</div>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" onclick="return check()">
+						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" onclick="return check()" href="order.jsp">
 							선택 상품 주문
 						</button>
 						<div>&nbsp;</div>
-						<button id="all" onclick="allselect()" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit">
+						<button id="all" onclick="allselect()" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" href="order.jsp">
 							전체 상품 주문
 						</button>
 					</div>
@@ -366,6 +237,8 @@ function check(){
 		return false;
 	}
 }
+
+
 	</script>
 
 </body>
