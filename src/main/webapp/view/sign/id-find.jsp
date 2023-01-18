@@ -28,7 +28,7 @@
 
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92"
-	style="background-image: url('../../images/bg-img-01.png');">
+	style="background-image: url('/ModooShop/images/bg-img-01.png');">
 	<h2 class="ltext-105 cl0 txt-center">아이디 찾기</h2>
 </section>
 
@@ -41,31 +41,24 @@
 				<div class="member_wrap">
 					<div class="member_cont">
 						<!-- 나중에 바꿔요 -->
-						<form id="formLogin" action="find-pw-01.jsp">
+						<form id="formLogin" action="id-find-ok.jsp">
 							<input type="hidden" id="mode" name="mode" value="login">
 							<div class="member_login_box">
 								<div class="login_input_sec">
 									<div>
-										<input type="text" id="loginId" name="loginId" value=""
-											placeholder="이름" required> <input type="email"
-											id="loginPwd" name="loginPwd" value="" placeholder="가입메일주소"
-											required>
+										<input type="text" id="findID" name="id" value="" placeholder="이름" required> 
+										<input type="email" id="findIDEmail" name="email" value="" placeholder="가입메일주소" required>
 									</div>
-									<button type="submit">
-										<a onclick="return ch()" style="color: #fff">아이디 찾기</a>
+									<button onclick="return ch()" class="btn_submit" type="submit">
+										아이디 찾기
 									</button>
 								</div>
 							</div>
 						</form>
-						<div class="btn_login_box"
-							style="display: flex; justify-content: center;">
+						<div class="btn_login_box" style="display: flex; justify-content: center;">
 							<ul>
-								<li><button id="btnJoinMember" class="btn_member_join">
-										비밀번호 찾기
-									</button></li>
-								<li><button id="btnFindId" class="btn_member_white">
-										<a href="login.html" style="color: rgb(0, 0, 0)">로그인하기</a>
-									</button></li>
+								<li><button onclick="location.href='pw-find-01.jsp'" id="btnFindPw" class="btn_member_blue hov-btn4"> 비밀번호 찾기 </button></li>
+								<li><button onclick="location.href='login.jsp'" id="btnLogin" class="btn_member_white hov-btn4"> 로그인하기 </button></li>
 							</ul>
 						</div>
 						<!-- //btn_login_box -->
@@ -122,25 +115,25 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	function ch() {
-		let name = $("#loginId").val();
-		let email = $("#loginPwd").val();
+		let name = $("#findID").val();
+ 		let email = $("#findIDEmail").val();
 		let tempname = "홍길동";
-		let tempemail = "abcd@naver.com";
+ 		let tempemail = "abcd@naver.com";
 
-		if (name == "" || email == "") {
-			alert("이름과 메일주소를 정확하게 입력해주세요.");
+ 		if (name == "" || email == "") {
+ 			alert("이름과 메일주소를 정확하게 입력해주세요.");
 			return false;
-		} else {
-			if (name != tempname || email != tempemail) {
-				alert("회원정보를 찾을 수 없습니다.")
+ 		} else {
+ 			if (name != tempname || email != tempemail) {
+ 				alert("회원정보를 찾을 수 없습니다.")
 				return false;
-			} else {
-				return true;
+ 			} else {
+ 				return true;
 			}
-		}
+ 		}
 
 	}
-</script>
 
+</script>
 </body>
 </html>

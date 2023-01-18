@@ -128,9 +128,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -159,9 +159,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -190,9 +190,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -220,9 +220,10 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> 
+									<img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -251,9 +252,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -282,9 +283,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -313,9 +314,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -343,9 +344,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -374,9 +375,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -405,9 +406,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -436,9 +437,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -466,9 +467,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -495,7 +496,7 @@
 		<div class="container">
 			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
 				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
+					<img src="/ModooShop/images/icons/icon-close.png" alt="CLOSE">
 				</button>
 
 				<div class="row">
@@ -613,7 +614,7 @@
 										class="flex-c-m m-lr-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-detail">
 										찜하기</button>
 									<button
-										class="flex-c-m m-l-10 stext-104 cl0 size-101 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">
+										class="flex-c-m m-l-10 stext-104 cl0 size-105 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">
 										결제하기</button>
 								</div>
 							</div>

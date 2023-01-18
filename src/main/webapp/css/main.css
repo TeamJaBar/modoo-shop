@@ -1922,11 +1922,10 @@ button.mfp-close {
 }
 
 .tab01 .nav-link {
-  font-family: Poppins-Regular;
+  font-family: GmarketSansMedium;
   font-size: 15px;
   color: #888;
   line-height: 1.2;
-
   padding: 0;
   border-radius: 0px;
   border: none;
@@ -2452,6 +2451,7 @@ input.num-product::-webkit-inner-spin-button {
 .cl11 {color: #f9ba48;}
 .cl12 {color: #ccc;}
 .cl13 {color: #0188CB;}
+.cl14 {color: #3e3d3c;}
 
 /*//////////////////////////////////////////////////////////////////
 [ S-Text 0 - 15 ]*/
@@ -2573,6 +2573,13 @@ input.num-product::-webkit-inner-spin-button {
   line-height: 1.2;
 }
 
+.stext-120 {
+  font-family: GmarketSansMedium;
+  font-size: 15px;
+  line-height: 1.466667;
+  text-transform: uppercase;
+}
+
 
 /*---------------------------------------------*/
 .stext-301 {
@@ -2682,7 +2689,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .ltext-103 {
-  font-family: Poppins-Bold;
+  font-family:GmarketSansMedium;
   font-size: 36px;
   line-height: 1.1;
   text-transform: uppercase;
@@ -2955,6 +2962,10 @@ input.num-product::-webkit-inner-spin-button {
   max-width: 286px;
 }
 
+.size-219 {
+	width:250px;
+}
+
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -3112,6 +3123,11 @@ input.num-product::-webkit-inner-spin-button {
 .bor20 {
   border-radius: 8px;
   border: 1px solid #0188CB;
+}
+
+.bor21 {
+  border-radius: 8px;
+  border: 1px solid #cccccc;
 }
 
 

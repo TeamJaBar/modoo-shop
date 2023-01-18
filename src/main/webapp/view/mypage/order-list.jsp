@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <title>주문목록/배송조회</title>
+<script src="https://kit.fontawesome.com/2a349c84d6.js" crossorigin="anonymous"></script>
 <style>
 /* 서브 메뉴가 오른쪽일때 */
 #contents .sub_content>.content+.side_cont {
@@ -197,62 +199,8 @@ address, caption, cite, code, dfn, em, var {
 	}
 }
 
-/* 약관동의현황 */
-.my_page .join_agreement_cont {
-	margin: 40px 0 0 0;
-}
 
-.my_page .join_agreement_cont h3 {
-	margin: 0 0 10px 0;
-}
-
-.mypage_zone_tit {
-	margin: 0 0 0 0;
-	padding: 0 0 10px 0;
-	font-size: 16px;
-}
-
-.mypage_zone_tit h3 {
-	display: inline-block;
-	font-size: 16px;
-}
-
-.mypage_zone_tit h4 {
-	font-size: 16px;
-}
-
-.mypage_zone_tit span {
-	padding: 0 0 0 5px;
-	color: #777777;
-	font-size: 12px;
-	font-weight: normal;
-}
-
-.mypage_shipping .mypage_zone_tit h3 {
-	display: inline-block;
-}
-
-.mypage_shipping .mypage_zone_tit .pick_list_num {
-	display: inline-block;
-}
-
-.pick_list_num {
-	display: block;
-	padding: 20px 0 10px 0;
-	font-size: 14px;
-}
-
-.pick_list_num strong {
-	color: #181818;
-}
-
-.pick_list_day {
-	display: block;
-	padding: 20px 0 10px 0;
-	font-size: 14px;
-}
-
-/* ------------- 테이블 공통(텍스트 센터 기본) ------------- */
+//* ------------- 테이블 공통(텍스트 센터 기본) ------------- */
 .mypage_table_type {
 	
 }
@@ -266,7 +214,6 @@ address, caption, cite, code, dfn, em, var {
 	border: 0;
 	border-spacing: 0;
 	border-collapse: collapse;
-	text-align: center;
 }
 
 .mypage_table_type th {
@@ -328,33 +275,6 @@ address, caption, cite, code, dfn, em, var {
 	margin: 7px 0 0 0;
 }
 
-/* ------------- 마이페이지 > 배송지 관리 ------------- */
-.mypage_shipping {
-	position: relative;
-}
-
-.mypage_shipping_cont {
-	position: relative;
-}
-
-.mypage_shipping_cont .pick_list_num {
-	position: absolute;
-	top: -50px;
-	left: 92px;
-	font-size: 13px;
-}
-
-.mypage_shipping_cont .mypage_table_type span {
-	display: block;
-}
-
-.mypage_shipping_cont .mypage_table_type .btn_gray_list {
-	margin: 5px 0 5px 0;
-}
-
-.mypage_table_type .td_phone span {
-	width: 150px;
-}
 
 /* 서브사이드  마이페이지 */
 .side_cont .sub_menu_box .sub_menu_mypage {
@@ -456,13 +376,78 @@ address, caption, cite, code, dfn, em, var {
 .sub_menu_box_tit h2 {
 	font-size: 18px;
 }
+
+input[class="search_duration"] {
+	display: none;
+}
+
+input[class="search_duration"]+label {
+	display: inline-block;
+	width: 80px;
+	height: 42px;
+	border: 1px solid #999999;
+	border-right: none;
+	cursor: pointer;
+	text-align: center;
+	line-height: 42px;
+	font-family: 'GmarketSansMedium';
+	margin: 0;
+	font-size: 12px;
+}
+
+input[class="search_duration"]+label:hover {
+	background-color: #999999;
+	color: white;
+}
+
+input[class="search_duration"]:checked+label {
+	background-color: #999999;
+	color: white;
+}
+
+label[for="year"] {
+	margin-right: 50px !important;
+}
+
+label[for="today"] {
+	border-left:none !important;
+}
+
+.lookup {
+	width: 110px;
+	height: 42px;
+	text-align: center;
+	background-color: #222;
+	border: 1px solid #222;
+	padding: 0 10px 0 10px;
+	color: white;
+	font-family: 'GmarketSansMedium';
+	font-size: 12px;
+}
+
+.lookup:hover{
+	background-color: #0188CB;
+	border-color:#0188CB;
+	color: white;
+}
+
+.icon {
+	margin-left: 10px;
+	margin-top: 2px;
+}
 </style>
 
 
 <%@include file="../common/header.jsp"%>
 
+<!-- Title page -->
+<section class="bg-img1 txt-center p-lr-15 p-tb-92"
+	style="background-image: url('/ModooShop/images/bg-img-01.png');">
+	<h2 class="ltext-105 cl0 txt-center">주문목록</h2>
+</section>
 
-	<!-- breadcrumb -->
+
+<!-- breadcrumb
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-1 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04"> Home
@@ -471,224 +456,127 @@ address, caption, cite, code, dfn, em, var {
 				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</span> <span class="stext-109 cl4"> 주문목록/배송조회 </span>
 		</div>
-	</div>
+	</div>-->
 
-	<!-- Content page -->
-	<section class="bg0 p-t-62 p-b-60">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-80">
+<!-- Content page -->
+<section class="bg0 p-t-62 p-b-60">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-lg-9 p-b-80 p-r-50">
+				
+				<!-- 주문 조회 -->
+				<div class="bg0 p-b-120">
+					<div class="sub-content">
+						<div class="mypage_shipping">
+							<div class="m-b-110">
+								<h6 class="p-l-12 stext-106">조회기간</h6>
 
-
-					<!-- Content page -->
-					<section class="bg0 p-b-120">
-						<div class="container">
-							<div class="sub-content">
-								<div class="content-box">
-									<div class="join-agreement-wrap">
-
-
-										<div class="mypage_shipping js_delivery_layer">
-											<div class="m-b-120">
-												<div class="">
-													<h6 class="m-b-1">주문목록/배송조회</h6>
-
-													<div class="flex-w flex-t bor12 p-t-15 p-b-30">
-														<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-															<div class="p-t-15">
-																<span class="stext-112 cl8"> 조회기간 </span>
-
-																<div
-																	class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-																	<select class="js-select2">
-																		<option>Year</option>
-																		<option>2023</option>
-																		<option>2022</option>
-																		<option>2021</option>
-																		<option>2020</option>
-																		<option>2019</option>
-																		<option>2018</option>
-																		<option>2017</option>
-																		<option>2016</option>
-																		<option>2015</option>
-																	</select>
-																	<div class="dropDownSelect2"></div>
-																</div>
-
-																<div
-																	class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-																	<select class="js-select2">
-																		<option>Month</option>
-																		<option>1</option>
-																		<option>2</option>
-																		<option>3</option>
-																		<option>4</option>
-																		<option>5</option>
-																		<option>6</option>
-																		<option>7</option>
-																		<option>8</option>
-																		<option>9</option>
-																		<option>10</option>
-																		<option>11</option>
-																		<option>12</option>
-																	</select>
-																	<div class="dropDownSelect2"></div>
-																</div>
-
-																<div
-																	class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-																	<select class="js-select2">
-																		<option>Day</option>
-																		<option>1</option>
-																		<option>2</option>
-																		<option>3</option>
-																		<option>4</option>
-																		<option>5</option>
-																		<option>6</option>
-																		<option>7</option>
-																		<option>8</option>
-																		<option>9</option>
-																		<option>10</option>
-																		<option>11</option>
-																		<option>12</option>
-																		<option>13</option>
-																		<option>14</option>
-																		<option>15</option>
-																		<option>16</option>
-																		<option>17</option>
-																		<option>18</option>
-																		<option>19</option>
-																		<option>20</option>
-																		<option>21</option>
-																		<option>22</option>
-																		<option>23</option>
-																		<option>24</option>
-																		<option>25</option>
-																		<option>26</option>
-																		<option>27</option>
-																		<option>28</option>
-																		<option>29</option>
-																		<option>30</option>
-																		<option>31</option>
-																	</select>
-																	<div class="dropDownSelect2"></div>
-																</div>
-
-																<div class="flex-w">
-																	<div
-																		class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-																		조회</div>
-																</div>
-
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="">
-												<div class="">
-													<h6 class="m-b-10">주문목록/배송조회 내역</h6>
-													<div class="wrap-table-shopping-cart">
-														<table class="table-shopping-cart">
-															<tr class="table_head">
-																<th class="column-1">날짜/주문번호</th>
-																<th class="column-2">
-																	<center>상품명/옵션</center>
-																</th>
-																<th class="column-3">
-																	<center>상품금액/수량</center>
-																</th>
-																<th class="column-4">
-																	<center>주문상태</center>
-																</th>
-																<th class="column-5">
-																	<center>확인리뷰</center>
-																</th>
-															</tr>
-
-															<tr class="table_row">
-																<td colspan="5">
-																	<center>조회내역이 없습니다.</center>
-																</td>
-															</tr>
-														</table>
-													</div>
-
-												</div>
-											</div>
-										</div>
-
-
-										<!-- //mypage_shipping_cont  -->
-										<div class="pagination">
-											<ul></ul>
-										</div>
-									</div>
-
-
-
-
+								<div class="bor12 p-t-15 p-b-50">
+									<form class="select-container flex-c m-t-20">
+										<input type="radio" class="search_duration" name="search_duration" id="today" value="0"> 
+										<label for="today">오늘</label> 
+										<input type="radio" class="search_duration" name="search_duration" id="week" value="7"> 
+										<label for="week">7일</label> 
+										<input type="radio" class="search_duration" name="search_duration" id="fortnight" value="15"> 
+										<label for="fortnight">15일</label>
+										<input type="radio" class="search_duration" name="search_duration" id="month" value="30"> 
+										<label for="month">1개월</label> 
+										<input type="radio" class="search_duration" name="search_duration" id="3months" value="90"> 
+										<label for="3months">3개월</label> 
+										<input type="radio" class="search_duration" name="search_duration" id="year" value="365"> 
+										<label for="year">1년</label>
+										<button class="lookup"> 조회 <i class="fa-solid fa-magnifying-glass icon"></i> </button>
+									</form>
 								</div>
 							</div>
-						</div>
-					</section>
+						
+						<div>
+							<h6 class="m-b-10 stext-106 p-l-12">주문목록</h6>
+							<div class="mypage_table_type">
 
-
-
-				</div>
-
-				<div class="col-md-4 col-lg-3 p-b-80">
-					<div class="side-menu">
-
-
-						<div class="sub_content">
-
-							<div class="side_cont">
-								<span class="btn_side_mobile"></span>
-								<div class="sub_menu_box">
-									<div class="sub_menu_box_tit">
-										<h2>
-											<i class="fa fa-bars m-r-10"></i>마이페이지
-										</h2>
-
-									</div>
-									<ul class="sub_menu_mypage">
-										<li>쇼핑정보
-											<ul class="sub_depth1">
-												<li><a href="order-list.html">- 주문목록/배송조회</a></li>
-												<li><a href="cancel-list.html">- 취소 내역</a></li>
-												<li><a href="dibs-list.html">- 찜리스트</a></li>
-											</ul>
-										</li>
-										<li>회원정보
-											<ul class="sub_depth1">
-												<li><a href="change-inform.html">- 회원정보 변경</a></li>
-												<li><a href="withdrawal.html">- 회원 탈퇴</a></li>
-												<li><a href="manage-address.html">- 배송지 관리</a></li>
-											</ul>
-										</li>
-									</ul>
+									<table>
+										<tbody>
+											<tr class="table_head">
+												<th class="column-0">선택</th>
+												<th class="column-1">주문번호</th>
+												<th class="column-2">상품명</th>
+												<th class="column-3">수량</th>
+												<th class="column-4">상품금액</th>
+												<th class="column-5">합계</th>
+											</tr>
+											<tr class="table_row">
+												<td class="column-0"><input type="checkbox" id="check" name="check"></td>
+												<td class="column-1">20230105</td>
+												<td class="column-2">모두의 마블</td>
+												<td class="column-3">2 개</td>
+												<td class="column-4">52500원</td>
+												<td class="column-5">105000원</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- //mypage_shipping_cont  -->
+								<div class="pagination">
+									<ul></ul>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-	</section>
+			</div>
+
+			<!-- 메뉴 -->
+			<div class="col-md-4 col-lg-3 p-b-80">
+				<div class="side-menu">
+					<div class="sub_content">
+						<div class="side_cont">
+							<span class="btn_side_mobile"></span>
+							<div class="sub_menu_box">
+								<div class="sub_menu_box_tit">
+									<h2>
+										<i class="fa fa-bars m-r-10"></i>마이페이지
+									</h2>
+
+								</div>
+								<ul class="sub_menu_mypage">
+									<li>쇼핑정보
+										<ul class="sub_depth1">
+											<li><a href="order-list.html">- 주문목록/배송조회</a></li>
+											<li><a href="cancel-list.html">- 취소 내역</a></li>
+											<li><a href="dibs-list.html">- 찜리스트</a></li>
+										</ul>
+									</li>
+									<li>회원정보
+										<ul class="sub_depth1">
+											<li><a href="change-inform.html">- 회원정보 변경</a></li>
+											<li><a href="withdrawal.html">- 회원 탈퇴</a></li>
+											<li><a href="manage-address.html">- 배송지 관리</a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 
 
-	<%@include file="../common/footer.jsp"%>
+<%@include file="../common/footer.jsp"%>
 
-	<!--===============================================================================================-->
-	<script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../../vendor/animsition/js/animsition.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../../vendor/bootstrap/js/popper.js"></script>
-	<script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../../vendor/select2/select2.min.js"></script>
-	<script>
+<!--===============================================================================================-->
+<script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="../../vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="../../vendor/bootstrap/js/popper.js"></script>
+<script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="../../vendor/select2/select2.min.js"></script>
+<script>
 		$(".js-select2").each(function() {
 			$(this).select2({
 				minimumResultsForSearch : 20,
@@ -696,11 +584,11 @@ address, caption, cite, code, dfn, em, var {
 			});
 		})
 	</script>
-	<!--===============================================================================================-->
-	<script src="../../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
+<!--===============================================================================================-->
+<script src="../../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
+<script src="../../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
 		$('.js-pscroll').each(function() {
 			$(this).css('position', 'relative');
 			$(this).css('overflow', 'hidden');
@@ -715,9 +603,8 @@ address, caption, cite, code, dfn, em, var {
 			})
 		});
 	</script>
-	<!--===============================================================================================-->
-	<script src="../../js/main.js"></script>
-
+<!--===============================================================================================-->
+<script src="../../js/main.js"></script>
 </body>
 
 </html>
