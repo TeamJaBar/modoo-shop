@@ -5,8 +5,7 @@
 
 <head>
 <title>취소내역</title>
-<script src="https://kit.fontawesome.com/2a349c84d6.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/2a349c84d6.js" crossorigin="anonymous"></script>
 <style>
 /* 서브 메뉴가 오른쪽일때 */
 #contents .sub_content>.content+.side_cont {
@@ -591,16 +590,17 @@ label[for="today"] {
 	width: 110px;
 	height: 42px;
 	text-align: center;
-	background-color: #f3f3f3;
-	border: 1px solid #f3f3f3;
+	background-color: #222;
+	border: 1px solid #222;
 	padding: 0 10px 0 10px;
-	color: #222;
+	color: white;
 	font-family: 'GmarketSansMedium';
 	font-size: 12px;
 }
 
 .lookup:hover{
-	background-color: #999999;
+	background-color: #0188CB;
+	border-color:#0188CB;
 	color: white;
 }
 
@@ -615,7 +615,7 @@ label[for="today"] {
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92"
 	style="background-image: url('/ModooShop/images/bg-img-01.png');">
-	<h2 class="ltext-105 cl0 txt-center">배송지 관리</h2>
+	<h2 class="ltext-105 cl0 txt-center">취소내역</h2>
 </section>
 
 <!-- Content page -->
@@ -634,20 +634,18 @@ label[for="today"] {
 								<div class="bor12 p-t-15 p-b-50">
 
 									<form class="select-container flex-c m-t-20">
-										<input type="radio" class="search_duration"
-											name="search_duration" id="today" value="0"> <label
-											for="today">오늘</label> <input type="radio"
-											class="search_duration" name="search_duration" id="week"
-											value="7"> <label for="week">7일</label> <input
-											type="radio" class="search_duration" name="search_duration"
-											id="fortnight" value="15"> <label for="fortnight">15일</label>
-										<input type="radio" class="search_duration"
-											name="search_duration" id="month" value="30"> <label
-											for="month">1개월</label> <input type="radio"
-											class="search_duration" name="search_duration" id="3months"
-											value="90"> <label for="3months">3개월</label> <input
-											type="radio" class="search_duration" name="search_duration"
-											id="year" value="365"> <label for="year">1년</label>
+										<input type="radio" class="search_duration" name="search_duration" id="today" value="0"> 
+										<label for="today">오늘</label> 
+										<input type="radio" class="search_duration" name="search_duration" id="week" value="7"> 
+										<label for="week">7일</label> 
+										<input type="radio" class="search_duration" name="search_duration" id="fortnight" value="15"> 
+										<label for="fortnight">15일</label>
+										<input type="radio" class="search_duration" name="search_duration" id="month" value="30"> 
+										<label for="month">1개월</label> 
+										<input type="radio" class="search_duration" name="search_duration" id="3months" value="90"> 
+										<label for="3months">3개월</label> 
+										<input type="radio" class="search_duration" name="search_duration" id="year" value="365"> 
+										<label for="year">1년</label>
 										<button class="lookup">
 											조회 <i class="fa-solid fa-magnifying-glass icon"></i>
 										</button>
@@ -655,7 +653,7 @@ label[for="today"] {
 								</div>
 							</div>
 
-							<div class="">
+							<div>
 								<h6 class="m-b-20 stext-106 p-l-12">취소 내역</h6>
 								<div class="mypage_table_type">
 
@@ -693,10 +691,7 @@ label[for="today"] {
 			<!-- 메뉴 -->
 			<div class="col-md-4 col-lg-3 p-b-80">
 				<div class="side-menu">
-
-
 					<div class="sub_content">
-
 						<div class="side_cont">
 							<span class="btn_side_mobile"></span>
 							<div class="sub_menu_box">
