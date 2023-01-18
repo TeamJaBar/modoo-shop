@@ -82,7 +82,8 @@ body, th, td, input, select, textarea, button {
 
 a {
 	color: #333;
-	text-decoration: none
+	text-decoration: none;
+	font-family: 'SUIT', sans-serif;
 }
 
 a:active, a:hover {
@@ -562,6 +563,26 @@ address, caption, cite, code, dfn, em, var {
 .mypage_table_type .td_phone span {
 	width: 150px;
 }
+
+.btn-correct {
+	width:35px;
+	border-radius:2px;
+	background-color:#0188CB;
+	border:1px solid #0188CB;
+	color:white;
+	text-align:center;
+	padding: 0 2px 0 2px;
+}
+
+.btn-delete {
+	width:35px;
+	border-radius:2px;
+	background-color:#222;
+	border:1px solid #222;
+	color:white;
+	text-align:center;
+	padding: 0 2px 0 2px;
+}
 </style>
 
 <%@include file="../common/header.jsp"%>
@@ -576,7 +597,7 @@ address, caption, cite, code, dfn, em, var {
 	<section class="bg0 p-t-62 p-b-60">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-80">
+				<div class="col-md-8 col-lg-9 p-b-80 p-r-50">
 
 
 					<!-- Content page -->
@@ -626,21 +647,17 @@ address, caption, cite, code, dfn, em, var {
 																<td>서울특별시 강남구 테헤란로26길 12 스타빌딩</td>
 																<td class="td_phone"><span>휴대폰
 																		: 010-1234-1234</span></td>
-																<td><button onclick="return change();">수정</button> | <button onclick="return del();">삭제</button></td>
+																<td>
+																<button class="btn-correct hov-btn4" onclick="return change(); ">수정</button>  
+																<button class="btn-delete hov-btn4" onclick="return del();">삭제</button></td>
 															</tr>
 															
 														</tbody>
 													</table>
 												</div>
-												<a href="add-address.html"
-													class="btn_add_shipping btn_open_layer hov-btn3 m-b-10">+ 새 배송지 추가</a>
+												<a href="add-address.jsp" class="btn_add_shipping btn_open_layer hov-btn3 m-b-10">+ 새 배송지 추가</a>
 
 											</div>
-
-											<br> <br> <br> <br> <br> <br> <br>
-											<br> <br> <br> <br> <br> <br> <br>
-											<br> <br> <br> <br> <br> <br> <br>
-											<br> <br> <br> <br> <br>
 											<!-- //mypage_shipping_cont  -->
 											<div class="pagination">
 												<ul></ul>
