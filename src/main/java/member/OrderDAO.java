@@ -17,9 +17,11 @@ public class OrderDAO {
    final String INSERT_ORD = "INSERT INTO ORDERDETAIL VALUES((SELECT NVL(MAX(ODNUM),1)+1 FROM ORDERDETAIL), ?, ?, ?)";
    final String SELECTALL_STATUS = "SELECT OSTATUS, COUNT(*) AS CNT FROM MORDER GROUP BY OSTATUS";
    final String SELECTALL_SALES = "SELECT TO_CHAR(ODATE, 'MM/DD') AS TDATE, SUM(P.SELPRICE*O.CNT) CNT FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND ROWNUM<=14 GROUP BY TO_CHAR(ODATE, 'MM/DD')";
-   final String SELECTALL_CAN = "SELECT ODate, PIMG, ONUM, PNAME, SELPRICE, CNT, OSTATUS, MPOINT FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? ORDER BY ODNUM ASC";
-   final String SELECTALL_ORDER = "SELECT ODate, PIMG, ONUM, PNAME, SELPRICE, CNT, OSTATUS, MPOINT FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS=4 AND MNUM=? ORDER BY ODNUM ASC";
-
+   final String SELECTALL_ORDER = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? ORDER BY ODNUM ASC";
+   final String SELECTALL_CAN = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS=4 AND MNUM=? ORDER BY ODNUM ASC";
+   final String SELECTALL_ORDER_CAL = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS=4 AND MNUM=1 AND M.ODATE BETWEEN SYSDATE-? AND SYSDATE ORDER BY ODNUM ASC";
+   final String SELECTALL_CAN_CAL = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? AND M.ODATE BETWEEN SYSDATE-? AND SYSDATE ORDER BY ODNUM ASC";
+   
    public boolean insert(OrderVO ovo) {
       try {
          conn = JDBCUtil.connect();
@@ -97,12 +99,24 @@ public ArrayList<OrderVO> selectAll(OrderVO ovo) {
       conn = JDBCUtil.connect();
       try {
          if(ovo.getoStaus()==4) {
-            pstmt = conn.prepareStatement(SELECTALL_ORDER);
-            pstmt.setInt(1, ovo.getmNum());
+        	 if(ovo.getSearchCal() != 0) {
+        		 pstmt = conn.prepareStatement(SELECTALL_ORDER_CAL);
+        		 pstmt.setInt(1, ovo.getmNum());
+        		 pstmt.setInt(2, ovo.getSearchCal());
+        	 } else {
+        		 pstmt = conn.prepareStatement(SELECTALL_ORDER);
+        		 pstmt.setInt(1, ovo.getmNum());        		 
+        	 }
          }
          else {
-            pstmt = conn.prepareStatement(SELECTALL_CAN);
-            pstmt.setInt(1, ovo.getmNum());
+        	 if(ovo.getSearchCal() != 0) {
+        		 pstmt = conn.prepareStatement(SELECTALL_CAN_CAL);
+        		 pstmt.setInt(1, ovo.getmNum());
+        		 pstmt.setInt(2, ovo.getSearchCal());
+        	 } else {
+        		 pstmt = conn.prepareStatement(SELECTALL_CAN);
+        		 pstmt.setInt(1, ovo.getmNum());        		 
+        	 }
          }
          ResultSet rs = pstmt.executeQuery();
          while (rs.next()) {
