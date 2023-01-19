@@ -50,7 +50,7 @@
 												<th><span class="important">아이디</span></th>
 												<td>
 													<div class="member_warning">
-														<input type="text" id="mId" name="mId" data-pattern="gdMemberId" required>
+														<input type="text" id="memId" name="mId" data-pattern="gdMemberId" required>
 													</div>
 													<div id="memId-length-error" class="text_warning hidden">아이디는
 														4~20자리 이내로 입력해주세요.</div>
@@ -321,6 +321,7 @@
 <!--===============================================================================================-->
 <script>
 	$(document).ready(function () {
+		
 		/* 체크박스 토글 */
 		$('.check_s').click(function () {
 			$(this).toggleClass("on");
@@ -330,29 +331,51 @@
 		// 영소문자로 시작되며 영소문자 혹은 숫자만 사용 가능
 		const idCheck = /^[a-z][a-z0-9]+$/m
 
-		$('#mId').focusout(function () {
-			let id = $('#mId').val();
+		$('#memId').focusout(function () {
+			let mId = $('#memId').val();
 			
 			$('#memId-good').addClass('hidden');
+			$('#memId-length-error').addClass('hidden');
+			$('#memId-error').addClass('hidden');
+			$('#memId-existing-error').addClass('hidden');
 
 			// 자리수는 일부러 표현식에 안 적고 따로
-			if (id.length < 4 || id.length > 20) {
+			if (mId.length < 4 || mId.length > 20) {
 				$('#memId-length-error').removeClass('hidden');
+				$('#memId').focus();
 				return false;
 			} else {
 				$('#memId-length-error').addClass('hidden');
 			}
 
 			// 숫자로 시작하거나 영소문자와 숫자 외의 것 입력했을 시
-			if (!idCheck.test(id)) {
+			if (!idCheck.test(mId)) {
 				$('#memId-error').removeClass('hidden');
+				$('#memId').focus();
 				return false;
 			} else {
 				$('#memId-error').addClass('hidden');
-				$('#memId-good').removeClass('hidden'); // 아이디 사용 가능!
 			}
 			
-			
+			//아이디 중복검사
+			$.ajax({
+				type:'POST', //POST 방식으로 보낼래
+				url:'check', 
+				data:{mId:mId}, //mId라는 이름으로 mId 변수에 있는 값 보냄
+				success: function(result) {
+					console.log('로그 : 중복체크 성공');
+					console.log(result);
+					if(result==1) {
+						//사용가능한 아이디
+						$('#memId-existing-error').addClass('hidden');
+						$('#memId-good').removeClass('hidden');
+					} else {
+						flag = false;
+						$('#memId-existing-error').removeClass('hidden');
+						$('#memId').focus();
+					}
+				}
+			})	
 		});
 
 		/* 비밀번호 정규식 */

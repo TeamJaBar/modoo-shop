@@ -12,7 +12,7 @@ public class JoinAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		
-		forward.setPath("/join-ok.jsp");
+		forward.setPath("view/join-ok.jsp");
 		forward.setRedirect(true);
 		
 		MemberDAO mdao = new MemberDAO();
