@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +10,7 @@
 <%@include file="common/header.jsp"%>
 
 <!-- Title page -->
-<section class="bg-img1 txt-center p-lr-15 p-tb-92"
-	style="background-image: url('/ModooShop/images/bg-img-01.png');">
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/ModooShop/images/bg-img-01.png');">
 	<h2 class="ltext-105 cl0 txt-center">비밀번호 찾기</h2>
 </section>
 
@@ -23,7 +22,7 @@
 			<div class="content_box">
 				<div class="member_wrap">
 					<div class="member_cont">
-						<form action="pw-find-03.jsp" name="formAuth" id="formAuth">
+						<form action="sendEmail.do" name="formAuth" id="formAuth" method="post">
 							<div class="member_findPW_box">
 								<div class="user_certify_tit">
 									<h3>인증수단 선택</h3>
@@ -31,15 +30,16 @@
 								</div>
 								<!-- //user_certify_tit -->
 								<div class="user_certify_check">
-									<input type="checkbox" id="authEmail" name="authType" value="authEmail" required> 
-										<label for='authEmail' class="label-for-checkbox">이메일 인증<span class="email">(pol******gns@naver.com)</span>
+									<input type="checkbox" id="authEmail" name="mEmail" value="${member.mEmail}" required>
+									<label for='authEmail' class="label-for-checkbox">
+										이메일 인증 <span class="email">(pol******gns@naver.com)</span>
 									</label>
-									<p>가입시 등록한 이메일로 인증번호가 발송됩니다.</p>
-									<p id="errorMessage" class="dn"></p>
+									<input type="hidden" name="email" value="polodltjdgns@naver.com">
+									<p>가입 시 등록한 이메일로 인증번호가 발송됩니다.</p>
 								</div>
 								<!-- //user_certify_list -->
 								<div class="btn-center-box">
-										<button type="submit" class="btn_member_next btn_submit">다음</button>
+									<button type="submit" class="btn_member_next btn_submit">다음</button>
 								</div>
 							</div>
 							<!-- //member_findPW_box -->
@@ -52,8 +52,6 @@
 		</div>
 	</div>
 </section>
-
-
 
 <%@include file="common/footer.jsp"%>
 

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,27 +10,25 @@
 
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
-   $(document).ready(function () {
-      /* 체크박스 토글 */
-      // $('.on').click(function () {
-      //    if (this.className == 'on') {
-      //       this.className = '';
-      //    } else {
-      //       this.className = 'on';
-      //    }
-      // });
-
-      $('.on').click(function () {
-         $(this).toggleClass("on");
-      });
-   });
+	$(document).ready(function() {
+		/* 체크박스 토글 */
+		// $('.on').click(function () {
+		//    if (this.className == 'on') {
+		//       this.className = '';
+		//    } else {
+		//       this.className = 'on';
+		//    }
+		// });
+		$('.on').click(function() {
+			$(this).toggleClass("on");
+		});
+	});
 </script>
 
 <%@include file="common/header.jsp"%>
 
 <!-- Title page -->
-<section class="bg-img1 txt-center p-lr-15 p-tb-92"
-	style="background-image: url('/ModooShop/images/bg-img-01.png');">
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/ModooShop/images/bg-img-01.png');">
 	<h2 class="ltext-105 cl0 txt-center">아이디 찾기</h2>
 </section>
 
@@ -42,18 +40,18 @@
 			<div class="content_box">
 				<div class="member_wrap">
 					<div class="member_cont">
-						<!-- 나중에 바꿔요 -->
 						<div class="result-container">
-								<span id="name">김시하</span> 회원님의 아이디는
-								<div class="result"><span id="findId">siha0812</span> 입니다.</div>
+							<span id="name">${member.mName}</span>
+							회원님의 아이디는
+							<div class="result">
+								<span id="findId">${member.mId}</span>
+								입니다.
+							</div>
 						</div>
-						<div class="btn_login_box"
-							style="display: flex; justify-content: center;">
+						<div class="btn_login_box" style="display: flex; justify-content: center;">
 							<ul>
-								<li><button id="btnJoinMember" class="btn_member_blue hov-btn4"
-										onclick="location.href='pw-find-01.jsp'">비밀번호 찾기</button></li>
-								<li><button id="btnFindId" class="btn_member_white hov-btn4"
-										onclick="location.href='login.jsp'">로그인하기</button></li>
+								<li><button id="btnJoinMember" class="btn_member_blue hov-btn4" onclick="location.href='pw-find-01.jsp'">비밀번호 찾기</button></li>
+								<li><button id="btnFindId" class="btn_member_white hov-btn4" onclick="location.href='login.jsp'">로그인하기</button></li>
 							</ul>
 						</div>
 						<!-- //btn_login_box -->
@@ -79,35 +77,34 @@
 <!--===============================================================================================-->
 <script src="../vendor/select2/select2.min.js"></script>
 <script>
-      $(".js-select2").each(function () {
-         $(this).select2({
-            minimumResultsForSearch: 20,
-            dropdownParent: $(this).next('.dropDownSelect2')
-         });
-      })
-   </script>
+	$(".js-select2").each(function() {
+		$(this).select2({
+			minimumResultsForSearch : 20,
+			dropdownParent : $(this).next('.dropDownSelect2')
+		});
+	})
+</script>
 <!--===============================================================================================-->
 <script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
-      $('.js-pscroll').each(function () {
-         $(this).css('position', 'relative');
-         $(this).css('overflow', 'hidden');
-         var ps = new PerfectScrollbar(this, {
-            wheelSpeed: 1,
-            scrollingThreshold: 1000,
-            wheelPropagation: false,
-         });
+	$('.js-pscroll').each(function() {
+		$(this).css('position', 'relative');
+		$(this).css('overflow', 'hidden');
+		var ps = new PerfectScrollbar(this, {
+			wheelSpeed : 1,
+			scrollingThreshold : 1000,
+			wheelPropagation : false,
+		});
 
-         $(window).on('resize', function () {
-            ps.update();
-         })
-      });
-   </script>
+		$(window).on('resize', function() {
+			ps.update();
+		})
+	});
+</script>
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
-
 </body>
 
 </html>

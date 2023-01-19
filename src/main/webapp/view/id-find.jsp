@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,8 +26,7 @@
 </script>
 
 <!-- Title page -->
-<section class="bg-img1 txt-center p-lr-15 p-tb-92"
-	style="background-image: url('/ModooShop/images/bg-img-01.png');">
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/ModooShop/images/bg-img-01.png');">
 	<h2 class="ltext-105 cl0 txt-center">아이디 찾기</h2>
 </section>
 
@@ -40,25 +38,22 @@
 			<div class="content_box">
 				<div class="member_wrap">
 					<div class="member_cont">
-						<!-- 나중에 바꿔요 -->
-						<form id="formLogin" action="id-find-ok.jsp">
+						<form id="formLogin" action="id-find-ok.jsp" method="post">
 							<input type="hidden" id="mode" name="mode" value="login">
 							<div class="member_login_box">
 								<div class="login_input_sec">
 									<div>
-										<input type="text" id="findID" name="id" value="" placeholder="이름" required> 
-										<input type="email" id="findIDEmail" name="email" value="" placeholder="가입메일주소" required>
+										<input type="text" id="findID" name="mName" placeholder="이름" required>
+										<input type="email" id="findIDEmail" name="mEmail" placeholder="가입한 메일 주소" required>
 									</div>
-									<button onclick="return ch()" class="btn_submit" type="submit">
-										아이디 찾기
-									</button>
+									<button onclick="return check()" class="btn_submit" type="submit">아이디 찾기</button>
 								</div>
 							</div>
 						</form>
 						<div class="btn_login_box" style="display: flex; justify-content: center;">
 							<ul>
-								<li><button onclick="location.href='pw-find-01.jsp'" id="btnFindPw" class="btn_member_blue hov-btn4"> 비밀번호 찾기 </button></li>
-								<li><button onclick="location.href='login.jsp'" id="btnLogin" class="btn_member_white hov-btn4"> 로그인하기 </button></li>
+								<li><button onclick="location.href='pw-find-01.jsp'" id="btnFindPw" class="btn_member_blue hov-btn4">비밀번호 찾기</button></li>
+								<li><button onclick="location.href='login.jsp'" id="btnLogin" class="btn_member_white hov-btn4">로그인하기</button></li>
 							</ul>
 						</div>
 						<!-- //btn_login_box -->
@@ -114,26 +109,34 @@
 <script src="../js/main.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	function ch() {
-		let name = $("#findID").val();
- 		let email = $("#findIDEmail").val();
-		let tempname = "홍길동";
- 		let tempemail = "abcd@naver.com";
-
- 		if (name == "" || email == "") {
- 			alert("이름과 메일주소를 정확하게 입력해주세요.");
-			return false;
- 		} else {
- 			if (name != tempname || email != tempemail) {
- 				alert("회원정보를 찾을 수 없습니다.")
-				return false;
- 			} else {
- 				return true;
-			}
- 		}
-
-	}
-
+	$(document).ready(function() {
+		function check() {
+			$.ajax({
+				type : 'POST', //POST 방식으로 보낼래
+				url : 'check',
+				data : {
+					mName : mName,
+					mEmail : mEmail
+				}, //mId라는 이름으로 mId 변수에 있는 값 보냄
+				success : function(result) {
+					console.log('로그 : 중복체크 성공');
+					console.log(result);
+	
+					if (mName == "" || mEmail == "") {
+						alert("이름과 메일주소를 정확하게 입력해주세요.");
+						return false;
+					} else {
+						if (result != 1) {
+							return true;
+						} else {
+							alert("회원정보를 찾을 수 없습니다.")
+							return false;
+						}
+					}
+				}
+			})
+		}
+	});
 </script>
 </body>
 </html>
