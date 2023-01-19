@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% String path = "../../"; %>
 
-<c:if test="${param.page eq 'main'}">
-<% path = "../"; %>
-</c:if>
 <!-- Footer -->
 	<footer class="bg6 p-t-75 p-b-32">
 		<div class="container">
@@ -59,11 +55,11 @@
 
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
-					<img src="<%=path%>images/icons/icon-pay-01.png" alt="ICON-PAY"> 
-					<img src="<%=path%>images/icons/icon-pay-02.png" alt="ICON-PAY"> 
-					<img src="<%=path%>images/icons/icon-pay-03.png" alt="ICON-PAY"> <img
-						src="<%=path%>images/icons/icon-pay-04.png" alt="ICON-PAY"> <img
-						src="<%=path%>images/icons/icon-pay-05.png" alt="ICON-PAY">
+					<img src="../images/icons/icon-pay-01.png" alt="ICON-PAY"> 
+					<img src="../images/icons/icon-pay-02.png" alt="ICON-PAY"> 
+					<img src="../images/icons/icon-pay-03.png" alt="ICON-PAY"> <img
+						src="../images/icons/icon-pay-04.png" alt="ICON-PAY"> <img
+						src="../images/icons/icon-pay-05.png" alt="ICON-PAY">
 				</div>
 
 				<p class="stext-107 cl6 txt-center">
