@@ -15,6 +15,7 @@ public class OrderVO {
 	private int mNummpoint; // JAVA에서만 저장용으로 사용하는 데이터 : 적립금
 	private int pNumdcharge; // JAVA에서만 저장용으로 사용하는 데이터 : 배송비
 	private String pNumPname; // JAVA에서만 저장용으로 사용하는 데이터 : 상품이름
+	private int searchCal; // JAVA에서만 저장용으로 사용하는 데이터 : 날짜검색
 
 	public int getoNum() {
 		return oNum;
@@ -110,6 +111,14 @@ public class OrderVO {
 
 	public void setpNumPname(String pNumPname) {
 		this.pNumPname = pNumPname;
+	}
+
+	public int getSearchCal() {
+		return searchCal;
+	}
+
+	public void setSearchCal(int searchCal) {
+		this.searchCal = searchCal;
 	}
 
 }
