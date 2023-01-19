@@ -13,7 +13,7 @@ public class OrderDAO {
    Connection conn;
    PreparedStatement pstmt;
 
-   final String INSERT_OR = "INSERT INTO MORDER VALUES((SELECT NVL(MAX(ONUM),1)+1 FROM MORDER), ?, SYSDATE, 1)";
+   final String INSERT_OR = "INSERT INTO MORDER VALUES((SELECT NVL(MAX(ONUM),1)+1 FROM MORDER), ?, ?, ?, ?, ?, ?, SYSDATE, 1)";
    final String INSERT_ORD = "INSERT INTO ORDERDETAIL VALUES((SELECT NVL(MAX(ODNUM),1)+1 FROM ORDERDETAIL), ?, ?, ?)";
    final String SELECTALL_STATUS = "SELECT OSTATUS, COUNT(*) AS CNT FROM MORDER GROUP BY OSTATUS";
    final String SELECTALL_SALES = "SELECT TO_CHAR(ODATE, 'MM/DD') AS TDATE, SUM(P.SELPRICE*O.CNT) CNT FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND ROWNUM<=14 GROUP BY TO_CHAR(ODATE, 'MM/DD')";
@@ -26,7 +26,12 @@ public class OrderDAO {
       try {
          conn = JDBCUtil.connect();
          pstmt = conn.prepareStatement(INSERT_OR);
-         pstmt.setInt(1, ovo.getoNum());
+         pstmt.setInt(1, ovo.getmNum());
+         pstmt.setString(2, ovo.getoShipName());
+         pstmt.setString(3, ovo.getoZipCode());
+         pstmt.setString(4, ovo.getoUserAddr());
+         pstmt.setString(5, ovo.getoDetailAddr());
+         pstmt.setString(6, ovo.getoTel());
          pstmt.executeUpdate();
       } catch (SQLException e) {
          e.printStackTrace();
