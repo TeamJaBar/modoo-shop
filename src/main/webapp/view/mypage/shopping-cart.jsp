@@ -44,49 +44,47 @@ function isDelete(){
 
 								<tr class="cartTable_row">
 									<td class="column-1">
-										<input type="checkbox" id="chk" name="chk" checked />
+										<input type="checkbox" id="chk1" name="chk" checked />
 									</td>
 									<td class="column-2"><img src="/ModooShop/images/p001.jpg" alt="샘플 데이터1" style="width: 90px; height: 70px;"></td>
-									<td class="column-3"><span id="price">40,000</span>원<br><span style="font-size: 10px; text-align: right;">/ <span id="salePrice">12,800</span>원</span></td>
+									<td class="column-3"><span id="price1">40,000</span>원<br><span style="font-size: 10px; text-align: right;">/ <span id="salePrice1">12,800</span>원</span></td>
 									<td class="column-4">
 										<div class="wrap-num-product flex-w m-tb-10 m-l-30">
-										<div
-											class="btn-num-cart-down cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-minus"></i>
+											<div id="1" class="btn-num-cart-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+	
+											<input class="mtext-104 cl3 txt-center num-product"
+												type="number" name="num-product" value="1">
+	
+											<div id="1" class="btn-num-cart-up cl8 hov-btn3 trans-04 flex-c-m ">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
 										</div>
-
-										<input class="mtext-104 cl3 txt-center num-product"
-											type="number" name="num-product" value="1">
-
-										<div
-											class="btn-num-cart-up cl8 hov-btn3 trans-04 flex-c-m ">
-											<i class="fs-16 zmdi zmdi-plus"></i>
-										</div>
-									</div>
 									</td>
-									<td class="column-5"><span id="totalPrice">40,000</span>원<br></td>		
+									<td class="column-5"><span id="totalPrice1">40,000</span>원<br></td>		
 								</tr>
 
 								<tr class="cartTable_row">
 									<td class="column-1">
-										<input type="checkbox" id="chk" name="chk" checked />
+										<input type="checkbox" id="chk2" name="chk" checked />
 									</td>
 									<td class="column-2"><img src="/ModooShop/images/p002.jpg" alt="샘플 데이터2" style="width: 90px; height: 70px;"></td>
 									<td class="column-3"><span id="price2">7,000</span>원<br><span style="font-size: 10px; text-align: right;">/ <span id="salePrice2">2,800</span>원</span></td>
 									<td class="column-4">
 										<div class="wrap-num-product flex-w m-tb-10 m-l-30">
-											<div class="btn-num-cart-down2 cl8 hov-btn3 trans-04 flex-c-m">
+											<div id="2" class="btn-num-cart-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
 											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
 
-											<div class="btn-num-cart-up2 cl8 hov-btn3 trans-04 flex-c-m">
+											<div id="2" class="btn-num-cart-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
 									</td>
-									<td class="column-5"><span id="totalPrice2">7,000</span>원<br><span id="totalSaleprice3" style="font-size: 10px; text-align: right;"></span></td>
+									<td class="column-5"><span id="totalPrice2">7,000</span>원<br><!--<span id="totalSaleprice" style="font-size: 10px; text-align: right;"></span>--></td>
 								</tr>
 							</table>
 						</div>
@@ -139,7 +137,7 @@ function isDelete(){
 							</div>
 
 							<div class="size-210">
-								<span class="mtext-110 cl2"><span id="deliverFee">&nbsp;&nbsp;&nbsp;2500</span>원</span>
+								<span class="mtext-110 cl2"><span id="deliveryFee">&nbsp;&nbsp;&nbsp;2500</span>원</span>
 							</div>
 						</div>
 
@@ -149,7 +147,7 @@ function isDelete(){
 							</div>
 
 							<div class="size-210 p-t-1">
-								<span class="mtext-110 cl2"><span id="totalPrice3">33,900</span>원</span>
+								<span class="mtext-110 cl2"><span id="payment">33,900</span>원</span>
 							</div>
 						</div>
 

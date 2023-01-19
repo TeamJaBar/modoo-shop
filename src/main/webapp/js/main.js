@@ -257,66 +257,49 @@
 		$('#totalPrice').text(totalPrice);
 	});
 
-   // 장바구니 수량
-	$('.btn-num-cart-up').on('click', function() {
-		
-		var numProduct = Number($(this).prev().val());
-		if (numProduct == 10) {
-			alert('최대 10개까지만 주문가능합니다.');
-			return;
-		}
-		$(this).prev().val(numProduct + 1);
-		var salePrice = parseInt($('#salePrice').text().replace(',', ''));
-		var price = parseInt($('#price').text().replace(',', ''));
-		var totalPrice = (price) * Number($(this).prev().val());
-		var totalPrice2 = parseInt($('#totalPrice2').text().replace(',', ''));
-		var totalSaleprice = ((numProduct+1) * salePrice);
-		var totalSaleprice2 = $('#totalSaleprice2').text();
-		var totalSale = (Number(totalSaleprice) + Number(totalSaleprice2));
-		var total = Number(totalPrice)+Number(totalPrice2);
-		var totalPrice3 =  (Number(total) - Number(totalSale) + 2500);
-		
-		console.log(totalSale);
-		total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-		totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-		totalSale = totalSale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-		totalPrice3 = totalPrice3.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-		$('#totalPrice').text(totalPrice);
-		$('#totalPrice3').text(totalPrice3);
-		$('#totalSaleprice').text(totalSaleprice);
-		$('#totalSale').text(totalSale);
-		$('#sumPrice').text(total);
-		
+
+  	$('.btn-num-cart-up').each(function() {
+			$(this).click(function() {
+				var current = $(this).attr('id');
+				var numProduct = Number($(this).prev().val());
+				if (numProduct == 10) {
+					alert('최대 10개까지만 주문가능합니다.');
+					return;
+				}
+				$(this).prev().val(numProduct + 1);
+
+				var price = parseInt($('#price' + current).text().replace(',', ''));
+				var salePrice = parseInt($('#salePrice' + current).text().replace(',', ''));
+				var totalPrice = (price - salePrice) * Number($(this).prev().val());
+				totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+				$('#totalPrice' + current).text(totalPrice);
+			});
 	});
 	
-		$('.btn-num-cart-down').on('click', function() {
-		
-		var numProduct = Number($(this).next().val());
-		if (numProduct == 1) {
-			alert('1개 이상만 구매할 수 있습니다');
-			return;
-		}
-		if (numProduct > 1) $(this).next().val(numProduct - 1);
-		var salePrice = parseInt($('#salePrice').text().replace(',', ''));
-		var price = parseInt($('#price').text().replace(',', ''));
-		var totalPrice = Number($(this).next().val()) * price;	
-		var totalPrice2 = parseInt($('#totalPrice2').text().replace(',', ''));	
-		var totalSaleprice = ((numProduct - 1) * salePrice);
-		var totalSaleprice2 = $('#totalSaleprice2').text();
-		var totalSale = (Number(totalSaleprice) + Number(totalSaleprice2));
-		var total = Number(totalPrice)+Number(totalPrice2);
-		var totalPrice3 =  (Number(total) - Number(totalSale) + 2500);
-		
-		total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-		totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-		totalSale = totalSale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-		totalPrice3 = totalPrice3.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-		$('#totalPrice').text(totalPrice);
-		$('#totalPrice3').text(totalPrice3);
-		$('#totalSaleprice').text(totalSaleprice);
-		$('#totalSale').text(totalSale);
-		$('#sumPrice').text(total);
+	$('.btn-num-cart-down').each(function() {
+		$(this).click(function() {
+				var current = $(this).attr('id');
+				var numProduct = Number($(this).next().val());
+				
+				console.log('현재 : '+$(this).next().val());
+				
+				if (numProduct == 1) {
+					alert('1개 이상만 구매할 수 있습니다');
+					return;
+				}
+				
+				$(this).next().val(numProduct - 1);
+				console.log('바뀐 후 : '+$(this).next().val());
+
+				var price = parseInt($('#price' + current).text().replace(',', ''));
+				var salePrice = parseInt($('#salePrice' + current).text().replace(',', ''));
+				var totalPrice = (price - salePrice) * Number($(this).next().val());
+				totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+				$('#totalPrice' + current).text(totalPrice);
+		});
 	});
+	
+	
 	
 	 // 장바구니 수량2 
 		$('.btn-num-cart-up2').on('click', function() {
