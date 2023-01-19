@@ -352,7 +352,21 @@
 				$('#memId-good').removeClass('hidden'); // 아이디 사용 가능!
 			}
 			
-			
+			$.ajax({
+				type:'POST', //POST 방식으로 보낼래
+				url:'check', //check라는 url을
+				data:{mId:id}, //id라는 이름으로 id 변수에 있는 값 보낼게 - Map행식으로 데이터를 보냄 {key, value}
+				success: function(result) {
+					console.log('로그2 : 응답받은 데이터( == response.getWriter() == out) 출력');
+					console.log(result);
+					if(result==1) {
+						$('memId-existing-error').addClass('hidden'); //$('id 속성이 checkmsg인 요소')에 텍스트 추가
+						$('#memId-good').removeClass('hidden');
+					} else {
+						$('memId-existing-error').removeClass('hidden');
+					}
+				}
+			})	
 		});
 
 		/* 비밀번호 정규식 */
