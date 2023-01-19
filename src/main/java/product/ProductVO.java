@@ -1,6 +1,7 @@
 package product;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class ProductVO {
 	private int pNum; // 상품번호(PK)
@@ -15,8 +16,9 @@ public class ProductVO {
 	private String pImg; // 상품 사진 url
 	private String infoImg; // 상품 상세정보 url
 	private int productCnt; // 재고
-	private int lowNum; // JAVA에서만 저장용으로 사용하는 데이터 : 최저 연령
-	private int highNum; // JAVA에서만 저장용으로 사용하는 데이터 : 최고 연령
+	private int lowNum; // JAVA에서만 저장용으로 사용하는 데이터 : 최저 연령, 최저 가격
+	private int highNum; // JAVA에서만 저장용으로 사용하는 데이터 : 최고 연령, 최고 가격
+	private ArrayList<Integer> check; // JAVA에서만 저장용으로 사용하는 데이터 : 검색 확인
 
 	public int getpNum() {
 		return pNum;
@@ -128,6 +130,14 @@ public class ProductVO {
 
 	public void setHighNum(int highNum) {
 		this.highNum = highNum;
+	}
+
+	public ArrayList<Integer> getCheck() {
+		return check;
+	}
+
+	public void setCheck(ArrayList<Integer> check) {
+		this.check = check;
 	}
 
 }

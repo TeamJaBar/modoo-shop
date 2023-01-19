@@ -5,8 +5,14 @@ import java.util.Date;
 public class OrderVO {
 	private int oNum; // 주문번호(PK)
 	private int mNum; // 유저번호(FK)
+	private String oShipName; // 배송정보: 받으실분
+	private String oZipCode; // 배송정보: 우편번호
+	private String oUserAddr; // 배송정보: 주소
+	private String oDetailAddr; // 배송정보: 상세주소
+	private String oTel; // 배송정보: 휴대폰 번호
 	private Date oDate; // 주문 날짜
 	private int oStaus; // 주문상태
+	private String usePoint; // JAVA에서만 저장용으로 사용하는 데이터 : 적립금 사용
 	private String tempDate; // JAVA에서만 저장용으로 사용하는 데이터 : 날짜
 	private int tempCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 주문(상태/일자)별 개수
 	private String pNumPimg; // JAVA에서만 저장용으로 사용하는 데이터 : 이미지
@@ -119,6 +125,54 @@ public class OrderVO {
 
 	public void setSearchCal(int searchCal) {
 		this.searchCal = searchCal;
+	}
+
+	public String getoShipName() {
+		return oShipName;
+	}
+
+	public void setoShipName(String oShipName) {
+		this.oShipName = oShipName;
+	}
+
+	public String getoZipCode() {
+		return oZipCode;
+	}
+
+	public void setoZipCode(String oZipCode) {
+		this.oZipCode = oZipCode;
+	}
+
+	public String getoUserAddr() {
+		return oUserAddr;
+	}
+
+	public void setoUserAddr(String oUserAddr) {
+		this.oUserAddr = oUserAddr;
+	}
+
+	public String getoDetailAddr() {
+		return oDetailAddr;
+	}
+
+	public void setoDetailAddr(String oDetailAddr) {
+		this.oDetailAddr = oDetailAddr;
+	}
+
+	public String getoTel() {
+		return oTel;
+	}
+
+	public void setoTel(String oTel) {
+		this.oTel = oTel;
+	}
+
+	public String getUsePoint() {
+		return usePoint;
+	}
+
+	public void setUsePoint(String usePoint) {
+		this.usePoint = usePoint;
 	}
 
 }
