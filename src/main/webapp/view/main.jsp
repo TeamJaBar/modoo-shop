@@ -967,7 +967,7 @@
 
 							<div class="layer-slick1 animated visible-false"
 								data-appear="slideInUp" data-delay="1600">
-								<a href="product.html"
+								<a href="product/product.jsp"
 									class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 									슬리브 + 밴드 증정 </a>
 							</div>
@@ -992,7 +992,7 @@
 
 							<div class="layer-slick1 animated visible-false"
 								data-appear="rotateIn" data-delay="1600">
-								<a href="product.html"
+								<a href="product/product.jsp"
 									class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 									Shop Now </a>
 							</div>
@@ -1011,8 +1011,8 @@
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="../images/banner-img-01.png" alt="IMG-BANNER"> <a
-							href="product.html"
+						<img src="/ModooShop/images/banner-img-01.png" alt="IMG-BANNER"> <a
+							href="product/product.jsp"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8"> Best
@@ -1030,8 +1030,8 @@
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="../images/banner-img-02.png" alt="IMG-BANNER"> <a
-							href="product.html"
+						<img src="/ModooShop/images/banner-img-02.png" alt="IMG-BANNER"> <a
+							href="product/product.jsp"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8"> 1
@@ -1049,8 +1049,8 @@
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w">
-						<img src="../images/banner-img-04.png" alt="IMG-BANNER"> <a
-							href="product.html"
+						<img src="/ModooShop/images/banner-img-04.png" alt="IMG-BANNER"> <a
+							href="product/product.jsp"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
@@ -1089,7 +1089,7 @@
 										data-image-main="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008214/register_main_074.jpg"
 										data-image-detail="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008214/register_detail_025.jpg"
 										data-image-magnify="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008214/register_magnify_027.jpg">
-										<a href="product-detail.html"> <img
+										<a href="product/product-detail.jsp"> <img
 											src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008214/register_main_074.jpg"
 											width="180" alt="초팡초팡 당근 슬래시" title="초팡초팡 당근 슬래시"
 											class="middle" />
@@ -1099,7 +1099,7 @@
 									<div class="item_info_cont"
 										style="display: block; text-align: center;">
 										<div class="item_tit_box">
-											<a href="product-detail.html"> <strong class="item_name"
+											<a href="product/product-detail.jsp"> <strong class="item_name"
 												style="direction: ltr;">초팡초팡 당근 슬래시</strong>
 											</a>
 										</div>
@@ -1125,7 +1125,7 @@
 										data-image-main="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008213/register_main_064.jpg"
 										data-image-detail="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008213/register_detail_014.jpg"
 										data-image-magnify="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008213/register_magnify_04.jpg">
-										<a href="product-detail.html"> <img
+										<a href="product/product-detail.jsp"> <img
 											src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008213/register_main_064.jpg"
 											width="180" alt="도넛고라운드" title="도넛고라운드" class="middle" />
 										</a>
@@ -1134,7 +1134,7 @@
 									<div class="item_info_cont"
 										style="display: block; text-align: center;">
 										<div class="item_tit_box">
-											<a href="product-detail.html"> <strong class="item_name"
+											<a href="product/product-detail.jsp"> <strong class="item_name"
 												style="direction: ltr;">도넛고라운드</strong>
 											</a>
 										</div>
@@ -1160,7 +1160,7 @@
 										data-image-main="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008212/register_main_02.jpg"
 										data-image-detail="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008212/register_detail_012.jpg"
 										data-image-magnify="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008212/register_magnify_02.jpg">
-										<a href="product-detail.html"> <img
+										<a href="product/product-detail.jsp"> <img
 											src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008212/register_main_02.jpg"
 											width="180" alt="고고페이스 루빅큐브" title="고고페이스 루빅큐브"
 											class="middle" />
@@ -1170,7 +1170,7 @@
 									<div class="item_info_cont"
 										style="display: block; text-align: center;">
 										<div class="item_tit_box">
-											<a href="product-detail.html"> <strong class="item_name"
+											<a href="product/product-detail.jsp"> <strong class="item_name"
 												style="direction: ltr;">고고페이스 루빅큐브</strong>
 											</a>
 										</div>
@@ -1196,7 +1196,7 @@
 										data-image-main="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008211/register_main_074.jpg"
 										data-image-detail="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008211/register_detail_089.jpg"
 										data-image-magnify="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008211/register_magnify_053.jpg">
-										<a href="product-detail.html"> <img
+										<a href="product/product-detail.jsp"> <img
 											src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/52/1000008211/register_main_074.jpg"
 											width="180" alt="원피스 필름 레드 직소퍼즐 밀짚모자 일당 150pcs"
 											title="원피스 필름 레드 직소퍼즐 밀짚모자 일당 150pcs" class="middle" />
@@ -1206,7 +1206,7 @@
 									<div class="item_info_cont"
 										style="display: block; text-align: center;">
 										<div class="item_tit_box">
-											<a href="product-detail.html"> <strong class="item_name"
+											<a href="product/product-detail.jsp"> <strong class="item_name"
 												style="direction: ltr;">원피스 필름 레드 직소퍼즐 밀짚모자 일당
 													150pcs</strong>
 											</a>
@@ -1233,7 +1233,7 @@
 										data-image-main="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/50/1000008210/register_main_021.jpg"
 										data-image-detail="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/50/1000008210/register_detail_096.jpg"
 										data-image-magnify="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/50/1000008210/register_magnify_071.jpg">
-										<a href="product.html"> <img
+										<a href="product/product.jsp"> <img
 											src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/50/1000008210/register_main_021.jpg"
 											width="180" alt="(무료배송) 도블 포켓몬" title="(무료배송) 도블 포켓몬"
 											class="middle" />
@@ -1243,7 +1243,7 @@
 									<div class="item_info_cont"
 										style="display: block; text-align: center;">
 										<div class="item_tit_box">
-											<a href="product-detail.html"> <strong class="item_name"
+											<a href="product/product-detail.jsp"> <strong class="item_name"
 												style="direction: ltr;">(무료배송) 도블 포켓몬</strong>
 											</a>
 										</div>
@@ -1269,7 +1269,7 @@
 										data-image-main="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/50/1000008209/register_main_048.jpg"
 										data-image-detail="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/50/1000008209/register_detail_018.jpg"
 										data-image-magnify="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/50/1000008209/register_magnify_011.jpg">
-										<a href="product-detail.html"> <img
+										<a href="product/product-detail.jsp"> <img
 											src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/50/1000008209/register_main_048.jpg"
 											width="180" alt="야옹섬" title="야옹섬" class="middle" />
 										</a>
@@ -1278,7 +1278,7 @@
 									<div class="item_info_cont"
 										style="display: block; text-align: center;">
 										<div class="item_tit_box">
-											<a href="product-detail.html"> <strong class="item_name"
+											<a href="product/product-detail.jsp"> <strong class="item_name"
 												style="direction: ltr;">야옹섬</strong>
 											</a>
 										</div>
@@ -1304,7 +1304,7 @@
 										data-image-main="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/48/1000008208/register_main_096.jpg"
 										data-image-detail="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/48/1000008208/register_detail_017.jpg"
 										data-image-magnify="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/48/1000008208/register_magnify_026.jpg">
-										<a href="product-detail.html"> <img
+										<a href="product/product-detail.jsp"> <img
 											src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/48/1000008208/register_main_096.jpg"
 											width="180" alt="카페 엑스프레소 (카드 슬리브 증정)"
 											title="카페 엑스프레소 (카드 슬리브 증정)" class="middle" />
@@ -1314,7 +1314,7 @@
 									<div class="item_info_cont"
 										style="display: block; text-align: center;">
 										<div class="item_tit_box">
-											<a href="product-detail.html"> <strong class="item_name"
+											<a href="product/product-detail.jsp"> <strong class="item_name"
 												style="direction: ltr;">카페 엑스프레소 (카드 슬리브 증정)</strong>
 											</a>
 										</div>
@@ -1340,7 +1340,7 @@
 										data-image-main="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/48/1000008207/register_main_020.jpg"
 										data-image-detail="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/48/1000008207/register_detail_075.jpg"
 										data-image-magnify="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/48/1000008207/register_magnify_051.jpg">
-										<a href="product-detail.html"> <img
+										<a href="product/product-detail.jsp"> <img
 											src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/22/12/48/1000008207/register_main_020.jpg"
 											width="180" alt="리스본 28번 트램 (카드 슬리브 증정)"
 											title="리스본 28번 트램 (카드 슬리브 증정)" class="middle" />
@@ -1350,7 +1350,7 @@
 									<div class="item_info_cont"
 										style="display: block; text-align: center;">
 										<div class="item_tit_box">
-											<a href="product-detail.html"> <strong class="item_name"
+											<a href="product/product-detail.jsp"> <strong class="item_name"
 												style="direction: ltr;">리스본 28번 트램 (카드 슬리브 증정)</strong>
 											</a>
 										</div>
@@ -1488,7 +1488,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									방방곡곡 세계유량 </a> <span class="stext-105 cl3"> 16,320원 </span>
 							</div>
@@ -1497,9 +1497,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1519,7 +1519,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 꼬마
 									유령의 비밀통로 </a> <span class="stext-105 cl3"> 14,850원 </span>
 							</div>
@@ -1528,9 +1528,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1550,7 +1550,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									큐비즈 </a> <span class="stext-105 cl3"> 20,200원 </span>
 							</div>
@@ -1559,9 +1559,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1580,7 +1580,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									모두의마블 메가디럭스/보드게임 </a> <span class="stext-105 cl3"> 52,500원 </span>
 							</div>
@@ -1589,9 +1589,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1611,7 +1611,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									방방곡곡 세계유량 </a> <span class="stext-105 cl3"> 16,320원 </span>
 							</div>
@@ -1620,9 +1620,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1642,7 +1642,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 꼬마
 									유령의 비밀통로 </a> <span class="stext-105 cl3"> 14,850원 </span>
 							</div>
@@ -1651,9 +1651,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1673,7 +1673,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									큐비즈 </a> <span class="stext-105 cl3"> 20,200원 </span>
 							</div>
@@ -1682,9 +1682,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1703,7 +1703,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									모두의마블 메가디럭스/보드게임 </a> <span class="stext-105 cl3"> 52,500원 </span>
 							</div>
@@ -1712,9 +1712,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1734,7 +1734,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									방방곡곡 세계유량 </a> <span class="stext-105 cl3"> 16,320원 </span>
 							</div>
@@ -1743,9 +1743,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1765,7 +1765,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 꼬마
 									유령의 비밀통로 </a> <span class="stext-105 cl3"> 14,850원 </span>
 							</div>
@@ -1774,9 +1774,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1796,7 +1796,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									큐비즈 </a> <span class="stext-105 cl3"> 20,200원 </span>
 							</div>
@@ -1805,9 +1805,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1826,7 +1826,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<a href="product/product-detail.jsp"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									모두의마블 메가디럭스/보드게임 </a> <span class="stext-105 cl3"> 52,500원 </span>
 							</div>
@@ -1835,9 +1835,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="images/icons/icon-heart-02.png" alt="ICON">
+									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>
@@ -1859,7 +1859,7 @@
 		<div class="container">
 			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
 				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
+					<img src="/ModooShop/images/icons/icon-close.png" alt="CLOSE">
 				</button>
 
 				<div class="row">

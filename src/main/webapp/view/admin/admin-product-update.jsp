@@ -18,7 +18,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="admin-home.html">관리자 페이지</a>
+        <a class="navbar-brand ps-3" href="admin-home.jsp">관리자 페이지</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -29,7 +29,7 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="main.html">로그아웃</a></li>
+                    <li><a class="dropdown-item" href="/ModooShop/view/main.jsp">로그아웃</a></li>
                 </ul>
             </li>
         </ul>
@@ -40,7 +40,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">홈</div>
-                        <a class="nav-link" href="admin-home.html">
+                        <a class="nav-link" href="admin-home.jsp">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             홈 화면
                         </a>
@@ -54,7 +54,7 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="admin-member.html">사용자 목록</a>
+                                <a class="nav-link" href="admin-member.jsp">사용자 목록</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
@@ -66,13 +66,13 @@
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link" href="admin-product-insert.html">상품 등록</a>
+                                <a class="nav-link" href="admin-product-insert.jsp">상품 등록</a>
                             </nav>
                         </div>
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link" href="admin-product.html">상품 목록</a>
+                                <a class="nav-link" href="admin-product.jsp">상품 목록</a>
                             </nav>
                         </div>
                     </div>
@@ -96,8 +96,21 @@
                             상품 변경
                         </div>
                         <div class="card-body">
-                            <div class="card-body">
                                 <div class="control-group">
+                                <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input readonly class="form-control" id="product-num" type="text" value="101" />
+                                                        <label for="product-num">상품번호</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" id="category-num" type="text" value="1001" />
+                                                        <label for="category-num">카테고리 번호</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     <label class="control-label" for="typeahead">브랜드</label>
                                     <div class="controls">
                                         <input type="text" class="form-control" id="brand" value="코리아보드게임즈">
@@ -111,9 +124,37 @@
                                         </div>
                                     </div>
                                     <div class="control-group">
+                                        <label class="control-label" for="typeahead">정가</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" id="price" value="25,000">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
                                         <label class="control-label" for="typeahead">판매가</label>
                                         <div class="controls">
                                             <input type="text" class="form-control" id="price" value="10,000">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="typeahead">게임연령</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" id="game-age" value="12세이상">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="typeahead">게임인원</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" id="game-count" value="2~3명 이상">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="typeahead">재고</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" id="product-count" value="50">
                                             <p></p>
                                         </div>
                                     </div>
@@ -127,7 +168,17 @@
                                             <label class="control-label" for="select01">카테고리</label>
                                             <div class="controls">
                                                 <select id="select01" class="chzn-select" >
-                                                    <option>파티게임</option>
+                                                    <option>대분류</option>
+                                                    <option>카드게임</option>
+                                                    <option>두뇌</option>
+                                                    <option>전략</option>
+                                                    <option>완구/퍼즐</option>
+                                                </select>
+                                                <p></p>
+                                            </div>
+                                            <div class="controls">
+                                                <select id="select01" class="chzn-select" >
+                                                    <option>중분류</option>
                                                     <option>카드게임</option>
                                                     <option>두뇌</option>
                                                     <option>전략</option>
@@ -147,15 +198,14 @@
                                     </div>
                                     <p></p>
                                     <div class="mt-4 mb-0">
-                                        <div class="d-grid"><a class="btn btn-primary btn-block" href="admin-product.html"
+                                        <div class="d-grid"><a class="btn btn-primary btn-block" href="admin-product.jsp"
                                                 onClick="return confirms()">상품 변경</a></div>
                                     </div>
                                     <div class="mt-4 mb-0">
                                         <div class="d-grid"><a class="btn btn-danger btn-block"
-                                            onClick="return con()" href="admin-product.html">등록 취소</a></div>
+                                            onClick="return con()" href="admin-product.jsp">등록 취소</a></div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
             </main>
@@ -180,6 +230,8 @@
         let name = $("#name").val();
         let price = $("#price").val();
         let detail = $("#detail").val();
+        let product-num = $("#product-num").val();
+        let cartegory-num = $("#cartegory-num").val();
 
             if(brand==""||name==""||price==""||detail==""){
                 alert("빈 칸 없이 모두입력해주세요.");

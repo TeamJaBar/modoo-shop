@@ -1,55 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% String url = "../../"; %>
 
-<c:if test="${param.page eq 'main'}">
-<% url = "../"; %>
-</c:if>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-<link rel="icon" type="image/png" href="<%=url%>images/icons/favicon.png" />
+<link rel="icon" type="image/png" href="../images/icons/favicon.png" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>vendor/bootstrap/css/bootstrap.min.css">
+	href="../vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>fonts/iconic/css/material-design-iconic-font.min.css">
+	href="../fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>fonts/linearicons-v1.0.0/icon-font.min.css">
+	href="../fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>vendor/animate/animate.css">
+	href="../vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>vendor/css-hamburgers/hamburgers.min.css">
+	href="../vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>vendor/animsition/css/animsition.min.css">
+	href="../vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>vendor/select2/select2.min.css">
+	href="../vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>vendor/daterangepicker/daterangepicker.css">
+	href="../vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>vendor/slick/slick.css">
+	href="../vendor/slick/slick.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>vendor/MagnificPopup/magnific-popup.css">
+	href="../vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="<%=url%>vendor/perfect-scrollbar/perfect-scrollbar.css">
+	href="../vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="<%=url%>css/util.css">
-<link rel="stylesheet" type="text/css" href="<%=url%>css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/util.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -129,10 +125,10 @@
 					<div class="right-top-bar flex-w h-full">
 						<ul class="right-top-bar-menu">
 							<li><a href="about.html">ABOUT US</a></li>
-							<li><a href="login.html">LOGIN</a></li>
-							<li><a href="join.html">JOIN</a></li>
+							<li><a href="login.jsp">LOGIN</a></li>
+							<li><a href="join.jsp">JOIN</a></li>
 
-							<li class="active-menu"><a href="change-inform.html">MYPAGE</a>
+							<li class="active-menu"><a href="/ModooShop/view/mypage/change-inform.jsp">MYPAGE</a>
 								<ul class="sub-menu">
 									<li><a href="order-list.html">주문조회</a></li>
 									<li><a href="change-inform.html">내정보수정</a></li>
@@ -147,7 +143,7 @@
 				<div class="wrap-menu-desktop how-shadow1">
 					<nav class="limiter-menu-desktop container">
 						<!-- Logo desktop -->
-						<a href="#" class="logo"> <img src="../../images/logo-06.png" alt="모두의 보드 로고">
+						<a href="main.do" class="logo"> <img src="/ModooShop/images/logo-06.png" alt="모두의 보드 로고">
 						</a>
 			</c:if>
 
@@ -155,8 +151,8 @@
 				<div class="header_gnb">
 					<div class="logo-container-desktop">
 						<!-- Logo desktop -->
-						<a href="main.html" class="logo-main"> <img
-							src="../images/logo-06.png" alt="모두의 보드 로고">
+						<a href="main.do" class="logo-main"> <img
+							src="/ModooShop/images/logo-06.png" alt="모두의 보드 로고">
 						</a>
 					</div>
 
@@ -247,7 +243,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="main.html"><img src="<%=url%>images/logo-06.png" alt="모두의 보드 로고"></a>
+				<a href="main.html"><img src="../images/logo-06.png" alt="모두의 보드 로고"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -297,8 +293,7 @@
 						<li><a href="product.html">초등학교 저학년</a></li>
 						<li><a href="product.html">초등학교 고학년</a></li>
 						<li><a href="product.html">만 12세 이상</a></li>
-					</ul> <span class="arrow-main-menu-m"> <i
-						class="fa fa-angle-right" aria-hidden="true"></i>
+					</ul> <span class="arrow-main-menu-m"> <i class="fa fa-angle-right" aria-hidden="true"></i>
 				</span></li>
 
 				<li><a href="product.html">두뇌</a>
