@@ -14,14 +14,12 @@ import member.MemberVO;
 @WebServlet("/view/check")
 public class CheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public CheckController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	public CheckController() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -29,9 +27,11 @@ public class CheckController extends HttpServlet {
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
 		mvo.setmId(request.getParameter("mId"));
-		
-		if(mdao.selectOne(mvo) == null) {
-			response.getWriter().println("1"); //응답할 때 getWriter()를 사용
-		}		
+		mvo.setmName(request.getParameter("mName"));
+		mvo.setmEmail(request.getParameter("mEmail"));
+
+		if (mdao.selectOne(mvo) == null) {
+			response.getWriter().println("1"); // 응답할 때 getWriter()를 사용
+		}
 	}
 }

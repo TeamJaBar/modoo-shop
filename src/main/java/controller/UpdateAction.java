@@ -6,24 +6,25 @@ import javax.servlet.http.HttpServletResponse;
 import member.MemberDAO;
 import member.MemberVO;
 
-public class LoginAction implements Action {
+public class UpdateAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward=new ActionForward();
-		forward.setPath("/main.do");
+		ActionForward forward = new ActionForward();
+
 		forward.setRedirect(false);
-		
-		MemberDAO mdao=new MemberDAO();
-		MemberVO mvo=new MemberVO();
+
+		MemberDAO mdao = new MemberDAO();
+		MemberVO mvo = new MemberVO();
+
 		mvo.setmId(request.getParameter("mId"));
 		mvo.setmPw(request.getParameter("mPw"));
-		MemberVO member=mdao.selectOne(mvo);
-		
-		request.getSession().setAttribute("mId", member.getmId());
-		request.getSession().setAttribute("mName", member.getmName());
-		
-		return forward;
-	}
 
+//		if (mdao.update(mvo)) {
+//			forward.setPath("view/login.jsp");
+//			return forward;
+//		}
+
+		return null;
+	}
 }
