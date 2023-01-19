@@ -13,7 +13,7 @@ public class JoinAction implements Action {
 		ActionForward forward = new ActionForward();
 		
 		forward.setPath("view/join-ok.jsp");
-		forward.setRedirect(true);
+		forward.setRedirect(false);
 		
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();

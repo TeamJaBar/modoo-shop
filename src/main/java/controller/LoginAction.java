@@ -14,6 +14,15 @@ public class LoginAction implements Action {
 		forward.setPath("/main.do");
 		forward.setRedirect(false);
 		
+		MemberDAO mdao=new MemberDAO();
+		MemberVO mvo=new MemberVO();
+		mvo.setmId(request.getParameter("mId"));
+		mvo.setmPw(request.getParameter("mPw"));
+		MemberVO member=mdao.selectOne(mvo);
+		
+		request.getSession().setAttribute("mId", member.getmId());
+		request.getSession().setAttribute("mName", member.getmName());
+		
 		return forward;
 	}
 
