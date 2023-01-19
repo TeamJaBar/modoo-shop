@@ -29,7 +29,7 @@
                <div class="member_wrap">
                   <div class="member_cont">
                      <!-- 나중에 바꿔요 -->
-                     <form name="formReset" id="formReset" action="login.html">
+                     <form name="formReset" id="formReset" action="login.jsp">
                         <div class="member_login_box">
                            <h3>비밀번호 변경</h3>
                            <p class="findPw-info">
@@ -102,64 +102,59 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script src="../vendor/sweetalert/sweetalert.min.js"></script>
 <script>
-    function ch(){
-        let pw = $("#passwordMsg").val();
-        let pwc = $("#newPwRe").val();
+function ch(){
+    let pw = $("#passwordMsg").val();
+    let pwc = $("#newPwRe").val();
 
-        let number = pw.search(/[0-9]/g);
-        let english = pw.search(/[a-z]/ig);
-        let spece = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-        let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$/;
-        
-        let 
+    let number = pw.search(/[0-9]/g);
+    let english = pw.search(/[a-z]/ig);
+    let spece = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+    let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$/;
 
-        if (pw.length < 10 || pw.length > 20) {
-            alert("10자리 ~ 20자리 이내로 입력해주세요.");
-            return false;
+    if (pw.length < 10 || pw.length > 20) {
+        alert("10자리 ~ 20자리 이내로 입력해주세요.");
+        return false;
 
-        } else if (pw.search(/\s/) != -1) {
-            alert("비밀번호는 공백 없이 입력해주세요.");
-            return false;
+    } else if (pw.search(/\s/) != -1) {
+        alert("비밀번호는 공백 없이 입력해주세요.");
+        return false;
 
-        } 
-        /*else if (number < 0 || english < 0 || spece < 0) {
-            alert("영문,숫자,특수문자를 혼합하여 입력해주세요.");
-            return false;
+    } /*else if (number < 0 || english < 0 || spece < 0) {
+        alert("영문,숫자,특수문자를 혼합하여 입력해주세요.");
+        return false;
 
-        }*/ 
-        else if ((number < 0 && english < 0) || (english < 0 && spece < 0) || (spece < 0 && number < 0)) {
-            alert("영문,숫자,특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
-            return false;
+    }*/ else if ((number < 0 && english < 0) || (english < 0 && spece < 0) || (spece < 0 && number < 0)) {
+        alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+        return false;
 
-        } else if (/(\w)\1\1\1/.test(pw)) {
-            alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
-            return false;
+    } else if (/(\w)\1\1\1/.test(pw)) {
+        alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
+        return false;
 
-        } else {
-            if(pw != pwc){
-                alert("비밀번호가 일치하지 않습니다.");
-                return false
-            } else{
-                alert("변경이 완료되었습니다!");
-                return true;    
-            }
-            
+    } else {
+        if(pw != pwc){
+            alert("비밀번호가 일치하지 않습니다.");
+            return false
+        } else{
+            alert("변경이 완료되었습니다!");
+            return true;    
         }
+        
+    }
 
-        if (false === reg.test(pw)) {
-            alert('비밀번호는 10자 이상이어야 하며, 영문/숫자/특수문자 중 2개 이상을 포함해야 합니다.');
-            return false;
-        } else {
-         if(pw != pwc){
-                alert("비밀번호가 일치하지 않습니다.");
-                return false
-            } else{
-                alert("변경이 완료되었습니다!");
-                return true;    
-            }
+    if (false === reg.test(pw)) {
+        alert('비밀번호는 10자 이상이어야 하며, 영문/숫자/특수문자 중 2개 이상을 포함해야 합니다.');
+        return false;
+    } else {
+     if(pw != pwc){
+            alert("비밀번호가 일치하지 않습니다.");
+            return false
+        } else{
+            alert("변경이 완료되었습니다!");
+            return true;    
         }
     }
+}
 </script>
 </html>
