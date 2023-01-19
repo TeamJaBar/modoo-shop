@@ -17,7 +17,7 @@ public class MemberDAO {
 	final String INSERT = "INSERT INTO MEMBER VALUES((SELECT NVL(MAX(MNUM),1)+1 FROM MEMBER), ?, ?, ?, ?, ?, 0, ?, ?, ?, (SELECT SYSDATE FROM DUAL))";
 	final String SELECTONE_LOGIN = "SELECT MNUM, MID, MPW, MNAME, MEMAIL, MTEL, MPOINT, ZIPCODE, USERADDR, DETAILADDR FROM MEMBER WHERE MID=? AND MPW=?";
 	final String SELECTONE_ID = "SELECT MID FROM MEMBER WHERE MNAME=? AND MEMAIL=?";
-	final String SELECTONE_PW = "SELECT MID FROM MEMBER WHERE MID=?";
+	final String SELECTONE_EMAIL = "SELECT MEMAIL FROM MEMBER WHERE MID=?";
 	final String SELECTALL="SELECT TO_CHAR(MDATE, 'DD/DAY') AS TDATE, COUNT(*) AS CNT FROM MEMBER WHERE ROWNUM<=7 GROUP BY TO_CHAR(MDATE, 'DD/DAY') ORDER BY TDATE DESC";
 	final String UPDATE = "UPDATE MEMBER SET MPW=?, MNAME=?, MEMAIL=?, MTEL=?, ZIPCODE=?, USERADDR=?,  DETAILADDR=?, MPOINT=? WHERE MNUM=?";
 	final String DELETE_USER = "DELETE FROM MEMBER WHERE MNUM=? AND MPW=?";
@@ -71,7 +71,7 @@ public class MemberDAO {
 		conn = JDBCUtil.connect();
 		try {
 			if(mvo.getmName()==null && mvo.getmPw()==null) {
-				pstmt = conn.prepareStatement(SELECTONE_PW);
+				pstmt = conn.prepareStatement(SELECTONE_EMAIL);
 				pstmt.setString(1, mvo.getmId());										
 			} else if(mvo.getmPw()==null) {
 				pstmt = conn.prepareStatement(SELECTONE_ID);
