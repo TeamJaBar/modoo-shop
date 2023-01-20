@@ -17,8 +17,8 @@ public class MemberDAO {
 	final String INSERT = "INSERT INTO MEMBER VALUES((SELECT NVL(MAX(MNUM),1)+1 FROM MEMBER), ?, ?, ?, ?, ?, 0, ?, ?, ?, (SELECT SYSDATE FROM DUAL))";
 	final String SELECTONE_LOGIN = "SELECT MNUM, MID, MPW, MNAME, MEMAIL, MTEL, MPOINT, ZIPCODE, USERADDR, DETAILADDR FROM MEMBER WHERE MID=? AND MPW=?";
 	final String SELECTONE_ID = "SELECT MID FROM MEMBER WHERE MNAME=? AND MEMAIL=?";
-	final String SELECTONE_EMAIL = "SELECT MEMAIL FROM MEMBER WHERE MID=?";
-	final String SELECTALL="SELECT TO_CHAR(MDATE, 'DD/DAY') AS TDATE, COUNT(*) AS CNT FROM MEMBER WHERE ROWNUM<=7 GROUP BY TO_CHAR(MDATE, 'DD/DAY') ORDER BY TDATE DESC";
+	final String SELECTONE_EMAIL = "SELECT REPLACE(MEMAIL, SUBSTR(MEMAIL,INSTR(MEMAIL, '@', 1, 1)-4, 4 ), '****') AS FINDPW, MEMAIL FROM MEMBER WHERE MID=?";
+	final String SELECTALL = "SELECT TO_CHAR(MDATE, 'DD/DAY') AS TDATE, COUNT(*) AS CNT FROM MEMBER WHERE ROWNUM<=7 GROUP BY TO_CHAR(MDATE, 'DD/DAY') ORDER BY TDATE DESC";
 	final String UPDATE = "UPDATE MEMBER SET MPW=?, MNAME=?, MEMAIL=?, MTEL=?, ZIPCODE=?, USERADDR=?,  DETAILADDR=?, MPOINT=? WHERE MNUM=?";
 	final String DELETE_USER = "DELETE FROM MEMBER WHERE MNUM=? AND MPW=?";
 	final String DELETE_ADMIN = "DELETE FROM MEMBER WHERE MNUM=?";
@@ -46,15 +46,15 @@ public class MemberDAO {
 		}
 		return true;
 	}
-	
+
 	public ArrayList<MemberVO> selectAll(MemberVO mvo) {
-		ArrayList<MemberVO> datas=new ArrayList<MemberVO>();
-		conn=JDBCUtil.connect();
+		ArrayList<MemberVO> datas = new ArrayList<MemberVO>();
+		conn = JDBCUtil.connect();
 		try {
-			pstmt=conn.prepareStatement(SELECTALL);
-			ResultSet rs=pstmt.executeQuery();
-			while(rs.next()) {
-				MemberVO data=new MemberVO();
+			pstmt = conn.prepareStatement(SELECTALL);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				MemberVO data = new MemberVO();
 				data.setTempDate(rs.getString("TDATE"));
 				data.setTempCnt(rs.getInt("CNT"));
 				datas.add(data);
@@ -70,17 +70,17 @@ public class MemberDAO {
 		MemberVO data = null;
 		conn = JDBCUtil.connect();
 		try {
-			if(mvo.getmName()==null && mvo.getmPw()==null) {
+			if (mvo.getmName() == null && mvo.getmPw() == null) {
 				pstmt = conn.prepareStatement(SELECTONE_EMAIL);
-				pstmt.setString(1, mvo.getmId());										
-			} else if(mvo.getmPw()==null) {
+				pstmt.setString(1, mvo.getmId());
+			} else if (mvo.getmPw() == null) {
 				pstmt = conn.prepareStatement(SELECTONE_ID);
 				pstmt.setString(1, mvo.getmName());
-				pstmt.setString(2, mvo.getmEmail());				
+				pstmt.setString(2, mvo.getmEmail());
 			} else {
 				pstmt = conn.prepareStatement(SELECTONE_LOGIN);
-				pstmt.setString(1, mvo.getmId());				
-				pstmt.setString(2, mvo.getmPw());				
+				pstmt.setString(1, mvo.getmId());
+				pstmt.setString(2, mvo.getmPw());
 			}
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -95,6 +95,7 @@ public class MemberDAO {
 				data.setZipCode(rs.getNString("ZIPCODE"));
 				data.setUserAddr(rs.getNString("USERADDR"));
 				data.setDetailAddr(rs.getNString("DETAILADDR"));
+				data.setFindPw("FINDPW");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -106,15 +107,15 @@ public class MemberDAO {
 	public boolean delete(MemberVO mvo) {
 		conn = JDBCUtil.connect();
 		try {
-			if(mvo.getmPw()==null) {
+			if (mvo.getmPw() == null) {
 				pstmt = conn.prepareStatement(DELETE_ADMIN);
-				pstmt.setInt(1, mvo.getmNum());				
+				pstmt.setInt(1, mvo.getmNum());
 			} else {
-				pstmt = conn.prepareStatement(DELETE_USER);				
-				pstmt.setInt(1, mvo.getmNum());				
+				pstmt = conn.prepareStatement(DELETE_USER);
+				pstmt.setInt(1, mvo.getmNum());
 				pstmt.setString(2, mvo.getmPw());
 			}
-			
+
 			int res = pstmt.executeUpdate();
 			if (res <= 0) {
 				return false;
@@ -126,6 +127,5 @@ public class MemberDAO {
 		JDBCUtil.disconnect(conn, pstmt);
 		return true;
 	}
-	
 
 }
