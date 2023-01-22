@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import common.JDBCUtil;
 
 public class MemberDAO {
-
 	ArrayList<MemberVO> member;
 	Connection conn;
 	PreparedStatement pstmt;
 
-	final String INSERT = "INSERT INTO MEMBER VALUES((SELECT NVL(MAX(MNUM),1)+1 FROM MEMBER), ?, ?, ?, ?, ?, 0, ?, ?, ?, (SELECT SYSDATE FROM DUAL))";
+	final String INSERT = "INSERT INTO MEMBER VALUES(MNUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, 0, ?, ?, ?, (SELECT SYSDATE FROM DUAL))";
 	final String SELECTONE_LOGIN = "SELECT MNUM, MID, MPW, MNAME, MEMAIL, MTEL, MPOINT, ZIPCODE, USERADDR, DETAILADDR FROM MEMBER WHERE MID=? AND MPW=?";
 	final String SELECTONE_ID = "SELECT MID FROM MEMBER WHERE MNAME=? AND MEMAIL=?";
 	final String SELECTONE_EMAIL = "SELECT REPLACE(MEMAIL, SUBSTR(MEMAIL,INSTR(MEMAIL, '@', 1, 1)-4, 4 ), '****') AS FINDPW, MEMAIL FROM MEMBER WHERE MID=?";
 	final String SELECTALL = "SELECT TO_CHAR(MDATE, 'DD/DAY') AS TDATE, COUNT(*) AS CNT FROM MEMBER WHERE ROWNUM<=7 GROUP BY TO_CHAR(MDATE, 'DD/DAY') ORDER BY TDATE DESC";
 	final String UPDATE = "UPDATE MEMBER SET MPW=?, MNAME=?, MEMAIL=?, MTEL=?, ZIPCODE=?, USERADDR=?,  DETAILADDR=?, MPOINT=? WHERE MNUM=?";
+	final String UPDATE_PW = "UPDATE MEMBER SET MPW=? WHERE MID=?";
 	final String DELETE_USER = "DELETE FROM MEMBER WHERE MNUM=? AND MPW=?";
 	final String DELETE_ADMIN = "DELETE FROM MEMBER WHERE MNUM=?";
 
@@ -95,13 +95,43 @@ public class MemberDAO {
 				data.setZipCode(rs.getNString("ZIPCODE"));
 				data.setUserAddr(rs.getNString("USERADDR"));
 				data.setDetailAddr(rs.getNString("DETAILADDR"));
-				data.setFindPw("FINDPW");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		JDBCUtil.disconnect(conn, pstmt);
 		return data;
+	}
+	
+	public boolean update(MemberVO mvo) {
+		conn = JDBCUtil.connect();
+		try {
+			if(mvo.getmNum()==0) {
+				pstmt = conn.prepareStatement(UPDATE_PW);
+				pstmt.setString(1, mvo.getmPw());
+				pstmt.setString(2, mvo.getmId());				
+			} else {
+				pstmt = conn.prepareStatement(UPDATE);
+				pstmt.setString(1, mvo.getmPw());
+				pstmt.setString(2, mvo.getmName());
+				pstmt.setString(3, mvo.getmEmail());
+				pstmt.setString(4, mvo.getmTel());				
+				pstmt.setString(5, mvo.getZipCode());				
+				pstmt.setString(6, mvo.getUserAddr());				
+				pstmt.setString(7, mvo.getDetailAddr());				
+				pstmt.setInt(8, mvo.getmPoint());				
+				pstmt.setInt(9, mvo.getmNum());				
+			}
+
+			int res = pstmt.executeUpdate();
+			if (res <= 0) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	public boolean delete(MemberVO mvo) {
