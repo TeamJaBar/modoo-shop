@@ -95,7 +95,6 @@ public class MemberDAO {
 				data.setZipCode(rs.getNString("ZIPCODE"));
 				data.setUserAddr(rs.getNString("USERADDR"));
 				data.setDetailAddr(rs.getNString("DETAILADDR"));
-				data.setFindPw("FINDPW");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
