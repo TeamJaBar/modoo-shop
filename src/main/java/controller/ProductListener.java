@@ -1,4 +1,4 @@
-package crawling;
+package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,15 +8,41 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Random;
 
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import common.JDBCUtil;
 
-public class Crawling {
+/**
+ * Application Lifecycle Listener implementation class ProductListener
+ *
+ */
+@WebListener
+public class ProductListener implements ServletContextListener {
 
-	public static void main(String[] args) {
+	/**
+	 * Default constructor.
+	 */
+	public ProductListener() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see ServletContextListener#contextDestroyed(ServletContextEvent)
+	 */
+	public void contextDestroyed(ServletContextEvent sce) {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
+	 */
+	public void contextInitialized(ServletContextEvent sce) {
 		int[] category = { 300, 401, 402, 403, 404, 405, 501, 600, 700, 801, 802, 803 };
 		Random rd = new Random();
 		Connection conn = JDBCUtil.connect();
@@ -50,8 +76,7 @@ public class Crawling {
 					int fixPrice = Integer.parseInt(info.get(0).select("span").text().replace(",", ""));
 					int selPrice = Integer.parseInt(info.get(1).select("b").text().replace(",", ""));
 					String rePerson = info.get(4).select("dd").text();
-					int reAge = Integer.parseInt(
-							info.get(5).select("dd").text().replace("이상", "").replace("세", "").replace("만", "").trim());
+					int reAge = Integer.parseInt(info.get(5).select("dd").text().replace("이상", "").replace("세", "").replace("만", "").trim());
 					String brand = info.get(6).select("dd").text();
 					String pImg = img.select("a").select("img").attr("src");
 					String infoImg = all.select(".txt-manual").select("img").get(1).attr("src");
@@ -65,9 +90,8 @@ public class Crawling {
 					cal1.add(Calendar.DATE, -(rd.nextInt(365)));
 					Date rDate = new Date(cal1.getTimeInMillis());
 
-					pstmt = conn.prepareStatement(
-							"INSERT INTO PRODUCT VALUES((SELECT NVL(MAX(PNUM),1000)+1 FROM PRODUCT), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 50)");
-					
+					pstmt = conn.prepareStatement("INSERT INTO PRODUCT VALUES((SELECT NVL(MAX(PNUM),1000)+1 FROM PRODUCT), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 50)");
+
 					pstmt.setInt(1, cateNum);
 					pstmt.setString(2, pName);
 					pstmt.setInt(3, fixPrice);
@@ -78,7 +102,7 @@ public class Crawling {
 					pstmt.setString(8, brand);
 					pstmt.setString(9, pImg);
 					pstmt.setString(10, infoImg);
-					
+
 					pstmt.executeUpdate();
 				}
 			} catch (
@@ -92,4 +116,5 @@ public class Crawling {
 		}
 		System.out.println("   로그: 크롤링 완료");
 	}
+
 }

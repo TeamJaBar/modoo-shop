@@ -16,7 +16,7 @@ public class MemberVO {
 	private Date mDate; // 가입일
 	private String tempDate; // JAVA에서만 저장용으로 사용하는 데이터 : 가입일
 	private int tempCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 신규회원수
-	private String findPw; // JAVA에서만 저장용으로 사용하는 데이터 : 
+	private String findPw; // JAVA에서만 저장용으로 사용하는 데이터 : 암호화 이메일 임시 저장
 
 	public int getmNum() {
 		return mNum;
