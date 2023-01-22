@@ -16,6 +16,7 @@ public class MemberDAO {
 	final String INSERT = "INSERT INTO MEMBER VALUES(MNUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, 0, ?, ?, ?, (SELECT SYSDATE FROM DUAL))";
 	final String SELECTONE_LOGIN = "SELECT MNUM, MID, MPW, MNAME, MEMAIL, MTEL, MPOINT, ZIPCODE, USERADDR, DETAILADDR FROM MEMBER WHERE MID=? AND MPW=?";
 	final String SELECTONE_ID = "SELECT MID FROM MEMBER WHERE MNAME=? AND MEMAIL=?";
+	final String SELECTONE_IDCHK = "SELECT MID FROM MEMBER WHERE MID=?";
 	final String SELECTONE_EMAIL = "SELECT REPLACE(MEMAIL, SUBSTR(MEMAIL,INSTR(MEMAIL, '@', 1, 1)-4, 4 ), '****') AS FINDPW, MEMAIL FROM MEMBER WHERE MID=?";
 	final String SELECTALL = "SELECT TO_CHAR(MDATE, 'DD/DAY') AS TDATE, COUNT(*) AS CNT FROM MEMBER WHERE ROWNUM<=7 GROUP BY TO_CHAR(MDATE, 'DD/DAY') ORDER BY TDATE DESC";
 	final String UPDATE = "UPDATE MEMBER SET MPW=?, MNAME=?, MEMAIL=?, MTEL=?, ZIPCODE=?, USERADDR=?,  DETAILADDR=?, MPOINT=? WHERE MNUM=?";
@@ -66,22 +67,14 @@ public class MemberDAO {
 		return datas;
 	}
 
-	public MemberVO selectOne(MemberVO mvo) {
+	public MemberVO selectOneLogin(MemberVO mvo) {
 		MemberVO data = null;
 		conn = JDBCUtil.connect();
 		try {
-			if (mvo.getmName() == null && mvo.getmPw() == null) {
-				pstmt = conn.prepareStatement(SELECTONE_EMAIL);
-				pstmt.setString(1, mvo.getmId());
-			} else if (mvo.getmPw() == null) {
-				pstmt = conn.prepareStatement(SELECTONE_ID);
-				pstmt.setString(1, mvo.getmName());
-				pstmt.setString(2, mvo.getmEmail());
-			} else {
-				pstmt = conn.prepareStatement(SELECTONE_LOGIN);
-				pstmt.setString(1, mvo.getmId());
-				pstmt.setString(2, mvo.getmPw());
-			}
+			pstmt = conn.prepareStatement(SELECTONE_LOGIN);
+			pstmt.setString(1, mvo.getmId());
+			pstmt.setString(2, mvo.getmPw());
+
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new MemberVO();
@@ -102,25 +95,70 @@ public class MemberDAO {
 		JDBCUtil.disconnect(conn, pstmt);
 		return data;
 	}
-	
+
+	public MemberVO selectOneId(MemberVO mvo) {
+		MemberVO data = null;
+		conn = JDBCUtil.connect();
+		try {
+			if (mvo.getmPw() == null) {
+				pstmt = conn.prepareStatement(SELECTONE_ID);
+				pstmt.setString(1, mvo.getmName());
+				pstmt.setString(2, mvo.getmEmail());
+			} else {
+				pstmt = conn.prepareStatement(SELECTONE_LOGIN);
+				pstmt.setString(1, mvo.getmId());
+				pstmt.setString(2, mvo.getmPw());
+			}
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				data = new MemberVO();
+				data.setmId(rs.getNString("MID"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return data;
+	}
+
+	public MemberVO selectOneFindPw(MemberVO mvo) {
+		MemberVO data = null;
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(SELECTONE_EMAIL);
+			pstmt.setString(1, mvo.getmId());
+
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				data = new MemberVO();
+				data.setmEmail(rs.getNString("MEMAIL"));
+				data.setFindPw(rs.getString("FINDPW"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return data;
+	}
+
 	public boolean update(MemberVO mvo) {
 		conn = JDBCUtil.connect();
 		try {
-			if(mvo.getmNum()==0) {
+			if (mvo.getmNum() == 0) {
 				pstmt = conn.prepareStatement(UPDATE_PW);
 				pstmt.setString(1, mvo.getmPw());
-				pstmt.setString(2, mvo.getmId());				
+				pstmt.setString(2, mvo.getmId());
 			} else {
 				pstmt = conn.prepareStatement(UPDATE);
 				pstmt.setString(1, mvo.getmPw());
 				pstmt.setString(2, mvo.getmName());
 				pstmt.setString(3, mvo.getmEmail());
-				pstmt.setString(4, mvo.getmTel());				
-				pstmt.setString(5, mvo.getZipCode());				
-				pstmt.setString(6, mvo.getUserAddr());				
-				pstmt.setString(7, mvo.getDetailAddr());				
-				pstmt.setInt(8, mvo.getmPoint());				
-				pstmt.setInt(9, mvo.getmNum());				
+				pstmt.setString(4, mvo.getmTel());
+				pstmt.setString(5, mvo.getZipCode());
+				pstmt.setString(6, mvo.getUserAddr());
+				pstmt.setString(7, mvo.getDetailAddr());
+				pstmt.setInt(8, mvo.getmPoint());
+				pstmt.setInt(9, mvo.getmNum());
 			}
 
 			int res = pstmt.executeUpdate();
