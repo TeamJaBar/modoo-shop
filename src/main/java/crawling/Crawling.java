@@ -15,9 +15,9 @@ import org.jsoup.select.Elements;
 import common.JDBCUtil;
 
 public class Crawling {
-	static int[] category = { 300, 401, 402, 403, 404, 405, 501, 600, 700, 801, 802, 803 };
 
 	public static void main(String[] args) {
+		int[] category = { 300, 401, 402, 403, 404, 405, 501, 600, 700, 801, 802, 803 };
 		Random rd = new Random();
 		Connection conn = JDBCUtil.connect();
 		PreparedStatement pstmt = null;
