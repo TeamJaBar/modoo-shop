@@ -138,7 +138,7 @@ public class MemberDAO {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new MemberVO();
-				data.setmEmail(rs.getNString("MEMAIL"));
+				data.setmEmail(rs.getNString("MID"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
