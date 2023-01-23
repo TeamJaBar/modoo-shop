@@ -1,19 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>회원가입</title>
-
 <link rel="stylesheet" type="text/css" href="../css/login-join.css">
 
 <%@include file="common/header.jsp"%>
 
-<!-- Title page -->
+<!--화면 타이틀-->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/ModooShop/images/bg-img-01.png');">
 	<h2 class="ltext-105 cl0 txt-center">회원가입</h2>
 </section>
-
 
 <!-- Content page -->
 <section class="bg0 p-t-75 p-b-120">
@@ -27,7 +24,8 @@
 							<input type="hidden" id="mode" name="mode" value="join">
 							<div class="member_login_box">
 								<div class="member_login_shop">
-									<a href="agreement.jsp" id="btnJoin" class="shop_mall_join hov-btn3"> <span>쇼핑몰 회원가입</span>
+									<a href="agreement.jsp" id="btnJoin" class="shop_mall_join hov-btn3">
+										<span>쇼핑몰 회원가입</span>
 									</a>
 								</div>
 							</div>
@@ -47,13 +45,15 @@
 								<img src="/ModooShop/images/icons/pc_kakao.png" alt="카카오 아이디 로그인">
 							</span>
 						</div>
-						<strong class="chk_none"> SNS계정을 연동하여 빠르고 쉽고 안전하게 회원가입할 수 있습니다. <br> 이 과정에서 고객님의 데이터는 철저하게 보호됩니다.
+						<strong class="chk_none">
+							SNS계정을 연동하여 빠르고 쉽고 안전하게 회원가입할 수 있습니다. <br> 이 과정에서 고객님의 데이터는 철저하게 보호됩니다.
 						</strong>
 					</div>
 					<!-- //member_cont -->
 					<div class="member_guide_txt">
 						<p>
-							이미 쇼핑몰 회원이세요?<a href="login.jsp" id="btnLoginMember"> 로그인</a>
+							이미 쇼핑몰 회원이세요?
+							<a href="login.jsp" id="btnLoginMember"> 로그인</a>
 						</p>
 					</div>
 				</div>
@@ -61,8 +61,6 @@
 			</div>
 		</div>
 </section>
-
-
 
 <%@include file="common/footer.jsp"%>
 
@@ -105,5 +103,4 @@
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
 </body>
-
 </html>
