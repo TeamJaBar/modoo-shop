@@ -14,6 +14,7 @@ public class MemberVO {
 	private String detailAddr; // 상세주소
 	private int mPoint; // 포인트
 	private Date mDate; // 가입일
+	private String kakao; // 카카오로그인
 	private String tempDate; // JAVA에서만 저장용으로 사용하는 데이터 : 가입일
 	private int tempCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 신규회원수
 	private String findPw; // JAVA에서만 저장용으로 사용하는 데이터 : 암호화 이메일 임시 저장
@@ -129,4 +130,13 @@ public class MemberVO {
 	public void setFindPw(String findPw) {
 		this.findPw = findPw;
 	}
+
+	public String getKakao() {
+		return kakao;
+	}
+
+	public void setKakao(String kakao) {
+		this.kakao = kakao;
+	}
+
 }
