@@ -12,9 +12,9 @@ public class JoinAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		
-		forward.setPath("view/join-ok.jsp");
+		forward.setPath("/join-ok.jsp");
 		forward.setRedirect(false);
-		
+
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
 		
@@ -26,12 +26,16 @@ public class JoinAction implements Action {
 		mvo.setZipCode(request.getParameter("zipCode"));
 		mvo.setUserAddr(request.getParameter("userAddr"));
 		mvo.setDetailAddr(request.getParameter("detailAddr"));
-		
-		
-		if(mdao.insert(mvo)) {
+		if (request.getParameter("kakao") != null) {
+			mvo.setKakao("kakao");
+		} else {
+			mvo.setKakao("일반");
+		}
+
+		if (mdao.insert(mvo)) {
 			return forward;
 		}
-		
+
 		return null;
 	}
 }
