@@ -19,8 +19,7 @@ public class ProductDAO {
 	final String SELECTONE = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE PNUM=?";
 	final String SELECTALL_NEW = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT ORDER BY RDATE DESC";
 	final String SELECTALL_BEST = "SELECT P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT, DECODE(SUM(CNT), NULL, 0, SUM(CNT))  A"
-			+ "FROM PRODUCT P FULL JOIN ORDERDETAIL O ON P.PNUM=O.PNUM"
-			+ "GROUP BY P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT"
+			+ "FROM PRODUCT P FULL JOIN ORDERDETAIL O ON P.PNUM=O.PNUM" + "GROUP BY P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT"
 			+ "ORDER BY A DESC";
 	final String SELECTALL_CATEALL = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE CATENUM BETWEEN ? AND ? ORDER BY RDATE DESC";
 	final String SELECTALL_CATE = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE CATENUM=? ORDER BY RDATE DESC";
@@ -143,7 +142,7 @@ public class ProductDAO {
 		try {
 			pstmt = conn.prepareStatement(SELECTALL_CATE_ADMIN);
 			pstmt.setString(1, cvo.getCateL());
-			
+
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				CategoryVO data = new CategoryVO();
@@ -164,7 +163,7 @@ public class ProductDAO {
 		ArrayList<ProductVO> datas = new ArrayList<ProductVO>();
 		conn = JDBCUtil.connect();
 		ProductVO data0 = null;
-		
+
 		try {
 			try {
 				pstmt = conn.prepareStatement("SELECT MAX(SELPRICE) MAXPRICE FROM PRODUCT");
@@ -179,30 +178,105 @@ public class ProductDAO {
 			}
 
 			String searchBar = "SELECT * FROM PRODUCT WHERE SELPRICE BETWEEN ? AND ?";
-			
-			if(pvo.getCateNum() != 0) {
+
+			if (pvo.getCateNum() != 0) {
 				searchBar += " AND CATENUM=? ";
 			}
-			if(pvo.getpName() != null) {
-				searchBar += " AND PNAME LIKE '%'||?||'%' ";				
+			if (pvo.getpName() != null) {
+				searchBar += " AND PNAME LIKE '%'||?||'%' ";
 			}
-			if(pvo.getBrand() != null) {
-				searchBar += " AND Brand=? ";				
+			if (pvo.getBrand() != null) {
+				searchBar += " AND Brand=? ";
 			}
-			
+
 			pstmt = conn.prepareStatement(searchBar);
 			pstmt.setInt(1, pvo.getLowNum());
-			pstmt.setInt(2, pvo.getHighNum()==0 ? data0.getHighNum() : pvo.getHighNum());
-			
-			int cnt =3;
-			if(pvo.getCateNum() != 0) {
+			pstmt.setInt(2, pvo.getHighNum() == 0 ? data0.getHighNum() : pvo.getHighNum());
+
+			int cnt = 3;
+			if (pvo.getCateNum() != 0) {
 				pstmt.setInt(cnt++, pvo.getCateNum());
 			}
-			if(pvo.getpName() != null) {
+			if (pvo.getpName() != null) {
 				pstmt.setString(cnt++, pvo.getpName());
 			}
-			if(pvo.getBrand() != null) {
+			if (pvo.getBrand() != null) {
 				pstmt.setString(cnt++, pvo.getBrand());
+			}
+
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ProductVO data = new ProductVO();
+				data = new ProductVO();
+				data.setpNum(rs.getInt("PNUM"));
+				data.setCateNum(rs.getInt("CATENUM"));
+				data.setpName(rs.getString("PNAME"));
+				data.setFixPrice(rs.getInt("FIXPRICE"));
+				data.setSelPrice(rs.getInt("SELPRICE"));
+				data.setrDate(rs.getDate("RDATE"));
+				data.setRePerson(rs.getString("REPERSON"));
+				data.setReAge(rs.getInt("REAGE"));
+				data.setBrand(rs.getString("BRAND"));
+				data.setpImg(rs.getString("PIMG"));
+				data.setInfoImg(rs.getString("INFOIMG"));
+				data.setProductCnt(rs.getInt("PRODUCTCNT"));
+				datas.add(data);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return datas;
+	}
+
+	public ArrayList<ProductVO> selectAllFilter(ProductVO pvo) {
+		ArrayList<ProductVO> datas = new ArrayList<ProductVO>();
+		conn = JDBCUtil.connect();
+		int cnt = 0;
+		String str1 = "", str2 = "";
+		try {
+			String filter = "SELECT " + str1 + "* FROM PRODUCT " + str2 + " WHERE 1=1";
+
+			if (pvo.getFilterTags() == 31) {
+				filter += " AND REPERSON LIKE '1명' ";
+			} else if (pvo.getFilterTags() == 32) {
+				filter += " AND REPERSON NOT LIKE '1명' ";
+			}
+
+			if (pvo.getFilterPrice() == 21) {
+				filter += " AND 1+1";
+			} else if (pvo.getFilterPrice() == 22) {
+				filter += " AND SELPRICE BETWEEN 0 AND 10000";
+			} else if (pvo.getFilterPrice() == 23) {
+				filter += " AND SELPRICE BETWEEN 10000 AND 20000";
+			} else if (pvo.getFilterPrice() == 24) {
+				filter += " AND SELPRICE BETWEEN 20000 AND 30000";
+			} else if (pvo.getFilterPrice() == 25) {
+				filter += " AND SELPRICE BETWEEN 30000 AND 40000";
+			} else if (pvo.getFilterPrice() == 26) {
+				filter += " AND SELPRICE > 40000";
+			}
+
+			if(pvo.getpName() != null) {
+				filter += " AND PNAME LIKE '%'||?||'%' ";
+				cnt++;
+			}
+
+			if (pvo.getFilterSortBy() == 11) {				
+				filter += " ORDER BY RDATE DESC";
+			} else if (pvo.getFilterSortBy() == 12) {
+				str1 = "P2.";
+				str2 = " P, (SELECT P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT, DECODE(SUM(CNT), NULL, 0, SUM(CNT))  A FROM PRODUCT P FULL JOIN ORDERDETAIL O ON P.PNUM=O.PNUM GROUP BY P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT ORDER BY A DESC) P2";
+				filter += " AND  P.PNUM = P2.PNUM ORDER BY P2.A DESC";
+			} else if (pvo.getFilterSortBy() == 13) {
+				filter += " ORDER BY SELPRICE ASC";
+			} else if (pvo.getFilterSortBy() == 14) {
+				filter += " ORDER BY SELPRICE DESC";
+			}
+
+			pstmt = conn.prepareStatement(filter);
+			if(cnt==1) {
+				pstmt.setString(1, pvo.getpName());
 			}
 
 			ResultSet rs = pstmt.executeQuery();

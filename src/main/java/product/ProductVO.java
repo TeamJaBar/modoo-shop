@@ -19,6 +19,9 @@ public class ProductVO {
 	private int lowNum; // JAVA에서만 저장용으로 사용하는 데이터 : 최저 연령, 최저 가격
 	private int highNum; // JAVA에서만 저장용으로 사용하는 데이터 : 최고 연령, 최고 가격
 	private ArrayList<Integer> check; // JAVA에서만 저장용으로 사용하는 데이터 : 검색 확인
+	private int FilterSortBy; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 sortBy
+	private int FilterPrice; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 price
+	private int FilterTags; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 tags
 
 	public int getpNum() {
 		return pNum;
@@ -138,6 +141,30 @@ public class ProductVO {
 
 	public void setCheck(ArrayList<Integer> check) {
 		this.check = check;
+	}
+
+	public int getFilterSortBy() {
+		return FilterSortBy;
+	}
+
+	public void setFilterSortBy(int filterSortBy) {
+		FilterSortBy = filterSortBy;
+	}
+
+	public int getFilterPrice() {
+		return FilterPrice;
+	}
+
+	public void setFilterPrice(int filterPrice) {
+		FilterPrice = filterPrice;
+	}
+
+	public int getFilterTags() {
+		return FilterTags;
+	}
+
+	public void setFilterTags(int filterTags) {
+		FilterTags = filterTags;
 	}
 
 }
