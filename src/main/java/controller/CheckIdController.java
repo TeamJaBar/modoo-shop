@@ -12,7 +12,7 @@ import member.MemberDAO;
 import member.MemberVO;
 
 // inform - 아이디 중복 검사
-// pw-find-01 - 아이디 존재 검사
+// pw-find-01 - 아이디 실재 검사
 @WebServlet("/view/check")
 public class CheckIdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

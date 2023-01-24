@@ -6,23 +6,26 @@ import javax.servlet.http.HttpServletResponse;
 import member.MemberDAO;
 import member.MemberVO;
 
-public class LoginAction implements Action {
+public class PwFindAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-		forward.setPath("main.do");
+		
+		forward.setPath("pw-find-02.jsp");
 		forward.setRedirect(false);
 
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
+				
 		mvo.setmId(request.getParameter("mId"));
-		mvo.setmPw(request.getParameter("mPw"));
-		MemberVO member = mdao.selectOneLogin(mvo);
-
-		request.getSession().setAttribute("mId", member.getmId());
-		request.getSession().setAttribute("mName", member.getmName());
-
+		MemberVO member = mdao.selectOneId(mvo);
+		request.setAttribute("mId", member.getmId());
+		
+		member = mdao.selectOneFindPw(mvo);
+		request.setAttribute("mEmail", member.getmEmail());
+		request.setAttribute("findPw", member.getFindPw());
+		
 		return forward;
 	}
 
