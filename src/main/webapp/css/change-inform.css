@@ -823,6 +823,10 @@ input[type="button"] {
 	padding: 0 0 0 40px;
 }
 
+.sub_content {
+	width:100% !important;
+}
+
 #contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth1
 	{
 	right: 200px;
@@ -851,7 +855,7 @@ input[type="button"] {
 .side_cont .sub_menu_box .sub_menu_mypage>li {
 	padding: 8px 0 20px 0;
 	font-size: 14px;
-	background: url('../../img/common/lnb_tit.png') no-repeat top left;
+	background: url('../img/common/lnb_tit.png') no-repeat top left;
 }
 
 .side_cont .sub_menu_box .sub_menu_mypage>li:first-child {
@@ -933,15 +937,15 @@ input[type="button"] {
 }
 
 .sub_menu_box_tit {
-	color: #ffffff;
-	background-color: #0188CB;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	padding-left: 15px;
+	color:#ffffff;
+	background-color:#0188CB;
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:15px;
 }
 
 .sub_menu_box_tit h2 {
-	font-size: 18px;
+	font-size:18px;
 }
 
 /* CSS Document */
@@ -990,7 +994,7 @@ body, th, td, input, select, textarea, button {
 	font-size: 12px;
 	line-height: 1.5;
 	font-family: 'SUIT', sans-serif;
-	color: #333
+	color: #666
 } /* color값은 디자인가이드에 맞게사용 */
 a {
 	color: #333;

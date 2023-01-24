@@ -1,19 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>회원정보변경</title>
-<link rel="stylesheet" type="text/css"
-	href="/ModooShop/css/change-inform.css">
+<link rel="stylesheet" type="text/css" href="/ModooShop/css/change-inform.css">
 <link rel="stylesheet" type="text/css" href="../css/join.css">
-
 <%@include file="common/header.jsp"%>
-
 <!-- Content page -->
 <section class="bg0 p-t-28 p-b-60">
 	<div class="container">
-		<div class="sub_content row">
+		<div class="sub-content row">
 			<div class="content_box col-md-8 col-lg-9 p-b-80">
 				<div class="join_base_wrap">
 					<div class="member_cont">
@@ -30,67 +26,62 @@
 										</colgroup>
 										<tbody>
 											<tr>
-												<th><span class="important">아이디</span></th>
+												<th>
+													<span class="important">아이디</span>
+												</th>
 												<td>
 													<div class="member_warning">
-														<input type="text" id="memId" name="memId"
-															data-pattern="gdMemberId" value="timo" required disabled>
+														<input type="text" id="memId" name="memId" data-pattern="gdMemberId" value="${member.mId}" required disabled>
 													</div>
-													<div id="memId-length-error" class="text_warning hidden">아이디는
-														4~20자리 이내로 입력해주세요.</div>
-													<div id="memId-error" class="text_warning hidden">아이디는
-														영어로 시작하며 영소문자 혹은 숫자만 사용할 수 있습니다.</div>
-													<div id="memId-existing-error" class="text_warning hidden">이미
-														사용 중인 아이디입니다.</div>
-													<div id="memId-good" class="text_affirm hidden">사용
-														가능합니다.</div>
+													<div id="memId-length-error" class="text_warning hidden">아이디는 4~20자리 이내로 입력해주세요.</div>
+													<div id="memId-error" class="text_warning hidden">아이디는 영어로 시작하며 영소문자 혹은 숫자만 사용할 수 있습니다.</div>
+													<div id="memId-existing-error" class="text_warning hidden">이미 사용 중인 아이디입니다.</div>
+													<div id="memId-good" class="text_affirm hidden">사용 가능합니다.</div>
 												</td>
-
 											</tr>
 											<tr class="">
-												<th><span class="important">비밀번호</span></th>
+												<th>
+													<span class="important">비밀번호</span>
+												</th>
 												<td class="member_password">
 													<div class="member_warning">
-														<input type="password" id="newPassword" name="memPw"
-															autocomplete="off" placeholder="" required>
+														<input type="password" id="newPassword" name="memPw" autocomplete="off" placeholder="" required>
 													</div>
-													<div id="memPw-error" class="text_warning hidden">비밀번호는
-														영문, 숫자, 특수문자 중 2가지 이상이 조합된 10~20자여야 합니다.</div>
-													<div id="memPw-good" class="text_affirm hidden">사용
-														가능합니다.</div>
+													<div id="memPw-error" class="text_warning hidden">비밀번호는 영문, 숫자, 특수문자 중 2가지 이상이 조합된 10~20자여야 합니다.</div>
+													<div id="memPw-good" class="text_affirm hidden">사용 가능합니다.</div>
 												</td>
 											</tr>
 											<tr class="">
-												<th><span class="important">비밀번호 확인</span></th>
+												<th>
+													<span class="important">비밀번호 확인</span>
+												</th>
 												<td>
 													<div class="member_warning">
-														<input type="password" id="chkPassword" class="check-id"
-															name="memPwRe" autocomplete="off" required>
+														<input type="password" id="chkPassword" class="check-id" name="memPwRe" autocomplete="off" required>
 													</div>
-													<div id="memPwRe-error" class="text_warning hidden">비밀번호가
-														서로 다릅니다.</div>
-													<div id="memPwRe-good" class="text_affirm hidden">비밀번호가
-														일치합니다.</div>
+													<div id="memPwRe-error" class="text_warning hidden">비밀번호가 서로 다릅니다.</div>
+													<div id="memPwRe-good" class="text_affirm hidden">비밀번호가 일치합니다.</div>
 												</td>
 											</tr>
 											<tr>
-												<th><span class="important">이름</span></th>
+												<th>
+													<span class="important">이름</span>
+												</th>
 												<td>
 													<div class="member_warning">
-														<input type="text" name="memNm" data-pattern="gdEngKor"
-															value="김티모" maxlength="30" required disabled>
+														<input type="text" name="memNm" data-pattern="gdEngKor" value="${member.mName}" maxlength="30" required disabled>
 													</div>
-													<div id="memNm-error" class="text_warning hidden">이름은
-														한글만 사용할 수 있으며 2글자 이상이어야 합니다.</div>
+													<div id="memNm-error" class="text_warning hidden">이름은 한글만 사용할 수 있으며 2글자 이상이어야 합니다.</div>
 												</td>
 											</tr>
 											<tr>
-												<th><span class="important">이메일</span></th>
+												<th>
+													<span class="important">이메일</span>
+												</th>
 												<td class="member_email">
 													<div class="member_warning">
-														<input type="text" name="email" id="email" value=""
-															tabindex="-1" required> <select id="emailDomain"
-															name="emailDomain" class="chosen_select"required">
+														<input type="text" name="email" id="email" value="" tabindex="-1" required>
+														<select id="emailDomain" name="emailDomain" class="chosen_select" required>
 															<option value="self" selected>직접입력</option>
 															<option value="naver.com">naver.com</option>
 															<option value="hanmail.net">hanmail.net</option>
@@ -101,10 +92,9 @@
 															<option value="icloud.com">icloud.com</option>
 														</select>
 													</div>
-													<div id="memEm-error" class="text_warning hidden">이메일을
-														다시 한 번 확인해주세요.</div>
-													<div id="memEm-good" class="text_affirm hidden">사용
-														가능합니다.</div> <!-- <div class="form_element">
+													<div id="memEm-error" class="text_warning hidden">이메일을 다시 한 번 확인해주세요.</div>
+													<div id="memEm-good" class="text_affirm hidden">사용 가능합니다.</div>
+													<!-- <div class="form_element">
 														<input type="checkbox" id="maillingFl" name="maillingFl"
 															value="y"> <label for="maillingFl"
 															class="check_s">정보/이벤트 메일 수신에 동의합니다.</label>
@@ -112,20 +102,17 @@
 												</td>
 											</tr>
 											<tr>
-												<th><span class="important">휴대폰번호</span></th>
+												<th>
+													<span class="important">휴대폰번호</span>
+												</th>
 												<td class="member_address">
 													<div class="address_postcode">
-														<input type="text" id="cellPhone" name="cellPhone"
-															maxlength="12" placeholder="- 없이 입력하세요."
-															data-pattern="gdNum" value="" required>
-														<div data-lastpass-icon-root="true"
-															style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
-														</div>
+														<input type="text" id="cellPhone" name="cellPhone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="" required>
+														<div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
 													</div>
-													<div id="memPn-hyphen-error" class="text_warning hidden">-없이
-														입력해주세요.</div>
-													<div id="memPn-error" class="text_warning hidden">핸드폰
-														번호를 확인해주세요.</div> <!-- <div class="form_element">
+													<div id="memPn-hyphen-error" class="text_warning hidden">-없이 입력해주세요.</div>
+													<div id="memPn-error" class="text_warning hidden">핸드폰 번호를 확인해주세요.</div>
+													<!-- <div class="form_element">
 														<input type="checkbox" id="smsFl" name="smsFl" value="y">
 														<label for="smsFl" class="check_s">정보/이벤트 SMS 수신에
 															동의합니다.</label>
@@ -144,33 +131,24 @@
 												</tr>
 												-->
 											<tr>
-												<th><span class="important">주소</span></th>
+												<th>
+													<span class="important">주소</span>
+												</th>
 												<td class="member_address">
 													<div class="address_postcode find_address">
-														<input type="text" name="zonecode" id="sample3_postcode"
-															placeholder="우편번호" value="" required> <input
-															type="button" id="find_address"
-															onclick="sample3_execDaumPostcode()" value="우편번호 찾기"
-															required>
+														<input type="text" name="zonecode" id="sample3_postcode" placeholder="우편번호" value="" required>
+														<input type="button" id="find_address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required>
 													</div>
-													<div id="wrapPost"
-														style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
-														<img
-															src="//t1.daumcdn.net/postcode/resource/images/close.png"
-															id="btnFoldWrap"
-															style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
-															onclick="foldDaumPostcode()" alt="접기 버튼">
+													<div id="wrapPost" style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
+														<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1" onclick="foldDaumPostcode()" alt="접기 버튼">
 													</div>
 													<div class="address_input detailed_address">
 														<div class="member_warning">
-															<input type="text" name="address" id="sample3_address"
-																placeholder="주소" value="" required>
+															<input type="text" name="address" id="sample3_address" placeholder="주소" value="" required>
 														</div>
 														<div class="member_warning js_address_sub">
-															<input type="text" name="addressSub"
-																id="sample3_detailAddress" placeholder="상세주소" value=""
-																required> <input type="text"
-																id="sample3_extraAddress" placeholder="참고항목">
+															<input type="text" name="addressSub" id="sample3_detailAddress" placeholder="상세주소" value="" required>
+															<input type="text" id="sample3_extraAddress" placeholder="참고항목">
 														</div>
 													</div>
 												</td>
@@ -180,8 +158,7 @@
 								</div>
 							</div>
 							<!-- //base_info_box -->
-							<script
-								src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+							<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 							<script>
 									// 우편번호 찾기 찾기 화면을 넣을 element
 									var element_wrap = document
@@ -279,8 +256,7 @@
 								</script>
 							<!-- //base_info_sec -->
 							<div class="btn_center_box">
-								<button type="button" id="btnCancel" class="btn_member_cancel"
-									onclick="location.href='main.html'">취소</button>
+								<button type="button" id="btnCancel" class="btn_member_cancel" onclick="location.href='main.html'">취소</button>
 								<button type="submit" class="btn_comfirm js_btn_join">정보변경</button>
 							</div>
 						</form>
@@ -288,250 +264,7 @@
 					</div>
 					<!-- //member_cont -->
 				</div>
-
-				<!-- 윤석환님 코드 -->
-				<!-- 
-				<div class="member-content">
-					<form action="" id="formJoin" name="formJoin" method="post">
-						<div class="base-info-box">
-							<h3 class="mtext-105 m-b-10">기본정보</h3>
-							<span class="important">※ 표시는 반드시 입력하셔야 하는 항목입니다.</span>
-							<div class="base-info-section m-t-20">
-								<table>
-									<colgroup>
-										<col width="25%">
-										<col width="75%">
-									</colgroup>
-									<tbody>
-										<tr>
-											<th><span class="important">※ 아이디</span></th>
-											<td><input type="hidden" name="memId" value="klkl741">
-												timo</td>
-										</tr>
-										<tr>
-											<th><span class="important">※ 비밀번호</span></th>
-											<td class="member-password">
-												<div class="member-warning">
-													<input type="password" id="npw" name="mem"
-														autocomplete="off">
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th><span class="important">※ 비밀번호 확인</span></th>
-											<td class="member-password">
-												<div class="member-warning">
-													<input type="password" class="check-id" name="memRe"
-														autocomplete="off">
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th><span class="important">※ 이름</span></th>
-											<td>
-												<div class="member-warning">
-													<input type="text" name="memNm" data-pattern="gdEngKor"
-														value="" maxlength="30">
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th><span class="important">※ 이메일</span></th>
-											<td class="member_email">
-												<div class="member_warning">
-													<input type="text" class="m-b-10" name="email" id="email"
-														value="" tabindex="-1" required> <select
-														id="emailDomain" name="emailDomain" class="chosen_select"
-														required>
-														<option value="self">직접입력</option>
-														<option value="naver.com">naver.com</option>
-														<option value="hanmail.net">hanmail.net</option>
-														<option value="daum.net">daum.net</option>
-														<option value="nate.com">nate.com</option>
-														<option value="hotmail.com">hotmail.com</option>
-														<option value="gmail.com">gmail.com</option>
-														<option value="icloud.com">icloud.com</option>
-													</select>
-
-												</div>
-												<div class="member-warning js-email"></div>
-												<div class="form-element">
-													<input type="checkbox" id="maillingFl" name="maillingFl"
-														value="y">
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th><span class="important">※ 휴대폰번호</span></th>
-											<td class="member-address">
-												<div class="address-postcode">
-													<input type="text" id="cellPhone" name="cellPhone"
-														maxlength="12" placeholder="- 없이 입력하세요."
-														data-pattern="gdNum" value="">
-													<div data-lastpass-icon-root="true"
-														style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
-													</div>
-												</div>
-												<div class="form-element">
-													<input type="checkbox" id="smsFl" name="smsFl" value="y">
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th><span>전화번호</span></th>
-											<td>
-												<div class="member-warning">
-													<input type="text" id="phone" name="phone" maxlength="12"
-														placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th><span class="important">※ 주소</span></th>
-											<td class="member-address">
-												<div class="address-postcode">
-													<input type="text" name="zonecode" id="sample3-postcode"
-														placeholder="우편번호" value=""> <input type="button"
-														class="m-t-10" onclick="sample3_execDaumPostcode()"
-														value="우편번호 찾기"><br>
-												</div> //base_info_box
-												<div id="wrapPost"
-													style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
-													<img
-														src="//t1.daumcdn.net/postcode/resource/images/close.png"
-														id="btnFoldWrap"
-														style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
-														onclick="foldDaumPostcode()" alt="접기 버튼">
-												</div>
-
-												<div class="address-input">
-													<div class="member-warning">
-														<input type="text" name="address" id="sample3-address"
-															placeholder="주소" value=""><br>
-													</div>
-													<div class="member-warning js-address-sub">
-														<input type="text" name="addressSub"
-															id="sample3-detailAddress" placeholder="상세주소" value="">
-														<input type="text" id="sample3-extraAddress"
-															class="m-t-10" placeholder="참고항목">
-													</div>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-
-						<script
-							src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-						<script>
-                           // 우편번호 찾기 찾기 화면을 넣을 element
-                           var element_wrap = document
-                              .getElementById('wrapPost');
-
-                           function foldDaumPostcode() {
-                              // iframe을 넣은 element를 안보이게 한다.
-                              element_wrap.style.display = 'none';
-                           }
-
-                           function sample3_execDaumPostcode() {
-                              // 현재 scroll 위치를 저장해놓는다.
-                              var currentScroll = Math
-                                 .max(
-                                    document.body.scrollTop,
-                                    document.documentElement.scrollTop);
-                              new daum.Postcode(
-                                 {
-                                    oncomplete: function (data) {
-                                       // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                                       // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                                       // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                                       var addr = ''; // 주소 변수
-                                       var extraAddr = ''; // 참고항목 변수
-
-                                       //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                                       if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                                          addr = data.roadAddress;
-                                       } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                                          addr = data.jibunAddress;
-                                       }
-
-                                       // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                                       if (data.userSelectedType === 'R') {
-                                          // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                                          // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                                          if (data.bname !== ''
-                                             && /[동|로|가]$/g
-                                                .test(data.bname)) {
-                                             extraAddr += data.bname;
-                                          }
-                                          // 건물명이 있고, 공동주택일 경우 추가한다.
-                                          if (data.buildingName !== ''
-                                             && data.apartment === 'Y') {
-                                             extraAddr += (extraAddr !== '' ? ', '
-                                                + data.buildingName
-                                                : data.buildingName);
-                                          }
-                                          // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                                          if (extraAddr !== '') {
-                                             extraAddr = ' ('
-                                                + extraAddr
-                                                + ')';
-                                          }
-                                          // 조합된 참고항목을 해당 필드에 넣는다.
-                                          document
-                                             .getElementById("sample3_extraAddress").value = extraAddr;
-
-                                       } else {
-                                          document
-                                             .getElementById("sample3_extraAddress").value = '';
-                                       }
-
-                                       // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                                       document
-                                          .getElementById('sample3_postcode').value = data.zonecode;
-                                       document
-                                          .getElementById("sample3_address").value = addr;
-                                       // 커서를 상세주소 필드로 이동한다.
-                                       document
-                                          .getElementById(
-                                             "sample3_detailAddress")
-                                          .focus();
-
-                                       // iframe을 넣은 element를 안보이게 한다.
-                                       // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
-                                       element_wrap.style.display = 'none';
-
-                                       // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-                                       document.body.scrollTop = currentScroll;
-                                    },
-                                    // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
-                                    onresize: function (size) {
-                                       element_wrap.style.height = size.height
-                                          + 'px';
-                                    },
-                                    width: '100%',
-                                    height: '100%'
-                                 }).embed(element_wrap);
-
-                              // iframe을 넣은 element를 보이게 한다.
-                              element_wrap.style.display = 'block';
-                           }
-                        </script>
-						<div class="btn-center-box">
-							<button type="button" id="btnPrevStep" class="btn-member-prev"
-								href="admin-member.html" onclick="return con();">취소</button>
-							<button type="button" id="btnNextStep" class="btn-member-next"
-								href="admin-member.html" onclick="return ch();">정보변경</button>
-						</div>
-					</form>
-				</div>
-				 -->
 			</div>
-
-
 			<div class="col-md-4 col-lg-3 p-b-80">
 				<div class="side-menu">
 					<div class="sub_content">
@@ -540,22 +273,37 @@
 							<div class="sub_menu_box">
 								<div class="sub_menu_box_tit">
 									<h2>
-										<i class="fa fa-bars m-r-10"></i>마이페이지
+										<i class="fa fa-bars m-r-10"></i>
+										마이페이지
 									</h2>
 								</div>
 								<ul class="sub_menu_mypage">
-									<li>쇼핑정보
+									<li>
+										쇼핑정보
 										<ul class="sub_depth1">
-											<li><a href="order-list.html">- 주문목록/배송조회</a></li>
-											<li><a href="cancel-list.html">- 취소 내역</a></li>
-											<li><a href="dibs-list.html">- 찜리스트</a></li>
+											<li>
+												<a href="order-list.html">- 주문목록/배송조회</a>
+											</li>
+											<li>
+												<a href="cancel-list.html">- 취소 내역</a>
+											</li>
+											<li>
+												<a href="dibs-list.html">- 찜리스트</a>
+											</li>
 										</ul>
 									</li>
-									<li>회원정보
+									<li>
+										회원정보
 										<ul class="sub_depth1">
-											<li><a href="change-inform.html">- 회원정보 변경</a></li>
-											<li><a href="withdrawal.html">- 회원 탈퇴</a></li>
-											<li><a href="manage-address.html">- 배송지 관리</a></li>
+											<li>
+												<a href="change-inform.html">- 회원정보 변경</a>
+											</li>
+											<li>
+												<a href="withdrawal.html">- 회원 탈퇴</a>
+											</li>
+											<li>
+												<a href="manage-address.html">- 배송지 관리</a>
+											</li>
 										</ul>
 									</li>
 								</ul>
@@ -567,9 +315,7 @@
 		</div>
 	</div>
 </section>
-
 <%@include file="common/footer.jsp"%>
-
 <!--===============================================================================================-->
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <!--===============================================================================================-->
@@ -803,11 +549,9 @@
       })
    </script>
 <!--===============================================================================================-->
-<script
-	src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
-<script
-	src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
       $('.js-pscroll').each(function(){
          $(this).css('position','relative');
@@ -826,7 +570,6 @@
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
 </body>
-
 <!-- 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
