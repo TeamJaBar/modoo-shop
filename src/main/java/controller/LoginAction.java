@@ -10,19 +10,19 @@ public class LoginAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward=new ActionForward();
+		ActionForward forward = new ActionForward();
 		forward.setPath("/main.do");
 		forward.setRedirect(false);
-		
-		MemberDAO mdao=new MemberDAO();
-		MemberVO mvo=new MemberVO();
+
+		MemberDAO mdao = new MemberDAO();
+		MemberVO mvo = new MemberVO();
 		mvo.setmId(request.getParameter("mId"));
 		mvo.setmPw(request.getParameter("mPw"));
-		MemberVO member=mdao.selectOne(mvo);
-		
+		MemberVO member = mdao.selectOneLogin(mvo);
+
 		request.getSession().setAttribute("mId", member.getmId());
 		request.getSession().setAttribute("mName", member.getmName());
-		
+
 		return forward;
 	}
 

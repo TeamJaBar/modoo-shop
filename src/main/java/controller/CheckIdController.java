@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import member.MemberDAO;
 import member.MemberVO;
 
+// inform - 아이디 중복 검사
+// pw-find-01 - 아이디 존재 검사
 @WebServlet("/view/check")
-public class CheckController extends HttpServlet {
+public class CheckIdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public CheckController() {
+	public CheckIdController() {
 		super();
 	}
 
@@ -27,10 +29,8 @@ public class CheckController extends HttpServlet {
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
 		mvo.setmId(request.getParameter("mId"));
-		mvo.setmName(request.getParameter("mName"));
-		mvo.setmEmail(request.getParameter("mEmail"));
-
-		if (mdao.selectOne(mvo) == null) {
+		
+		if (mdao.selectOneId(mvo) == null) {
 			response.getWriter().println("1"); // 응답할 때 getWriter()를 사용
 		}
 	}
