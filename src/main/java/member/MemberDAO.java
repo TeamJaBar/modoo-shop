@@ -104,19 +104,18 @@ public class MemberDAO {
 	}
 
 	public MemberVO selectOneId(MemberVO mvo) {
-		MemberVO data = null;
-		conn = JDBCUtil.connect();
-		try {
-			if (mvo.getmPw() == null) {
-				pstmt = conn.prepareStatement(SELECTONE_ID);
-				pstmt.setString(1, mvo.getmName());
-				pstmt.setString(2, mvo.getmEmail());
-			} else {
-				pstmt = conn.prepareStatement(SELECTONE_IDCHK);
-				pstmt.setString(1, mvo.getmId());
-				pstmt.setString(2, mvo.getmPw());
-			}
-			ResultSet rs = pstmt.executeQuery();
+	      MemberVO data = null;
+	      conn = JDBCUtil.connect();
+	      try {
+	         if (mvo.getmEmail() == null) {
+	            pstmt = conn.prepareStatement(SELECTONE_IDCHK);
+	            pstmt.setString(1, mvo.getmId());
+	         } else {
+	            pstmt = conn.prepareStatement(SELECTONE_ID);
+	            pstmt.setString(1, mvo.getmName());
+	            pstmt.setString(2, mvo.getmEmail());
+	         }
+	         ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new MemberVO();
 				data.setmId(rs.getNString("MID"));
