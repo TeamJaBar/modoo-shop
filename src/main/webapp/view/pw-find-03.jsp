@@ -40,7 +40,7 @@ input[type="text"], input[type="password"] {
 				<div class="member_wrap">
 					<div class="member_cont">
 						<!-- 나중에 바꿔요 -->
-						<form name="formReset" method="post" id="formReset" action="pw-find-04.jsp" onsubmit="return check()">
+						<form name="formReset" method="post" id="formReset" action="pw-find-04.jsp">
 							<div class="member_login_box">
 								<h3>인증번호 입력</h3>
 								<p class="findPw-info">수신된 이메일의 인증번호를 입력해 주세요.</p>
@@ -55,8 +55,8 @@ input[type="text"], input[type="password"] {
 								</div>
 
 								<div class="btn-center-box" style="margin-top: 40px;">
-									<button type="button" id="btnCancel" class="btn_member_blue hov-btn4" onclick="location.href='pw-find-02.jsp'">이전</button>
-									<button type="submit" class="btn_member_white hov-btn4">확인</button>
+									<button type="button" id="btnCancel" class="btn_member_blue hov-btn4" onclick="back()">이전</button>
+									<button type="submit" class="btn_member_white hov-btn4" onclick="return check()">확인</button>
 								</div>
 							</div>
 							<!-- //find_password_reset_box -->
@@ -127,6 +127,12 @@ input[type="text"], input[type="password"] {
 			alert("인증번호가 틀렸습니다. 다시 입력해 주세요.");
 			return false;
 		}
+	}
+	
+	function back() {
+		var formReset = $("#formReset");
+		formReset.attr("action", "pwFind.do");
+		formReset.submit();
 	}
 </script>
 
