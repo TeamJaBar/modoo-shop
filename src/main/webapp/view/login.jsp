@@ -57,7 +57,7 @@
 				<div class="member_wrap">
 					<div class="member_cont">
 						<!-- 나중에 바꿔요 -->
-						<form action="/ModooShop/view/main.jsp" id="formLogin">
+						<form action="login.do" id="formLogin" method="post">
 							<input type="hidden" id="mode" name="mode" value="login">
 							<div class="member_login_box">
 								<div class="login_input_sec">
@@ -80,12 +80,6 @@
 						</form>
 						<!-- 나중에 span 태그 > a 태그 -->
 						<div class="member_sns_login">
-							<span href="" class="btn_payco_login js_btn_payco_login">
-								<img src="/ModooShop/images/icons/pc_payco.png" alt="PAYCO 아이디 로그인">
-							</span>
-							<span href="" class="btn_facebook_login js_btn_facebook_login">
-								<img src="/ModooShop/images/icons/pc_facebook.png" alt="FACEBOOK 아이디 로그인">
-							</span>
 							<span href="" class="btn_naver_login js_btn_naver_login">
 								<img src="/ModooShop/images/icons/pc_naver.png" alt="네이버 아이디 로그인">
 							</span>
