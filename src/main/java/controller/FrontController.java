@@ -60,6 +60,18 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("idFind.do")) {
+			try {
+				forward = new IdFindAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("pwFind.do")) {
+			try {
+				forward = new PwFindAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward == null) {

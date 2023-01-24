@@ -20,6 +20,8 @@ public class SendEmailAction implements Action {
 		ActionForward forward = new ActionForward();
 		forward.setPath("pw-find-03.jsp");
 		forward.setRedirect(false);
+		
+		request.setAttribute("mId", request.getParameter("mId"));
 
 		// 랜덤 인증번호 생성
 		Random rand = new Random();
@@ -44,7 +46,7 @@ public class SendEmailAction implements Action {
 //      final String user = "발신자 이메일"; // 이메일 주소
 //      final String password = "이메일 비밀번호"; // 이메일 비밀번호
 
-		String to = request.getParameter("email"); // 사용자의 이메일 주소
+		String to = request.getParameter("mEmail"); // 사용자의 이메일 주소
 
 		// 설정
 		Properties props = new Properties();

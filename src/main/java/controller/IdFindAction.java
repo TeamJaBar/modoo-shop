@@ -6,26 +6,26 @@ import javax.servlet.http.HttpServletResponse;
 import member.MemberDAO;
 import member.MemberVO;
 
-// pw-find - 비밀번호 재설정
-public class UpdateAction implements Action {
+public class IdFindAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-
-		forward.setPath("login.jsp");
+		
+		forward.setPath("id-find-ok.jsp");
 		forward.setRedirect(false);
 
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
+		
+		mvo.setmName(request.getParameter("mName"));
+		mvo.setmEmail(request.getParameter("mEmail"));
+		MemberVO member = mdao.selectOneId(mvo);
+		
+		request.setAttribute("mName", request.getParameter("mName"));
+		request.setAttribute("mId", member.getmId());
 
-		mvo.setmId(request.getParameter("mId"));
-		mvo.setmPw(request.getParameter("mPw"));
-
-		if (mdao.update(mvo)) {
-			return forward;
-		}
-
-		return null;
+		return forward;
 	}
+
 }
