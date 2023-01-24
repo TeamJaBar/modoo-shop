@@ -20,8 +20,17 @@ public class LoginAction implements Action {
 		mvo.setmPw(request.getParameter("mPw"));
 		MemberVO member = mdao.selectOneLogin(mvo);
 
-		request.getSession().setAttribute("mId", member.getmId());
-		request.getSession().setAttribute("mName", member.getmName());
+		if(member == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			request.setAttribute("title", "가입된 정보가 없습니다.");
+			request.setAttribute("msg", "아이디 혹은 비밀번호를 확인하세요.");
+			request.setAttribute("url", "login.jsp");
+			forward.setPath("alert.jsp");			
+		} else {
+			request.getSession().setAttribute("mId", member.getmId());
+			request.getSession().setAttribute("mName", member.getmName());
+		}
 
 		return forward;
 	}
