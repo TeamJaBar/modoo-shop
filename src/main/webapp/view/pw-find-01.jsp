@@ -55,7 +55,8 @@ function check() {
 	$.ajax({
 		type : 'POST', //POST 방식으로 보낼래
 		url : 'check',
-		data : {mId : mId}, //mId라는 이름으로 mId 변수에 있는 값 보냄
+		data : {mId : mId
+				mode : "findPW"}, //mId라는 이름으로 mId 변수에 있는 값 보냄
 		async: false,
 		success : function(result) {
 			console.log(result);

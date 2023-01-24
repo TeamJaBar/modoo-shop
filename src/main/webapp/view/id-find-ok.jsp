@@ -41,10 +41,10 @@
 				<div class="member_wrap">
 					<div class="member_cont">
 						<div class="result-container">
-							<span id="name">${member.mName}</span>
+							<span id="name">${mName}</span>
 							회원님의 아이디는
 							<div class="result">
-								<span id="findId">${member.mId}</span>
+								<span id="findId">${mId}</span>
 								입니다.
 							</div>
 						</div>
