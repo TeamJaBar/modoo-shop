@@ -21,6 +21,7 @@ public class MemberDAO {
 	final String SELECTONE_EMAIL = "SELECT REPLACE(MEMAIL, SUBSTR(MEMAIL,INSTR(MEMAIL, '@', 1, 1)-4, 4 ), '****') AS FINDPW, MEMAIL FROM MEMBER WHERE MID=?";
 	final String SELECTONE_EMAILCHK = "SELECT MEMAIL FROM MEMBER WHERE MEMAIL=?";
 	final String SELECTALL = "SELECT TO_CHAR(MDATE, 'DD/DAY') AS TDATE, COUNT(*) AS CNT FROM MEMBER WHERE ROWNUM<=7 GROUP BY TO_CHAR(MDATE, 'DD/DAY') ORDER BY TDATE DESC";
+	final String SELECTALL_MEMBER = "SELECT * FROM MEMBER ORDER BY MNUM ASC";
 	final String UPDATE = "UPDATE MEMBER SET MPW=?, MNAME=?, MEMAIL=?, MTEL=?, ZIPCODE=?, USERADDR=?,  DETAILADDR=?, MPOINT=? WHERE MNUM=?";
 	final String UPDATE_PW = "UPDATE MEMBER SET MPW=? WHERE MID=?";
 	final String DELETE_USER = "DELETE FROM MEMBER WHERE MNUM=? AND MPW=?";
@@ -74,6 +75,35 @@ public class MemberDAO {
 		return datas;
 	}
 
+	public ArrayList<MemberVO> selectAllMember(MemberVO mvo) {
+		ArrayList<MemberVO> datas = new ArrayList<MemberVO>();
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(SELECTALL_MEMBER);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				MemberVO data = new MemberVO();
+				data.setmNum(rs.getInt("MNUM"));
+				data.setmId(rs.getString("MID"));
+				data.setmPw(rs.getString("MPW"));
+				data.setmName(rs.getString("MNAME"));
+				data.setmEmail(rs.getString("MEMAIL"));
+				data.setmTel(rs.getString("MTEL"));
+				data.setmPoint(rs.getInt("MPOINT"));
+				data.setZipCode(rs.getString("ZIPCODE"));
+				data.setUserAddr(rs.getString("USERADDR"));
+				data.setDetailAddr(rs.getString("DETAILADDR"));
+				data.setmDate(rs.getDate("MDATE"));
+				data.setKakao(rs.getString("KAKAOLOIN"));
+				datas.add(data);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return datas;
+	}
+
 	public MemberVO selectOneLogin(MemberVO mvo) {
 		MemberVO data = null;
 		conn = JDBCUtil.connect();
@@ -104,18 +134,18 @@ public class MemberDAO {
 	}
 
 	public MemberVO selectOneId(MemberVO mvo) {
-	      MemberVO data = null;
-	      conn = JDBCUtil.connect();
-	      try {
-	         if (mvo.getmEmail() == null) {
-	            pstmt = conn.prepareStatement(SELECTONE_IDCHK);
-	            pstmt.setString(1, mvo.getmId());
-	         } else {
-	            pstmt = conn.prepareStatement(SELECTONE_ID);
-	            pstmt.setString(1, mvo.getmName());
-	            pstmt.setString(2, mvo.getmEmail());
-	         }
-	         ResultSet rs = pstmt.executeQuery();
+		MemberVO data = null;
+		conn = JDBCUtil.connect();
+		try {
+			if (mvo.getmEmail() == null) {
+				pstmt = conn.prepareStatement(SELECTONE_IDCHK);
+				pstmt.setString(1, mvo.getmId());
+			} else {
+				pstmt = conn.prepareStatement(SELECTONE_ID);
+				pstmt.setString(1, mvo.getmName());
+				pstmt.setString(2, mvo.getmEmail());
+			}
+			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new MemberVO();
 				data.setmId(rs.getNString("MID"));
