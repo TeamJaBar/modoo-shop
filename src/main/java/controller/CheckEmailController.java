@@ -12,6 +12,7 @@ import member.MemberDAO;
 import member.MemberVO;
 
 // inform - 이메일 중복 검사
+// id-find - 이메일 실재 검사
 @WebServlet("/view/checkEm")
 public class CheckEmailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,7 +29,7 @@ public class CheckEmailController extends HttpServlet {
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
 		mvo.setmEmail(request.getParameter("mEmail"));
-		
+
 		if (mdao.selectOneEmailCHK(mvo) == null) {
 			response.getWriter().println("1");
 		}
