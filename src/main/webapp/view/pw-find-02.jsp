@@ -2,19 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>비밀번호 찾기</title>
-
 <link rel="stylesheet" type="text/css" href="../css/login-join.css">
 <%@include file="common/header.jsp"%>
-
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/ModooShop/images/bg-img-01.png');">
 	<h2 class="ltext-105 cl0 txt-center">비밀번호 찾기</h2>
 </section>
-
-
 <!-- Content page -->
 <section class="bg0 p-t-75 p-b-120">
 	<div class="container">
@@ -30,11 +25,13 @@
 								</div>
 								<!-- //user_certify_tit -->
 								<div class="user_certify_check">
-									<input type="checkbox" id="authEmail" name="mEmail" value="${member.mEmail}" required>
+									<input type="checkbox" id="authEmail" name="authEmail" required>
 									<label for='authEmail' class="label-for-checkbox">
-										이메일 인증 <span class="email">(pol******gns@naver.com)</span>
+										이메일 인증
+										<span class="email">${findPw}</span>
 									</label>
-									<input type="hidden" name="email" value="polodltjdgns@naver.com">
+									<input type="hidden" name="mEmail" value="${mEmail}">
+									<input type="hidden" name="mId" value="${mId}">
 									<p>가입 시 등록한 이메일로 인증번호가 발송됩니다.</p>
 								</div>
 								<!-- //user_certify_list -->
@@ -52,9 +49,7 @@
 		</div>
 	</div>
 </section>
-
 <%@include file="common/footer.jsp"%>
-
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -94,5 +89,4 @@
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
 </body>
-
 </html>

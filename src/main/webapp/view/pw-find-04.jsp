@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,15 +27,15 @@
 				<div class="member_wrap">
 					<div class="member_cont">
 						<!-- 나중에 바꿔요 -->
-						<form name="formReset" id="formReset" action="login.jsp" method="post">
+						<form name="formReset" id="formReset" action="update.do" method="post">
 							<div class="member_login_box">
 								<h3>비밀번호 변경</h3>
 								<p class="findPw-info">비밀번호는 10자 이상이어야 하며, 영문/숫자/특수문자 중 2개 이상을 포함해야 합니다.</p>
 								<div class="login_input">
 									<div class="findpw_box">
 										<div class="member_warning prior_wrong">
-											<input type="password" id="passwordMsg" name="memPw" autocomplete="off" placeholder="새 비밀번호" data-min-length="10" data-max-length="20"
-												required>
+											<input type="hidden" name="mId" value="${mId}">
+											<input type="password" id="passwordMsg" name="memPw" autocomplete="off" placeholder="새 비밀번호" data-min-length="10" data-max-length="20" required>
 											<input type="password" id="newPwRe" name="memPwRe" autocomplete="off" placeholder="새 비밀번호 확인" required>
 										</div>
 									</div>
@@ -132,7 +133,6 @@ function ch(){
             alert("비밀번호가 일치하지 않습니다.");
             return false
         } else{
-            alert("변경이 완료되었습니다!");
             return true;    
         }
         

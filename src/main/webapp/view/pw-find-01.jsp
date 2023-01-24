@@ -1,19 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>비밀번호 찾기</title>
-
 <link rel="stylesheet" type="text/css" href="../css/login-join.css">
 <%@include file="common/header.jsp"%>
-
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/ModooShop/images/bg-img-01.png');">
 	<h2 class="ltext-105 cl0 txt-center">비밀번호 찾기</h2>
 </section>
-
-
 <!-- Content page -->
 <section class="bg0 p-t-75 p-b-120">
 	<div class="container">
@@ -21,7 +16,7 @@
 			<div class="content_box">
 				<div class="member_wrap">
 					<div class="member_cont">
-						<form action="pw-find-02.jsp">
+						<form action="pw-find.do" onsubmit="return check();">
 							<div class="member_login_box">
 								<div>
 									<h3>아이디 입력</h3>
@@ -30,7 +25,8 @@
 								<div class="findpw_box">
 									<input type="text" id="memberId" name="mId" placeholder="아이디" required>
 									<p class="info_again">
-										아이디를 모르시나요? <a href="id-find.jsp" class="js_btn_find_id"> 아이디찾기 </a>
+										아이디를 모르시나요?
+										<a href="id-find.jsp" class="js_btn_find_id"> 아이디찾기 </a>
 									</p>
 									<p class="dn" id="errorMessage"></p>
 									<div class="btn-center-box">
@@ -48,34 +44,27 @@
 		</div>
 	</div>
 </section>
-
-
-
 <%@include file="common/footer.jsp"%>
-
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <script>
-	$(document).ready(function() {
-		function check() {
-			$.ajax({
-				type : 'POST', //POST 방식으로 보낼래
-				url : 'check',
-				data : {
-					mId : mId
-				}, //mId라는 이름으로 mId 변수에 있는 값 보냄
-				success : function(result) {
-					console.log(result);
-					if (result == 1) {
-						alert("없는 아이디입니다.");
-						return false;
-					} else {
-						return true;
-					}
-				}
-			})
+function check() {
+	var mId = $('#memberId').val();
+	$.ajax({
+		type : 'POST', //POST 방식으로 보낼래
+		url : 'check',
+		data : {mId : mId}, //mId라는 이름으로 mId 변수에 있는 값 보냄
+		success : function(result) {
+			console.log(result);
+			if (result == 1) {
+				alert("없는 아이디입니다.");
+				return false;
+			} else {
+				return true;
+			}
 		}
 	});
+}
 </script>
 <!--===============================================================================================-->
 <script src="../vendor/animsition/js/animsition.min.js"></script>
@@ -114,5 +103,4 @@
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
 </body>
-
 </html>
