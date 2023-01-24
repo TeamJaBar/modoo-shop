@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,14 +40,15 @@ input[type="text"], input[type="password"] {
 				<div class="member_wrap">
 					<div class="member_cont">
 						<!-- 나중에 바꿔요 -->
-						<form name="formReset" id="formReset" action="pw-find-04.jsp">
+						<form name="formReset" id="formReset" action="pw-find-04.jsp" onsubmit="return check()">
 							<div class="member_login_box">
 								<h3>인증번호 입력</h3>
 								<p class="findPw-info">수신된 이메일의 인증번호를 입력해 주세요.</p>
 								<div class="login_input">
 									<div class="findpw_box">
 										<div class="member_warning prior_wrong">
-											<input type="text" id="certCode" name="memPw" autocomplete="off" placeholder="인증번호 입력" required>
+											<input type="hidden" name="mId" value="${mId}">
+											<input type="text" id="certCode" name="certCode" autocomplete="off" placeholder="인증번호 입력" required>
 										</div>
 										<!-- <p class="info_again">인증메일이 도착하지 않았나요? &ensp;<a onclick="conum()" href="#">인증번호 다시받기</a></p> -->
 									</div>
@@ -54,7 +56,7 @@ input[type="text"], input[type="password"] {
 
 								<div class="btn-center-box" style="margin-top: 40px;">
 									<button type="button" id="btnCancel" class="btn_member_blue hov-btn4" onclick="location.href='pw-find-02.jsp'">이전</button>
-									<button type="submit" class="btn_member_white hov-btn4" onclick="return check()">확인</button>
+									<button type="submit" class="btn_member_white hov-btn4">확인</button>
 								</div>
 							</div>
 							<!-- //find_password_reset_box -->

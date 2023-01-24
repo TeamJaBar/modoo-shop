@@ -321,3 +321,7 @@ label[for="authEmail"] {
    top: -3px;
    display: inline;
 }
+
+#passwordMsg {
+	margin-bottom:10px !important;
+}
