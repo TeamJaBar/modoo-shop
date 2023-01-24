@@ -13,7 +13,7 @@
 			<div class="content_box col-md-8 col-lg-9 p-b-80">
 				<div class="join_base_wrap">
 					<div class="member_cont">
-						<form action="join-ok.html" id="formJoin" name="formJoin">
+						<form action="update.do" method="post" id="formJoin" name="formJoin" onsubmit="return changeSubmit();">
 							<!-- 회원가입/정보 기본정보 -->
 							<div class="base_info_box">
 								<h3>기본정보</h3>
@@ -31,12 +31,8 @@
 												</th>
 												<td>
 													<div class="member_warning">
-														<input type="text" id="memId" name="memId" data-pattern="gdMemberId" value="${member.mId}" required disabled>
+														<input type="text" id="memId" name="mId" data-pattern="gdMemberId" value="${member.mId}" required disabled>
 													</div>
-													<div id="memId-length-error" class="text_warning hidden">아이디는 4~20자리 이내로 입력해주세요.</div>
-													<div id="memId-error" class="text_warning hidden">아이디는 영어로 시작하며 영소문자 혹은 숫자만 사용할 수 있습니다.</div>
-													<div id="memId-existing-error" class="text_warning hidden">이미 사용 중인 아이디입니다.</div>
-													<div id="memId-good" class="text_affirm hidden">사용 가능합니다.</div>
 												</td>
 											</tr>
 											<tr class="">
@@ -45,7 +41,7 @@
 												</th>
 												<td class="member_password">
 													<div class="member_warning">
-														<input type="password" id="newPassword" name="memPw" autocomplete="off" placeholder="" required>
+														<input type="password" id="newPassword" name="mPw" autocomplete="off" placeholder="" required>
 													</div>
 													<div id="memPw-error" class="text_warning hidden">비밀번호는 영문, 숫자, 특수문자 중 2가지 이상이 조합된 10~20자여야 합니다.</div>
 													<div id="memPw-good" class="text_affirm hidden">사용 가능합니다.</div>
@@ -69,9 +65,8 @@
 												</th>
 												<td>
 													<div class="member_warning">
-														<input type="text" name="memNm" data-pattern="gdEngKor" value="${member.mName}" maxlength="30" required disabled>
+														<input type="text" name="mName" data-pattern="gdEngKor" value="${member.mName}" maxlength="30" required disabled>
 													</div>
-													<div id="memNm-error" class="text_warning hidden">이름은 한글만 사용할 수 있으며 2글자 이상이어야 합니다.</div>
 												</td>
 											</tr>
 											<tr>
@@ -80,7 +75,7 @@
 												</th>
 												<td class="member_email">
 													<div class="member_warning">
-														<input type="text" name="email" id="email" value="" tabindex="-1" required>
+														<input type="text" name="email" id="email" value="${member.mEmail}" tabindex="-1" required>
 														<select id="emailDomain" name="emailDomain" class="chosen_select" required>
 															<option value="self" selected>직접입력</option>
 															<option value="naver.com">naver.com</option>
@@ -92,13 +87,10 @@
 															<option value="icloud.com">icloud.com</option>
 														</select>
 													</div>
+													<input type="hidden" name="mEmail" id="mEmail" value="">
 													<div id="memEm-error" class="text_warning hidden">이메일을 다시 한 번 확인해주세요.</div>
+													<div id="memEm-existing-error" class="text_warning hidden">이미 사용 중인 아이디입니다.</div>
 													<div id="memEm-good" class="text_affirm hidden">사용 가능합니다.</div>
-													<!-- <div class="form_element">
-														<input type="checkbox" id="maillingFl" name="maillingFl"
-															value="y"> <label for="maillingFl"
-															class="check_s">정보/이벤트 메일 수신에 동의합니다.</label>
-													</div> -->
 												</td>
 											</tr>
 											<tr>
@@ -107,36 +99,20 @@
 												</th>
 												<td class="member_address">
 													<div class="address_postcode">
-														<input type="text" id="cellPhone" name="cellPhone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="" required>
+														<input type="text" id="cellPhone" name="mTel" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="${member.mTel}" required>
 														<div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
 													</div>
 													<div id="memPn-hyphen-error" class="text_warning hidden">-없이 입력해주세요.</div>
 													<div id="memPn-error" class="text_warning hidden">핸드폰 번호를 확인해주세요.</div>
-													<!-- <div class="form_element">
-														<input type="checkbox" id="smsFl" name="smsFl" value="y">
-														<label for="smsFl" class="check_s">정보/이벤트 SMS 수신에
-															동의합니다.</label>
-													</div> -->
 												</td>
 											</tr>
-											<!-- 
-												<tr>
-													<th><span>전화번호</span></th>
-													<td>
-														<div class="member_warning">
-															<input type="text" id="phone" name="phone" maxlength="12"
-																placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
-														</div>
-													</td>
-												</tr>
-												-->
 											<tr>
 												<th>
 													<span class="important">주소</span>
 												</th>
 												<td class="member_address">
 													<div class="address_postcode find_address">
-														<input type="text" name="zonecode" id="sample3_postcode" placeholder="우편번호" value="" required>
+														<input type="text" name="zipCode" id="sample3_postcode" placeholder="우편번호" value="${member.zipCode}" required>
 														<input type="button" id="find_address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required>
 													</div>
 													<div id="wrapPost" style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
@@ -144,11 +120,10 @@
 													</div>
 													<div class="address_input detailed_address">
 														<div class="member_warning">
-															<input type="text" name="address" id="sample3_address" placeholder="주소" value="" required>
+															<input type="text" name="userAddr" id="sample3_address" placeholder="주소" value="${member.userAddr}" required>
 														</div>
 														<div class="member_warning js_address_sub">
-															<input type="text" name="addressSub" id="sample3_detailAddress" placeholder="상세주소" value="" required>
-															<input type="text" id="sample3_extraAddress" placeholder="참고항목">
+															<input type="text" name="detailAddr" id="sample3_detailAddress" placeholder="상세주소" value="${detail.Addr}" required>
 														</div>
 													</div>
 												</td>
@@ -183,7 +158,6 @@
 													// 각 주소의 노출 규칙에 따라 주소를 조합한다.
 													// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 													var addr = ''; // 주소 변수
-													var extraAddr = ''; // 참고항목 변수
 
 													//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 													if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
@@ -193,7 +167,7 @@
 													}
 
 													// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-													if (data.userSelectedType === 'R') {
+													/*if (data.userSelectedType === 'R') {
 														// 법정동명이 있을 경우 추가한다. (법정리는 제외)
 														// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
 														if (data.bname !== ''
@@ -221,7 +195,7 @@
 													} else {
 														document
 															.getElementById("sample3_extraAddress").value = '';
-													}
+													} */
 
 													// 우편번호와 주소 정보를 해당 필드에 넣는다.
 													document
@@ -239,7 +213,7 @@
 													element_wrap.style.display = 'none';
 
 													// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-													document.body.scrollTop = currentScroll;
+													document.documentElement.scrollTop = currentScroll;
 												},
 												// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
 												onresize: function (size) {
@@ -320,37 +294,14 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <!--===============================================================================================-->
 <script>
+var pwCheck = false;
+var emailCheck = false;
+var phoneCheck = false;
+
 	$(document).ready(function () {
 		/* 체크박스 토글 */
 		$('.check_s').click(function () {
 			$(this).toggleClass("on");
-		});
-
-		/* 아이디 정규식 */
-		// 영소문자로 시작되며 영소문자 혹은 숫자만 사용 가능
-		const idCheck = /^[a-z][a-z0-9]+$/m
-
-		$('#memId').focusout(function () {
-			let id = $('#memId').val();
-			
-			$('#memId-good').addClass('hidden');
-
-			// 자리수는 일부러 표현식에 안 적고 따로
-			if (id.length < 4 || id.length > 20) {
-				$('#memId-length-error').removeClass('hidden');
-				return false;
-			} else {
-				$('#memId-length-error').addClass('hidden');
-			}
-
-			// 숫자로 시작하거나 영소문자와 숫자 외의 것 입력했을 시
-			if (!idCheck.test(id)) {
-				$('#memId-error').removeClass('hidden');
-				return false;
-			} else {
-				$('#memId-error').addClass('hidden');
-				$('#memId-good').removeClass('hidden'); // 아이디 사용 가능!
-			}
 		});
 
 		/* 비밀번호 정규식 */
@@ -360,7 +311,7 @@
 		// const pwCheck = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{10,20}$/m
 
 		// 영문, 숫자, 특수문자 중 2가지 이상 조합하여 10자리 이내의 암호 정규식 ( 2 가지 조합)
-		const pwCheck = /^(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{10,20}$/m
+		const pwRegEx = /^(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{10,20}$/m
 
 		$('#newPassword').focusout(function () {
 			let nPw = $('#newPassword').val();
@@ -371,19 +322,24 @@
 			$('#memPwRe-good').addClass('hidden'); // 같음 숨김
 			$('#memPwRe-error').addClass('hidden'); // 다름 숨김
 
-			if (!pwCheck.test(nPw)) { // 정규식 통과 X
+			if (!pwRegEx.test(nPw)) { // 정규식 통과 X
 				$('#memPw-error').removeClass('hidden'); // 틀림 표시
 				if (cPw.length !== 0) { // 비밀번호 확인 길이가 0이 아닐 때 == 입력이 되어 있을 때
 					$('#memPwRe-error').removeClass('hidden'); // 다름 표시
 					$('#chkPassword').val(""); // 비밀번호 확인 내용 삭제
+					//$('#newPassword').focus();
+					pwCheck=false;
 				}
 			} else { // 정규식 통과 O
 				$('#memPw-good').removeClass('hidden'); // 통과 표시
 				if (cPw.length !== 0 && cPw !== nPw) { // 비밀번호 다를 때
 					$('#memPwRe-error').removeClass('hidden'); // 다름 표시
 					$('#chkPassword').val(""); // 비밀번호 확인 내용 삭제
+					//$('#chkPassword').focus();
+					pwCheck=false;
 				} else if (cPw.length !== 0 && cPw === nPw) { // 비밀번호 같을 때
 					$('#memPwRe-good').removeClass('hidden'); // 같음 표시
+					pwCheck=true;
 				}
 			}
 			
@@ -394,89 +350,77 @@
 			let nPw = $('#newPassword').val();
 			let cPw = $('#chkPassword').val();
 
-			if (pwCheck.test(nPw)) {
+			if (pwRegEx.test(nPw)) {
 				if (cPw !== nPw) {
 					$('#memPwRe-error').removeClass('hidden');
 					$('#memPwRe-good').addClass('hidden');
 					$('#chkPassword').val("");
-					return false;
+					//$('#chkPassword').focus();
+					pwCheck=false;
 				} else {
 					$('#memPwRe-good').removeClass('hidden');
 					$('#memPwRe-error').addClass('hidden');
+					pwCheck=true;
 				}
 			} else {
 				$('#chkPassword').val("");
-				$('#newPassword').focus();
+				//$('#newPassword').focus();
+				pwCheck=false;
 			}
 			
 		});
 
-		/* 이름 정규식 */
-		// 한글로만 이루어진 2자 이상
-		const nameCheck = /^[ㄱ-힇]{2,}$/m
-
-		$('#memNm').focusout(function () {
-			let name = $('#memNm').val();
-
-			// 숫자로 시작하거나 영소문자와 숫자 외의 것 입력했을 시
-			if (!nameCheck.test(name)) {
-				$('#memNm-error').removeClass('hidden');
-				$('#memNm').val("");
-				return false;
-			} else {
-				$('#memId-error').addClass('hidden');
-			}
-		});
 
 		/* 이메일 정규식 */
-		const emailCheck = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/m
-
-		$('#email').focusout(function () {
+		const emailRegEx = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/m
+		
+		$('#email, #emailDomain').focusout(function () {
 			let emailFront = $('#email').val();
 			let domain = $('#emailDomain option:selected').val();
-
+			mEmail = emailFront;
+					
+			$('#memEm-error').addClass('hidden');
+			$('#memEm-existing-error').addClass('hidden');
 			$('#memEm-good').addClass('hidden');
+			
 			// self = 직접입력
-			if (domain === 'self') {
-				if (!emailCheck.test(emailFront)) {
-					$('#memEm-error').removeClass('hidden');
-					return false;
-				}
-				$('#memEm-error').addClass('hidden');
-			} else {
-				let email = emailFront + '@' + domain;
-				if (!emailCheck.test(email)) {
-					$('#memEm-error').removeClass('hidden');
-					return false;
-				}
-				$('#memEm-error').addClass('hidden');
+			if (domain !== 'self') {
+				mEmail = emailFront + '@' + domain;
 			}
-			$('#memEm-good').removeClass('hidden'); // 이메일 사용 가능!
+			if (!emailRegEx.test(mEmail)) {
+				$('#memEm-error').removeClass('hidden');
+				emailCheck = false;
+				return;
+			}
+			$('#memEm-error').addClass('hidden');
+			//$('#memEm-good').removeClass('hidden');
+			//emailCheck = true;
+			
+			//이메일 중복검사		
+			$.ajax({
+				type:'POST', //POST 방식으로 보낼래
+				url:'check', 
+				data:{mEmail:mEmail,
+					mode: "emailCHK"},
+				success: function(result) {
+					console.log('로그 : 중복체크 성공');
+					console.log(result);
+					if(result==1) {
+						//사용가능한 아이디
+						$('#memEm-existing-error').addClass('hidden');
+						$('#memEm-good').removeClass('hidden');
+						emailCheck = true;
+					} else {
+						$('#memEm-existing-error').removeClass('hidden');
+						emailCheck = false;
+						return;
+					}
+				}
+			})		
 		});
 
-		$('#emailDomain').focusout(function () {
-			let emailFront = $('#email').val();
-			let domain = $('#emailDomain option:selected').val();
 
-			$('#memEm-good').addClass('hidden');
-
-			if (domain === 'self') {
-				if (!emailCheck.test(emailFront)) {
-					$('#memEm-error').removeClass('hidden');
-					return false;
-				}
-				$('#memEm-error').addClass('hidden');
-			} else {
-				let email = emailFront + '@' + domain;
-				if (!emailCheck.test(email)) {
-					$('#memEm-error').removeClass('hidden');
-					return false;
-				}
-				$('#memEm-error').addClass('hidden');
-			}
-			$('#memEm-good').removeClass('hidden'); // 이메일 사용 가능!
-		});
-
+		
 		/* 휴대폰 정규식 */
 		// 01X
 		const phoneCheckFst = /^01(?:0|1|[6-9])$/m
@@ -492,7 +436,9 @@
 			// '-' 놉!
 			if (/\-/m.test(phone)) {
 				$('#memPn-hyphen-error').removeClass('hidden');
-				return false;
+				phoneCheck = false;
+				//$('#cellPhone').focus();
+				return;
 			} else if (phone.length == 11) { // 11자면
 				$('#memPn-hyphen-error').addClass('hidden');
 				fst = phone.slice(0, 3);
@@ -507,31 +453,34 @@
 
 			if (!phoneCheckFst.test(fst) || !phoneCheckSnd.test(snd) || !phoneCheckTrd.test(trd)) {
 				$('#memPn-error').removeClass('hidden');
-				return false;
+				phoneCheck = false;
+				//$('#cellPhone').focus();
+				return;
 			} else {
 				$('#memPn-error').addClass('hidden');
+				phoneCheck = true;
 			}
 		});
-
-		/* 전화번호 정규식 */
-		// 십진수 1~12자
-		/* const telCheck = /^\d{1,12}$/m
-
-		$('#phone').focusout(function () {
-			let tel = $('#phone').val();
-			// '-' 놉!
-			if (/\-/m.test(tel)) {
-				alert('-없이 입력해주세요.');
-				return false;
-			}
-
-			if (!telCheck.test(tel)) {
-				alert('전화번호를 확인해주세요');
-				return false;
-			}
-		}); */
-
 	});
+	
+	function changeSubmit() {		
+		if(pwCheck && emailCheck && phoneCheck) {
+			if(confirm("정말로 수정하겠습니까?")) {
+				$('#mEmail').val(mEmail);
+				return true;
+			} else {
+				alert("취소되었습니다.");
+				location.reload();
+				return false;
+			}
+		} else {
+			alert("입력 조건을 확인해주세요.");
+			console.log("비밀번호" + pwCheck);
+			console.log("이메일" + emailCheck);
+			console.log("전화번호" + phoneCheck);
+			return false;	
+		}
+	}
 </script>
 <!--===============================================================================================-->
 <script src="../vendor/animsition/js/animsition.min.js"></script>
