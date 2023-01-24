@@ -41,7 +41,7 @@
 					<!-- //member_tit -->
 					<div class="member_cont">
 						<!-- action="join.do" -->
-						<form action="join.do" id="formJoin" name="formJoin" onsubmit="return joinSubmit();">
+						<form action="join.do" method="post" id="formJoin" name="formJoin" onsubmit="return joinSubmit();">
 							<!-- 회원가입/정보 기본정보 -->
 							<div class="base_info_box">
 								<h3>기본정보</h3>
@@ -126,7 +126,7 @@
 													<div id="memEm-good" class="text_affirm hidden">사용 가능합니다.</div>
 													<div class="form_element">
 														<input type="checkbox" id="maillingFl" name="maillingFl" value="y">
-														<label for="maillingFl" class="check_s">정보/이벤트 메일 수신에 동의합니다.</label>
+														<label for="maillingFl" class="check_s">메일 수신에 동의합니다.</label>
 													</div>
 												</td>
 											</tr>
@@ -141,10 +141,6 @@
 													</div>
 													<div id="memPn-hyphen-error" class="text_warning hidden">-없이 입력해주세요.</div>
 													<div id="memPn-error" class="text_warning hidden">핸드폰 번호를 확인해주세요.</div>
-													<div class="form_element">
-														<input type="checkbox" id="smsFl" name="smsFl" value="y">
-														<label for="smsFl" class="check_s">정보/이벤트 SMS 수신에 동의합니다.</label>
-													</div>
 												</td>
 											</tr>
 											<!-- 
@@ -258,8 +254,7 @@
 														.getElementById("sample3_address").value = addr;
 													// 커서를 상세주소 필드로 이동한다.
 													document
-														.getElementById(
-															"sample3_detailAddress")
+														.getElementById("sample3_detailAddress")
 														.focus();
 
 													// iframe을 넣은 element를 안보이게 한다.
@@ -267,7 +262,7 @@
 													element_wrap.style.display = 'none';
 
 													// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-													document.body.scrollTop = currentScroll;
+													document.documentElement.scrollTop = currentScroll;
 												},
 												// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
 												onresize: function (size) {
@@ -547,28 +542,14 @@ var phoneCheck = false;
 				phoneCheck = true;
 			}
 		});
-
-		/* 전화번호 정규식 */
-		// 십진수 1~12자
-		/* const telCheck = /^\d{1,12}$/m
-
-		$('#phone').focusout(function () {
-			let tel = $('#phone').val();
-			// '-' 놉!
-			if (/\-/m.test(tel)) {
-				alert('-없이 입력해주세요.');
-				return false;
-			}
-
-			if (!telCheck.test(tel)) {
-				alert('전화번호를 확인해주세요');
-				return false;
-			}
-		}); */
-
 	});
 	
 	function joinSubmit() {
+		var checked =  $('#maillingFl').is(':checked');
+		if(!checked) {
+			alert("이메일 수신동의를 해주세요. 추후 비밀번호찾기에 사용됩니다.");
+			return false;
+		}
 		if(idCheck && pwCheck && nameCheck && emailCheck && phoneCheck) {
 			console.log("정규식 모두 통과");
 			$('#mEmail').val(mEmail);
