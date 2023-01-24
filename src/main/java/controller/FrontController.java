@@ -72,6 +72,18 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("changeInfo.do")) {
+			try {
+				forward = new ChangeInfoAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("withdrawal.do")) {
+			try {
+				forward = new WithdrawalAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward == null) {
