@@ -15,14 +15,18 @@ public class MemberDAO {
 
 	final String INSERT = "INSERT INTO MEMBER VALUES(MNUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, 0, ?, ?, ?, (SELECT SYSDATE FROM DUAL), ?)";
 	final String INSERT_KAKAO = "INSERT INTO MEMBER VALUES(MNUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, 0, ?, ?, ?, (SELECT SYSDATE FROM DUAL), ?)";
-	final String SELECTONE_LOGIN = "SELECT MNUM, MID, MPW, MNAME, MEMAIL, MTEL, MPOINT, ZIPCODE, USERADDR, DETAILADDR FROM MEMBER WHERE MID=? AND MPW=?";
+	// final String SELECTONE_LOGIN = "SELECT MNUM, MID, MPW, MNAME, MEMAIL, MTEL,
+	// MPOINT, ZIPCODE, USERADDR, DETAILADDR FROM MEMBER WHERE MID=? AND MPW=?";
+	final String SELECTONE_LOGIN = "SELECT MID, MNAME FROM MEMBER WHERE MID=? AND MPW=?";
+	final String SELECTONE_INFO = "SELECT MNUM, MID, MPW, MNAME, MEMAIL, MTEL, MPOINT, ZIPCODE, USERADDR, DETAILADDR FROM MEMBER WHERE MID=?";
 	final String SELECTONE_ID = "SELECT MID FROM MEMBER WHERE MNAME=? AND MEMAIL=?";
 	final String SELECTONE_IDCHK = "SELECT MID FROM MEMBER WHERE MID=?";
 	final String SELECTONE_EMAIL = "SELECT REPLACE(MEMAIL, SUBSTR(MEMAIL,INSTR(MEMAIL, '@', 1, 1)-4, 4 ), '****') AS FINDPW, MEMAIL FROM MEMBER WHERE MID=?";
 	final String SELECTONE_EMAILCHK = "SELECT MEMAIL FROM MEMBER WHERE MEMAIL=?";
 	final String SELECTALL = "SELECT TO_CHAR(MDATE, 'DD/DAY') AS TDATE, COUNT(*) AS CNT FROM MEMBER WHERE ROWNUM<=7 GROUP BY TO_CHAR(MDATE, 'DD/DAY') ORDER BY TDATE DESC";
 	final String SELECTALL_MEMBER = "SELECT * FROM MEMBER ORDER BY MNUM ASC";
-	final String UPDATE = "UPDATE MEMBER SET MPW=?, MNAME=?, MEMAIL=?, MTEL=?, ZIPCODE=?, USERADDR=?,  DETAILADDR=?, MPOINT=? WHERE MNUM=?";
+	final String UPDATE_USER = "UPDATE MEMBER SET MPW=?, MEMAIL=?, MTEL=?, ZIPCODE=?, USERADDR=?, DETAILADDR=? WHERE MID=?";
+	final String UPDATE_ADMIN = "UPDATE MEMBER SET MPW=?, MNAME=?, MEMAIL=?, MTEL=?, ZIPCODE=?, USERADDR=?, DETAILADDR=?, MPOINT=? WHERE MNUM=?";
 	final String UPDATE_PW = "UPDATE MEMBER SET MPW=? WHERE MID=?";
 	final String DELETE_USER = "DELETE FROM MEMBER WHERE MNUM=? AND MPW=?";
 	final String DELETE_ADMIN = "DELETE FROM MEMBER WHERE MNUM=?";
@@ -115,6 +119,26 @@ public class MemberDAO {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new MemberVO();
+				data.setmId(rs.getNString("MID"));
+				data.setmName(rs.getNString("MNAME"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return data;
+	}
+
+	public MemberVO selectOneInfo(MemberVO mvo) {
+		MemberVO data = null;
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(SELECTONE_LOGIN);
+			pstmt.setString(1, mvo.getmId());
+
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				data = new MemberVO();
 				data.setmNum(rs.getInt("MNUM"));
 				data.setmId(rs.getNString("MID"));
 				data.setmPw(rs.getString("MPW"));
@@ -199,12 +223,21 @@ public class MemberDAO {
 	public boolean update(MemberVO mvo) {
 		conn = JDBCUtil.connect();
 		try {
-			if (mvo.getmNum() == 0) {
+			if (mvo.getmTel() == null) {
 				pstmt = conn.prepareStatement(UPDATE_PW);
 				pstmt.setString(1, mvo.getmPw());
 				pstmt.setString(2, mvo.getmId());
+			} else if (mvo.getmNum() == 0) {
+				pstmt = conn.prepareStatement(UPDATE_USER);
+				pstmt.setString(1, mvo.getmPw());
+				pstmt.setString(2, mvo.getmEmail());
+				pstmt.setString(3, mvo.getmTel());
+				pstmt.setString(4, mvo.getZipCode());
+				pstmt.setString(5, mvo.getUserAddr());
+				pstmt.setString(6, mvo.getDetailAddr());
+				pstmt.setString(7, mvo.getmId());
 			} else {
-				pstmt = conn.prepareStatement(UPDATE);
+				pstmt = conn.prepareStatement(UPDATE_ADMIN);
 				pstmt.setString(1, mvo.getmPw());
 				pstmt.setString(2, mvo.getmName());
 				pstmt.setString(3, mvo.getmEmail());
