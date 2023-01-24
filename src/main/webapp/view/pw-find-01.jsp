@@ -16,7 +16,7 @@
 			<div class="content_box">
 				<div class="member_wrap">
 					<div class="member_cont">
-						<form action="pwFind.do" method="post" onsubmit="return check();">
+						<form action="pwFind.do" id="find-pw-form" method="post" onsubmit="return check()">
 							<div class="member_login_box">
 								<div>
 									<h3>아이디 입력</h3>
@@ -49,21 +49,29 @@
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <script>
 function check() {
+	var checkFlag = false;
+	
 	var mId = $('#memberId').val();
 	$.ajax({
 		type : 'POST', //POST 방식으로 보낼래
 		url : 'check',
-		data : {mId : mId}, //mId라는 이름으로 mId 변수에 있는 값 보냄
+		data : {mId : mId
+				mode : "findPW"}, //mId라는 이름으로 mId 변수에 있는 값 보냄
+		async: false,
 		success : function(result) {
 			console.log(result);
 			if (result == 1) {
-				alert("없는 아이디입니다.");
+				alert("존재하지 않는 아이디입니다.");
+				console.log(checkFlag);
 				return false;
 			} else {
-				return true;
+				checkFlag = true;
+				console.log(checkFlag);
 			}
 		}
 	});
+	
+	return checkFlag;
 }
 </script>
 <!--===============================================================================================-->

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="modoo" tagdir="/WEB-INF/tags" %>
 
 
 <meta charset="UTF-8">
@@ -119,58 +120,7 @@
 			<div class="content-topbar flex-sb-m h-full container">
 				<div class="left-top-bar">Modoo Shop</div>
 				<div class="right-top-bar flex-w h-full">
-					<ul class="right-top-bar-menu">
-						<c:if test="${mId == null}">
-							<li>
-								<a href="about.jsp">ABOUT US</a>
-							</li>
-							<li>
-								<a href="login.jsp">LOGIN</a>
-							</li>
-							<li>
-								<a href="join.jsp">JOIN</a>
-							</li>
-							<li>
-								<a href="join.jsp">MYPAGE</a>
-							</li>
-						</c:if>
-						<c:if test="${mId == 'admin'}">
-							<li>
-								<a href="about.jsp">ABOUT US</a>
-							</li>
-							<li>
-								<a href="logout.do">LOGOUT</a>
-							</li>
-							<li>
-								<a href="admin/admin-home.jsp">ADMIN</a>
-							</li>
-						</c:if>
-						<c:if test="${mId != null && mId != 'admin'}">
-							<li>
-								<span>안녕하세요, ${mName}님</span>
-							</li>
-							<li>
-								<a href="about.jsp">ABOUT US</a>
-							</li>
-							<li>
-								<a href="logout.do">LOGOUT</a>
-							</li>
-							<li class="active-menu">
-								<a href="change-inform.jsp">MYPAGE</a>
-								<ul class="sub-menu">
-									<li>
-										<a href="order-list.jsp">주문조회</a>
-									</li>
-									<li>
-										<a href="change-inform.jsp">내정보수정</a>
-									</li>
-									<li>
-										<a href="dibs-list.jsp">찜리스트</a>
-									</li>
-								</ul>
-							</li>
-						</c:if>
-					</ul>
+					<modoo:login/>
 				</div>
 			</div>
 		</div>

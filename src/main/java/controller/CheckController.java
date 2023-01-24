@@ -14,10 +14,10 @@ import member.MemberVO;
 // inform - 아이디 중복 검사
 // pw-find-01 - 아이디 실재 검사
 @WebServlet("/view/check")
-public class CheckIdController extends HttpServlet {
+public class CheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public CheckIdController() {
+	public CheckController() {
 		super();
 	}
 
@@ -28,9 +28,33 @@ public class CheckIdController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
-		mvo.setmId(request.getParameter("mId"));
 		
-		if (mdao.selectOneId(mvo) == null) {
+		String mode = request.getParameter("mode");
+		boolean checkFlag = false;
+		
+		if(mode.equals("idCHK") || mode.equals("findPW")||mode.equals("findID")) {
+			//아이디 중복검사, 비밀번호 찾기, 아이디 찾기
+			if(mode.equals("findID")) {
+				//아이디 찾기
+				mvo.setmName(request.getParameter("mName"));
+				mvo.setmEmail(request.getParameter("mEmail"));
+			} else {
+				mvo.setmId(request.getParameter("mId"));
+			}
+			
+			if (mdao.selectOneId(mvo) == null) {
+				checkFlag = true;
+			}
+			
+		} else if(mode.equals("emailCHK")) {
+			//이메일 중복검사
+			mvo.setmEmail(request.getParameter("mEmail"));
+			if (mdao.selectOneEmailCHK(mvo) == null) {
+				checkFlag = true;
+			}
+		}
+		
+		if(checkFlag) {
 			response.getWriter().println("1"); // 응답할 때 getWriter()를 사용
 		}
 	}

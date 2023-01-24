@@ -352,7 +352,8 @@ var phoneCheck = false;
 			$.ajax({
 				type:'POST', //POST 방식으로 보낼래
 				url:'check', 
-				data:{mId:mId}, //mId라는 이름으로 mId 변수에 있는 값 보냄
+				data:{mId:mId,
+					  mode:"idCHK"}, //mId라는 이름으로 mId 변수에 있는 값 보냄
 				success: function(result) {
 					console.log('로그 : 중복체크 성공');
 					console.log(result);
@@ -484,8 +485,9 @@ var phoneCheck = false;
 			//이메일 중복검사		
 			$.ajax({
 				type:'POST', //POST 방식으로 보낼래
-				url:'checkEm', 
-				data:{mEmail:mEmail},
+				url:'check', 
+				data:{mEmail:mEmail,
+					mode: "emailCHK"},
 				success: function(result) {
 					console.log('로그 : 중복체크 성공');
 					console.log(result);
