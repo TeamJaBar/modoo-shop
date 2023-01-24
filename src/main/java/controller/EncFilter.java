@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebFilter;
 
 /*인코딩 필터*/
 /* .do 요청이 올 때마다 실행 */
-@WebFilter("*.do")
+@WebFilter("*.do, *.jsp")
 public class EncFilter implements Filter {
 
 	private String encoding;

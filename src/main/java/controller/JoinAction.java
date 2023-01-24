@@ -33,6 +33,7 @@ public class JoinAction implements Action {
 		}
 
 		if (mdao.insert(mvo)) {
+			request.setAttribute("mName", mvo.getmName());
 			return forward;
 		}
 

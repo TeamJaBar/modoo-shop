@@ -41,7 +41,7 @@
 					<!-- //member_tit -->
 					<div class="member_cont">
 						<!-- action="join.do" -->
-						<form action="join.do" id="formJoin" name="formJoin" onsubmit="return joinSubmit();">
+						<form action="join.do" method="post" id="formJoin" name="formJoin" onsubmit="return joinSubmit();">
 							<!-- 회원가입/정보 기본정보 -->
 							<div class="base_info_box">
 								<h3>기본정보</h3>
@@ -126,7 +126,7 @@
 													<div id="memEm-good" class="text_affirm hidden">사용 가능합니다.</div>
 													<div class="form_element">
 														<input type="checkbox" id="maillingFl" name="maillingFl" value="y">
-														<label for="maillingFl" class="check_s">정보/이벤트 메일 수신에 동의합니다.</label>
+														<label for="maillingFl" class="check_s">메일 수신에 동의합니다.</label>
 													</div>
 												</td>
 											</tr>
@@ -141,10 +141,6 @@
 													</div>
 													<div id="memPn-hyphen-error" class="text_warning hidden">-없이 입력해주세요.</div>
 													<div id="memPn-error" class="text_warning hidden">핸드폰 번호를 확인해주세요.</div>
-													<div class="form_element">
-														<input type="checkbox" id="smsFl" name="smsFl" value="y">
-														<label for="smsFl" class="check_s">정보/이벤트 SMS 수신에 동의합니다.</label>
-													</div>
 												</td>
 											</tr>
 											<!-- 
@@ -177,7 +173,6 @@
 														</div>
 														<div class="member_warning js_address_sub">
 															<input type="text" name="detailAddr" id="sample3_detailAddress" placeholder="상세주소" value="" required>
-															<input type="text" id="sample3_extraAddress" placeholder="참고항목">
 														</div>
 													</div>
 												</td>
@@ -211,7 +206,7 @@
 													// 각 주소의 노출 규칙에 따라 주소를 조합한다.
 													// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 													var addr = ''; // 주소 변수
-													var extraAddr = ''; // 참고항목 변수
+											
 
 													//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 													if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
@@ -221,6 +216,7 @@
 													}
 
 													// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+													/*
 													if (data.userSelectedType === 'R') {
 														// 법정동명이 있을 경우 추가한다. (법정리는 제외)
 														// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
@@ -249,7 +245,7 @@
 													} else {
 														document
 															.getElementById("sample3_extraAddress").value = '';
-													}
+													}*/
 
 													// 우편번호와 주소 정보를 해당 필드에 넣는다.
 													document
@@ -258,8 +254,7 @@
 														.getElementById("sample3_address").value = addr;
 													// 커서를 상세주소 필드로 이동한다.
 													document
-														.getElementById(
-															"sample3_detailAddress")
+														.getElementById("sample3_detailAddress")
 														.focus();
 
 													// iframe을 넣은 element를 안보이게 한다.
@@ -267,7 +262,7 @@
 													element_wrap.style.display = 'none';
 
 													// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-													document.body.scrollTop = currentScroll;
+													document.documentElement.scrollTop = currentScroll;
 												},
 												// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
 												onresize: function (size) {
@@ -547,28 +542,14 @@ var phoneCheck = false;
 				phoneCheck = true;
 			}
 		});
-
-		/* 전화번호 정규식 */
-		// 십진수 1~12자
-		/* const telCheck = /^\d{1,12}$/m
-
-		$('#phone').focusout(function () {
-			let tel = $('#phone').val();
-			// '-' 놉!
-			if (/\-/m.test(tel)) {
-				alert('-없이 입력해주세요.');
-				return false;
-			}
-
-			if (!telCheck.test(tel)) {
-				alert('전화번호를 확인해주세요');
-				return false;
-			}
-		}); */
-
 	});
 	
 	function joinSubmit() {
+		var checked =  $('#maillingFl').is(':checked');
+		if(!checked) {
+			alert("이메일 수신동의를 해주세요. 추후 비밀번호찾기에 사용됩니다.");
+			return false;
+		}
 		if(idCheck && pwCheck && nameCheck && emailCheck && phoneCheck) {
 			console.log("정규식 모두 통과");
 			$('#mEmail').val(mEmail);
