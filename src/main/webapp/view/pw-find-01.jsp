@@ -16,7 +16,7 @@
 			<div class="content_box">
 				<div class="member_wrap">
 					<div class="member_cont">
-						<form action="pw-find.do" onsubmit="return check();">
+						<form action="pwFind.do" method="post" onsubmit="return check();">
 							<div class="member_login_box">
 								<div>
 									<h3>아이디 입력</h3>

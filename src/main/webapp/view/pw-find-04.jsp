@@ -35,8 +35,8 @@
 									<div class="findpw_box">
 										<div class="member_warning prior_wrong">
 											<input type="hidden" name="mId" value="${param.mId}">
-											<input type="password" id="passwordMsg" name="memPw" autocomplete="off" placeholder="새 비밀번호" data-min-length="10" data-max-length="20" required>
-											<input type="password" id="newPwRe" name="memPwRe" autocomplete="off" placeholder="새 비밀번호 확인" required>
+											<input type="password" id="passwordMsg" name="mPw" autocomplete="off" placeholder="새 비밀번호" data-min-length="10" data-max-length="20" required>
+											<input type="password" id="newPwRe" name="mPwRe" autocomplete="off" placeholder="새 비밀번호 확인" required>
 										</div>
 									</div>
 								</div>
