@@ -21,11 +21,7 @@ public class JoinAction implements Action {
 		mvo.setmId(request.getParameter("mId"));
 		mvo.setmPw(request.getParameter("mPw"));
 		mvo.setmName(request.getParameter("mName"));
-		if (request.getParameter("emailDomain").equals("self")) {
-			mvo.setmEmail(request.getParameter("email"));
-		} else {
-			mvo.setmEmail(request.getParameter("email") + "@" + request.getParameter("emailDomain"));
-		}
+		mvo.setmEmail(request.getParameter("mEmail"));
 		mvo.setmTel(request.getParameter("mTel"));
 		mvo.setZipCode(request.getParameter("zipCode"));
 		mvo.setUserAddr(request.getParameter("userAddr"));
