@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -8,41 +7,29 @@
 <!--===============================================================================================-->
 <link rel="icon" type="image/png" href="../images/icons/favicon.png" />
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../fonts/iconic/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" type="text/css" href="../fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../fonts/linearicons-v1.0.0/icon-font.min.css">
+<link rel="stylesheet" type="text/css" href="../fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../vendor/animsition/css/animsition.min.css">
+<link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../vendor/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../vendor/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="../vendor/slick/slick.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../vendor/MagnificPopup/magnific-popup.css">
+<link rel="stylesheet" type="text/css" href="../vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="../vendor/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="../vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="../css/util.css">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
@@ -59,14 +46,13 @@
 
 			var total_width = $('.menu-desktop').innerWidth();
 			var gd_display_cate = function() {
-				$('.menu-desktop > ul > li')
-				.each(function(index) {
+				$('.menu-desktop > ul > li').each(function(index) {
 					if (arrayNum > 0) {
 						cateArray[arrayNum] += "<li class='active-menu'>" + $(this).html() + "</li>";
 					} else {
-						cateArray[arrayNum] += "<li>"+ $(this).html()+ "</li>";
+						cateArray[arrayNum] += "<li>" + $(this).html() + "</li>";
 					}
-					if (index != 0&& index % 6 == 0) {
+					if (index != 0 && index % 6 == 0) {
 						arrayNum++;
 					}
 				});
@@ -80,33 +66,44 @@
 			gd_display_cate();
 
 			/* 메뉴 우측 버튼 */
-			$('.gnb_right').on({'click' : function() {
-				if (arrayNum > menupage) {
-					menupage++;
-					if (menupage == arrayNum) $(this).find('a').addClass('active');
-					$('.gnb_left').find('a').removeClass('active');
-					$('.menu-desktop > ul').html(cateArray[menupage]);
-					$('.menu-desktop > ul li a').on({'click' : function() {
-						location.href = $(this).data('href');
-					}});
+			$('.gnb_right').on({
+				'click' : function() {
+					if (arrayNum > menupage) {
+						menupage++;
+						if (menupage == arrayNum)
+							$(this).find('a').addClass('active');
+						$('.gnb_left').find('a').removeClass('active');
+						$('.menu-desktop > ul').html(cateArray[menupage]);
+						$('.menu-desktop > ul li a').on({
+							'click' : function() {
+								location.href = $(this).data('href');
+							}
+						});
+					}
 				}
-			}});
-			
+			});
+
 			/* 메뉴 좌측 버튼 */
-			$('.gnb_left').on({'click' : function() {
-				if (arrayNum >= menupage && menupage != 0) {
-					menupage--;
-					if (menupage == 0) $(this).find('a').addClass('active');
-					$('.gnb_right').find('a').removeClass('active');
-					$('.menu-desktop > ul').html(cateArray[menupage]);
-					$('.menu-desktop > ul li a').on({'click' : function() {
-						location.href = $(this).data('href');
-					}});
+			$('.gnb_left').on({
+				'click' : function() {
+					if (arrayNum >= menupage && menupage != 0) {
+						menupage--;
+						if (menupage == 0)
+							$(this).find('a').addClass('active');
+						$('.gnb_right').find('a').removeClass('active');
+						$('.menu-desktop > ul').html(cateArray[menupage]);
+						$('.menu-desktop > ul li a').on({
+							'click' : function() {
+								location.href = $(this).data('href');
+							}
+						});
+					}
 				}
-			}});
+			});
+
 		});
 	</script>
-	
+
 	<!-- Header -->
 	<c:if test="${param.page != 'main'}">
 		<header class="header-v4">
@@ -115,241 +112,392 @@
 	<c:if test="${param.page eq 'main'}">
 		<header>
 	</c:if>
-		<!-- Header desktop -->
-		<div class="container-menu-desktop">
-			<!-- Topbar -->
-			<div class="top-bar">
-				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">Modoo Shop</div>
-
-					<div class="right-top-bar flex-w h-full">
-						<ul class="right-top-bar-menu">
-							<li><a href="about.html">ABOUT US</a></li>
-							<li><a href="login.jsp">LOGIN</a></li>
-							<li><a href="join.jsp">JOIN</a></li>
-
-							<li class="active-menu"><a href="/ModooShop/view/mypage/change-inform.jsp">MYPAGE</a>
+	<!-- Header desktop -->
+	<div class="container-menu-desktop">
+		<!-- Topbar -->
+		<div class="top-bar">
+			<div class="content-topbar flex-sb-m h-full container">
+				<div class="left-top-bar">Modoo Shop</div>
+				<div class="right-top-bar flex-w h-full">
+					<ul class="right-top-bar-menu">
+						<c:if test="${mId == null}">
+							<li>
+								<a href="about.jsp">ABOUT US</a>
+							</li>
+							<li>
+								<a href="login.jsp">LOGIN</a>
+							</li>
+							<li>
+								<a href="join.jsp">JOIN</a>
+							</li>
+							<li>
+								<a href="join.jsp">MYPAGE</a>
+							</li>
+						</c:if>
+						<c:if test="${mId == 'admin'}">
+							<li>
+								<a href="about.jsp">ABOUT US</a>
+							</li>
+							<li>
+								<a href="logout.do">LOGOUT</a>
+							</li>
+							<li>
+								<a href="admin/admin-home.jsp">ADMIN</a>
+							</li>
+						</c:if>
+						<c:if test="${mId != null && mId != 'admin'}">
+							<li>
+								<span>안녕하세요, ${mName}님</span>
+							</li>
+							<li>
+								<a href="about.jsp">ABOUT US</a>
+							</li>
+							<li>
+								<a href="logout.do">LOGOUT</a>
+							</li>
+							<li class="active-menu">
+								<a href="change-inform.jsp">MYPAGE</a>
 								<ul class="sub-menu">
-									<li><a href="order-list.html">주문조회</a></li>
-									<li><a href="change-inform.html">내정보수정</a></li>
-									<li><a href="dibs-list.html">찜리스트</a></li>
-								</ul></li>
-						</ul>
-					</div>
+									<li>
+										<a href="order-list.jsp">주문조회</a>
+									</li>
+									<li>
+										<a href="change-inform.jsp">내정보수정</a>
+									</li>
+									<li>
+										<a href="dibs-list.jsp">찜리스트</a>
+									</li>
+								</ul>
+							</li>
+						</c:if>
+					</ul>
 				</div>
 			</div>
-
-			<c:if test="${param.page != 'main'}">
-				<div class="wrap-menu-desktop how-shadow1">
-					<nav class="limiter-menu-desktop container">
-						<!-- Logo desktop -->
-						<a href="main.do" class="logo"> <img src="/ModooShop/images/logo-06.png" alt="모두의 보드 로고">
-						</a>
-			</c:if>
-
-			<c:if test="${param.page eq 'main'}">
-				<div class="header_gnb">
-					<div class="logo-container-desktop">
-						<!-- Logo desktop -->
-						<a href="main.do" class="logo-main"> <img
-							src="/ModooShop/images/logo-06.png" alt="모두의 보드 로고">
-						</a>
-					</div>
-
-					<div class="wrap-main-menu-desktop">
-						<nav class="limiter-menu-desktop container">
-			</c:if>
-
-
-
-
-			<!-- Menu desktop -->
-			<div class="gnb_left">
-				<a href="#PREV" class="active">PREV</a>
-			</div>
-			<div class="menu-desktop">
-				<ul class="main-menu">
-					<li><a href="product.html">NEW</a></li>
-					<li><a href="product.html">BEST</a></li>
-					<li><a href="product.html">1인 추천</a></li>
-					<li class="active-menu"><a href="product.html">연령별</a>
-						<ul class="sub-menu">
-							<li><a href="product.html">~4세 이상</a></li>
-							<li><a href="product.html">미취학 아동</a></li>
-							<li><a href="product.html">초등학교 저학년</a></li>
-							<li><a href="product.html">초등학교 고학년</a></li>
-						</ul></li>
-
-					<li><a href="product.html">전략</a></li>
-
-					<li class="active-menu"><a href="product.html">두뇌</a>
-						<ul class="sub-menu">
-							<li><a href="product.html">퍼즐게임</a></li>
-							<li><a href="product.html">창의수학</a></li>
-							<li><a href="product.html">코딩게임</a></li>
-							<li><a href="product.html">방탈출/추리</a></li>
-							<li><a href="product.html">기억력게임</a></li>
-						</ul></li>
-
-					<li class="active-menu"><a href="product.html">파티게임</a>
-						<ul class="sub-menu">
-							<li><a href="product.html">복불복</a></li>
-						</ul></li>
-
-					<li><a href="product.html">카드게임</a></li>
-
-					<li><a href="product.html">사회/과학</a></li>
-
-					<li class="active-menu"><a href="product.html">언어/정서</a>
-						<ul class="sub-menu">
-							<li><a href="product.html">언어쑥쑥</a></li>
-							<li><a href="product.html">스토리텔링 (감정/대화)</a></li>
-							<li><a href="product.html">학지사 상담교구</a></li>
-						</ul></li>
-
-					<li><a href="product.html">악세사리</a></li>
-				</ul>
-				<div class="gnb_right">
-					<a href="#NEXT" class="active">NEXT</a>
-				</div>
-			</div>
-
-			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m">
-				<div
-					class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-search-slide">
-					<i class="zmdi zmdi-search"></i>
-				</div>
-
-				<div
-					class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-					data-notify="2">
-					<a href="shoping-cart.html"><i class="zmdi zmdi-shopping-cart"></i></a>
-				</div>
-
-				<a href="dibs-list.html"
-					class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-					data-notify="0"> <i class="zmdi zmdi-favorite-outline"></i>
-				</a>
-			</div>
-			</nav>
 		</div>
-		</div>
-		<c:if test="${param.page eq 'main'}">
-			</div>
+
+		<c:if test="${param.page != 'main'}">
+			<div class="wrap-menu-desktop how-shadow1">
+				<nav class="limiter-menu-desktop container">
+					<!-- Logo desktop -->
+					<a href="main.do" class="logo">
+						<img src="/ModooShop/images/logo-06.png" alt="모두의 보드 로고">
+					</a>
 		</c:if>
 
-		<!-- Header Mobile -->
-		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->
-			<div class="logo-mobile">
-				<a href="main.html"><img src="../images/logo-06.png" alt="모두의 보드 로고"></a>
-			</div>
-
-			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div
-					class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-search-slide">
-					<i class="zmdi zmdi-search"></i>
+		<c:if test="${param.page eq 'main'}">
+			<div class="header_gnb">
+				<div class="logo-container-desktop">
+					<!-- Logo desktop -->
+					<a href="main.do" class="logo-main">
+						<img src="/ModooShop/images/logo-06.png" alt="모두의 보드 로고">
+					</a>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"data-notify="2">
-					<a href="shoping-cart.html"><i class="zmdi zmdi-shopping-cart"></i></a>
-				</div>
+				<div class="wrap-main-menu-desktop">
+					<nav class="limiter-menu-desktop container">
+		</c:if>
 
-				<a href="dibs-list.html" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0"> 
-				<i class="zmdi zmdi-favorite-outline"></i></a>
-			</div>
 
-			<!-- Button show menu -->
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-				<span class="hamburger-box"> <span class="hamburger-inner"></span></span>
-			</div>
+
+
+		<!-- Menu desktop -->
+		<div class="gnb_left">
+			<a href="#PREV" class="active">PREV</a>
 		</div>
-
-
-		<!-- Menu Mobile -->
-		<div class="menu-mobile">
-			<ul class="topbar-mobile">
+		<div class="menu-desktop">
+			<ul class="main-menu">
 				<li>
-					<div class="right-top-bar flex-w h-full">
-						<a href="about.html" class="flex-c-m p-lr-10 trans-04"> ABOUT
-							US </a> <a href="login.html" class="flex-c-m p-lr-10 trans-04">
-							LOGIN </a> <a href="join.html" class="flex-c-m p-lr-10 trans-04">
-							JOIN </a> <a href="change-inform" class="flex-c-m p-lr-10 trans-04">
-							MYPAGE </a>
-					</div>
+					<a href="product.html">NEW</a>
+				</li>
+				<li>
+					<a href="product.html">BEST</a>
+				</li>
+				<li>
+					<a href="product.html">1인 추천</a>
+				</li>
+				<li class="active-menu">
+					<a href="product.html">연령별</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="product.html">~4세 이상</a>
+						</li>
+						<li>
+							<a href="product.html">미취학 아동</a>
+						</li>
+						<li>
+							<a href="product.html">초등학교 저학년</a>
+						</li>
+						<li>
+							<a href="product.html">초등학교 고학년</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="product.html">전략</a>
+				</li>
+
+				<li class="active-menu">
+					<a href="product.html">두뇌</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="product.html">퍼즐게임</a>
+						</li>
+						<li>
+							<a href="product.html">창의수학</a>
+						</li>
+						<li>
+							<a href="product.html">코딩게임</a>
+						</li>
+						<li>
+							<a href="product.html">방탈출/추리</a>
+						</li>
+						<li>
+							<a href="product.html">기억력게임</a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="active-menu">
+					<a href="product.html">파티게임</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="product.html">복불복</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="product.html">카드게임</a>
+				</li>
+
+				<li>
+					<a href="product.html">사회/과학</a>
+				</li>
+
+				<li class="active-menu">
+					<a href="product.html">언어/정서</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="product.html">언어쑥쑥</a>
+						</li>
+						<li>
+							<a href="product.html">스토리텔링 (감정/대화)</a>
+						</li>
+						<li>
+							<a href="product.html">학지사 상담교구</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="product.html">악세사리</a>
 				</li>
 			</ul>
-
-			<ul class="main-menu-m">
-				<li><a href="product.html">NEW</a></li>
-				<li><a href="product.html">BEST</a></li>
-
-				<li><a href="product.html">1인 추천</a>
-					<ul class="sub-menu-m">
-						<li><a href="product.html">~4세 이상</a></li>
-						<li><a href="product.html">미취학 아동</a></li>
-						<li><a href="product.html">초등학교 저학년</a></li>
-						<li><a href="product.html">초등학교 고학년</a></li>
-						<li><a href="product.html">만 12세 이상</a></li>
-					</ul> <span class="arrow-main-menu-m"> <i class="fa fa-angle-right" aria-hidden="true"></i>
-				</span></li>
-
-				<li><a href="product.html">두뇌</a>
-					<ul class="sub-menu-m">
-						<li><a href="product.html">퍼즐게임</a></li>
-						<li><a href="product.html">창의수학</a></li>
-						<li><a href="product.html">코딩게임</a></li>
-						<li><a href="product.html">방탈출/추리</a></li>
-						<li><a href="product.html">기억력게임</a></li>
-					</ul> <span class="arrow-main-menu-m"> <i
-						class="fa fa-angle-right" aria-hidden="true"></i>
-				</span></li>
-
-				<li><a href="product.html">파티게임</a>
-					<ul class="sub-menu-m">
-						<li><a href="product.html">복불복</a></li>
-					</ul> <span class="arrow-main-menu-m"> <i
-						class="fa fa-angle-right" aria-hidden="true"></i>
-				</span></li>
-
-				<li><a href="product.html">카드게임</a></li>
-
-				<li><a href="product.html">사회/과학</a></li>
-
-				<li><a href="product.html">언어/정서</a>
-					<ul class="sub-menu-m">
-						<li><a href="product.html">언어쑥쑥</a></li>
-						<li><a href="product.html">스토리텔링 (감정/대화)</a></li>
-						<li><a href="product.html">학지사 상담교구</a></li>
-					</ul> <span class="arrow-main-menu-m"> <i
-						class="fa fa-angle-right" aria-hidden="true"></i>
-				</span></li>
-
-				<li><a href="product.html">악세사리</a></li>
-
-			</ul>
-		</div>
-
-		<!-- Modal Search -->
-		<div
-			class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-			<div class="container-search-header">
-				<button
-					class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="../../images/icons/icon-close2.png" alt="바로 주문하기 창 닫기버튼">
-				</button>
-
-				<form class="wrap-search-header flex-w p-l-15">
-					<button class="flex-c-m trans-04">
-						<i class="zmdi zmdi-search"></i>
-					</button>
-					<input class="plh3" type="text" name="search"
-						placeholder="Search...">
-				</form>
+			<div class="gnb_right">
+				<a href="#NEXT" class="active">NEXT</a>
 			</div>
 		</div>
+
+		<!-- Icon header -->
+		<div class="wrap-icon-header flex-w flex-r-m">
+			<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-search-slide">
+				<i class="zmdi zmdi-search"></i>
+			</div>
+
+			<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="2">
+				<a href="shoping-cart.jsp">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</a>
+			</div>
+
+			<a href="dibs-list.jsp" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+				<i class="zmdi zmdi-favorite-outline"></i>
+			</a>
+		</div>
+		</nav>
+	</div>
+	</div>
+	<c:if test="${param.page eq 'main'}">
+		</div>
+	</c:if>
+
+	<!-- Header Mobile -->
+	<div class="wrap-header-mobile">
+		<!-- Logo moblie -->
+		<div class="logo-mobile">
+			<a href="main.do">
+				<img src="../images/logo-06.png" alt="모두의 보드 로고">
+			</a>
+		</div>
+
+		<!-- Icon header -->
+		<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-search-slide">
+				<i class="zmdi zmdi-search"></i>
+			</div>
+
+			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="2">
+				<a href="shoping-cart.jsp">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</a>
+			</div>
+
+			<a href="dibs-list.jsp" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+				<i class="zmdi zmdi-favorite-outline"></i>
+			</a>
+		</div>
+
+		<!-- Button show menu -->
+		<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+			<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+			</span>
+		</div>
+	</div>
+
+
+	<!-- Menu Mobile -->
+	<div class="menu-mobile">
+		<ul class="topbar-mobile">
+			<li>
+				<div class="right-top-bar flex-w h-full">
+					<c:if test="${mId == null}">
+						<a href="about.jsp" class="flex-c-m p-lr-10 trans-04">ABOUT US</a>
+						<a href="login.jsp" class="flex-c-m p-lr-10 trans-04">LOGIN</a>
+						<a href="join.jsp" class="flex-c-m p-lr-10 trans-04">JOIN</a>
+						<a href="login.jsp" class="flex-c-m p-lr-10 trans-04">MYPAGE</a>
+					</c:if>
+					<c:if test="${mId == 'admin'}">
+						<a href="about.jsp" class="flex-c-m p-lr-10 trans-04">ABOUT US</a>
+						<a href="logout.do" class="flex-c-m p-lr-10 trans-04">LOGOUT</a>
+						<a href="admin/admin-home.jsp" class="flex-c-m p-lr-10 trans-04">ADMIN</a>
+					</c:if>
+					<c:if test="${mId != null && mId != 'admin'}">
+						<a href="about.jsp" class="flex-c-m p-lr-10 trans-04">ABOUT US</a>
+						<a href="logout.do" class="flex-c-m p-lr-10 trans-04">LOGOUT</a>
+						<a href="change-inform.jsp" class="flex-c-m p-lr-10 trans-04">MYPAGE</a>
+					</c:if>
+				</div>
+			</li>
+		</ul>
+
+		<ul class="main-menu-m">
+			<li>
+				<a href="product.html">NEW</a>
+			</li>
+			<li>
+				<a href="product.html">BEST</a>
+			</li>
+
+			<li>
+				<a href="product.html">1인 추천</a>
+				<ul class="sub-menu-m">
+					<li>
+						<a href="product.html">~4세 이상</a>
+					</li>
+					<li>
+						<a href="product.html">미취학 아동</a>
+					</li>
+					<li>
+						<a href="product.html">초등학교 저학년</a>
+					</li>
+					<li>
+						<a href="product.html">초등학교 고학년</a>
+					</li>
+					<li>
+						<a href="product.html">만 12세 이상</a>
+					</li>
+				</ul>
+				<span class="arrow-main-menu-m">
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</span>
+			</li>
+
+			<li>
+				<a href="product.html">두뇌</a>
+				<ul class="sub-menu-m">
+					<li>
+						<a href="product.html">퍼즐게임</a>
+					</li>
+					<li>
+						<a href="product.html">창의수학</a>
+					</li>
+					<li>
+						<a href="product.html">코딩게임</a>
+					</li>
+					<li>
+						<a href="product.html">방탈출/추리</a>
+					</li>
+					<li>
+						<a href="product.html">기억력게임</a>
+					</li>
+				</ul>
+				<span class="arrow-main-menu-m">
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</span>
+			</li>
+
+			<li>
+				<a href="product.html">파티게임</a>
+				<ul class="sub-menu-m">
+					<li>
+						<a href="product.html">복불복</a>
+					</li>
+				</ul>
+				<span class="arrow-main-menu-m">
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</span>
+			</li>
+
+			<li>
+				<a href="product.html">카드게임</a>
+			</li>
+
+			<li>
+				<a href="product.html">사회/과학</a>
+			</li>
+
+			<li>
+				<a href="product.html">언어/정서</a>
+				<ul class="sub-menu-m">
+					<li>
+						<a href="product.html">언어쑥쑥</a>
+					</li>
+					<li>
+						<a href="product.html">스토리텔링 (감정/대화)</a>
+					</li>
+					<li>
+						<a href="product.html">학지사 상담교구</a>
+					</li>
+				</ul>
+				<span class="arrow-main-menu-m">
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</span>
+			</li>
+
+			<li>
+				<a href="product.html">악세사리</a>
+			</li>
+
+		</ul>
+	</div>
+
+	<!-- Modal Search -->
+	<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+		<div class="container-search-header">
+			<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+				<img src="../../images/icons/icon-close2.png" alt="바로 주문하기 창 닫기버튼">
+			</button>
+
+			<form class="wrap-search-header flex-w p-l-15">
+				<button class="flex-c-m trans-04">
+					<i class="zmdi zmdi-search"></i>
+				</button>
+				<input class="plh3" type="text" name="search" placeholder="Search...">
+			</form>
+		</div>
+	</div>
 	</header>
 
 	<!-- Search(Right) -->
@@ -358,10 +506,9 @@
 
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2"> Search </span>
+				<span class="mtext-103 cl2">Search</span>
 
-				<div
-					class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-search-slide">
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-search-slide">
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
@@ -439,22 +586,16 @@
 
 			</div>
 
-			<form action="search-result.html">
+			<form action="search-result.jsp">
 
-				<div class="bor8 dis-flex p-l-10 m-b-20 m-t-20"
-					style="height: 50px;">
-					<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04"
-						style="height: 50px;">
+				<div class="bor8 dis-flex p-l-10 m-b-20 m-t-20" style="height: 50px;">
+					<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" style="height: 50px;">
 						<i class="zmdi zmdi-search"></i>
 					</button>
 
-					<input class="mtext-107 cl2 size-114 plh2 p-r-15 m-t-5"
-						style="height: 40px;" type="text" name="search-product"
-						placeholder="Search" required>
+					<input class="mtext-107 cl2 size-114 plh2 p-r-15 m-t-5" style="height: 40px;" type="text" name="search-product" placeholder="Search" required>
 				</div>
-				<input
-					class="w-full flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10"
-					type="submit" value="검색">
+				<input class="w-full flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10" type="submit" value="검색">
 			</form>
 		</div>
 	</div>
