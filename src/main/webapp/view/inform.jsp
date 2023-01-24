@@ -109,7 +109,7 @@
 												<td class="member_email">
 													<div class="member_warning">
 														<input type="text" name="email" id="email" value="" tabindex="-1" required>
-														<select id="emailDomain" name="emailDomain" class="chosen_select"required">
+														<select id="emailDomain" name="emailDomain" class="chosen_select" required>
 															<option value="self">직접입력</option>
 															<option value="naver.com" selected>naver.com</option>
 															<option value="hanmail.net">hanmail.net</option>
@@ -569,7 +569,7 @@ var phoneCheck = false;
 	function joinSubmit() {
 		if(idCheck && pwCheck && nameCheck && emailCheck && phoneCheck) {
 			console.log("정규식 모두 통과");
-			$('#mEmail').val() = mEmail;
+			$('#mEmail').val(mEmail);
 			return true;
 		} else {
 			alert("입력 조건을 확인해주세요.");
