@@ -11,6 +11,8 @@ public class LoginAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
+		forward.setPath("main.do");
+		forward.setRedirect(false);
 
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
@@ -20,13 +22,14 @@ public class LoginAction implements Action {
 
 		if(member == null) {
 			response.setContentType("text/html; charset=UTF-8");
-			response.setCharacterEncoding("UTF-8");  
-			response.getWriter().println("<script>alert('회원정보가 없습니다. 아이디 또는 비밀번호를 확인해주세요.'); history.go(-1);</script>");
+			response.setCharacterEncoding("UTF-8");
+			request.setAttribute("title", "가입된 정보가 없습니다.");
+			request.setAttribute("msg", "아이디 혹은 비밀번호를 확인하세요.");
+			request.setAttribute("url", "login.jsp");
+			forward.setPath("alert.jsp");			
 		} else {
 			request.getSession().setAttribute("mId", member.getmId());
 			request.getSession().setAttribute("mName", member.getmName());
-			forward.setPath("main.do");
-			forward.setRedirect(false);
 		}
 
 		return forward;
