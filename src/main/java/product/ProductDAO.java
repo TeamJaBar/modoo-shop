@@ -13,9 +13,8 @@ public class ProductDAO {
 	ArrayList<CategoryVO> category;
 	Connection conn;
 	PreparedStatement pstmt;
-	String txt1, txt2, txt3, txt4;
 
-	final String INSERT = "INSERT INTO PRODUCT VALUES(PNUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	final String INSERT = "INSERT INTO PRODUCT VALUES(PNUM_SEQ.NEXTVAL, ?, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)";
 	final String SELECTONE = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE PNUM=?";
 	final String SELECTALL_NEW = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT ORDER BY RDATE DESC";
 	final String SELECTALL_BEST = "SELECT P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT, DECODE(SUM(CNT), NULL, 0, SUM(CNT))  A"
@@ -25,7 +24,8 @@ public class ProductDAO {
 	final String SELECTALL_CATE = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE CATENUM=? ORDER BY RDATE DESC";
 	final String SELECTALL_AGE = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE REAGE BETWEEN ? AND ?";
 	final String SELECTALL = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG, INFOIMG, PRODUCTCNT FROM PRODUCT";
-	final String SELECTALL_CATE_ADMIN = "SELECT CATENUM, CATEL, CATEM FROM CATEGORY WHERE CATEL=?";
+	final String SELECTALL_LCATE = "SELECT DISTINCT CATEL, DECODE(MOD(CATENUM, 100) , 0 , CATENUM , CATENUM-MOD(CATENUM, 100)) CATENUM FROM CATEGORY WHERE CATENUM BETWEEN ? AND ?";
+	final String SELECTALL_MCATE = "SELECT CATEL, CATEM, CATENUM FROM CATEGORY WHERE CATEL=?";
 	final String UPDATE = "UPDATE PRODUCT SET CATAENUM=?, PNAME=?, FIXPRICE=?, SELPRICE=?, RDATE=?, REPERSON=?, REAGE=?, BRAND=?, PIMG=?, INFOIMG=?, PRODUCTCNT=? WHERE PNUM=?";
 	final String DELETE = "DELETE FROM PRODUCT WHERE PNUM=?";
 
@@ -42,13 +42,12 @@ public class ProductDAO {
 			pstmt.setString(2, pvo.getpName());
 			pstmt.setInt(3, pvo.getFixPrice());
 			pstmt.setInt(4, pvo.getSelPrice());
-			pstmt.setDate(5, pvo.getrDate());
-			pstmt.setString(6, pvo.getRePerson());
-			pstmt.setInt(7, pvo.getReAge());
-			pstmt.setString(8, pvo.getBrand());
-			pstmt.setString(9, pvo.getpImg());
-			pstmt.setString(10, pvo.getInfoImg());
-			pstmt.setInt(11, pvo.getProductCnt());
+			pstmt.setString(5, pvo.getRePerson());
+			pstmt.setInt(6, pvo.getReAge());
+			pstmt.setString(7, pvo.getBrand());
+			pstmt.setString(8, pvo.getpImg());
+			pstmt.setString(9, pvo.getInfoImg());
+			pstmt.setInt(10, pvo.getProductCnt());
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -138,8 +137,16 @@ public class ProductDAO {
 		ArrayList<CategoryVO> datas = new ArrayList<CategoryVO>();
 		conn = JDBCUtil.connect();
 		try {
-			pstmt = conn.prepareStatement(SELECTALL_CATE_ADMIN);
-			pstmt.setString(1, cvo.getCateL());
+			int cnt = 0;
+			if(cvo.getLowNum() != 0) {
+				pstmt = conn.prepareStatement(SELECTALL_LCATE);
+				pstmt.setInt(1, cvo.getLowNum());
+				pstmt.setInt(2, cvo.getHighNum());
+			} else {
+				pstmt = conn.prepareStatement(SELECTALL_MCATE);
+				pstmt.setString(1, cvo.getCateL());				
+				cnt++;
+			}
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -147,7 +154,9 @@ public class ProductDAO {
 				data = new CategoryVO();
 				data.setCateNum(rs.getInt("CATENUM"));
 				data.setCateL(rs.getString("CATEL"));
-				data.setCateM(rs.getString("CATEM"));
+				if(cnt==1) {
+					data.setCateM(rs.getString("CATEM"));
+				}
 				datas.add(data);
 			}
 		} catch (SQLException e) {

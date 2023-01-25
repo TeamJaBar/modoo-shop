@@ -13,9 +13,8 @@ public class DibDAO {
 	Connection conn;
 	PreparedStatement pstmt;
 
-	final String INSERT = "INSERT INTO DIB VALUES(DIBNUM_SEQ.NEXTVAL, ?, ?, ?)";
-	final String SELECTALL = "SELECT DIBNUM, PIMG, PNAME, SELPRICE, DCNT FROM DIB D, PRODUCT P WHERE D.PNUM=P.PNUM ORDER BY DIBNUM ASC";
-	final String UPDATE = "UPDATE DIB SET DCNT=? WHERE DIBNUM=?";
+	final String INSERT = "INSERT INTO DIB VALUES(DIBNUM_SEQ.NEXTVAL, ?, ?, 1)";
+	final String SELECTALL = "SELECT D.DIBNUM, P.PNUM, D.MNUM, P.PIMG, P.PNAME, P.SELPRICE, D.DCNT FROM DIB D, PRODUCT P WHERE D.PNUM=P.PNUM AND MNUM=? ORDER BY DIBNUM ASC";
 	final String DELETE = "DELETE FROM DIB WHERE DIBNUM=?";
 
 	public boolean insert(DibVO dvo) {
@@ -25,7 +24,6 @@ public class DibDAO {
 
 			pstmt.setInt(1, dvo.getpNum());
 			pstmt.setInt(2, dvo.getmNum());
-			pstmt.setInt(3, dvo.getdCnt());
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -42,11 +40,15 @@ public class DibDAO {
 		conn = JDBCUtil.connect();
 		try {
 			pstmt = conn.prepareStatement(SELECTALL);
+			pstmt.setInt(1, dvo.getmNum());
+			
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				DibVO data = new DibVO();
 				data = new DibVO();
 				data.setDibNum(rs.getInt("DIBNUM"));
+				data.setpNum(rs.getInt("PNUM"));
+				data.setmNum(rs.getInt("MNUM"));
 				data.setpNumPimg(rs.getString("PIMG"));
 				data.setpNumPname(rs.getString("PNAME"));
 				data.setpNumSelPrice(rs.getInt("SELPRICE"));
@@ -60,22 +62,6 @@ public class DibDAO {
 		return datas;
 	}
 
-	public boolean update(DibVO dvo) {
-		conn = JDBCUtil.connect();
-		try {
-			pstmt = conn.prepareStatement(UPDATE);
-			pstmt.setInt(1, dvo.getdCnt());
-
-			int res = pstmt.executeUpdate();
-			if (res <= 0) {
-				return false;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
 
 	public boolean delete(DibVO dvo) {
 		conn = JDBCUtil.connect();
