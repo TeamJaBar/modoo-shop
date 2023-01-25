@@ -123,7 +123,7 @@
 															<input type="text" name="userAddr" id="sample3_address" placeholder="주소" value="${member.userAddr}" required>
 														</div>
 														<div class="member_warning js_address_sub">
-															<input type="text" name="detailAddr" id="sample3_detailAddress" placeholder="상세주소" value="${detail.Addr}" required>
+															<input type="text" name="detailAddr" id="sample3_detailAddress" placeholder="상세주소" value="${member.detailAddr}" required>
 														</div>
 													</div>
 												</td>
@@ -203,6 +203,8 @@
 													document
 														.getElementById("sample3_address").value = addr;
 													// 커서를 상세주소 필드로 이동한다.
+													document
+														.getElementById("sample3_detailAddress").value="";
 													document
 														.getElementById(
 															"sample3_detailAddress")
@@ -294,9 +296,9 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <!--===============================================================================================-->
 <script>
-var pwCheck = false;
-var emailCheck = false;
-var phoneCheck = false;
+var pwCheck = true;
+var emailCheck = true;
+var phoneCheck = true;
 
 	$(document).ready(function () {
 		/* 체크박스 토글 */
@@ -406,11 +408,18 @@ var phoneCheck = false;
 					console.log('로그 : 중복체크 성공');
 					console.log(result);
 					if(result==1) {
-						//사용가능한 아이디
+						//사용가능한 이메일
 						$('#memEm-existing-error').addClass('hidden');
 						$('#memEm-good').removeClass('hidden');
 						emailCheck = true;
+						return;
 					} else {
+						if(mEmail == '${member.mEmail}') {
+							console.log('원래사용하던 이메일');
+							$('#memEm-existing-error').addClass('hidden');
+							emailCheck = true;
+							return;
+						}
 						$('#memEm-existing-error').removeClass('hidden');
 						emailCheck = false;
 						return;
@@ -519,225 +528,5 @@ var phoneCheck = false;
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
 </body>
-<!-- 
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-        function ch(){
-               let id = $("#memId").val();
-               let pw = $("#npw").val();
-               let name = $("#memNm").val();
-               let email = $("#email").val();
-               let phone = $("#cellPhone").val();
-               let add = $("#Add").val();
-               let point = $("#Point").val();
 
-        let number = pw.search(/[0-9]/g);
-        let english = pw.search(/[a-z]/ig);
-        let spece = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-        let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-
-        if(id!=""){
-        if (pw.length < 8 || pw.length > 20) {
-            alert("8자리 ~ 20자리 이내로 입력해주세요.");
-            return false;
-
-        } else if (pw.search(/\s/) != -1) {
-            alert("비밀번호는 공백 없이 입력해주세요.");
-            return false;
-
-        } else if (number < 0 || english < 0 || spece < 0) {
-            alert("영문,숫자,특수문자를 혼합하여 입력해주세요.");
-            return false;
-
-        } else if ((number < 0 && english < 0) || (english < 0 && spece < 0) || (spece < 0 && number < 0)) {
-            alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
-            return false;
-
-        } else if (/(\w)\1\1\1/.test()) {
-            alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
-            return false;
-
-        } else if (pw.search(id) > -1) {
-            alert("비밀번호에 아이디가 포함되었습니다.");
-            return false;
-        } else {
-            if(name==""||email==""||phone==""||add==""||point==""){
-                alert("빈 칸 없이 모두입력해주세요.");
-                return false
-            } else{
-                alert("변경이 완료되었습니다!");
-                return true;    
-            }
-            
-        }
-
-        if (false === reg.test()) {
-            alert('비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.');
-            return false;
-        } else {
-            if(name==""||email==""||phone==""||add==""||point==""){
-                alert("빈 칸 없이 모두입력해주세요.");
-                return false
-            } else{
-                alert("변경이 완료되었습니다!");
-                return true;    
-            }
-        }
-    } else {
-        alert("빈 칸 없이 모두입력해주세요.");
-        return false
-    }
-}
-
-    function con(){
-        var result = confirm("정말 취소하시겠습니까?");
-
-        if(result){
-            alert("취소합니다!")
-            return true;
-        } else {
-            return false;
-        }
-    }
-    /* 이메일 정규식 */
-   const emailCheck = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/m
-
-   $('#email').focusout(function () {
-      let emailFront = $('#email').val();
-      let domain = $('#emailDomain option:selected').val();
-
-      console.log(domain);
-      // self = 직접입력
-      if (domain === 'self') {
-         if (!emailCheck.test(emailFront)) {
-            alert('이메일을 다시 한 번 확인해주세요.');
-            return false;
-         }
-         return false;
-      } else {
-         let email = emailFront + '@' + domain;
-         if (!emailCheck.test(email)) {
-            return false;
-         }
-      }
-   });
-   /* 아이디 정규식 */
-   // 영소문자로 시작되며 영소문자 혹은 숫자만 사용 가능
-   const idCheck = /^[a-z][a-z0-9]+$/m
-
-   $('#memId').focusout(function () {
-      let id = $('#memId').val();
-
-      // 자리수는 일부러 표현식에 안 적고 따로
-      if (id.length < 4 || id.length > 20) {
-         alert("아이디는 4~20자리 이내로 입력해주세요.");
-         // input에 적은 거 없애기
-         $('#memId').val("");
-         return false;
-      }
-
-      // 숫자로 시작하거나 영소문자와 숫자 외의 것 입력했을 시
-      if (!idCheck.test(id)) {
-         alert('아이디는 영어로 시작하며 영소문자 혹은 숫자만 사용할 수 있습니다.');
-         $('#memId').val("");
-         return false;
-      }
-   });
-
-   /* 비밀번호 정규식 */
-
-   // 영문(대/소문자), 숫자, 특수문자 하나씩은 포함한 10~20자
-   const pwCheck = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{10,20}$/m
-
-   $('#newPassword').focusout(function () {
-      let pw = $('#newPassword').val();
-
-      // 숫자로 시작하거나 영소문자와 숫자 외의 것 입력했을 시
-      if (!pwCheck.test(pw)) {
-         alert('비밀번호는 영문(대/소문자), 숫자, 특수문자 하나씩은 포함한 10~20자여야 합니다.');
-         $('#newPassword').val("");
-         return false;
-      }
-   });
-
-   // 비밀번호 확인
-   $('#chkPassword').focusout(function () {
-      let nPw = $('#newPassword').val();
-      let cPw = $('#chkPassword').val();
-
-      if (cPw !== nPw) {
-         alert('비밀번호가 서로 다릅니다.');
-         $('#chkPassword').val("");
-         return false;
-      }
-   });
-
-   /* 이름 정규식 */
-   // 한글로만 이루어진 2자 이상
-   const nameCheck = /^[ㄱ-힇]{2,}$/m
-
-   $('#memNm').focusout(function () {
-      let name = $('#memNm').val();
-
-      // 숫자로 시작하거나 영소문자와 숫자 외의 것 입력했을 시
-      if (!nameCheck.test(name)) {
-         alert('이름은 한글만 사용할 수 있으며 2글자 이상이어야 합니다.');
-         $('#memNm').val("");
-         return false;
-      }
-   });
-   /* 휴대폰 정규식 */
-   // 01X
-   const phoneCheckFst = /^01(?:0|1|[6-9])$/m
-   // 십진수 3 혹은 4자
-   const phoneCheckSnd = /^(?:\d{3}|\d{4})$/m
-   // 십진수 4자
-   const phoneCheckTrd = /^\d{4}$/m
-
-   $('#cellPhone').focusout(function () {
-      let phone = $('#cellPhone').val();
-      // 앞(01X) 중간(3 or 4) 뒤(4)
-      let fst, snd, trd;
-      // '-' 놉!
-      if (/\-/m.test) {
-         alert('-없이 입력해주세요.');
-         return false;
-      } else if (phone.length == 11) { // 11자면 snd 4자리
-         fst = phone.slice(0, 3);
-         snd = phone.slice(3, 7);
-         trd = phone.slice(7, 11);
-      } else if (phone.length == 10) { // 11자면 snd 3자리
-         fst = phone.slice(0, 3);
-         snd = phone.slice(3, 6);
-         trd = phone.slice(6, 10);
-      }
-
-      if (!phoneCheckFst.test(fst) || !phoneCheckSnd.test(snd) || !phoneCheckTrd.test(trd)) {
-         alert('핸드폰 번호를 확인해주세요');
-         return false;
-      }
-   });
-
-   /* 전화번호 정규식 */
-   // 십진수 1~12자
-   const telCheck = /^\d{1,12}$/m
-
-   $('#phone').focusout(function () {
-      let tel = $('#phone').val();
-      // '-' 놉!
-      if (/\-/m.test(tel)) {
-         alert('-없이 입력해주세요.');
-         return false;
-      }
-
-      if (!telCheck.test(tel)) {
-         alert('전화번호를 확인해주세요');
-         return false;
-      }
-   });
-
-
-
-</script>
- -->
 </html>

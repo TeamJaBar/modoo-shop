@@ -326,7 +326,7 @@
 					<c:if test="${mId != null && mId != 'admin'}">
 						<a href="about.jsp" class="flex-c-m p-lr-10 trans-04">ABOUT US</a>
 						<a href="logout.do" class="flex-c-m p-lr-10 trans-04">LOGOUT</a>
-						<a href="change-inform.jsp" class="flex-c-m p-lr-10 trans-04">MYPAGE</a>
+						<a href="changeInfo.do" class="flex-c-m p-lr-10 trans-04">MYPAGE</a>
 					</c:if>
 				</div>
 			</li>

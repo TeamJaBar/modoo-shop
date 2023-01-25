@@ -13,7 +13,7 @@
 				<a href="join.jsp">JOIN</a>
 			</li>
 			<li>
-				<a href="join.jsp">MYPAGE</a>
+				<a href="login.jsp">MYPAGE</a>
 			</li>
 		</c:when>
 		<c:when test="${mId == 'admin'}">
@@ -38,13 +38,13 @@
 				<a href="logout.do">LOGOUT</a>
 			</li>
 			<li class="active-menu">
-				<a href="change-inform.jsp">MYPAGE</a>
+				<a href="changeInfo.do">MYPAGE</a>
 				<ul class="sub-menu">
 					<li>
 						<a href="order-list.jsp">주문조회</a>
 					</li>
 					<li>
-						<a href="change-inform.jsp">내정보수정</a>
+						<a href="changeInfo.do">내정보수정</a>
 					</li>
 					<li>
 						<a href="dibs-list.jsp">찜리스트</a>
