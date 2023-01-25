@@ -125,8 +125,6 @@ public class ProductDAO {
 				data.setReAge(rs.getInt("REAGE"));
 				data.setBrand(rs.getString("BRAND"));
 				data.setpImg(rs.getString("PIMG"));
-				data.setInfoImg(rs.getString("INFOIMG"));
-				data.setProductCnt(rs.getInt("PRODUCTCNT"));
 				datas.add(data);
 			}
 		} catch (SQLException e) {
