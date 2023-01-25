@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -965,7 +965,6 @@
 		</div>
 	</div>
 </section>
-
 <!-- Banner -->
 <div class="sec-banner bg0 p-t-80 p-b-50">
 	<div class="container">
@@ -1018,7 +1017,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="main_goods_slider">
 	<div class="main_content">
 		<!-- 메인 상품 노출 -->
@@ -1036,23 +1034,28 @@
 							<li>
 								<div class="item_cont" style="text-align: center;">
 									<div class="item_photo_box">
-										<a href="prDetail.do?cateNum=${product.cateNum}">
+										<a href="prDetail.do?pNum=${product.pNum}">
 											<img src="${product.pImg}" width="180" alt="${product.pName}" title="${product.pName}" class="middle" />
 										</a>
 									</div>
 									<!-- //item_photo_box -->
 									<div class="item_info_cont" style="display: block; text-align: center;">
 										<div class="item_tit_box">
-											<a href="prDetail.do&cateNum=${product.cateNum}">
+											<a href="prDetail.do&pNum=${product.pNum}">
 												<strong class="item_name" style="direction: ltr;">${product.pName}</strong>
 											</a>
 										</div>
 										<!-- //item_tit_box -->
 										<div class="item_money_box">
 											<strong class="item_price">
-												<strong class="discount_rate"><fmt:parseNumber value="${product.selPrice div product.fixPrice * 100}" integerOnly="true"/>%</strong>
+												<strong class="discount_rate">
+													<fmt:parseNumber value="${product.selPrice div product.fixPrice * 100}" integerOnly="true" />
+													%
+												</strong>
 												<span>
-													<strong><fmt:formatNumber value="${product.selPrice}" type="number"/></strong>
+													<strong>
+														<fmt:formatNumber value="${product.selPrice}" type="number" />
+													</strong>
 													원
 												</span>
 											</strong>
@@ -1067,59 +1070,50 @@
 								<!-- //item_cont -->
 							</li>
 						</c:forEach>
-				</ul>
+					</ul>
+				</div>
+				<!-- //item_slide_horizontal -->
+				<script type="text/javascript">
+					$(document).ready(function() {
+
+						$('.item_slide_horizontal .slide_horizontal_1').slick({
+							draggable : false,
+							autoplay : true,
+							infinite : true,
+							slidesToShow : 4,
+							slidesToScroll : 1,
+							speed : 1000,
+							arrows : true,
+							prevArrow : '<button class="arrow-slick1 prev-slick1"><i class="zmdi zmdi-caret-left"></i></button>',
+							nextArrow : '<button class="arrow-slick1 next-slick1"><i class="zmdi zmdi-caret-right"></i></button>',
+							responsive : [ {
+								breakpoint : 1366,
+								settings : {
+									slidesToShow : 3
+								}
+							}, {
+								breakpoint : 1024,
+								settings : {
+									slidesToShow : 2
+								}
+							}, {
+								breakpoint : 768,
+								settings : {
+									slidesToShow : 1
+								}
+							}, {
+								breakpoint : 480,
+								settings : {
+									slidesToShow : 1
+								}
+							} ]
+						});
+
+					});
+				</script>
 			</div>
-			<!-- //item_slide_horizontal -->
-			<script type="text/javascript">
-						$(document)
-								.ready(
-										function() {
-
-											$(
-													'.item_slide_horizontal .slide_horizontal_1')
-													.slick(
-															{
-																draggable : false,
-																autoplay : true,
-																infinite : true,
-																slidesToShow : 4,
-																slidesToScroll : 1,
-																speed : 1000,
-																arrows : true,
-																prevArrow : '<button class="arrow-slick1 prev-slick1"><i class="zmdi zmdi-caret-left"></i></button>',
-																nextArrow : '<button class="arrow-slick1 next-slick1"><i class="zmdi zmdi-caret-right"></i></button>',
-																responsive : [
-																		{
-																			breakpoint : 1366,
-																			settings : {
-																				slidesToShow : 3
-																			}
-																		},
-																		{
-																			breakpoint : 1024,
-																			settings : {
-																				slidesToShow : 2
-																			}
-																		},
-																		{
-																			breakpoint : 768,
-																			settings : {
-																				slidesToShow : 1
-																			}
-																		},
-																		{
-																			breakpoint : 480,
-																			settings : {
-																				slidesToShow : 1
-																			}
-																		} ]
-															});
-
-										});
-					</script>
 		</div>
 	</div>
-</div>
 </div>
 <!-- Product -->
 <section class="bg0 p-t-23 p-b-140">
@@ -1130,9 +1124,9 @@
 		<div class="flex-w flex-sb-m p-b-52">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">전체목록</button>
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".world">거실에서 세계여행</button>
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".children">어린이게임 BEST</button>
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".study">셈놀이 영어놀이</button>
+				<c:forEach var="category" items="${cList}">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".${category.cateNum}">${category.cateL}</button>
+				</c:forEach>
 			</div>
 			<div class="flex-w flex-c-m m-tb-10">
 				<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
@@ -1153,258 +1147,33 @@
 		</div>
 		<div class="row isotope-grid">
 			<div class="gutter-sizer"></div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item world">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/29//1000007239/modify_main_063.jpg" width="180" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 방방곡곡 세계유량 </a>
-							<span class="stext-105 cl3"> 16,320원 </span>
+			<c:forEach var="product" items="${pList}">
+				<fmt:parseNumber var="cateNum" value="${(product.cateNum div 100)}" integerOnly="true" />
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${cateNum*100}">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="${product.pImg}" width="180" alt="${product.pName}">
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
 						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item children">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/18/07/27/1000006170/1000006170_main_068.jpg" width="180" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 꼬마 유령의 비밀통로 </a>
-							<span class="stext-105 cl3"> 14,850원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="productDetail.do?pNum=${product.pNum}" id="${product.pNum}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> ${product.pName} </a>
+								<span class="stext-105 cl3">
+									<fmt:formatNumber value="${product.selPrice}" type="number" />
+									&#8361;
+								</span>
+							</div>
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="찜 아이콘 활성화">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="찜 아이콘 비활성화">
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item world">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/19/01/02//1000006493/modify_main_084.jpg" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 큐비즈 </a>
-							<span class="stext-105 cl3"> 20,200원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item world">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/28//1000007205/modify_main_043.jpg" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 모두의마블 메가디럭스/보드게임 </a>
-							<span class="stext-105 cl3"> 52,500원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item world">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/29//1000007239/modify_main_063.jpg" width="180" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 방방곡곡 세계유량 </a>
-							<span class="stext-105 cl3"> 16,320원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item children">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/18/07/27/1000006170/1000006170_main_068.jpg" width="180" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 꼬마 유령의 비밀통로 </a>
-							<span class="stext-105 cl3"> 14,850원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item world">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/19/01/02//1000006493/modify_main_084.jpg" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 큐비즈 </a>
-							<span class="stext-105 cl3"> 20,200원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item world">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/28//1000007205/modify_main_043.jpg" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 모두의마블 메가디럭스/보드게임 </a>
-							<span class="stext-105 cl3"> 52,500원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item world">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/29//1000007239/modify_main_063.jpg" width="180" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 방방곡곡 세계유량 </a>
-							<span class="stext-105 cl3"> 16,320원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item children">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/18/07/27/1000006170/1000006170_main_068.jpg" width="180" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 꼬마 유령의 비밀통로 </a>
-							<span class="stext-105 cl3"> 14,850원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item study">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/19/01/02//1000006493/modify_main_084.jpg" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 큐비즈 </a>
-							<span class="stext-105 cl3"> 20,200원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item world">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/28//1000007205/modify_main_043.jpg" alt="IMG-PRODUCT">
-						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1"> Quick View </a>
-					</div>
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
-							<a href="product/product-detail.jsp" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 모두의마블 메가디럭스/보드게임 </a>
-							<span class="stext-105 cl3"> 52,500원 </span>
-						</div>
-						<div class="block2-txt-child2 flex-r p-t-3">
-							<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<img class="icon-heart1 dis-block trans-04" src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON">
-								<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 </section>
@@ -1532,13 +1301,13 @@
 	<!--===============================================================================================-->
 	<script src="../vendor/select2/select2.min.js"></script>
 	<script>
-			$(".js-select2").each(function() {
-				$(this).select2({
-					minimumResultsForSearch : 20,
-					dropdownParent : $(this).next('.dropDownSelect2')
-				});
-			})
-		</script>
+		$(".js-select2").each(function() {
+			$(this).select2({
+				minimumResultsForSearch : 20,
+				dropdownParent : $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
 	<!--===============================================================================================-->
 	<script src="../vendor/daterangepicker/moment.min.js"></script>
 	<script src="../vendor/daterangepicker/daterangepicker.js"></script>
@@ -1548,84 +1317,93 @@
 	<!--===============================================================================================-->
 	<script src="../vendor/parallax100/parallax100.js"></script>
 	<script>
-			$('.parallax100').parallax100();
-		</script>
+		$('.parallax100').parallax100();
+	</script>
 	<!--===============================================================================================-->
 	<script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 	<script>
-			$('.gallery-lb').each(function() { // the containers for all your galleries
-				$(this).magnificPopup({
-					delegate : 'a', // the selector for gallery item
-					type : 'image',
-					gallery : {
-						enabled : true
-					},
-					mainClass : 'mfp-fade'
-				});
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+				delegate : 'a', // the selector for gallery item
+				type : 'image',
+				gallery : {
+					enabled : true
+				},
+				mainClass : 'mfp-fade'
 			});
-		</script>
+		});
+	</script>
 	<!--===============================================================================================-->
 	<script src="../vendor/isotope/isotope.pkgd.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="../vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-			$('.js-addwish-b2').on('click', function(e) {
-				e.preventDefault();
+		$('.js-addwish-b2').on('click', function(e) {
+			e.preventDefault();
+		});
+
+		/*
+		function addWish(num, name) {
+			if($(this).hasClass('js-addedwish-b2')) {
+				$(this).removeClass('js-addedwish-b2');
+			} else {
+				swal(name, "찜 목록에 추가되었습니다!", "success");
+				console.log(num);
+				$(this).addClass('js-addedwish-b2');
+			}
+		}*/
+
+		$('.js-addwish-b2').each(function() {
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			var pNum = $(this).parent().parent().find('.js-name-b2').prop("id");
+			$(this).on('click', function() {
+				console.log(pNum);
+				if ($(this).hasClass('js-addedwish-b2')) {
+					$(this).removeClass('js-addedwish-b2');
+				} else {
+					swal(nameProduct, "찜 목록에 추가되었습니다!", "success");
+					$(this).addClass('js-addedwish-b2');
+				}
 			});
+		});
 
-			$('.js-addwish-b2').each(
-					function() {
-						var nameProduct = $(this).parent().parent().find(
-								'.js-name-b2').html();
-						$(this).on('click', function() {
-							swal(nameProduct, "찜 목록에 추가되었습니다!", "success");
+		$('.js-addwish-detail').each(function() {
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
-							$(this).addClass('js-addedwish-b2');
-							$(this).off('click');
-						});
-					});
+			$(this).on('click', function() {
+				swal(nameProduct, "찜 목록에 추가되었습니다!", "success");
 
-			$('.js-addwish-detail').each(
-					function() {
-						var nameProduct = $(this).parent().parent().parent()
-								.find('.js-name-detail').html();
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
 
-						$(this).on('click', function() {
-							swal(nameProduct, "찜 목록에 추가되었습니다!", "success");
+		/*---------------------------------------------*/
 
-							$(this).addClass('js-addedwish-detail');
-							$(this).off('click');
-						});
-					});
-
-			/*---------------------------------------------*/
-
-			$('.js-addcart-detail').each(
-					function() {
-						var nameProduct = $(this).parent().parent().parent()
-								.parent().find('.js-name-detail').html();
-						$(this).on('click', function() {
-							swal(nameProduct, "장바구니에 추가되었습니다!", "success");
-						});
-					});
-		</script>
+		$('.js-addcart-detail').each(function() {
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function() {
+				swal(nameProduct, "장바구니에 추가되었습니다!", "success");
+			});
+		});
+	</script>
 	<!--===============================================================================================-->
 	<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
-			$('.js-pscroll').each(function() {
-				$(this).css('position', 'relative');
-				$(this).css('overflow', 'hidden');
-				var ps = new PerfectScrollbar(this, {
-					wheelSpeed : 1,
-					scrollingThreshold : 1000,
-					wheelPropagation : false,
-				});
-
-				$(window).on('resize', function() {
-					ps.update();
-				})
+		$('.js-pscroll').each(function() {
+			$(this).css('position', 'relative');
+			$(this).css('overflow', 'hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed : 1,
+				scrollingThreshold : 1000,
+				wheelPropagation : false,
 			});
-		</script>
+
+			$(window).on('resize', function() {
+				ps.update();
+			})
+		});
+	</script>
 	<!--===============================================================================================-->
 	<script src="../js/main.js"></script>
 	</body>
