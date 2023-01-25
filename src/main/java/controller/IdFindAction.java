@@ -22,8 +22,18 @@ public class IdFindAction implements Action {
 		mvo.setmEmail(request.getParameter("mEmail"));
 		MemberVO member = mdao.selectOneId(mvo);
 		
-		request.setAttribute("mName", request.getParameter("mName"));
-		request.setAttribute("mId", member.getmId());
+		if(member == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			request.setAttribute("title", "가입된 정보가 없습니다.");
+			request.setAttribute("msg", "아이디 혹은 이메일을 확인하세요.");
+			request.setAttribute("url", "id-find.jsp");
+			forward.setPath("alert.jsp");			
+		} else {
+			request.setAttribute("mName", request.getParameter("mName"));
+			request.setAttribute("mId", member.getmId());
+		}
+
 
 		return forward;
 	}
