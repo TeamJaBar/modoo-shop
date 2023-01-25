@@ -133,7 +133,7 @@ public class MemberDAO {
 		MemberVO data = null;
 		conn = JDBCUtil.connect();
 		try {
-			pstmt = conn.prepareStatement(SELECTONE_LOGIN);
+			pstmt = conn.prepareStatement(SELECTONE_INFO);
 			pstmt.setString(1, mvo.getmId());
 
 			ResultSet rs = pstmt.executeQuery();
@@ -191,7 +191,7 @@ public class MemberDAO {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new MemberVO();
-				data.setmEmail(rs.getNString("MID"));
+				data.setmEmail(rs.getNString("MEMAIL"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
