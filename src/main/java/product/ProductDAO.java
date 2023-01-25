@@ -105,8 +105,8 @@ public class ProductDAO {
 				pstmt.setInt(2, pvo.getHighNum());
 			} else if (pvo.getCateNum() % 100 == 0) {
 				pstmt = conn.prepareStatement(SELECTALL_CATEALL);
-				pstmt.setInt(1, pvo.getCateNum() + 1);
-				pstmt.setInt(2, pvo.getCateNum() + 99);
+				pstmt.setInt(1, pvo.getLowNum() + 1);
+				pstmt.setInt(2, pvo.getHighNum() + 99);
 			} else {
 				pstmt = conn.prepareStatement(SELECTALL_CATE);
 				pstmt.setInt(1, pvo.getCateNum());
