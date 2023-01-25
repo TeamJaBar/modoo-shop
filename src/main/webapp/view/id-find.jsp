@@ -113,8 +113,7 @@
 			success : function(result) {
 				console.log('로그 : 중복체크 성공');
 				console.log(result);
-
-				if (result != 1) {
+				if (result == 1) {
 					checkFalg = true;
 					return true;
 				} else {
