@@ -254,6 +254,8 @@
 														.getElementById("sample3_address").value = addr;
 													// 커서를 상세주소 필드로 이동한다.
 													document
+														.getElementById("sample3_detailAddress").value="";
+													document
 														.getElementById("sample3_detailAddress")
 														.focus();
 
