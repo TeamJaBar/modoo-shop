@@ -15,7 +15,7 @@
 
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/ModooShop/images/bg-img-01.png');">
-	<h2 class="ltext-105 cl0 txt-center">패스워드 찾기</h2>
+	<h2 class="ltext-105 cl0 txt-center">비밀번호 찾기</h2>
 </section>
 
 
