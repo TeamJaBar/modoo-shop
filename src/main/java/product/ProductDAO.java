@@ -104,7 +104,7 @@ public class ProductDAO {
 				pstmt.setInt(2, pvo.getHighNum());
 			} else if (pvo.getCateNum() % 100 == 0) {
 				pstmt = conn.prepareStatement(SELECTALL_CATEALL);
-				pstmt.setInt(1, pvo.getLowNum() + 1);
+				pstmt.setInt(1, pvo.getLowNum());
 				pstmt.setInt(2, pvo.getHighNum() + 99);
 			} else {
 				pstmt = conn.prepareStatement(SELECTALL_CATE);
@@ -145,9 +145,8 @@ public class ProductDAO {
 			} else {
 				pstmt = conn.prepareStatement(SELECTALL_MCATE);
 				pstmt.setString(1, cvo.getCateL());				
-				cnt++;
-			}
 
+			}
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				CategoryVO data = new CategoryVO();
