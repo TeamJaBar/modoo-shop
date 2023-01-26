@@ -18,13 +18,13 @@ public class FrontController extends HttpServlet {
 	}
 
 	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String uri=request.getRequestURI();
-		System.out.println("uri: "+uri);
-		String cp=request.getContextPath() + "/view/";
-		System.out.println("cp: "+cp);
-		String command=uri.substring(cp.length());
-		System.out.println("command: "+command);
-		
+		String uri = request.getRequestURI();
+		System.out.println("uri: " + uri);
+		String cp = request.getContextPath() + "/view/";
+		System.out.println("cp: " + cp);
+		String command = uri.substring(cp.length());
+		System.out.println("command: " + command);
+
 		ActionForward forward = null;
 		if (command.equals("main.do")) {
 			try {
@@ -95,6 +95,24 @@ public class FrontController extends HttpServlet {
 		} else if (command.equals("addAddress.do")) {
 			try {
 				forward = new AddAddressAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("prSelectAll.do")) {
+			try {
+				forward = new PrSelectAllAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("prDelete.do")) {
+			try {
+				forward = new PrDeleteAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("prUpdate.do")) {
+			try {
+				forward = new PrUpdateAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
