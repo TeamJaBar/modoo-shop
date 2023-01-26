@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
 <title>제품상세</title>
@@ -75,9 +76,7 @@
 	margin: 100px 0 0 0;
 }
 
-.item_goods_sec .detail_cont, .item_goods_sec .delivery_cont,
-	.item_goods_sec .exchange_cont, .item_goods_sec .reviews_cont,
-	.item_goods_sec .qna_cont {
+.item_goods_sec .detail_cont, .item_goods_sec .delivery_cont, .item_goods_sec .exchange_cont, .item_goods_sec .reviews_cont, .item_goods_sec .qna_cont {
 	position: relative;
 	min-height: 200px;
 }
@@ -204,186 +203,181 @@
 
 <%@include file="common//header.jsp"%>
 
-	<!-- breadcrumb -->
-	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="main.html" class="stext-109 cl8 hov-cl1 trans-04"> Home
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a> <a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-				파티게임 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a> <span class="stext-109 cl4"> 할리갈리 </span>
-		</div>
+<!-- breadcrumb -->
+<div class="container">
+	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+		<a href="main.jsp" class="stext-109 cl8 hov-cl1 trans-04">
+			Home <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+		</a>
+		<!-- 대분류 게임 눌렀을 때 넘어가는 페이지 -->
+		<a href="product.jsp" class="stext-109 cl8 hov-cl1 trans-04">
+			${product.cateL}<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+		</a>
+		<span class="stext-109 cl4"> ${product.cateM} </span>
 	</div>
+</div>
 
 
-	<!-- Product Detail -->
-	<section class="sec-product-detail bg0 p-t-65 p-b-60">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-lg-7 p-b-30">
-					<div class="p-l-25 p-r-30 p-lr-0-lg">
-						<div class="wrap-slick3 flex-sb flex-w">
-							<div class="wrap-slick3-dots"></div>
-							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+<!-- Product Detail -->
+<section class="sec-product-detail bg0 p-t-65 p-b-60">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-lg-7 p-b-30">
+				<div class="p-l-25 p-r-30 p-lr-0-lg">
+					<div class="wrap-slick3 flex-sb flex-w">
+						<div class="wrap-slick3-dots"></div>
+						<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
-							<div class="slick3 gallery-lb">
-								<div class="item-slick3"
-									data-thumb="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/19/02/08//1000006569/register_detail_025.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img
-											src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/19/02/08//1000006569/register_detail_025.jpg"
-											alt="IMG-PRODUCT"> <a
-											class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-											href="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/19/02/08//1000006569/register_detail_025.jpg"> <i
-											class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-
-								<div class="item-slick3"
-									data-thumb="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/1000000014_magnify_046.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img
-											src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/1000000014_magnify_046.jpg"
-											alt="IMG-PRODUCT"> <a
-											class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-											href="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"> <i
-											class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-
-								<div class="item-slick3"
-									data-thumb="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/21/08/33//1000007566/register_detail_046.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img
-											src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/21/08/33//1000007566/register_detail_046.jpg"
-											alt="IMG-PRODUCT"> <a
-											class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-											href="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/21/08/33//1000007566/register_detail_046.jpg"> <i
-											class="fa fa-expand"></i>
-										</a>
-									</div>
+						<div class="slick3 gallery-lb">
+							<div class="item-slick3" data-thumb="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/19/02/08//1000006569/register_detail_025.jpg">
+								<div class="wrap-pic-w pos-relative">
+									<img src="${product.infoimg}" alt="${product.pName}">
+									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+										href="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/19/02/08//1000006569/register_detail_025.jpg">
+										<i class="fa fa-expand"></i>
+									</a>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
 
-				<div class="col-md-6 col-lg-5 p-b-30">
-					<div class="p-r-50 p-t-5 p-lr-0-lg item_detail_tit">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">할리갈리</h4>
+							<div class="item-slick3" data-thumb="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/1000000014_magnify_046.jpg">
+								<div class="wrap-pic-w pos-relative">
+									<img src="${product.infoimg}" alt="${product.pName}">
+									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04">
+										<i class="fa fa-expand"></i>
+									</a>
+								</div>
+							</div>
 
-						<hr>
-
-						<table class="item_detail_list">
-							<tr>
-								<td>정가</td>
-								<td colspan="2"><del>
-										<span>40,000</span>원
-									</del></td>
-							</tr>
-							<tr>
-								<td>판매가</td>
-								<td colspan="2" class="item_price"><span id="price">26,400</span>원</td>
-							</tr>
-							<tr>
-								<td>게임 인원</td>
-								<td colspan="2">2~4명</td>
-							</tr>
-							<tr>
-								<td>게임 연령</td>
-								<td colspan="2">8세이상</td>
-							</tr>
-							<tr>
-								<td>배송비</td>
-								<td colspan="2"><strong id="deliveryFee">2,500</strong></td>
-							</tr>
-							<tr>
-								<td>
-									<div class="wrap-num-product flex-w m-tb-10 m-l-30">
-										<div
-											class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-minus"></i>
-										</div>
-
-										<input class="mtext-104 cl3 txt-center num-product"
-											type="number" name="num-product" value="1">
-
-										<div
-											class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m ">
-											<i class="fs-16 zmdi zmdi-plus"></i>
-										</div>
-									</div>
-								</td>
-								<td>결제 예정금액</td>
-								<td><span id="totalPrice">26,400</span>원</td>
-							</tr>
-
-						</table>
-
-						<hr>
-
-						<!--  -->
-						<div class="p-t-33">
-							<div class="row flex-c">
-								<button
-									class="flex-c-m m-r-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addcart-detail">
-									장바구니</button>
-								<button
-									class="flex-c-m m-lr-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addwish-b2">
-									찜하기</button>
-								<button
-									class="flex-c-m m-l-10 stext-105 cl0 size-101 bg1 bor20 hov-btn4 p-lr-15 trans-04 ">
-									결제하기</button>
+							<div class="item-slick3" data-thumb="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/21/08/33//1000007566/register_detail_046.jpg">
+								<div class="wrap-pic-w pos-relative">
+									<img src="${product.infoimg}" alt="${product.pName}">
+									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+										href="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/21/08/33//1000007566/register_detail_046.jpg">
+										<i class="fa fa-expand"></i>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="bor18 m-t-50 p-t-43 p-b-40">
-			<!-- Tab01 -->
-			<div class="tab01">
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs" role="tablist">
-					<li class="nav-item p-b-10"><a class="nav-link active"
-						data-toggle="tab" href="#description" role="tab">제품소개</a></li>
+			<div class="col-md-6 col-lg-5 p-b-30">
+				<div class="p-r-50 p-t-5 p-lr-0-lg item_detail_tit">
+					<h4 class="mtext-105 cl2 js-name-detail p-b-14">${product.pName}</h4>
 
-					<li class="nav-item p-b-10"><a class="nav-link"
-						data-toggle="tab" href="#delivery" role="tab">배송정보</a></li>
-				</ul>
+					<hr>
 
-				<!-- Tab panes -->
-				<div class="tab-content p-t-43">
-					<!-- - -->
-					<div class="tab-pane fade show active" id="description"
-						role="tabpanel">
-						<div class="how-pos2 flex-c  p-lr-15-md">
-							<p class="stext-102 cl6">
-								<img
-									src="https://gi.esmplus.com/pscominc/product/11452/11452body.jpg">
-							</p>
+					<table class="item_detail_list">
+						<tr>
+							<td>정가</td>
+							<td colspan="2">
+								<d el>
+									<span> ${product.fixPrice}</span>
+									원
+								</del>
+							</td>
+						</tr>
+						<tr>
+							<td>판매가</td>
+							<td colspan="2" class="item_price">
+								<span id="price"> ${product.selPrice}</span>
+								원
+							</td>
+						</tr>
+						<tr>
+							<td>게임 인원</td>
+							<td colspan="2">${product.reperson}명</td>
+						</tr>
+						<tr>
+							<td>게임 연령</td>
+							<td colspan="2">${product.reage}세이상</td>
+						</tr>
+						<tr>
+							<td>배송비</td>
+							<td colspan="2">
+								<strong id="deliveryFee">2,500</strong>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="wrap-num-product flex-w m-tb-10 m-l-30">
+									<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+										<i class="fs-16 zmdi zmdi-minus"></i>
+									</div>
+									
+									<input type="hidden" id="num-product" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" >
+									<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m ">
+										<i class="fs-16 zmdi zmdi-plus"></i>
+									</div>
+								</div>
+							</td>
+							<td>결제 예정금액</td>
+							<td>
+								<span id="totalPrice">${product.selPrice}</span>
+								원
+							</td>
+						</tr>
+
+					</table>
+
+					<hr>
+
+				
+					<div class="p-t-33">
+						<div class="row flex-c">
+							<button onclick="function addCart()" class="flex-c-m m-r-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addcart-detail">장바구니</button>
+							<button onclick="function addDib()" class="flex-c-m m-lr-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addwish-b2">찜하기</button>
+							<button type="submit" onclick="function order()" class="flex-c-m m-l-10 stext-105 cl0 size-101 bg1 bor20 hov-btn4 p-lr-15 trans-04" type="submit">결제하기</button>
 						</div>
 					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
 
-					<!-- - -->
-					<div class="tab-pane fade" id="delivery" role="tabpanel">
-						<div class="row">
-							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto flex-c ">
-								<div class="p-b-30 m-lr-15-sm">
-									<!-- Delivery -->
-									<div class="delivery_cont">
-										<h3 class="ltext-102 m-t-40">배송안내</h3>
-										<div class="admin_msg">
-											<p>
-												<img title="f635a4941f370667.jpg" class="js-smart-img"
-													src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/editor/policy/f635a4941f370667.jpg">&nbsp;
-											</p>
-										</div>
+	<div class="bor18 m-t-50 p-t-43 p-b-40">
+		<!-- Tab01 -->
+		<div class="tab01">
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item p-b-10">
+					<a class="nav-link active" data-toggle="tab" href="#description" role="tab">제품소개</a>
+				</li>
 
-										<!-- 
+				<li class="nav-item p-b-10">
+					<a class="nav-link" data-toggle="tab" href="#delivery" role="tab">배송정보</a>
+				</li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content p-t-43">
+				<!-- - -->
+				<div class="tab-pane fade show active" id="description" role="tabpanel">
+					<div class="how-pos2 flex-c  p-lr-15-md">
+						<p class="stext-102 cl6">
+							<img src="${product.infoimg}" alt="${product.pName}">
+						</p>
+					</div>
+				</div>
+
+			
+				<div class="tab-pane fade" id="delivery" role="tabpanel">
+					<div class="row">
+						<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto flex-c ">
+							<div class="p-b-30 m-lr-15-sm">
+								<!-- Delivery -->
+								<div class="delivery_cont">
+									<h3 class="ltext-102 m-t-40">배송안내</h3>
+									<div class="admin_msg">
+										<p>
+											<img title="f635a4941f370667.jpg" class="js-smart-img" src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/editor/policy/f635a4941f370667.jpg">
+											&nbsp;
+										</p>
+									</div>
+
+									<!-- 
 										<h3 class="ltext-102 m-t-40">교환/반품안내</h3>
 										<div class="admin_msg">
 											<p>
@@ -401,7 +395,6 @@
 											</p>
 										</div>
 										-->
-									</div>
 								</div>
 							</div>
 						</div>
@@ -409,23 +402,39 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-	</section>
+</section>
 
 
 
-	<%@include file="common//footer.jsp"%>
+<%@include file="common//footer.jsp"%>
 
-	<!--===============================================================================================-->
-	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/animsition/js/animsition.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/bootstrap/js/popper.js"></script>
-	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/select2/select2.min.js"></script>
-	<script>
+<script>
+	function order(pNum,pCnt){
+		location.href="shOrder.do?pNum=${product.pNum}&pcnt=${product.pCnt}"
+	}
+	
+	function addDib(pNum){
+		location.href="dib.do?pNum=${product.pNum}"
+	}
+	
+	function addCart(pNum){
+		location.href="shopping.do?pNum=${product.pNum}&pcnt=${product.pNum}"
+	}
+	
+	</script>
+
+<!--===============================================================================================-->
+<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/bootstrap/js/popper.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/select2/select2.min.js"></script>
+<script>
 		$(".js-select2").each(function() {
 			$(this).select2({
 				minimumResultsForSearch : 20,
@@ -433,20 +442,20 @@
 			});
 		})
 	</script>
-	<!--===============================================================================================-->
-	<script src="../vendor/daterangepicker/moment.min.js"></script>
-	<script src="../vendor/daterangepicker/daterangepicker.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/slick/slick.min.js"></script>
-	<script src="../js/slick-custom.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/parallax100/parallax100.js"></script>
-	<script>
+<!--===============================================================================================-->
+<script src="../vendor/daterangepicker/moment.min.js"></script>
+<script src="../vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/slick/slick.min.js"></script>
+<script src="../js/slick-custom.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/parallax100/parallax100.js"></script>
+<script>
 		$('.parallax100').parallax100();
 	</script>
-	<!--===============================================================================================-->
-	<script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-	<script>
+<!--===============================================================================================-->
+<script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<script>
 		$('.gallery-lb').each(function() { // the containers for all your galleries
 			$(this).magnificPopup({
 				delegate : 'a', // the selector for gallery item
@@ -458,11 +467,11 @@
 			});
 		});
 	</script>
-	<!--===============================================================================================-->
-	<script src="../vendor/isotope/isotope.pkgd.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/sweetalert/sweetalert.min.js"></script>
-	<script>
+<!--===============================================================================================-->
+<script src="../vendor/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/sweetalert/sweetalert.min.js"></script>
+<script>
 		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e) {
 			e.preventDefault();
 		});
@@ -503,9 +512,9 @@
 					});
 				});
 	</script>
-	<!--===============================================================================================-->
-	<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
+<!--===============================================================================================-->
+<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
 		$('.js-pscroll').each(function() {
 			$(this).css('position', 'relative');
 			$(this).css('overflow', 'hidden');
@@ -520,10 +529,10 @@
 			})
 		});
 	</script>
-	<!--===============================================================================================-->
-	<script src="../js/main.js"></script>
-	<!-- ============================================================================================== -->
-	<script>
+<!--===============================================================================================-->
+<script src="../js/main.js"></script>
+<!-- ============================================================================================== -->
+<script>
 		$(function() {
 			$("div").slice(0, 10).show(); // 최초 10개 선택
 			$("#load").click(function(e) { // Load More를 위한 클릭 이벤트e
@@ -533,8 +542,13 @@
 					alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
 				}
 			});
+			
+			
+			var price = parseInt($('#price' + current).text().replace(',', ''));
+			var totalPrice = (price + 2500) 
+			totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+			$('#totalPrice').text(totalPrice);
 		});
 	</script>
-
 </body>
 </html>
