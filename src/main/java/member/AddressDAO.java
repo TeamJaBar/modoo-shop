@@ -13,9 +13,10 @@ public class AddressDAO {
 	Connection conn;
 	PreparedStatement pstmt;
 
-	final String INSERT = "INSERT INTO ADDRESS VALUES(ANUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
-	final String SELECTALL = "SELECT ANUM, SHIPNAME, DESTINATION, ZIPCODE, USERADDR, DETAILADDR, TEL FROM ADDRESS ORDER BY ANUM ASC";
-	final String UPDATE = "UPDATE ADDRESS SET SHPNAME=?, DESTINATION=?, ZIPCODE=?, USERADDR=?, DETAILADDR=?, TEL=? WHERE ANUM=?";
+	final String INSERT = "INSERT INTO ADDRESS VALUES(ANUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
+	final String SELECTALL = "SELECT ANUM, SHIPNAME, DESTINATION, ZIPCODE, USERADDR, DETAILADDR, TEL, ISDEFAULT FROM ADDRESS WHERE MNUM=? ORDER BY ISDEFAULT DESC, ANUM ASC";
+	final String UPDATE = "UPDATE ADDRESS SET SHPNAME=?, DESTINATION=?, ZIPCODE=?, USERADDR=?, DETAILADDR=?, TEL=?, ISDEFAULT=? WHERE ANUM=?";
+	final String UPDATE_DEFAULT = "UPDATE ADDRESS SET ISDEFAULT=0 WHERE MNUM=? AND ISDEFAULT=1";
 	final String DELETE = "DELETE FROM ADDRESS WHERE ANUM=?";
 
 	public boolean insert(AddressVO avo) {
@@ -30,6 +31,7 @@ public class AddressDAO {
 			pstmt.setString(5, avo.getUserAddr());
 			pstmt.setString(6, avo.getDetailAddr());
 			pstmt.setString(7, avo.getTel());
+			pstmt.setString(8, avo.getIsDefault());
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -46,6 +48,7 @@ public class AddressDAO {
 		conn = JDBCUtil.connect();
 		try {
 			pstmt = conn.prepareStatement(SELECTALL);
+			pstmt.setInt(1, avo.getmNum());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				AddressVO data = new AddressVO();
@@ -56,7 +59,8 @@ public class AddressDAO {
 				data.setZipCode(rs.getNString("ZIPCODE"));
 				data.setUserAddr(rs.getNString("USERADDR"));
 				data.setDetailAddr(rs.getString("DETAILADDR"));
-				data.setTel(rs.getString("TEL "));
+				data.setTel(rs.getString("TEL"));
+				data.setIsDefault(rs.getString("ISDEFAULT"));
 				datas.add(data);
 			}
 		} catch (SQLException e) {
@@ -69,13 +73,20 @@ public class AddressDAO {
 	public boolean update(AddressVO avo) {
 		conn = JDBCUtil.connect();
 		try {
-			pstmt = conn.prepareStatement(UPDATE);
-			pstmt.setString(1, avo.getShipName());
-			pstmt.setString(2, avo.getDestination());
-			pstmt.setString(3, avo.getZipCode());
-			pstmt.setString(4, avo.getUserAddr());
-			pstmt.setString(5, avo.getDetailAddr());
-			pstmt.setString(6, avo.getTel());
+			if (avo.getaNum() != 0) {
+				pstmt = conn.prepareStatement(UPDATE);
+				pstmt.setString(1, avo.getShipName());
+				pstmt.setString(2, avo.getDestination());
+				pstmt.setString(3, avo.getZipCode());
+				pstmt.setString(4, avo.getUserAddr());
+				pstmt.setString(5, avo.getDetailAddr());
+				pstmt.setString(6, avo.getTel());
+				pstmt.setString(7, avo.getIsDefault());
+				pstmt.setInt(8, avo.getaNum());
+			} else {
+				pstmt = conn.prepareStatement(UPDATE_DEFAULT);
+				pstmt.setInt(1, avo.getmNum());
+			}
 
 			int res = pstmt.executeUpdate();
 			if (res <= 0) {

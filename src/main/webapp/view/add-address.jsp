@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +8,7 @@ input[type="text"]::-ms-clear {
 	display: none;
 }
 
-input:-ms-input-placeholder, input::-webkit-input-placeholder, input::-moz-placeholder,
-	textarea:-ms-input-placeholder, textarea::-webkit-input-placeholder,
-	textarea::-moz-placeholder {
+input:-ms-input-placeholder, input::-webkit-input-placeholder, input::-moz-placeholder, textarea:-ms-input-placeholder, textarea::-webkit-input-placeholder, textarea::-moz-placeholder {
 	color: #cccccc;
 }
 
@@ -183,8 +180,7 @@ textarea {
 .left_table_type .important {
 	padding: 0 0 0 10px;
 	margin: 0 0 0 -10px;
-	background: url('../../../img/member/icon_dot_03.png') no-repeat 0
-		center;
+	background: url('../../../img/member/icon_dot_03.png') no-repeat 0 center;
 }
 
 .join-agreement-content .form-element em {
@@ -287,9 +283,7 @@ textarea {
 	min-width: 20px;
 	min-height: 20px;
 	padding: 0 0 0 27px;
-	background:
-		url("https://www.boardgamemall.co.kr/data/skin/front/natural_C/img/common/input/check_off.png")
-		no-repeat 1px top;
+	background: url("https://www.boardgamemall.co.kr/data/skin/front/natural_C/img/common/input/check_off.png") no-repeat 1px top;
 }
 
 .join-agreement-content .form-element span {
@@ -301,9 +295,7 @@ textarea {
 	padding: 0 10px 0 5px;
 	color: #181818;
 	font-size: 12px;
-	background:
-		url("https://www.boardgamemall.co.kr/data/skin/front/natural-C/img/member/icon-arrow-03.png")
-		no-repeat right center;
+	background: url("https://www.boardgamemall.co.kr/data/skin/front/natural-C/img/member/icon-arrow-03.png") no-repeat right center;
 	text-decoration: underline;
 }
 
@@ -322,8 +314,7 @@ textarea {
 	margin: 35px 0 0 0;
 }
 
-.base-info-section table th:first-child, .base-info-section table td:first-child
-	{
+.base-info-section table th:first-child, .base-info-section table td:first-child {
 	border-left: none;
 }
 
@@ -374,9 +365,7 @@ input[type="text"], input[type="password"] {
 }
 
 .join-base-wrap .important {
-	background:
-		url("https://www.boardgamemall.co.kr/data/skin/front/natural_C/img/member/icon_dot_03.png")
-		no-repeat 0 center;
+	background: url("https://www.boardgamemall.co.kr/data/skin/front/natural_C/img/member/icon_dot_03.png") no-repeat 0 center;
 }
 
 .base-info-section table .form-element {
@@ -433,8 +422,7 @@ input[type="button"] {
 	cursor: pointer;
 }
 
-.btn-center-box button+button, .btn-left-box button+button,
-	.btn-right-box button+button {
+.btn-center-box button+button, .btn-left-box button+button, .btn-right-box button+button {
 	margin-left: 6px;
 }
 
@@ -471,8 +459,7 @@ input[type="button"] {
 	font-size: 14px;
 }
 
-.side_cont .sub_menu_box .sub_menu_mypage a:hover, .side_cont .sub_menu_box .sub_menu_mypage .active
-	{
+.side_cont .sub_menu_box .sub_menu_mypage a:hover, .side_cont .sub_menu_box .sub_menu_mypage .active {
 	font-weight: bold;
 	background: #f8f8f8;
 	color: #212121;
@@ -519,8 +506,7 @@ input[type="button"] {
 	font-size: 14px;
 }
 
-.side_cont .sub_menu_box .sub_menu a:hover, .side_cont .sub_menu_box .sub_menu .active
-	{
+.side_cont .sub_menu_box .sub_menu a:hover, .side_cont .sub_menu_box .sub_menu .active {
 	font-weight: bold;
 	background: #f8f8f8;
 	color: #212121;
@@ -540,23 +526,21 @@ input[type="button"] {
 }
 
 .sub_menu_box_tit {
-	color:#ffffff;
-	background-color:#0188CB;
-	padding-top:15px;
-	padding-bottom:15px;
-	padding-left:15px;
+	color: #ffffff;
+	background-color: #0188CB;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
 }
 
 .sub_menu_box_tit h2 {
-	font-size:18px;
+	font-size: 18px;
 }
 
 /* CSS Document */
 
 /* reset */
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
-	form, fieldset, legend, textarea, p, blockquote, th, td, input, select,
-	textarea, button {
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
 	margin: 0;
 	padding: 0
 }
@@ -617,61 +601,43 @@ address, caption, cite, code, dfn, em, var {
 	font-family: 'SUIT';
 	font-weight: 500;
 	font-style: normal;
-	src:
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot');
-	src:
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot?#iefix')
-		format('embedded-opentype'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff2')
-		format('woff2'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff')
-		format('woff'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.ttf')
-		format("truetype");
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot');
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot?#iefix') format('embedded-opentype'), url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff2') format('woff2'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff') format('woff'), url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.ttf') format("truetype");
 	font-display: swap;
 }
 
 @font-face {
 	font-family: 'NEXON Lv1 Gothic OTF';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'NEXON Lv2 Gothic';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'GmarketSansLight';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'GmarketSansMedium';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'GmarketSansBold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -931,25 +897,25 @@ address, caption, cite, code, dfn, em, var {
 }
 
 #emailDomain, #find_address {
-    width: 20%;
-    height: 31px;
-    border: 1px solid #0188CB;
-    border-image: initial;
-    border-radius: 2px;
-    margin-left:10px;
+	width: 20%;
+	height: 31px;
+	border: 1px solid #0188CB;
+	border-image: initial;
+	border-radius: 2px;
+	margin-left: 10px;
 }
 
 #find_address:hover {
-	background-color:#0188CB;
-	color:white;
+	background-color: #0188CB;
+	color: white;
 }
 
 label[for="defaultFl"] {
 	position: relative;
 	top: -1.2px;
-	margin-left: 10px; 
+	margin-left: 10px;
 	font-family: "GmarketSansLight";
-	font-size:13px;
+	font-size: 13px;
 }
 
 .text_warning {
@@ -965,27 +931,25 @@ label[for="defaultFl"] {
 .hidden {
 	display: none;
 }
-
 </style>
 
-<%@include file="common/header.jsp" %>
+<%@include file="common/header.jsp"%>
 
-	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92"
-		style="background-image: url('/ModooShop/images/bg-img-01.png');">
-		<h2 class="ltext-105 cl0 txt-center">배송지 관리</h2>
-	</section>
-
-
-	<!-- Content page -->
-	<section class="bg0 p-t-62 p-b-60">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-80 p-r-50">
+<!-- Title page -->
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/ModooShop/images/bg-img-01.png');">
+	<h2 class="ltext-105 cl0 txt-center">배송지 관리</h2>
+</section>
 
 
+<!-- Content page -->
+<section class="bg0 p-t-62 p-b-60">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-lg-9 p-b-80 p-r-50">
+
+				<form action="addAddress.do" method="post" onsubmit="return addSubmit();">
 					<div class="member-title">
-						<h2>나의 배송지 관리</h2>
+						<h2>새로운 배송지 추가</h2>
 					</div>
 
 					<div class="ly_cont">
@@ -998,46 +962,52 @@ label[for="defaultFl"] {
 									</colgroup>
 									<tbody>
 										<tr>
-											<th scope="row"><span class="important">배송지이름</span></th>
-											<td><input type="text" name="shippingTitle" value=""
-												required></td>
-										</tr>
-										<tr>
-											<th scope="row"><span class="important">받으실 분</span></th>
-											<td><input type="text" name="shippingName"
-												maxlength="20" value=""></td>
-										</tr>
-										<tr>
-											<th scope="row"><span class="important">받으실 곳</span></th>
-											<td class="member_address">
-													<div class="address_postcode find_address">
-														<input type="text" name="zonecode" id="sample3_postcode" placeholder="우편번호" value="" required> 
-														<input type="button" id="find_address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required>
-													</div>
-													<div id="wrapPost" style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
-														<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" 
-															 style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
-															 onclick="foldDaumPostcode()" alt="접기 버튼">
-													</div>
-													<div class="address_input detailed_address">
-														<div class="member_warning">
-															<input type="text" name="address" id="sample3_address"
-																placeholder="주소" value="" required>
-														</div>
-														<div class="member_warning js_address_sub">
-															<input type="text" name="addressSub" id="sample3_detailAddress" placeholder="상세주소" value="" required> 
-															<input type="text" id="sample3_extraAddress" placeholder="참고항목">
-														</div>
-													</div>
+											<th scope="row">
+												<span class="important">배송지이름</span>
+											</th>
+											<td>
+												<input type="text" name="destination" value="" required>
 											</td>
 										</tr>
 										<tr>
-											<th scope="row"><span class="important">전화번호</span></th>
+											<th scope="row">
+												<span class="important">받으실 분</span>
+											</th>
+											<td>
+												<input type="text" name="shipName" maxlength="20" value="" required>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">
+												<span class="important">받으실 곳</span>
+											</th>
+											<td class="member_address">
+												<div class="address_postcode find_address">
+													<input type="text" name="zipCode" id="sample3_postcode" placeholder="우편번호" value="" required>
+													<input type="button" id="find_address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required>
+												</div>
+												<div id="wrapPost" style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
+													<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1" onclick="foldDaumPostcode()"
+														alt="접기 버튼">
+												</div>
+												<div class="address_input detailed_address">
+													<div class="member_warning">
+														<input type="text" name="userAddr" id="sample3_address" placeholder="주소" value="" required>
+													</div>
+													<div class="member_warning js_address_sub">
+														<input type="text" name="detailAddr" id="sample3_detailAddress" placeholder="상세주소" value="" required>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">
+												<span class="important">전화번호</span>
+											</th>
 											<td>
 												<div class="address_postcode">
-													<input type="text" id="cellPhone" name="cellPhone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="" required>
-													<div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
-													</div>
+													<input type="text" id="cellPhone" name="tel" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="" required>
+													<div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
 												</div>
 												<div id="memPn-hyphen-error" class="text_warning hidden">-없이 입력해주세요.</div>
 												<div id="memPn-error" class="text_warning hidden">핸드폰 번호를 확인해주세요.</div>
@@ -1048,233 +1018,187 @@ label[for="defaultFl"] {
 							</div>
 							<br>
 							<div class="form_element" style="display: flex">
-								<input type="checkbox" id="defaultFl" name="defaultFl" value="y"
-									class="checkbox"> 
-								<label for="defaultFl"><b>기본 배송지로 설정 합니다.</b></label>
+								<input type="checkbox" id="defaultFl" name="defaultFl" value="y" class="checkbox">
+								<label for="defaultFl">
+									<b>기본 배송지로 설정 합니다.</b>
+								</label>
 							</div>
 						</div>
 
 						<!-- //scroll_box -->
 						<div class="btn_center_box">
-							<button type="button" class="btn-member-prev"
-								onclick="return con();">
+							<button type="button" class="btn-member-prev" onclick="location.href='manageAddress.do'">
 								<strong>취소</strong>
 							</button>
-							<button type="submit" class="btn-member-next"
-								onclick="return ch();">
+							<button type="submit" class="btn-member-next">
 								<strong>저장</strong>
 							</button>
 						</div>
 					</div>
 
 					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-							<script>
-									// 우편번호 찾기 찾기 화면을 넣을 element
-									var element_wrap = document
-										.getElementById('wrapPost');
+					<script>
+						// 우편번호 찾기 찾기 화면을 넣을 element
+						var element_wrap = document.getElementById('wrapPost');
 
-									function foldDaumPostcode() {
-										// iframe을 넣은 element를 안보이게 한다.
-										element_wrap.style.display = 'none';
+						function foldDaumPostcode() {
+							// iframe을 넣은 element를 안보이게 한다.
+							element_wrap.style.display = 'none';
+						}
+
+						function sample3_execDaumPostcode() {
+							// 현재 scroll 위치를 저장해놓는다.
+							var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+							new daum.Postcode({
+								oncomplete : function(data) {
+									// 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+									// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+									// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+									var addr = ''; // 주소 변수
+
+									//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+									if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+										addr = data.roadAddress;
+									} else { // 사용자가 지번 주소를 선택했을 경우(J)
+										addr = data.jibunAddress;
 									}
 
-									function sample3_execDaumPostcode() {
-										// 현재 scroll 위치를 저장해놓는다.
-										var currentScroll = Math.max( document.body.scrollTop, document.documentElement.scrollTop);
-										new daum.Postcode(
-											{
-												oncomplete: function (data) {
-													// 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+									// 우편번호와 주소 정보를 해당 필드에 넣는다.
+									document.getElementById('sample3_postcode').value = data.zonecode;
+									document.getElementById("sample3_address").value = addr;
+									// 커서를 상세주소 필드로 이동한다.
+									document.getElementById("sample3_detailAddress").value = "";
+									document.getElementById("sample3_detailAddress").focus();
 
-													// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-													// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-													var addr = ''; // 주소 변수
-													var extraAddr = ''; // 참고항목 변수
+									// iframe을 넣은 element를 안보이게 한다.
+									// (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+									element_wrap.style.display = 'none';
 
-													//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-													if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-														addr = data.roadAddress;
-													} else { // 사용자가 지번 주소를 선택했을 경우(J)
-														addr = data.jibunAddress;
-													}
+									// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
+									document.documentElement.scrollTop = currentScroll;
+								},
+								// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
+								onresize : function(size) {
+									element_wrap.style.height = size.height + 'px';
+								},
+								width : '100%',
+								height : '100%'
+							}).embed(element_wrap);
 
-													// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-													if (data.userSelectedType === 'R') {
-														// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-														// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-														if (data.bname !== ''
-															&& /[동|로|가]$/g
-																.test(data.bname)) {
-															extraAddr += data.bname;
-														}
-														// 건물명이 있고, 공동주택일 경우 추가한다.
-														if (data.buildingName !== ''
-															&& data.apartment === 'Y') {
-															extraAddr += (extraAddr !== '' ? ', '
-																+ data.buildingName
-																: data.buildingName);
-														}
-														// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-														if (extraAddr !== '') {
-															extraAddr = ' ('
-																+ extraAddr
-																+ ')';
-														}
-														// 조합된 참고항목을 해당 필드에 넣는다.
-														document
-															.getElementById("sample3_extraAddress").value = extraAddr;
+							// iframe을 넣은 element를 보이게 한다.
+							element_wrap.style.display = 'block';
+						}
+					</script>
+				</form>
+			</div>
+			<div class="col-md-4 col-lg-3 p-b-80">
+				<div class="side-menu">
+					<div class="sub_content">
+						<div class="side_cont">
+							<span class="btn_side_mobile"></span>
+							<div class="sub_menu_box">
+								<div class="sub_menu_box_tit">
+									<h2>
+										<i class="fa fa-bars m-r-10"></i>
+										마이페이지
+									</h2>
 
-													} else {
-														document
-															.getElementById("sample3_extraAddress").value = '';
-													}
-
-													// 우편번호와 주소 정보를 해당 필드에 넣는다.
-													document.getElementById('sample3_postcode').value = data.zonecode;
-													document.getElementById("sample3_address").value = addr;
-													// 커서를 상세주소 필드로 이동한다.
-													document.getElementById("sample3_detailAddress").focus();
-
-													// iframe을 넣은 element를 안보이게 한다.
-													// (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
-													element_wrap.style.display = 'none';
-
-													// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-													document.documentElement.scrollTop = currentScroll;
-												},
-												// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
-												onresize: function (size) {
-													element_wrap.style.height = size.height
-														+ 'px';
-												},
-												width: '100%',
-												height: '100%'
-											}).embed(element_wrap);
-
-										// iframe을 넣은 element를 보이게 한다.
-										element_wrap.style.display = 'block';
-									}
-								</script>
-
-
-
-				</div>
-
-				<div class="col-md-4 col-lg-3 p-b-80">
-					<div class="side-menu">
-
-
-						<div class="sub_content">
-
-							<div class="side_cont">
-								<span class="btn_side_mobile"></span>
-								<div class="sub_menu_box">
-									<div class="sub_menu_box_tit">
-										<h2>
-											<i class="fa fa-bars m-r-10"></i>마이페이지
-										</h2>
-
-									</div>
-									<ul class="sub_menu_mypage">
-										<li>쇼핑정보
-											<ul class="sub_depth1">
-												<li><a href="order-list.html">- 주문목록/배송조회</a></li>
-												<li><a href="cancel-list.html">- 취소 내역</a></li>
-												<li><a href="dibs-list.html">- 찜리스트</a></li>
-											</ul>
-										</li>
-										<li>회원정보
-											<ul class="sub_depth1">
-												<li><a href="change-inform.html">- 회원정보 변경</a></li>
-												<li><a href="withdrawal.html">- 회원 탈퇴</a></li>
-												<li><a href="manage-address.html">- 배송지 관리</a></li>
-											</ul>
-										</li>
-									</ul>
 								</div>
+								<ul class="sub_menu_mypage">
+									<li>
+										쇼핑정보
+										<ul class="sub_depth1">
+											<li>
+												<a href="order-list.html">- 주문목록/배송조회</a>
+											</li>
+											<li>
+												<a href="cancel-list.html">- 취소 내역</a>
+											</li>
+											<li>
+												<a href="dibs-list.html">- 찜리스트</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										회원정보
+										<ul class="sub_depth1">
+											<li>
+												<a href="change-inform.html">- 회원정보 변경</a>
+											</li>
+											<li>
+												<a href="withdrawal.html">- 회원 탈퇴</a>
+											</li>
+											<li>
+												<a href="manage-address.html">- 배송지 관리</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
 
 
-	<%@include file="common/footer.jsp" %>
+<%@include file="common/footer.jsp"%>
 
-	<!--===============================================================================================-->
-	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/animsition/js/animsition.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/bootstrap/js/popper.js"></script>
-	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/select2/select2.min.js"></script>
-	<script>
-		$(".js-select2").each(function() {
-			$(this).select2({
-				minimumResultsForSearch : 20,
-				dropdownParent : $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
-	<!--===============================================================================================-->
-	<script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function() {
-			$(this).css('position', 'relative');
-			$(this).css('overflow', 'hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed : 1,
-				scrollingThreshold : 1000,
-				wheelPropagation : false,
-			});
-
-			$(window).on('resize', function() {
-				ps.update();
-			})
+<!--===============================================================================================-->
+<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/bootstrap/js/popper.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/select2/select2.min.js"></script>
+<script>
+	$(".js-select2").each(function() {
+		$(this).select2({
+			minimumResultsForSearch : 20,
+			dropdownParent : $(this).next('.dropDownSelect2')
 		});
-	</script>
-	<!--===============================================================================================-->
-	<script src="../js/main.js"></script>
+	})
+</script>
+<!--===============================================================================================-->
+<script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
+	$('.js-pscroll').each(function() {
+		$(this).css('position', 'relative');
+		$(this).css('overflow', 'hidden');
+		var ps = new PerfectScrollbar(this, {
+			wheelSpeed : 1,
+			scrollingThreshold : 1000,
+			wheelPropagation : false,
+		});
 
+		$(window).on('resize', function() {
+			ps.update();
+		})
+	});
+</script>
+<!--===============================================================================================-->
+<script src="../js/main.js"></script>
 </body>
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	function ch() {
-		var result = confirm("저장 하시겠습니까?");
+	let phoneCheck = true;
 
-		if (result) {
-			alert("저장되었습니다!")
-			return true;
-		} else {
-			return false;
-		}
-	}
+	$(document).ready(function() {
+		console.log($('#defaultFl').val());
 
-	function con() {
-		var result = confirm("정말 취소하시겠습니까?");
-
-		if (result) {
-			alert("취소합니다!")
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	$(document).ready(function () {
 		/* 체크박스 토글 */
-		$('.check_s').click(function () {
+		$('.check_s').click(function() {
 			$(this).toggleClass("on");
 		});
-
 
 		/* 휴대폰 정규식 */
 		// 01X
@@ -1284,14 +1208,14 @@ label[for="defaultFl"] {
 		// 십진수 4자
 		const phoneCheckTrd = /^\d{4}$/m
 
-		$('#cellPhone').focusout(function () {
+		$('#cellPhone').focusout(function() {
 			let phone = $('#cellPhone').val();
 			// 앞(01X) 중간(3 or 4) 뒤(4)
 			let fst, snd, trd;
 			// '-' 놉!
 			if (/\-/m.test(phone)) {
 				$('#memPn-hyphen-error').removeClass('hidden');
-				return false;
+				phoneCheck = false;
 			} else if (phone.length == 11) { // 11자면
 				$('#memPn-hyphen-error').addClass('hidden');
 				fst = phone.slice(0, 3);
@@ -1306,13 +1230,32 @@ label[for="defaultFl"] {
 
 			if (!phoneCheckFst.test(fst) || !phoneCheckSnd.test(snd) || !phoneCheckTrd.test(trd)) {
 				$('#memPn-error').removeClass('hidden');
-				return false;
+				phoneCheck = false;
+				return;
 			} else {
 				$('#memPn-error').addClass('hidden');
+				phoneCheck = true;
 			}
 		});
 
 	});
+
+	function addSubmit() {
+		if (phoneCheck) {
+			if (confirm("배송지를 추가하겠습니까?")) {
+				alert("저장되었습니다!");
+				return true;
+			} else {
+				alert("취소되었습니다.");
+				location.reload();
+				return false;
+			}
+		} else {
+			alert("입력 조건을 확인해주세요.");
+			console.log("전화번호" + phoneCheck);
+			return false;
+		}
+	}
 </script>
 
 

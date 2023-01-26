@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,33 +12,26 @@
 	padding: 0 0 0 40px;
 }
 
-#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth1
-	{
+#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth1 {
 	right: 200px;
 }
 
-#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth2
-	{
+#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth2 {
 	right: 160px;
 }
 
-#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth3
-	{
+#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth3 {
 	right: 160px;
 }
 
-#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth4
-	{
+#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth4 {
 	right: 160px;
 }
-
 
 /* CSS Document */
 
 /* reset */
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
-	form, fieldset, legend, textarea, p, blockquote, th, td, input, select,
-	textarea, button {
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
 	margin: 0;
 	padding: 0
 }
@@ -79,7 +74,6 @@ body, th, td, input, select, textarea, button {
 	font-family: 'SUIT', sans-serif;
 	color: #333
 } /* color값은 디자인가이드에 맞게사용 */
-
 a {
 	color: #333;
 	text-decoration: none;
@@ -99,61 +93,43 @@ address, caption, cite, code, dfn, em, var {
 	font-family: 'SUIT';
 	font-weight: 500;
 	font-style: normal;
-	src:
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot');
-	src:
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot?#iefix')
-		format('embedded-opentype'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff2')
-		format('woff2'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff')
-		format('woff'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.ttf')
-		format("truetype");
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot');
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot?#iefix') format('embedded-opentype'), url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff2') format('woff2'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff') format('woff'), url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.ttf') format("truetype");
 	font-display: swap;
 }
 
 @font-face {
 	font-family: 'NEXON Lv1 Gothic OTF';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'NEXON Lv2 Gothic';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'GmarketSansLight';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'GmarketSansMedium';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'GmarketSansBold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -219,8 +195,7 @@ address, caption, cite, code, dfn, em, var {
 	font-size: 14px;
 }
 
-.side_cont .sub_menu_box .sub_menu_mypage a:hover, .side_cont .sub_menu_box .sub_menu_mypage .active
-	{
+.side_cont .sub_menu_box .sub_menu_mypage a:hover, .side_cont .sub_menu_box .sub_menu_mypage .active {
 	font-weight: bold;
 	background: #f8f8f8;
 	color: #212121;
@@ -267,8 +242,7 @@ address, caption, cite, code, dfn, em, var {
 	font-size: 14px;
 }
 
-.side_cont .sub_menu_box .sub_menu a:hover, .side_cont .sub_menu_box .sub_menu .active
-	{
+.side_cont .sub_menu_box .sub_menu a:hover, .side_cont .sub_menu_box .sub_menu .active {
 	font-weight: bold;
 	background: #f8f8f8;
 	color: #212121;
@@ -288,17 +262,16 @@ address, caption, cite, code, dfn, em, var {
 }
 
 .sub_menu_box_tit {
-	color:#ffffff;
-	background-color:#0188CB;
-	padding-top:15px;
-	padding-bottom:15px;
-	padding-left:15px;
+	color: #ffffff;
+	background-color: #0188CB;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
 }
 
 .sub_menu_box_tit h2 {
-	font-size:18px;
+	font-size: 18px;
 }
-
 
 /* 배송지 관리 > 새 배송지 추가 */
 .btn_add_shipping {
@@ -508,7 +481,6 @@ address, caption, cite, code, dfn, em, var {
 	color: #181818;
 }
 
-
 .mypage_table_type th .form_element {
 	vertical-align: middle;
 }
@@ -519,7 +491,6 @@ address, caption, cite, code, dfn, em, var {
 	color: #999999;
 	font-size: 11px;
 }
-
 
 .mypage_table_type .row_line td {
 	border-bottom: 1px solid #ebebeb;
@@ -565,198 +536,216 @@ address, caption, cite, code, dfn, em, var {
 }
 
 .btn-correct {
-	width:35px;
-	border-radius:2px;
-	background-color:#0188CB;
-	border:1px solid #0188CB;
-	color:white;
-	text-align:center;
+	width: 35px;
+	border-radius: 2px;
+	background-color: #0188CB;
+	border: 1px solid #0188CB;
+	color: white;
+	text-align: center;
 	padding: 0 2px 0 2px;
 }
 
 .btn-delete {
-	width:35px;
-	border-radius:2px;
-	background-color:#222;
-	border:1px solid #222;
-	color:white;
-	text-align:center;
+	width: 35px;
+	border-radius: 2px;
+	background-color: #222;
+	border: 1px solid #222;
+	color: white;
+	text-align: center;
 	padding: 0 2px 0 2px;
 }
 </style>
 
 <%@include file="common/header.jsp"%>
 
-	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/bg-img-01.png');">
-		<h2 class="ltext-105 cl0 txt-center">배송지 관리</h2>
-	</section>
+<!-- Title page -->
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/bg-img-01.png');">
+	<h2 class="ltext-105 cl0 txt-center">배송지 관리</h2>
+</section>
 
 
-	<!-- Content page -->
-	<section class="bg0 p-t-62 p-b-60">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-80 p-r-50">
+<!-- Content page -->
+<section class="bg0 p-t-62 p-b-60">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-lg-9 p-b-80 p-r-50">
 
 
-					<!-- Content page -->
-					<section class="bg0 p-t-75 p-b-120">
-						<div class="container">
-							<div class="sub-content">
-								<div class="content-box">
-									<div class="join-agreement-wrap">
+				<!-- Content page -->
+				<section class="bg0 p-t-75 p-b-120">
+					<div class="container">
+						<div class="sub-content">
+							<div class="content-box">
+								<div class="join-agreement-wrap">
 
 
-										<div class="mypage_shipping js_delivery_layer">
-											<div class="mypage_zone_tit">
-												<h2>배송지 관리</h2>
-												<span class="pick_list_num m-t-10">배송지 관리 내역 총 <strong>0</strong>건
-												</span>
-											</div>
-
-											<div class="mypage_shipping_cont">
-												<div class="mypage_table_type">
-
-													<table>
-														<colgroup>
-															<col style="width: 20%">
-															<!-- 배송지이름 -->
-															<col style="width: 12%">
-															<!-- 받으실 분 -->
-															<col>
-															<!-- 주소 -->
-															<col style="width: 20%">
-															<!-- 연락처 -->
-															<col style="width: 12%">
-															<!-- 수정/삭제 -->
-														</colgroup>
-														<thead>
-															<tr>
-																<th>배송지이름</th>
-																<th>받으실 분</th>
-																<th>주소</th>
-																<th>연락처</th>
-																<th>수정/삭제</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr data-shipping-name="dsad">
-																<td><span>(기본배송지)</span><strong>서울</strong></td>
-																<td>티모</td>
-																<td>서울특별시 강남구 테헤란로26길 12 스타빌딩</td>
-																<td class="td_phone"><span>휴대폰
-																		: 010-1234-1234</span></td>
-																<td>
-																<button class="btn-correct hov-btn4" onclick="return change(); ">수정</button>  
-																<button class="btn-delete hov-btn4" onclick="return del();">삭제</button></td>
-															</tr>
-															
-														</tbody>
-													</table>
-												</div>
-												<a href="add-address.jsp" class="btn_add_shipping btn_open_layer hov-btn3 m-b-10">+ 새 배송지 추가</a>
-
-											</div>
-											<!-- //mypage_shipping_cont  -->
-											<div class="pagination">
-												<ul></ul>
-											</div>
+									<div class="mypage_shipping js_delivery_layer">
+										<div class="mypage_zone_tit">
+											<h2>배송지 관리</h2>
+											<span class="pick_list_num m-t-10">
+												배송지 관리 내역 총
+												<strong>${fn:length(address) + 1}</strong>
+												건
+											</span>
 										</div>
 
+										<div class="mypage_shipping_cont">
+											<div class="mypage_table_type">
 
+												<table>
+													<colgroup>
+														<col style="width: 20%">
+														<!-- 배송지이름 -->
+														<col style="width: 12%">
+														<!-- 받으실 분 -->
+														<col>
+														<!-- 주소 -->
+														<col style="width: 20%">
+														<!-- 연락처 -->
+														<col style="width: 12%">
+														<!-- 수정/삭제 -->
+													</colgroup>
+													<thead>
+														<tr>
+															<th>배송지이름</th>
+															<th>받으실 분</th>
+															<th>주소</th>
+															<th>연락처</th>
+															<th>수정/삭제</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach var="v" items="${address}">
+															<tr data-shipping-name="dsad">
+																<td>
+																	<c:if test="${v.isDefault == '1'}">
+																		<span>(기본배송지)</span>
+																	</c:if>
+																	<strong>${v.destination}</strong>
+																</td>
+																<td>${v.shipName}</td>
+																<td>${v.userAddr}&nbsp;${v.detailAddr}(${v.zipCode})</td>
+																<td class="td_phone">
+																	<span>${v.tel}</span>
+																</td>
+																<td>
+																	<button class="btn-correct hov-btn4" onclick="return change();">수정</button>
+																	<button class="btn-delete hov-btn4" onclick="return del();">삭제</button>
+																</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+											<a href="add-address.jsp" class="btn_add_shipping btn_open_layer hov-btn3 m-b-10">+ 새 배송지 추가</a>
 
-
+										</div>
+										<!-- //mypage_shipping_cont  -->
+										<div class="pagination">
+											<ul></ul>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</section>
+					</div>
+				</section>
+			</div>
+
+			<div class="col-md-4 col-lg-3 p-b-80">
+				<div class="side-menu">
 
 
+					<div class="sub_content">
 
-				</div>
+						<div class="side_cont">
+							<span class="btn_side_mobile"></span>
+							<div class="sub_menu_box">
+								<div class="sub_menu_box_tit">
+									<h2>
+										<i class="fa fa-bars m-r-10"></i>
+										마이페이지
+									</h2>
 
-				<div class="col-md-4 col-lg-3 p-b-80">
-					<div class="side-menu">
-
-
-						<div class="sub_content">
-
-							<div class="side_cont">
-								<span class="btn_side_mobile"></span>
-								<div class="sub_menu_box">
-									<div class="sub_menu_box_tit">
-										<h2>
-											<i class="fa fa-bars m-r-10"></i>마이페이지
-										</h2>
-
-									</div>
-									<ul class="sub_menu_mypage">
-										<li>쇼핑정보
-											<ul class="sub_depth1">
-												<li><a href="order-list.html">- 주문목록/배송조회</a></li>
-												<li><a href="cancel-list.html">- 취소 내역</a></li>
-												<li><a href="dibs-list.html">- 찜리스트</a></li>
-											</ul>
-										</li>
-										<li>회원정보
-											<ul class="sub_depth1">
-												<li><a href="change-inform.html">- 회원정보 변경</a></li>
-												<li><a href="withdrawal.html">- 회원 탈퇴</a></li>
-												<li><a href="manage-address.html">- 배송지 관리</a></li>
-											</ul>
-										</li>
-									</ul>
 								</div>
+								<ul class="sub_menu_mypage">
+									<li>
+										쇼핑정보
+										<ul class="sub_depth1">
+											<li>
+												<a href="order-list.html">- 주문목록/배송조회</a>
+											</li>
+											<li>
+												<a href="cancel-list.html">- 취소 내역</a>
+											</li>
+											<li>
+												<a href="dibs-list.html">- 찜리스트</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										회원정보
+										<ul class="sub_depth1">
+											<li>
+												<a href="change-inform.html">- 회원정보 변경</a>
+											</li>
+											<li>
+												<a href="withdrawal.html">- 회원 탈퇴</a>
+											</li>
+											<li>
+												<a href="manage-address.html">- 배송지 관리</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
 <%@include file="common/footer.jsp"%>
 
-	<!--===============================================================================================-->
-	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/animsition/js/animsition.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/bootstrap/js/popper.js"></script>
-	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/select2/select2.min.js"></script>
-	<script>
-		$(".js-select2").each(function() {
-			$(this).select2({
-				minimumResultsForSearch : 20,
-				dropdownParent : $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
-	<!--===============================================================================================-->
-	<script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function() {
-			$(this).css('position', 'relative');
-			$(this).css('overflow', 'hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed : 1,
-				scrollingThreshold : 1000,
-				wheelPropagation : false,
-			});
-
-			$(window).on('resize', function() {
-				ps.update();
-			})
+<!--===============================================================================================-->
+<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/bootstrap/js/popper.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/select2/select2.min.js"></script>
+<script>
+	$(".js-select2").each(function() {
+		$(this).select2({
+			minimumResultsForSearch : 20,
+			dropdownParent : $(this).next('.dropDownSelect2')
 		});
-	</script>
-	<!--===============================================================================================-->
-	<script src="../js/main.js"></script>
+	})
+</script>
+<!--===============================================================================================-->
+<script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
+<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
+	$('.js-pscroll').each(function() {
+		$(this).css('position', 'relative');
+		$(this).css('overflow', 'hidden');
+		var ps = new PerfectScrollbar(this, {
+			wheelSpeed : 1,
+			scrollingThreshold : 1000,
+			wheelPropagation : false,
+		});
 
+		$(window).on('resize', function() {
+			ps.update();
+		})
+	});
+</script>
+<!--===============================================================================================-->
+<script src="../js/main.js"></script>
 </body>
 </html>

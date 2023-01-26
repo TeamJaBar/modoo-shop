@@ -18,11 +18,13 @@ public class FrontController extends HttpServlet {
 	}
 
 	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] uri = request.getRequestURI().split("/");
-		// "/"를 기준으로 분리
-		String command = uri[uri.length - 1];
-		// 마지막 index에 있는 값 : 즉 ~.do
-
+		String uri=request.getRequestURI();
+		System.out.println("uri: "+uri);
+		String cp=request.getContextPath() + "/view/";
+		System.out.println("cp: "+cp);
+		String command=uri.substring(cp.length());
+		System.out.println("command: "+command);
+		
 		ActionForward forward = null;
 		if (command.equals("main.do")) {
 			try {
@@ -81,6 +83,18 @@ public class FrontController extends HttpServlet {
 		} else if (command.equals("withdrawal.do")) {
 			try {
 				forward = new WithdrawalAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("manageAddress.do")) {
+			try {
+				forward = new ManageAddressAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("addAddress.do")) {
+			try {
+				forward = new AddAddressAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
