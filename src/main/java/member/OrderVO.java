@@ -11,9 +11,9 @@ public class OrderVO {
 	private String oDetailAddr; // 배송정보: 상세주소
 	private String oTel; // 배송정보: 휴대폰 번호
 	private Date oDate; // 주문 날짜
-	private int oStaus; // 주문상태
-	private int point; // JAVA에서만 저장용으로 사용하는 데이터 : 적립금
-	private int total; // JAVA에서만 저장용으로 사용하는 데이터 : 적립금
+	private int oStatus; // 주문상태
+	private int point; // JAVA에서만 저장용으로 사용하는 데이터 : 포인트
+	private int total; // JAVA에서만 저장용으로 사용하는 데이터 : 금액
 	private String tempDate; // JAVA에서만 저장용으로 사용하는 데이터 : 날짜
 	private int tempCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 주문(상태/일자)별 개수
 	private String pNumPimg; // JAVA에서만 저장용으로 사용하는 데이터 : 이미지
@@ -48,12 +48,12 @@ public class OrderVO {
 		this.oDate = oDate;
 	}
 
-	public int getoStaus() {
-		return oStaus;
+	public int getoStatus() {
+		return oStatus;
 	}
 
-	public void setoStaus(int oStaus) {
-		this.oStaus = oStaus;
+	public void setoStatus(int oStatus) {
+		this.oStatus = oStatus;
 	}
 
 	public String getTempDate() {
@@ -183,8 +183,5 @@ public class OrderVO {
 	public void setTotal(int total) {
 		this.total = total;
 	}
-
-
-	
 
 }
