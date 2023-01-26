@@ -4,7 +4,6 @@
 <html lang="en">
 <head>
 <title>상품목록</title>
-
 	<%@include file="common/header.jsp" %>
 
 	<!-- Product -->
@@ -17,7 +16,7 @@
 						data-filter="*">전체 상품</button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						data-filter=".one">1인 가능</button>
+						data-filter=".one">1인 가능 </button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
 						data-filter=".two">2인 추천</button>
@@ -29,7 +28,7 @@
 						<i
 							class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i
-							class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+					  		class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
 						Filter
 					</div>
 
@@ -106,7 +105,8 @@
 
 			<div class="row isotope-grid">
 				<div class="gutter-sizer"></div>
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item one">
+				<c:forEach items="list" var="productDto">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.cateNum }">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
@@ -116,14 +116,15 @@
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
 								Quick View </a>
 						</div>
-
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
+								<!-- <a href="product-detail.html"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									방방곡곡 세계유량 </a> <span class="stext-105 cl3"> 16,320원 </span>
+									 </a> --> 
+									 <input type="submit" hidden>
+									 <div name="pName">${product.pName}</div><span class="stext-105 cl3"> ${product.selPrice}원 </span>
 							</div>
-
+							
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
@@ -136,345 +137,7 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item two">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/18/07/27/1000006170/1000006170_main_068.jpg"
-								width="180" alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 꼬마
-									유령의 비밀통로 </a> <span class="stext-105 cl3"> 14,850원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item one">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/19/01/02//1000006493/modify_main_084.jpg"
-								alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									큐비즈 </a> <span class="stext-105 cl3"> 20,200원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item two">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/28//1000007205/modify_main_043.jpg"
-								alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									모두의마블 메가디럭스/보드게임 </a> <span class="stext-105 cl3"> 52,500원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> 
-									<img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item one">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/29//1000007239/modify_main_063.jpg"
-								width="180" alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									방방곡곡 세계유량 </a> <span class="stext-105 cl3"> 16,320원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item two">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/18/07/27/1000006170/1000006170_main_068.jpg"
-								width="180" alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 꼬마
-									유령의 비밀통로 </a> <span class="stext-105 cl3"> 14,850원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item world">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/19/01/02//1000006493/modify_main_084.jpg"
-								alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									큐비즈 </a> <span class="stext-105 cl3"> 20,200원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item one">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/28//1000007205/modify_main_043.jpg"
-								alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									모두의마블 메가디럭스/보드게임 </a> <span class="stext-105 cl3"> 52,500원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item two">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/29//1000007239/modify_main_063.jpg"
-								width="180" alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									방방곡곡 세계유량 </a> <span class="stext-105 cl3"> 16,320원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item one">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/18/07/27/1000006170/1000006170_main_068.jpg"
-								width="180" alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"> 꼬마
-									유령의 비밀통로 </a> <span class="stext-105 cl3"> 14,850원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item two">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/19/01/02//1000006493/modify_main_084.jpg"
-								alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									큐비즈 </a> <span class="stext-105 cl3"> 20,200원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item one">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img
-								src="https://cdn-pro-web-251-104-godomall.spdycdn.net/boardgtr9139_godomall_com/data/goods/20/07/28//1000007205/modify_main_043.jpg"
-								alt="IMG-PRODUCT"> <a href="#"
-								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn3 p-lr-15 trans-04 js-show-modal1">
-								Quick View </a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									모두의마블 메가디럭스/보드게임 </a> <span class="stext-105 cl3"> 52,500원 </span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#"
-									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04"
-									src="/ModooShop/images/icons/icon-heart-01.png" alt="ICON"> <img
-									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="/ModooShop/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
+			</c:forEach>
 			</div>
 
 			<!-- Load more 
@@ -560,20 +223,21 @@
 								<tr>
 									<td>정가</td>
 									<td colspan="2"><del>
-											<span>40,000</span>원
+											<span>${product.fixPrice}</span>원
 										</del></td>
 								</tr>
+								
 								<tr>
 									<td>판매가</td>
-									<td colspan="2" class="item_price"><span id="price">26,400</span>원</td>
+									<td colspan="2" class="item_price"><span id="price">${product.selPrice}</span>원</td>
 								</tr>
 								<tr>
 									<td>게임 인원</td>
-									<td colspan="2">2~4명</td>
+									<td colspan="2">${product.rePerson}명</td>
 								</tr>
 								<tr>
 									<td>게임 연령</td>
-									<td colspan="2">8세이상</td>
+									<td colspan="2">${product.reAge}세이상</td>
 								</tr>
 								<tr>
 									<td>배송비</td>
@@ -597,7 +261,7 @@
 										</div>
 									</td>
 									<td>결제 예정금액</td>
-									<td><span id="totalPrice">26,400</span>원</td>
+									<td><span id="totalPrice">${product.price}</span>원</td>
 								</tr>
 
 							</table>
@@ -607,14 +271,14 @@
 							<!--  -->
 							<div class="p-t-33">
 								<div class="row flex-c">
-									<button
+									<button onclick="function addCart()"
 										class="flex-c-m m-r-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-detail">
 										장바구니</button>
-									<button
+									<button onclick="function addDib()"
 										class="flex-c-m m-lr-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-detail">
 										찜하기</button>
-									<button
-										class="flex-c-m m-l-10 stext-104 cl0 size-105 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">
+									<button type="submit" onclick="function order()"
+										class="flex-c-m m-l-10 stext-104 cl0 size-105 bg1 bor20 hov-btn1 p-lr-15 trans-04 " type="submit">
 										결제하기</button>
 								</div>
 							</div>
@@ -635,6 +299,20 @@
 		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 		<!--===============================================================================================-->
 		<script src="../vendor/select2/select2.min.js"></script>
+		<script>
+	function order(pNum,pCnt){
+		location.href="shOrder.do?pNum=${product.pNum}&pcnt=${product.pCnt}"
+	}
+	
+	function addDib(pNum){
+		location.href="dib.do?pNum=${product.pNum}"
+	}
+	
+	function addCart(pNum){
+		location.href="shopping.do?pNum=${product.pNum}&pcnt=${product.pNum}"
+	}
+	
+	</script>
 		<script>
 			$(".js-select2").each(function() {
 				$(this).select2({
@@ -682,7 +360,7 @@
 						var nameProduct = $(this).parent().parent().find(
 								'.js-name-b2').html();
 						$(this).on(
-								'click',
+								'click', 
 								function() {
 									swal(nameProduct, "is added to wishlist !",
 											"success");
