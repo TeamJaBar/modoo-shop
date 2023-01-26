@@ -278,7 +278,7 @@
 												<a href="withdrawal.html">- 회원 탈퇴</a>
 											</li>
 											<li>
-												<a href="manage-address.html">- 배송지 관리</a>
+												<a href="manageAddress.do">- 배송지 관리</a>
 											</li>
 										</ul>
 									</li>
