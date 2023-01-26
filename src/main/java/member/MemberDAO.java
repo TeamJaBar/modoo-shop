@@ -17,7 +17,7 @@ public class MemberDAO {
 	final String INSERT_KAKAO = "INSERT INTO MEMBER VALUES(MNUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, 0, ?, ?, ?, (SELECT SYSDATE FROM DUAL), ?)";
 	// final String SELECTONE_LOGIN = "SELECT MNUM, MID, MPW, MNAME, MEMAIL, MTEL,
 	// MPOINT, ZIPCODE, USERADDR, DETAILADDR FROM MEMBER WHERE MID=? AND MPW=?";
-	final String SELECTONE_LOGIN = "SELECT MID, MNAME FROM MEMBER WHERE MID=? AND MPW=?";
+	final String SELECTONE_LOGIN = "SELECT MNUM, MID, MNAME FROM MEMBER WHERE MID=? AND MPW=?";
 	final String SELECTONE_INFO = "SELECT MNUM, MID, MPW, MNAME, MEMAIL, MTEL, MPOINT, ZIPCODE, USERADDR, DETAILADDR FROM MEMBER WHERE MID=?";
 	final String SELECTONE_ID = "SELECT MID FROM MEMBER WHERE MNAME=? AND MEMAIL=?";
 	final String SELECTONE_IDCHK = "SELECT MID FROM MEMBER WHERE MID=?";
@@ -119,6 +119,7 @@ public class MemberDAO {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new MemberVO();
+				data.setmNum(rs.getInt("MNUM"));
 				data.setmId(rs.getNString("MID"));
 				data.setmName(rs.getNString("MNAME"));
 			}
