@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,6 +12,7 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 <link href="../../css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -156,28 +157,25 @@
 									<div class="control-group">
 										<label class="control-label" for="textarea2">상품상세설명</label>
 										<div class="controls">
-											<textarea class="form-control textarea" id="classic" name="infoImg" value="${product.infoImg}"></textarea>
+											<textarea class="form-control textarea" id="classic" name="infoImg">${product.infoImg}</textarea>
 											<p></p>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="select01">카테고리</label>
 											<div class="controls">
-												<select id="select01" class="chzn-select">
-													<option>대분류</option>
-													<option>카드게임</option>
-													<option>두뇌</option>
-													<option>전략</option>
-													<option>완구/퍼즐</option>
+												<select id="lageSelect">
+													<option value=0>대분류</option>
+													<c:forEach var="lCate" items="${lcList}">
+														<option value='${lCate.cateNum}'>${lCate.cateL}</option>
+													</c:forEach>
 												</select>
 												<p></p>
 											</div>
 											<div class="controls">
-												<select id="select01" class="chzn-select">
-													<option>중분류</option>
-													<option>카드게임</option>
-													<option>두뇌</option>
-													<option>전략</option>
-													<option>완구/퍼즐</option>
+												<select id="middleSelect">
+													<c:forEach var="mCate" items="${mcList}">
+														<option value="${mCate.cateNum}" class="${mCate.cateNum}">${mCate.cateM}</option>
+													</c:forEach>
 												</select>
 												<p></p>
 											</div>
@@ -185,7 +183,7 @@
 										<div class="control-group">
 											<label class="control-label" for="fileInput">상품이미지등록</label>
 											<div class="controls">
-												<input class="input-file uniform_on" id="fileInput" type="file" name="pImg" value="${product.pImg}"/>
+												<input class="input-file uniform_on" id="fileInput" type="file" name="pImg" value="${product.pImg}" />
 												<P></P>
 											</div>
 										</div>
@@ -250,4 +248,29 @@
         }
     }
 </script>
+<script>
+        ClassicEditor
+            .create( document.querySelector( '#classic' ))
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+<script type="text/javascript">
+var malls = false;
+
+function update_selected() {
+  $("#middleSelect").val(0);
+  $("#middleSelect").find("option[value%100!=0]").detach();
+
+  $("#middleSelect").append(malls.filter($(this).val()));
+}
+
+$(function() {
+  malls = $("#middleSelect").find("option[value%100!=0]");
+  malls.detach();
+
+  $("#lageSelect").change(update_selected);
+  $("#lageSelect").trigger("change");
+});
+    </script>
 </html>
