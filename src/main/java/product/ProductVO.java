@@ -23,6 +23,7 @@ public class ProductVO {
 	private int FilterSortBy; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 sortBy
 	private int FilterPrice; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 price
 	private int FilterTags; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 tags
+	private int pageCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 더보기
 
 	public int getpNum() {
 		return pNum;
@@ -174,6 +175,14 @@ public class ProductVO {
 
 	public void setDib(int dib) {
 		this.dib = dib;
+	}
+
+	public int getPageCnt() {
+		return pageCnt;
+	}
+
+	public void setPageCnt(int pageCnt) {
+		this.pageCnt = pageCnt;
 	}
 
 }
