@@ -28,6 +28,7 @@ public class LoginAction implements Action {
 			request.setAttribute("url", "login.jsp");
 			forward.setPath("alert.jsp");			
 		} else {
+			request.getSession().setAttribute("mNum", member.getmNum());
 			request.getSession().setAttribute("mId", member.getmId());
 			request.getSession().setAttribute("mName", member.getmName());
 		}

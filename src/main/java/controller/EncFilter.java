@@ -10,8 +10,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
 /*인코딩 필터*/
-/* .do 요청이 올 때마다 실행 */
-@WebFilter("*.do, *.jsp")
+/* .jsp, .do 요청이 올 때마다 실행 */
+@WebFilter({ "*.jsp", "*.do" })
 public class EncFilter implements Filter {
 
 	private String encoding;
