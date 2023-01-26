@@ -19,8 +19,9 @@ public class OrderDAO {
 	final String SELECTALL_STATUS = "SELECT OSTATUS, COUNT(*) AS CNT FROM MORDER GROUP BY OSTATUS";
 	final String SELECTALL_SALES = "SELECT TO_CHAR(ODATE, 'MM/DD') AS TDATE, SUM(P.SELPRICE*O.CNT) CNT FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND ROWNUM<=14 GROUP BY TO_CHAR(ODATE, 'MM/DD')";
 	// 사용자 페이지
+	final String SELECTONE = "SELECT SUM(P.SELPRICE*OD.CNT) PTOTAL, SUM(P.SELPRICE*OD.CNT)*0.01 STOTAL FROM ORDERDETAIL OD, MORDER O, PRODUCT P WHERE OD.ONUM = O.ONUM AND OD.PNUM=P.PNUM AND O.MNUM=? AND O.ONUM=? AND O.OSTATUS=0"; // 총 결제 금액 및 적립금 
 	final String SELECTALL_PRODUCT = "SELECT PIMG, PNAME, SELPRICE, CNT, (SELPRICE*CNT) TOTAL,((SELPRICE*CNT)*0.01) POINT "
-			+ "FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND MNUM=? AND OSTATUS=0 ORDER BY ODNUM ASC;"; // 주문서작성/결제
+			+ "FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND MNUM=? AND OSTATUS=0 ORDER BY ODNUM ASC;"; // 주문서작성/결제 상품이력
 	final String SELECTALL_ORDER = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  "
 			+ "FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? ORDER BY ODNUM ASC"; // 주문 목록
 	final String SELECTALL_CAN = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  "
@@ -29,6 +30,7 @@ public class OrderDAO {
 			+ "FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS=4 AND MNUM=1 AND M.ODATE BETWEEN SYSDATE-? AND SYSDATE ORDER BY ODNUM ASC"; // 주문목록: 날짜별 검색
 	final String SELECTALL_CAN_CAL = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  "
 			+ "FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? AND M.ODATE BETWEEN SYSDATE-? AND SYSDATE ORDER BY ODNUM ASC"; // 취소목록:날짜별검색
+	final String UPDATE = "UPDATE MORDER SET OSTATUS=? WHERE ONUM=?"; // 주문상태 변경: 0: 주문/결재 전, 1: 배송준비중, 2: 배송중, 3:취소
 
 	public boolean insert(OrderVO ovo) {
 		try {
@@ -67,6 +69,27 @@ public class OrderDAO {
 		return true;
 	}
 
+	public OrderVO selectOne(OrderVO ovo) {
+		OrderVO data = null;
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(SELECTONE);
+			pstmt.setInt(1, ovo.getmNum());
+			pstmt.setInt(2, ovo.getoNum());
+
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				data = new OrderVO();
+				data.setTotal(rs.getInt("PTOTAL"));
+				data.setPoint(rs.getInt("STOTAL"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return data;
+	}
+	
 	public ArrayList<OrderVO> selectAll_ADMIN(OrderVO ovo) {
 		ArrayList<OrderVO> datas = new ArrayList<OrderVO>();
 		conn = JDBCUtil.connect();
@@ -76,7 +99,7 @@ public class OrderDAO {
 			while (rs.next()) {
 				OrderVO data = new OrderVO();
 				data = new OrderVO();
-				data.setoStaus(rs.getInt("OSTATUS"));
+				data.setoStatus(rs.getInt("OSTATUS"));
 				data.setTempCnt(rs.getInt("CNT"));
 				datas.add(data);
 			}
@@ -111,7 +134,7 @@ public class OrderDAO {
 		ArrayList<OrderVO> datas = new ArrayList<OrderVO>();
 		conn = JDBCUtil.connect();
 		try {
-			if (ovo.getoStaus() == 4) {
+			if (ovo.getoStatus() == 4) {
 				if (ovo.getSearchCal() != 0) {
 					pstmt = conn.prepareStatement(SELECTALL_ORDER_CAL);
 					pstmt.setInt(1, ovo.getmNum());
@@ -120,7 +143,7 @@ public class OrderDAO {
 					pstmt = conn.prepareStatement(SELECTALL_ORDER);
 					pstmt.setInt(1, ovo.getmNum());
 				}
-			} else if (ovo.getoStaus() < 4 && ovo.getoStaus() > 0) {
+			} else if (ovo.getoStatus() < 4 && ovo.getoStatus() > 0) {
 				if (ovo.getSearchCal() != 0) {
 					pstmt = conn.prepareStatement(SELECTALL_CAN_CAL);
 					pstmt.setInt(1, ovo.getmNum());
@@ -129,7 +152,7 @@ public class OrderDAO {
 					pstmt = conn.prepareStatement(SELECTALL_CAN);
 					pstmt.setInt(1, ovo.getmNum());
 				}
-			} else if (ovo.getoStaus() == 0) {
+			} else if (ovo.getoStatus() == 0) {
 				pstmt = conn.prepareStatement(SELECTALL_PRODUCT);
 				pstmt.setInt(1, ovo.getmNum());
 			}
@@ -137,10 +160,10 @@ public class OrderDAO {
 			while (rs.next()) {
 				OrderVO data = new OrderVO();
 				data = new OrderVO();
-				if(ovo.getoStaus()!=0) {
+				if (ovo.getoStatus() != 0) {
 					data.setoDate(rs.getDate("ODate"));
 					data.setoNum(rs.getInt("ONUM"));
-					data.setoStaus(rs.getInt("OSTATUS"));
+					data.setoStatus(rs.getInt("OSTATUS"));
 				} else {
 					data.setTotal(rs.getInt("TOTAL"));
 					data.setPoint(rs.getInt("POINT"));
@@ -156,6 +179,24 @@ public class OrderDAO {
 		}
 		JDBCUtil.disconnect(conn, pstmt);
 		return datas;
+	}
+
+	public boolean update(OrderVO ovo) {
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(UPDATE);
+			pstmt.setInt(1, ovo.getoStatus());
+			pstmt.setInt(2, ovo.getoNum());
+
+			int res = pstmt.executeUpdate();
+			if (res <= 0) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 }
