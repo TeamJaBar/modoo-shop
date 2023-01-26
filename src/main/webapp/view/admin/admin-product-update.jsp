@@ -166,7 +166,8 @@
 												<select id="lageSelect">
 													<option value=0>대분류</option>
 													<c:forEach var="lCate" items="${lcList}">
-														<option value='${lCate.cateNum}'>${lCate.cateL}</option>
+													<c:if test="${lCate.cateNum/100 == cateNum/100}"><option value='${lCate.cateNum}' selected>${lCate.cateL}</option></c:if>
+													<c:if test="${lCate.cateNum/100 != cateNum/100}"><option value='${lCate.cateNum}' >${lCate.cateL}</option></c:if>
 													</c:forEach>
 												</select>
 												<p></p>
@@ -174,7 +175,9 @@
 											<div class="controls">
 												<select id="middleSelect">
 													<c:forEach var="mCate" items="${mcList}">
-														<option value="${mCate.cateNum}" class="${mCate.cateNum}">${mCate.cateM}</option>
+													<c:if test="${mCate.cateNum==cateNum}"><option value="${mCate.cateNum}" class="${mCate.cateNum}" selected="selected">${mCate.cateM}</option></c:if>
+													<c:if test="${mCate.cateNum!=cateNum}"><option value="${mCate.cateNum}" class="${mCate.cateNum}" >${mCate.cateM}</option></c:if>
+														
 													</c:forEach>
 												</select>
 												<p></p>
