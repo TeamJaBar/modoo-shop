@@ -55,9 +55,9 @@ public class AddressDAO {
 				data = new AddressVO();
 				data.setaNum(rs.getInt("ANUM"));
 				data.setShipName(rs.getString("SHIPNAME"));
-				data.setDestination(rs.getNString("DESTINATION"));
-				data.setZipCode(rs.getNString("ZIPCODE"));
-				data.setUserAddr(rs.getNString("USERADDR"));
+				data.setDestination(rs.getString("DESTINATION"));
+				data.setZipCode(rs.getString("ZIPCODE"));
+				data.setUserAddr(rs.getString("USERADDR"));
 				data.setDetailAddr(rs.getString("DETAILADDR"));
 				data.setTel(rs.getString("TEL"));
 				data.setIsDefault(rs.getString("ISDEFAULT"));
