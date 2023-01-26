@@ -120,8 +120,8 @@ public class MemberDAO {
 			if (rs.next()) {
 				data = new MemberVO();
 				data.setmNum(rs.getInt("MNUM"));
-				data.setmId(rs.getNString("MID"));
-				data.setmName(rs.getNString("MNAME"));
+				data.setmId(rs.getString("MID"));
+				data.setmName(rs.getString("MNAME"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -141,15 +141,15 @@ public class MemberDAO {
 			if (rs.next()) {
 				data = new MemberVO();
 				data.setmNum(rs.getInt("MNUM"));
-				data.setmId(rs.getNString("MID"));
+				data.setmId(rs.getString("MID"));
 				data.setmPw(rs.getString("MPW"));
-				data.setmName(rs.getNString("MNAME"));
-				data.setmEmail(rs.getNString("MEMAIL"));
-				data.setmTel(rs.getNString("MTEL"));
+				data.setmName(rs.getString("MNAME"));
+				data.setmEmail(rs.getString("MEMAIL"));
+				data.setmTel(rs.getString("MTEL"));
 				data.setmPoint(rs.getInt("MPOINT"));
-				data.setZipCode(rs.getNString("ZIPCODE"));
-				data.setUserAddr(rs.getNString("USERADDR"));
-				data.setDetailAddr(rs.getNString("DETAILADDR"));
+				data.setZipCode(rs.getString("ZIPCODE"));
+				data.setUserAddr(rs.getString("USERADDR"));
+				data.setDetailAddr(rs.getString("DETAILADDR"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -173,7 +173,7 @@ public class MemberDAO {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new MemberVO();
-				data.setmId(rs.getNString("MID"));
+				data.setmId(rs.getString("MID"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -192,7 +192,7 @@ public class MemberDAO {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new MemberVO();
-				data.setmEmail(rs.getNString("MEMAIL"));
+				data.setmEmail(rs.getString("MEMAIL"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -211,7 +211,7 @@ public class MemberDAO {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new MemberVO();
-				data.setmEmail(rs.getNString("MEMAIL"));
+				data.setmEmail(rs.getString("MEMAIL"));
 				data.setFindPw(rs.getString("FINDPW"));
 			}
 		} catch (SQLException e) {

@@ -16,17 +16,18 @@ public class ProductDAO {
 
 	final String INSERT = "INSERT INTO PRODUCT VALUES(PNUM_SEQ.NEXTVAL, ?, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)";
 	final String SELECTONE = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE PNUM=?";
-	final String SELECTALL_NEW = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT ORDER BY RDATE DESC";
-	final String SELECTALL_BEST = "SELECT P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT, DECODE(SUM(CNT), NULL, 0, SUM(CNT))  A"
-			+ "FROM PRODUCT P FULL JOIN ORDERDETAIL O ON P.PNUM=O.PNUM" + "GROUP BY P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT"
+	final String SELECTALL_NEW = "SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) ORDER BY RDATE DESC";
+	final String SELECTALL_BEST = "SELECT DIB, P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT, DECODE(SUM(CNT), NULL, 0, SUM(CNT))  A"
+			+ "FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) P FULL JOIN ORDERDETAIL O ON P.PNUM=O.PNUM" + "GROUP BY P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT"
 			+ "ORDER BY A DESC";
-	final String SELECTALL_CATEALL = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE CATENUM BETWEEN ? AND ? ORDER BY RDATE DESC";
-	final String SELECTALL_CATE = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE CATENUM=? ORDER BY RDATE DESC";
-	final String SELECTALL_AGE = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE REAGE BETWEEN ? AND ?";
-	final String SELECTALL = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG, INFOIMG, PRODUCTCNT FROM PRODUCT";
+	final String SELECTALL_CATEALL = "SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) WHERE CATENUM BETWEEN ? AND ? ORDER BY RDATE DESC";
+	final String SELECTALL_CATE = "SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) WHERE CATENUM=? ORDER BY RDATE DESC";
+	final String SELECTALL_AGE = "SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) WHERE REAGE BETWEEN ? AND ?";
+	final String SELECTALL = "SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG, INFOIMG, PRODUCTCNT FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM)";
+	// 카테고리
 	final String SELECTALL_LCATE = "SELECT DISTINCT CATEL, DECODE(MOD(CATENUM, 100) , 0 , CATENUM , CATENUM-MOD(CATENUM, 100)) CATENUM FROM CATEGORY WHERE CATENUM BETWEEN ? AND ?";
 	final String SELECTALL_MCATE = "SELECT CATEL, CATEM, CATENUM FROM CATEGORY WHERE CATEL=?";
-	final String UPDATE = "UPDATE PRODUCT SET CATAENUM=?, PNAME=?, FIXPRICE=?, SELPRICE=?, RDATE=?, REPERSON=?, REAGE=?, BRAND=?, PIMG=?, INFOIMG=?, PRODUCTCNT=? WHERE PNUM=?";
+	final String UPDATE = "UPDATE PRODUCT SET CATAENUM=?, PNAME=?, FIXPRICE=?, SELPRICE=?, REPERSON=?, REAGE=?, BRAND=?, PIMG=?, INFOIMG=?, PRODUCTCNT=? WHERE PNUM=?";
 	final String DELETE = "DELETE FROM PRODUCT WHERE PNUM=?";
 
 	public ProductDAO() {
@@ -94,21 +95,27 @@ public class ProductDAO {
 		try {
 			if (pvo.getCateNum() == 1000) {
 				pstmt = conn.prepareStatement(SELECTALL_NEW);
+				pstmt.setInt(1, pvo.getDib());
 			} else if (pvo.getCateNum() == 1100) {
 				pstmt = conn.prepareStatement(SELECTALL_BEST);
+				pstmt.setInt(1, pvo.getDib());
 			} else if (pvo.getCateNum() == 100) {
 				pstmt = conn.prepareStatement(SELECTALL);
+				pstmt.setInt(1, pvo.getDib());
 			} else if (pvo.getCateNum() > 100 && pvo.getCateNum() < 200) {
 				pstmt = conn.prepareStatement(SELECTALL_AGE);
-				pstmt.setInt(1, pvo.getLowNum());
-				pstmt.setInt(2, pvo.getHighNum());
+				pstmt.setInt(1, pvo.getDib());
+				pstmt.setInt(2, pvo.getLowNum());
+				pstmt.setInt(3, pvo.getHighNum());
 			} else if (pvo.getCateNum() % 100 == 0) {
 				pstmt = conn.prepareStatement(SELECTALL_CATEALL);
-				pstmt.setInt(1, pvo.getLowNum());
-				pstmt.setInt(2, pvo.getHighNum() + 99);
+				pstmt.setInt(1, pvo.getDib());
+				pstmt.setInt(2, pvo.getLowNum());
+				pstmt.setInt(3, pvo.getHighNum() + 99);
 			} else {
 				pstmt = conn.prepareStatement(SELECTALL_CATE);
-				pstmt.setInt(1, pvo.getCateNum());
+				pstmt.setInt(1, pvo.getDib());
+				pstmt.setInt(2, pvo.getCateNum());
 			}
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -318,13 +325,12 @@ public class ProductDAO {
 			pstmt.setString(2, pvo.getpName());
 			pstmt.setInt(3, pvo.getFixPrice());
 			pstmt.setInt(4, pvo.getSelPrice());
-			pstmt.setDate(5, pvo.getrDate());
-			pstmt.setString(6, pvo.getRePerson());
-			pstmt.setInt(7, pvo.getReAge());
-			pstmt.setString(8, pvo.getBrand());
-			pstmt.setString(9, pvo.getpImg());
-			pstmt.setString(10, pvo.getInfoImg());
-			pstmt.setInt(11, pvo.getProductCnt());
+			pstmt.setString(5, pvo.getRePerson());
+			pstmt.setInt(6, pvo.getReAge());
+			pstmt.setString(7, pvo.getBrand());
+			pstmt.setString(8, pvo.getpImg());
+			pstmt.setString(9, pvo.getInfoImg());
+			pstmt.setInt(10, pvo.getProductCnt());
 
 			int res = pstmt.executeUpdate();
 			if (res <= 0) {

@@ -16,6 +16,7 @@ public class ProductVO {
 	private String pImg; // 상품 사진 url
 	private String infoImg; // 상품 상세정보 url
 	private int productCnt; // 재고
+	private int dib; // 좋아요(하트) 1: true, 0, false
 	private int lowNum; // JAVA에서만 저장용으로 사용하는 데이터 : 최저 연령, 최저 가격
 	private int highNum; // JAVA에서만 저장용으로 사용하는 데이터 : 최고 연령, 최고 가격
 	private ArrayList<Integer> check; // JAVA에서만 저장용으로 사용하는 데이터 : 검색 확인
@@ -165,6 +166,14 @@ public class ProductVO {
 
 	public void setFilterTags(int filterTags) {
 		FilterTags = filterTags;
+	}
+
+	public int getDib() {
+		return dib;
+	}
+
+	public void setDib(int dib) {
+		this.dib = dib;
 	}
 
 }
