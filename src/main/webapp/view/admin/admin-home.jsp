@@ -119,7 +119,7 @@
 										<tbody>
 											<tr>
 												<!-- 받아온 데이터로 표시되게 수정 -->
-												<c:set var="order" value="oList.datas"/>
+												<c:set var="order" value="statusList"/>
 												<c:if test="${order.oStaus} == 1">
 												<td>${order.tempCnt}</td>
 												</c:if>
