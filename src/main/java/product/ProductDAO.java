@@ -17,7 +17,7 @@ public class ProductDAO {
 	// C : Product
 	final String INSERT = "INSERT INTO PRODUCT VALUES(PNUM_SEQ.NEXTVAL, ?, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)";
 	// R : Product
-	final String SELECTONE = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM PRODUCT WHERE PNUM=?";
+	final String SELECTONE = "SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) WHERE PNUM=?";
 	final String SELECTALL_NEW = "SELECT * FROM (SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG "
 			+ "FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) ORDER BY RDATE DESC) WHERE ROWNUM<?";
 	final String SELECTALL_BEST = "SELECT * FROM (SELECT DIB, P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT, DECODE(SUM(CNT), NULL, 0, SUM(CNT))  A"
@@ -74,10 +74,12 @@ public class ProductDAO {
 		conn = JDBCUtil.connect();
 		try {
 			pstmt = conn.prepareStatement(SELECTONE);
-			pstmt.setInt(1, pvo.getpNum());
+			pstmt.setInt(1, pvo.getDib());
+			pstmt.setInt(2, pvo.getpNum());
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new ProductVO();
+				data.setDib(rs.getInt("DIB"));
 				data.setpNum(rs.getInt("PNUM"));
 				data.setCateNum(rs.getInt("CATENUM"));
 				data.setpName(rs.getString("PNAME"));
@@ -135,6 +137,7 @@ public class ProductDAO {
 			while (rs.next()) {
 				ProductVO data = new ProductVO();
 				data = new ProductVO();
+				data.setDib(rs.getInt("DIB"));
 				data.setpNum(rs.getInt("PNUM"));
 				data.setCateNum(rs.getInt("CATENUM"));
 				data.setpName(rs.getString("PNAME"));
