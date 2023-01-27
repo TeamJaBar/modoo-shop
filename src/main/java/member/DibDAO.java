@@ -15,7 +15,9 @@ public class DibDAO {
 
 	final String INSERT = "INSERT INTO DIB VALUES(DIBNUM_SEQ.NEXTVAL, ?, ?, 1)";
 	final String SELECTALL = "SELECT D.DIBNUM, P.PNUM, D.MNUM, P.PIMG, P.PNAME, P.SELPRICE, D.DCNT FROM DIB D, PRODUCT P WHERE D.PNUM=P.PNUM AND MNUM=? ORDER BY DIBNUM ASC";
+	final String SELECTONE = "SELECT DIBNUM FROM DIB WHERE MNUM=? AND PNUM=?";
 	final String DELETE = "DELETE FROM DIB WHERE DIBNUM=?";
+	final String DELETE_QUICK = "DELETE FROM DIB WHERE DIBNUM=(SELECT DIBNUM FROM DIB WHERE MNUM=? AND PNUM=?)";
 
 	public boolean insert(DibVO dvo) {
 		try {
@@ -33,6 +35,26 @@ public class DibDAO {
 			JDBCUtil.disconnect(conn, pstmt);
 		}
 		return true;
+	}
+	
+	public DibVO selectOneLogin(DibVO dvo) {
+		DibVO data = null;
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(SELECTONE);
+			pstmt.setInt(1, dvo.getmNum());
+			pstmt.setInt(2, dvo.getpNum());
+
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				data = new DibVO();
+				data.setpNum(rs.getInt("PNUM"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return data;
 	}
 
 	public ArrayList<DibVO> selectAll(DibVO dvo) {
@@ -66,8 +88,14 @@ public class DibDAO {
 	public boolean delete(DibVO dvo) {
 		conn = JDBCUtil.connect();
 		try {
-			pstmt = conn.prepareStatement(DELETE);
-			pstmt.setInt(1, dvo.getDibNum());
+			if(dvo.getpNum()==0) {
+				pstmt = conn.prepareStatement(DELETE);
+				pstmt.setInt(1, dvo.getDibNum());
+			} else {
+				pstmt = conn.prepareStatement(DELETE_QUICK);
+				pstmt.setInt(1, dvo.getmNum());
+				pstmt.setInt(2, dvo.getpNum());
+			}
 			int res = pstmt.executeUpdate();
 			if (res <= 0) {
 				return false;
