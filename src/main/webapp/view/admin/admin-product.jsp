@@ -138,8 +138,7 @@
 									</tr>
 								</tfoot>
 								<tbody>
-									<c:forEach var="productSet" items="${pList}">
-										<c:set var="product" value="${productSet.datas}" />
+									<c:forEach var="product" items="${products}">
 										<tr>
 											<td>${product.pNum}</td>
 											<td>${product.cateNum}</td>
@@ -148,7 +147,7 @@
 											<td>${product.selPrice}</td>
 											<td>${product.productCnt}</td>
 											<td>
-												<a class="btn btn-primary" href="prUpdate.do?mNum='${member}'">변경</a>
+												<a class="btn btn-primary" href="prUpdate.do?pNum='${product.pNum}'">변경</a>
 												<a class="btn btn-danger" onclick="return con();" href="prDelete.do?pNum='${product.pNum}'">삭제</a>
 											</td>
 										</tr>
