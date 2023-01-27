@@ -86,15 +86,27 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("manageAddress.do")) {
+		} else if (command.equals("addrsSelect.do")) {
 			try {
-				forward = new ManageAddressAction().execute(request, response);
+				forward = new AddrsSelectAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("addAddress.do")) {
+		} else if (command.equals("addrsInsert.do")) {
 			try {
-				forward = new AddAddressAction().execute(request, response);
+				forward = new AddrsInsertAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("addrsUpdate.do")) {
+			try {
+				forward = new AddrsUpdateAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("addrsDelete.do")) {
+			try {
+				forward = new AddrsDeleteAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
