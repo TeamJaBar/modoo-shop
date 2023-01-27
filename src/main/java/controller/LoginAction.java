@@ -12,7 +12,7 @@ public class LoginAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		forward.setPath("main.do");
-		forward.setRedirect(false);
+		forward.setRedirect(true);
 
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
@@ -21,12 +21,11 @@ public class LoginAction implements Action {
 		MemberVO member = mdao.selectOneLogin(mvo);
 
 		if(member == null) {
-			response.setContentType("text/html; charset=UTF-8");
-			response.setCharacterEncoding("UTF-8");
+			forward.setRedirect(false);
+			forward.setPath("alert.jsp");		
 			request.setAttribute("title", "가입된 정보가 없습니다.");
 			request.setAttribute("msg", "아이디 혹은 비밀번호를 확인하세요.");
 			request.setAttribute("url", "login.jsp");
-			forward.setPath("alert.jsp");			
 		} else {
 			request.getSession().setAttribute("mNum", member.getmNum());
 			request.getSession().setAttribute("mId", member.getmId());

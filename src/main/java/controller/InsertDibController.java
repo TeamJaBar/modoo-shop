@@ -23,11 +23,10 @@ public class InsertDibController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response, Object mNum) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DibVO dvo=new DibVO();
 		DibDAO ddao=new DibDAO();
 		
@@ -35,10 +34,7 @@ public class InsertDibController extends HttpServlet {
 		dvo.setmNum((int)(request.getSession().getAttribute("mNum")));
 		
 		if(ddao.insert(dvo)) {
-			response.getWriter().println(1);
+			response.getWriter().println("1");
 		}
-		
-		
 	}
-
 }

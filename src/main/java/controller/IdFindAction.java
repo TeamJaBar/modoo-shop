@@ -23,8 +23,6 @@ public class IdFindAction implements Action {
 		MemberVO member = mdao.selectOneId(mvo);
 		
 		if(member == null) {
-			response.setContentType("text/html; charset=UTF-8");
-			response.setCharacterEncoding("UTF-8");
 			request.setAttribute("title", "가입된 정보가 없습니다.");
 			request.setAttribute("msg", "아이디 혹은 이메일을 확인하세요.");
 			request.setAttribute("url", "id-find.jsp");

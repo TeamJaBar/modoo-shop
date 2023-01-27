@@ -22,6 +22,7 @@ public class MainAction implements Action {
 		ProductVO pvo = new ProductVO();
 		ProductDAO pdao = new ProductDAO();
 		pvo.setCateNum(1000);
+		pvo.setPageCnt(8);
 		request.setAttribute("newList", pdao.selectAll(pvo));
 		
 		
@@ -29,6 +30,10 @@ public class MainAction implements Action {
 		pvo.setCateNum(300);
 		pvo.setLowNum(300);
 		pvo.setHighNum(600);
+		pvo.setPageCnt(13);
+		if(request.getSession().getAttribute("mNum") != null) {
+			pvo.setDib((int)request.getSession().getAttribute("mNum"));
+		}
 		request.setAttribute("pList", pdao.selectAll(pvo));
 		
 		

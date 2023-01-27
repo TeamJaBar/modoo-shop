@@ -1,39 +1,44 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.DibDAO;
-import member.DibVO;
+import com.google.gson.Gson;
 
-/**
- * Servlet implementation class DeleteDibController
- */
-@WebServlet("/view/dibDelete")
-public class DeleteDibController extends HttpServlet {
+import product.ProductDAO;
+import product.ProductVO;
+
+@WebServlet("/view/quickView")
+public class QuickViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public DeleteDibController() {
-        super();
-    }
+
+	public QuickViewController() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DibVO dvo=new DibVO();
-		DibDAO ddao=new DibDAO();
+		ProductDAO pdao = new ProductDAO();
+		ProductVO pvo = new ProductVO();
 		
-		dvo.setDibNum(Integer.parseInt(request.getParameter("dibNum")));
+		int pNum  = Integer.parseInt(request.getParameter("pNum"));
+		pvo.setpNum(pNum);
 		
-		if(ddao.delete(dvo)) {
-			response.getWriter().println("1");
+		pvo = pdao.selectOne(pvo);
+		
+		if(pvo != null) {
+			Gson gson = new Gson();
+			response.setContentType("text/html;charset=UTF-8"); 
+			response.getWriter().print(gson.toJson(pvo));
+			System.out.println(gson.toJson(pvo));
 		}
 	}
-
 }
