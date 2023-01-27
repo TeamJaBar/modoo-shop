@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -946,150 +947,163 @@ label[for="defaultFl"] {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-lg-9 p-b-80 p-r-50">
-
-				<form action="addAddress.do" method="post" onsubmit="return addSubmit();">
-					<div class="member-title">
+				<c:if test="${type!='update'}">
+					<form action="addrsInsert.do" method="post" onsubmit="return manageSubmit();">
+				</c:if>
+				<c:if test="${type=='update'}">
+					<form action="addrsUpdate.do" method="post" onsubmit="return manageSubmit();">
+				</c:if>
+				<div class="member-title">
+					<c:if test="${type!='update'}">
 						<h2>새로운 배송지 추가</h2>
-					</div>
-
-					<div class="ly_cont">
-						<div class="scroll_box">
-							<div class="left_table_type">
-								<table>
-									<colgroup>
-										<col style="width: 20%;">
-										<col style="width: 80%;">
-									</colgroup>
-									<tbody>
-										<tr>
-											<th scope="row">
-												<span class="important">배송지이름</span>
-											</th>
-											<td>
-												<input type="text" name="destination" value="" required>
-											</td>
-										</tr>
-										<tr>
-											<th scope="row">
-												<span class="important">받으실 분</span>
-											</th>
-											<td>
-												<input type="text" name="shipName" maxlength="20" value="" required>
-											</td>
-										</tr>
-										<tr>
-											<th scope="row">
-												<span class="important">받으실 곳</span>
-											</th>
-											<td class="member_address">
-												<div class="address_postcode find_address">
-													<input type="text" name="zipCode" id="sample3_postcode" placeholder="우편번호" value="" required>
-													<input type="button" id="find_address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required>
+					</c:if>
+					<c:if test="${type=='update'}">
+						<h2>배송지 수정</h2>
+					</c:if>
+				</div>
+				<div class="ly_cont">
+					<div class="scroll_box">
+						<div class="left_table_type">
+							<input type="hidden" name="aNum" value="${address.aNum}" />
+							<table>
+								<colgroup>
+									<col style="width: 20%;">
+									<col style="width: 80%;">
+								</colgroup>
+								<tbody>
+									<tr>
+										<th scope="row">
+											<span class="important">배송지이름</span>
+										</th>
+										<td>
+											<input type="text" name="destination" value="${address.destination}" required>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">
+											<span class="important">받으실 분</span>
+										</th>
+										<td>
+											<input type="text" name="shipName" maxlength="20" value="${address.shipName}" required>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">
+											<span class="important">받으실 곳</span>
+										</th>
+										<td class="member_address">
+											<div class="address_postcode find_address">
+												<input type="text" name="zipCode" id="sample3_postcode" placeholder="우편번호" value="${address.zipCode}" required>
+												<input type="button" id="find_address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required>
+											</div>
+											<div id="wrapPost" style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
+												<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1" onclick="foldDaumPostcode()"
+													alt="접기 버튼">
+											</div>
+											<div class="address_input detailed_address">
+												<div class="member_warning">
+													<input type="text" name="userAddr" id="sample3_address" placeholder="주소" value="${address.userAddr}" required>
 												</div>
-												<div id="wrapPost" style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
-													<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1" onclick="foldDaumPostcode()"
-														alt="접기 버튼">
+												<div class="member_warning js_address_sub">
+													<input type="text" name="detailAddr" id="sample3_detailAddress" placeholder="상세주소" value="${address.detailAddr}" required>
 												</div>
-												<div class="address_input detailed_address">
-													<div class="member_warning">
-														<input type="text" name="userAddr" id="sample3_address" placeholder="주소" value="" required>
-													</div>
-													<div class="member_warning js_address_sub">
-														<input type="text" name="detailAddr" id="sample3_detailAddress" placeholder="상세주소" value="" required>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th scope="row">
-												<span class="important">전화번호</span>
-											</th>
-											<td>
-												<div class="address_postcode">
-													<input type="text" id="cellPhone" name="tel" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="" required>
-													<div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
-												</div>
-												<div id="memPn-hyphen-error" class="text_warning hidden">-없이 입력해주세요.</div>
-												<div id="memPn-error" class="text_warning hidden">핸드폰 번호를 확인해주세요.</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<br>
-							<div class="form_element" style="display: flex">
-								<input type="checkbox" id="defaultFl" name="defaultFl" value="y" class="checkbox">
-								<label for="defaultFl">
-									<b>기본 배송지로 설정 합니다.</b>
-								</label>
-							</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">
+											<span class="important">전화번호</span>
+										</th>
+										<td>
+											<div class="address_postcode">
+												<input type="text" id="cellPhone" name="tel" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="${address.tel}" required>
+												<div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
+											</div>
+											<div id="memPn-hyphen-error" class="text_warning hidden">-없이 입력해주세요.</div>
+											<div id="memPn-error" class="text_warning hidden">핸드폰 번호를 확인해주세요.</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-
-						<!-- //scroll_box -->
-						<div class="btn_center_box">
-							<button type="button" class="btn-member-prev" onclick="location.href='manageAddress.do'">
-								<strong>취소</strong>
-							</button>
-							<button type="submit" class="btn-member-next">
-								<strong>저장</strong>
-							</button>
+						<br>
+						<div class="form_element" style="display: flex">
+							<c:if test="${type=='update' and address.isDefault=='1'}">
+								<input type="checkbox" id="defaultFl" name="defaultFl" class="checkbox" checked>
+							</c:if>
+							<c:if test="${(type=='update' and address.isDefault=='0') or type!='update'}">
+								<input type="checkbox" id="defaultFl" name="defaultFl" class="checkbox">
+							</c:if>
+							<label for="defaultFl">
+								<b>기본 배송지로 설정합니다.</b>
+							</label>
 						</div>
 					</div>
+					<!-- //scroll_box -->
+					<div class="btn_center_box">
+						<button type="button" class="btn-member-prev" onclick="location.href='addrsSelect.do'">
+							<strong>취소</strong>
+						</button>
+						<button type="submit" class="btn-member-next">
+							<strong>저장</strong>
+						</button>
+					</div>
+				</div>
 
-					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-					<script>
-						// 우편번호 찾기 찾기 화면을 넣을 element
-						var element_wrap = document.getElementById('wrapPost');
+				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+				<script>
+					// 우편번호 찾기 찾기 화면을 넣을 element
+					var element_wrap = document.getElementById('wrapPost');
 
-						function foldDaumPostcode() {
-							// iframe을 넣은 element를 안보이게 한다.
-							element_wrap.style.display = 'none';
-						}
+					function foldDaumPostcode() {
+						// iframe을 넣은 element를 안보이게 한다.
+						element_wrap.style.display = 'none';
+					}
 
-						function sample3_execDaumPostcode() {
-							// 현재 scroll 위치를 저장해놓는다.
-							var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
-							new daum.Postcode({
-								oncomplete : function(data) {
-									// 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+					function sample3_execDaumPostcode() {
+						// 현재 scroll 위치를 저장해놓는다.
+						var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+						new daum.Postcode({
+							oncomplete : function(data) {
+								// 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-									// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-									// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-									var addr = ''; // 주소 변수
+								// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+								// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+								var addr = ''; // 주소 변수
 
-									//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-									if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-										addr = data.roadAddress;
-									} else { // 사용자가 지번 주소를 선택했을 경우(J)
-										addr = data.jibunAddress;
-									}
+								//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+								if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+									addr = data.roadAddress;
+								} else { // 사용자가 지번 주소를 선택했을 경우(J)
+									addr = data.jibunAddress;
+								}
 
-									// 우편번호와 주소 정보를 해당 필드에 넣는다.
-									document.getElementById('sample3_postcode').value = data.zonecode;
-									document.getElementById("sample3_address").value = addr;
-									// 커서를 상세주소 필드로 이동한다.
-									document.getElementById("sample3_detailAddress").value = "";
-									document.getElementById("sample3_detailAddress").focus();
+								// 우편번호와 주소 정보를 해당 필드에 넣는다.
+								document.getElementById('sample3_postcode').value = data.zonecode;
+								document.getElementById("sample3_address").value = addr;
+								// 커서를 상세주소 필드로 이동한다.
+								document.getElementById("sample3_detailAddress").value = "";
+								document.getElementById("sample3_detailAddress").focus();
 
-									// iframe을 넣은 element를 안보이게 한다.
-									// (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
-									element_wrap.style.display = 'none';
+								// iframe을 넣은 element를 안보이게 한다.
+								// (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+								element_wrap.style.display = 'none';
 
-									// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-									document.documentElement.scrollTop = currentScroll;
-								},
-								// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
-								onresize : function(size) {
-									element_wrap.style.height = size.height + 'px';
-								},
-								width : '100%',
-								height : '100%'
-							}).embed(element_wrap);
+								// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
+								document.documentElement.scrollTop = currentScroll;
+							},
+							// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
+							onresize : function(size) {
+								element_wrap.style.height = size.height + 'px';
+							},
+							width : '100%',
+							height : '100%'
+						}).embed(element_wrap);
 
-							// iframe을 넣은 element를 보이게 한다.
-							element_wrap.style.display = 'block';
-						}
-					</script>
+						// iframe을 넣은 element를 보이게 한다.
+						element_wrap.style.display = 'block';
+					}
+				</script>
 				</form>
 			</div>
 			<div class="col-md-4 col-lg-3 p-b-80">
@@ -1240,9 +1254,9 @@ label[for="defaultFl"] {
 
 	});
 
-	function addSubmit() {
+	function manageSubmit() {
 		if (phoneCheck) {
-			if (confirm("배송지를 추가하겠습니까?")) {
+			if (confirm("배송지를 추가 혹은 수정하겠습니까?")) {
 				alert("저장되었습니다!");
 				return true;
 			} else {

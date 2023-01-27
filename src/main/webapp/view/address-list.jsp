@@ -563,35 +563,28 @@ address, caption, cite, code, dfn, em, var {
 	<h2 class="ltext-105 cl0 txt-center">배송지 관리</h2>
 </section>
 
-
 <!-- Content page -->
 <section class="bg0 p-t-62 p-b-60">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-lg-9 p-b-80 p-r-50">
-
-
 				<!-- Content page -->
 				<section class="bg0 p-t-75 p-b-120">
 					<div class="container">
 						<div class="sub-content">
 							<div class="content-box">
 								<div class="join-agreement-wrap">
-
-
 									<div class="mypage_shipping js_delivery_layer">
 										<div class="mypage_zone_tit">
 											<h2>배송지 관리</h2>
 											<span class="pick_list_num m-t-10">
 												배송지 관리 내역 총
-												<strong>${fn:length(address) + 1}</strong>
+												<strong>${fn:length(address)}</strong>
 												건
 											</span>
 										</div>
-
 										<div class="mypage_shipping_cont">
 											<div class="mypage_table_type">
-
 												<table>
 													<colgroup>
 														<col style="width: 20%">
@@ -616,29 +609,28 @@ address, caption, cite, code, dfn, em, var {
 													</thead>
 													<tbody>
 														<c:forEach var="v" items="${address}">
-															<tr data-shipping-name="dsad">
+															<tr id="${v.aNum}">
 																<td>
 																	<c:if test="${v.isDefault == '1'}">
 																		<span>(기본배송지)</span>
 																	</c:if>
 																	<strong>${v.destination}</strong>
 																</td>
-																<td>${v.shipName}</td>
-																<td>${v.userAddr}&nbsp;${v.detailAddr}(${v.zipCode})</td>
+																<td id="shipName">${v.shipName}</td>
+																<td>${v.userAddr}&nbsp;${v.detailAddr}&nbsp;(${v.zipCode})</td>
 																<td class="td_phone">
 																	<span>${v.tel}</span>
 																</td>
 																<td>
-																	<button class="btn-correct hov-btn4" onclick="return change();">수정</button>
-																	<button class="btn-delete hov-btn4" onclick="return del();">삭제</button>
+																	<button class="btn-correct hov-btn4" onclick="">수정</button>
+																	<button class="btn-delete hov-btn4" onclick="">삭제</button>
 																</td>
 															</tr>
 														</c:forEach>
 													</tbody>
 												</table>
 											</div>
-											<a href="add-address.jsp" class="btn_add_shipping btn_open_layer hov-btn3 m-b-10">+ 새 배송지 추가</a>
-
+											<a href="address-manage.jsp" class="btn_add_shipping btn_open_layer hov-btn3 m-b-10">+ 새 배송지 추가</a>
 										</div>
 										<!-- //mypage_shipping_cont  -->
 										<div class="pagination">
@@ -651,13 +643,9 @@ address, caption, cite, code, dfn, em, var {
 					</div>
 				</section>
 			</div>
-
 			<div class="col-md-4 col-lg-3 p-b-80">
 				<div class="side-menu">
-
-
 					<div class="sub_content">
-
 						<div class="side_cont">
 							<span class="btn_side_mobile"></span>
 							<div class="sub_menu_box">
@@ -666,7 +654,6 @@ address, caption, cite, code, dfn, em, var {
 										<i class="fa fa-bars m-r-10"></i>
 										마이페이지
 									</h2>
-
 								</div>
 								<ul class="sub_menu_mypage">
 									<li>
@@ -708,7 +695,31 @@ address, caption, cite, code, dfn, em, var {
 </section>
 
 <%@include file="common/footer.jsp"%>
-
+<!--===============================================================================================-->
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<!--===============================================================================================-->
+<script>
+	$('.btn-correct').each(function() {
+		let aNum = $(this).parent().parent().prop("id");
+		$(this).on('click', function(e) {
+			e.preventDefault();
+			location.href='addrsSelect.do?type=update&aNum='+aNum;
+		});
+	});
+	
+	$('.btn-delete').each(function() {
+		let aNum = $(this).parent().parent().prop("id");
+		$(this).on('click', function(e) {
+			e.preventDefault();
+			if (confirm('정말 삭제하시겠습니까?')) {
+				alert('삭제되었습니다.');
+				location.href='addrsDelete.do?aNum='+aNum;
+			} else {
+				alert('취소되었습니다.');
+			}
+		});
+	});
+</script>
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

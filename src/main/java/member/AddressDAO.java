@@ -14,8 +14,9 @@ public class AddressDAO {
 	PreparedStatement pstmt;
 
 	final String INSERT = "INSERT INTO ADDRESS VALUES(ANUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
+	final String SELECTONE = "SELECT ANUM, SHIPNAME, DESTINATION, ZIPCODE, USERADDR, DETAILADDR, TEL, ISDEFAULT FROM ADDRESS WHERE ANUM=?";
 	final String SELECTALL = "SELECT ANUM, SHIPNAME, DESTINATION, ZIPCODE, USERADDR, DETAILADDR, TEL, ISDEFAULT FROM ADDRESS WHERE MNUM=? ORDER BY ISDEFAULT DESC, ANUM ASC";
-	final String UPDATE = "UPDATE ADDRESS SET SHPNAME=?, DESTINATION=?, ZIPCODE=?, USERADDR=?, DETAILADDR=?, TEL=?, ISDEFAULT=? WHERE ANUM=?";
+	final String UPDATE = "UPDATE ADDRESS SET SHIPNAME=?, DESTINATION=?, ZIPCODE=?, USERADDR=?, DETAILADDR=?, TEL=?, ISDEFAULT=? WHERE ANUM=?";
 	final String UPDATE_DEFAULT = "UPDATE ADDRESS SET ISDEFAULT=0 WHERE MNUM=? AND ISDEFAULT=1";
 	final String DELETE = "DELETE FROM ADDRESS WHERE ANUM=?";
 
@@ -41,6 +42,32 @@ public class AddressDAO {
 			JDBCUtil.disconnect(conn, pstmt);
 		}
 		return true;
+	}
+
+	public AddressVO selectOne(AddressVO avo) {
+		AddressVO data = null;
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(SELECTONE);
+			pstmt.setInt(1, avo.getaNum());
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				data = new AddressVO();
+				data.setaNum(rs.getInt("ANUM"));
+				data.setShipName(rs.getString("SHIPNAME"));
+				data.setDestination(rs.getString("DESTINATION"));
+				data.setZipCode(rs.getString("ZIPCODE"));
+				data.setUserAddr(rs.getString("USERADDR"));
+				data.setDetailAddr(rs.getString("DETAILADDR"));
+				data.setTel(rs.getString("TEL"));
+				data.setIsDefault(rs.getString("ISDEFAULT"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return data;
 	}
 
 	public ArrayList<AddressVO> selectAll(AddressVO avo) {

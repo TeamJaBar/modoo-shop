@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import member.AddressDAO;
 import member.AddressVO;
 
-public class AddAddressAction implements Action {
+public class AddrsInsertAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 
-		forward.setPath("manageAddress.do");
-		forward.setRedirect(false);
+		forward.setPath("addrsSelect.do");
+		forward.setRedirect(true);
 
 		AddressDAO adao = new AddressDAO();
 		AddressVO avo = new AddressVO();
