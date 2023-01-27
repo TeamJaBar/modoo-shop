@@ -32,7 +32,7 @@ public class DeleteDibController extends HttpServlet {
 		dvo.setDibNum(Integer.parseInt(request.getParameter("dibNum")));
 		
 		if(ddao.delete(dvo)) {
-			response.getWriter().println(1);
+			response.getWriter().println("1");
 		}
 	}
 
