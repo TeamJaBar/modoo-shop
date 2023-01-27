@@ -1050,14 +1050,10 @@
 										<div class="item_money_box">
 											<strong class="item_price">
 												<strong class="discount_rate">
-													<fmt:parseNumber value="${product.selPrice div product.fixPrice * 100}" integerOnly="true" />
-													%
+													<fmt:parseNumber value="${product.selPrice div product.fixPrice * 100}" integerOnly="true" />%
 												</strong>
 												<span>
-													<strong>
-														<fmt:formatNumber value="${product.selPrice}" type="number" />
-													</strong>
-													원
+													<strong><fmt:formatNumber value="${product.selPrice}" type="number" /></strong>원
 												</span>
 											</strong>
 										</div>
@@ -1214,15 +1210,13 @@
 							<tr>
 								<td>정가</td>
 								<td colspan="2">
-									<span class="fixPrice"></span>
-									원
+									<span class="fixPrice"></span>원
 								</td>
 							</tr>
 							<tr>
 								<td>판매가</td>
 								<td colspan="2" class="item_price">
-									<span id="price" class="selPrice"></span>
-									원
+									<span id="price" class="selPrice"></span>원
 								</td>
 							</tr>
 							<tr>
@@ -1253,8 +1247,7 @@
 								</td>
 								<td>결제 예정금액</td>
 								<td>
-									<span id="totalPrice" class="totalPrice"></span>
-									원
+									<span id="totalPrice" class="totalPrice"></span>원
 								</td>
 							</tr>
 						</table>
