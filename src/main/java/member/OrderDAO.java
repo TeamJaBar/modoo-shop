@@ -133,14 +133,9 @@ public class OrderDAO {
 			while (rs.next()) {
 				OrderVO data = new OrderVO();
 				data = new OrderVO();
-				if (ovo.getoStatus() != 0) {
-					data.setoDate(rs.getDate("ODate"));
-					data.setoNum(rs.getInt("ONUM"));
-					data.setoStatus(rs.getInt("OSTATUS"));
-				} else {
-					data.setTotal(rs.getInt("TOTAL"));
-					data.setPoint(rs.getInt("POINT"));
-				}
+				data.setoDate(rs.getDate("ODate"));
+				data.setoNum(rs.getInt("ONUM"));
+				data.setoStatus(rs.getInt("OSTATUS"));
 				data.setpNumPimg(rs.getString("PIMG"));
 				data.setpNumPname(rs.getString("PNAME"));
 				data.setpNumSelPrice(rs.getInt("SELPRICE"));
