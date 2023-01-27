@@ -258,52 +258,52 @@
 	});
 
 
-  	$('.btn-num-cart-up').each(function() {
-			$(this).click(function() {
-				var current = $(this).attr('id');
-				var numProduct = Number($(this).prev().val());
-				if (numProduct == 10) {
-					alert('최대 10개까지만 주문가능합니다.');
-					return;
-				}
-				$(this).prev().val(numProduct + 1);
-
-				var price = parseInt($('#price' + current).text().replace(',', ''));
-				var salePrice = parseInt($('#salePrice' + current).text().replace(',', ''));
-				var totalPrice = (price - salePrice) * Number($(this).prev().val());
-				totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-				$('#totalPrice' + current).text(totalPrice);
-			});
-	});
-	
-	$('.btn-num-cart-down').each(function() {
+	$('.btn-num-cart-up').each(function() {
 		$(this).click(function() {
-				var current = $(this).attr('id');
-				var numProduct = Number($(this).next().val());
-				
-				console.log('현재 : '+$(this).next().val());
-				
-				if (numProduct == 1) {
-					alert('1개 이상만 구매할 수 있습니다');
-					return;
-				}
-				
-				$(this).next().val(numProduct - 1);
-				console.log('바뀐 후 : '+$(this).next().val());
+			var current = $(this).attr('id');
+			var numProduct = Number($(this).prev().val());
+			if (numProduct == 10) {
+				alert('최대 10개까지만 주문가능합니다.');
+				return;
+			}
+			$(this).prev().val(numProduct + 1);
 
-				var price = parseInt($('#price' + current).text().replace(',', ''));
-				var salePrice = parseInt($('#salePrice' + current).text().replace(',', ''));
-				var totalPrice = (price - salePrice) * Number($(this).next().val());
-				totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-				$('#totalPrice' + current).text(totalPrice);
+			var price = parseInt($('#price' + current).text().replace(',', ''));
+			var salePrice = parseInt($('#salePrice' + current).text().replace(',', ''));
+			var totalPrice = (price - salePrice) * Number($(this).prev().val());
+			totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+			$('#totalPrice' + current).text(totalPrice);
 		});
 	});
-	
-	
-	
-	 // 장바구니 수량2 
-		$('.btn-num-cart-up2').on('click', function() {
-		
+
+	$('.btn-num-cart-down').each(function() {
+		$(this).click(function() {
+			var current = $(this).attr('id');
+			var numProduct = Number($(this).next().val());
+
+			console.log('현재 : ' + $(this).next().val());
+
+			if (numProduct == 1) {
+				alert('1개 이상만 구매할 수 있습니다');
+				return;
+			}
+
+			$(this).next().val(numProduct - 1);
+			console.log('바뀐 후 : ' + $(this).next().val());
+
+			var price = parseInt($('#price' + current).text().replace(',', ''));
+			var salePrice = parseInt($('#salePrice' + current).text().replace(',', ''));
+			var totalPrice = (price - salePrice) * Number($(this).next().val());
+			totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+			$('#totalPrice' + current).text(totalPrice);
+		});
+	});
+
+
+
+	// 장바구니 수량2 
+	$('.btn-num-cart-up2').on('click', function() {
+
 		var numProduct = Number($(this).prev().val());
 		if (numProduct == 10) {
 			alert('최대 10개까지만 주문가능합니다.');
@@ -312,14 +312,14 @@
 		$(this).prev().val(numProduct + 1);
 		var salePrice = parseInt($('#salePrice2').text().replace(',', ''));
 		var price = parseInt($('#price2').text().replace(',', ''));
-		var totalPrice = (price) * Number($(this).prev().val());	
+		var totalPrice = (price) * Number($(this).prev().val());
 		var totalPrice2 = parseInt($('#totalPrice').text().replace(',', ''));
-		var totalSaleprice = ((numProduct+1) * salePrice);
+		var totalSaleprice = ((numProduct + 1) * salePrice);
 		var totalSaleprice2 = $('#totalSaleprice').text();
-		var totalSale = (Number(totalSaleprice) + Number(totalSaleprice2));	
-		var total = Number(totalPrice)+Number(totalPrice2);	
-		var totalPrice3 =  (Number(total) - Number(totalSale) + 2500);
-		
+		var totalSale = (Number(totalSaleprice) + Number(totalSaleprice2));
+		var total = Number(totalPrice) + Number(totalPrice2);
+		var totalPrice3 = (Number(total) - Number(totalSale) + 2500);
+
 		console.log(totalSale);
 		total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -330,12 +330,12 @@
 		$('#totalSaleprice2').text(totalSaleprice);
 		$('#totalSale').text(totalSale);
 		$('#sumPrice').text(total);
-		
+
 	});
-	
-	
-		$('.btn-num-cart-down2').on('click', function() {
-		
+
+
+	$('.btn-num-cart-down2').on('click', function() {
+
 		var numProduct = Number($(this).next().val());
 		if (numProduct == 1) {
 			alert('1개 이상만 구매할 수 있습니다');
@@ -349,11 +349,11 @@
 		var totalSaleprice = ((numProduct - 1) * salePrice);
 		var totalSaleprice2 = $('#totalSaleprice').text();
 		var totalSale = (Number(totalSaleprice) + Number(totalSaleprice2));
-		var total = Number(totalPrice)+Number(totalPrice2);
-		var totalPrice3 =  (Number(total) - Number(totalSale) + 2500);
+		var total = Number(totalPrice) + Number(totalPrice2);
+		var totalPrice3 = (Number(total) - Number(totalSale) + 2500);
 		//var totalSaleprice3 = Number(totalSaleprice) + Number(totalSaleprice2);
-		
-		
+
+
 		console.log(total);
 		total = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -366,9 +366,9 @@
 		$('#sumPrice').text(total);
 		//$('#totalSaleprice3').text(totalSaleprice3);
 	});
-	
 
-	
+
+
 	/*==================================================================
 	[ Rating ]*/
 	$('.wrap-rating').each(function() {
@@ -438,7 +438,7 @@
 	});
 
 	$('#tagsFilter').find("a").click(function() {
-		if ($(this).hasClass("tag1-active")=== true) {
+		if ($(this).hasClass("tag1-active") === true) {
 			$(this).removeClass("tag1-active");
 			return;
 		}
@@ -452,13 +452,84 @@
 
 	/*==================================================================
 	[ Show modal1 ]*/
-	$('.js-show-modal1').on('click', function(e) {
+	$('.js-show-quickview').on('click', function(e) {
 		e.preventDefault();
-		$('.js-modal1').addClass('show-modal1');
+		$('.js-quickView').addClass('show-modal1');
 	});
 
-	$('.js-hide-modal1').on('click', function() {
-		$('.js-modal1').removeClass('show-modal1');
+	$('.js-hide-quickView').on('click', function() {
+		$('.js-quickView').removeClass('show-modal1');
+	});
+
+	$('.js-show-quickview').each(function() {
+		var pNum = $(this).parent().parent().find('.js-name-b2').prop("id");
+		$(this).on('click', function() {
+			$.ajax({
+				type: 'POST',
+				url: 'quickView',
+				async: false,
+				dataType: 'json',
+				data: {
+					pNum: pNum,
+				},
+				success: function(data) {
+					$('.pName').html(data.pName);
+					$(".pImg-img").attr("src", data.pImg);
+					$(".pImg-a").attr("href", data.pImg);
+					$('.fixPrice').html(data.fixPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('.selPrice').html(data.selPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('.totalPrice').html(data.selPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('.rePerson').html(data.rePerson);
+					$('.reAge').html(data.reAge);
+				}
+			});
+		});
+	});
+
+
+	/*======= 찜 =========*/
+	$('.js-addwish-b2').on('click', function(e) {
+		e.preventDefault();
+	});
+
+	$('.js-addwish-b2').each(function() {
+		var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+		var pNum = $(this).parent().parent().find('.js-name-b2').prop("id");
+		$(this).on('click', function() {
+			console.log(pNum);
+			if ($(this).hasClass('js-addedwish-b2')) {
+				$.ajax({
+					type: 'POST',
+					url: 'dibDelete',
+					data: {
+						pNum: pNum
+					},
+					context: this,
+					success: function(result) {
+						if (result == 1) {
+							$(this).removeClass('js-addedwish-b2');
+						}
+					}
+				});
+			} else {
+				$.ajax({
+					type: 'POST', //POST 방식으로 보낼래
+					url: 'dibInsert',
+					data: {
+						pNum:pNum
+					},
+					context: this,
+					success: function(result) {
+						if (result == 1) {
+							swal(nameProduct, "찜 목록에 추가되었습니다!", "success");
+							$(this).addClass('js-addedwish-b2');
+						} else {
+							alert("찜 추가 실패. 관리자에게 문의하세요.");
+						}
+					}
+				})
+			}
+		});
 	});
 
 
