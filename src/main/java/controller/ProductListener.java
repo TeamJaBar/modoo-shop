@@ -90,7 +90,7 @@ public class ProductListener implements ServletContextListener {
 					cal1.add(Calendar.DATE, -(rd.nextInt(365)));
 					Date rDate = new Date(cal1.getTimeInMillis());
 
-					pstmt = conn.prepareStatement("INSERT INTO PRODUCT VALUES((SELECT NVL(MAX(PNUM),1000)+1 FROM PRODUCT), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 50)");
+					pstmt = conn.prepareStatement("INSERT INTO PRODUCT VALUES(PNUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 50)");
 
 					pstmt.setInt(1, cateNum);
 					pstmt.setString(2, pName);
