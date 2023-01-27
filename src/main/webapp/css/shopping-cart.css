@@ -140,13 +140,13 @@ input.num-cart2::-webkit-inner-spin-button {
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
+
 .table_head th  {
 	font-size: 10px;
 	text-transform: uppercase;
 	line-height: 1.4;
 	padding-top: 15px;
 	padding-bottom: 15px;
-    padding: 3px 3px 3px 3px;
     border-top: 1px solid #999999;
     border-bottom: 1px solid #dbdbdb;
     background: #f7f7f7;
@@ -166,4 +166,8 @@ input.num-cart2::-webkit-inner-spin-button {
 }
 .cartTable_row {
  height: 120px;
+}
+
+input[type=checkbox] {
+    margin: 0 auto;
 }
