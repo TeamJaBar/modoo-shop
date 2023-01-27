@@ -5,7 +5,7 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var label = '${mList.tempDate}';
-var datas = '${,List.tempCnt}';
+var datas = '${mList.tempCnt}';
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
