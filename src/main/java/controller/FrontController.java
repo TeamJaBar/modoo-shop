@@ -26,85 +26,93 @@ public class FrontController extends HttpServlet {
 		System.out.println("command: " + command);
 
 		ActionForward forward = null;
-		if (command.equals("main.do")) {
+		// 실행 기능 > path
+		if (command.equals("main.do")) { // main
 			try {
 				forward = new MainAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("join.do")) {
+		} else if (command.equals("join.do")) { // 회원가입 > join-ok
 			try {
 				forward = new JoinAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("login.do")) {
+		} else if (command.equals("login.do")) { // 로그인 > main
 			try {
 				forward = new LoginAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("logout.do")) {
+		} else if (command.equals("logout.do")) { // 로그아웃 > main
 			try {
 				forward = new LogoutAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("sendEmail.do")) {
+		} else if (command.equals("idFind.do")) { // 아이디 찾기 > id-find-ok
+			try {
+				forward = new IdFindAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("pwFind.do")) { // 비밀번호 찾기 > pw-find-02
+			try {
+				forward = new PwFindAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("sendEmail.do")) { // 이메일 전송 > pw-find-03
 			try {
 				forward = new SendEmailAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (command.equals("update.do")) {
+			// 비밀번호 재설정 > login
+			// 회원정보 변경 > changeInfo.do
 			try {
 				forward = new UpdateAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("idFind.do")) {
-			try {
-				forward = new IdFindAction().execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("pwFind.do")) {
-			try {
-				forward = new PwFindAction().execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("changeInfo.do")) {
+		} else if (command.equals("changeInfo.do")) { // 회원정보 변경 > change-info
 			try {
 				forward = new ChangeInfoAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("withdrawal.do")) {
+		} else if (command.equals("withdrawal.do")) { // 회원 탈퇴 > main
 			try {
 				forward = new WithdrawalAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (command.equals("addrsSelect.do")) {
+			// 배송지 관리 진입 > address-list
+			// 배송지 수정 클릭 > address-manage
 			try {
 				forward = new AddrsSelectAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (command.equals("addrsInsert.do")) {
+			// 배송지 추가 완료 > address-list
 			try {
 				forward = new AddrsInsertAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (command.equals("addrsUpdate.do")) {
+			// 배송지 수정 완료 > address-list
 			try {
 				forward = new AddrsUpdateAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (command.equals("addrsDelete.do")) {
+			// 배송지 삭제 > address-list
 			try {
 				forward = new AddrsDeleteAction().execute(request, response);
 			} catch (Exception e) {
@@ -128,15 +136,33 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("memDelete.do")) {
+		} else if (command.equals("memDelete.do")) {
 			try {
 				forward = new MemDeleteAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("memUpdate.do")) {
+		} else if (command.equals("memUpdate.do")) {
 			try {
 				forward = new MemUpdateAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("product.do")) { // 상품 목록
+			try {
+				forward = new ProdAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("productDetail.do")) { // 상품 상세
+			try {
+				forward = new ProdDetailAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("dibList.do")) { // 찜 목록
+			try {
+				forward = new DibListAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
