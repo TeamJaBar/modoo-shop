@@ -31,10 +31,14 @@ public class InsertDibController extends HttpServlet {
 		DibDAO ddao=new DibDAO();
 		
 		dvo.setpNum(Integer.parseInt(request.getParameter("pNum")));
-		dvo.setmNum((int)(request.getSession().getAttribute("mNum")));
 		
-		if(ddao.insert(dvo)) {
-			response.getWriter().println("1");
+		if(request.getSession().getAttribute("mNum") != null) {
+			dvo.setmNum((int)(request.getSession().getAttribute("mNum")));
+			if(ddao.insert(dvo)) {
+				response.getWriter().println("1");
+			}
+		} else {
+			response.getWriter().println("-1");
 		}
 	}
 }

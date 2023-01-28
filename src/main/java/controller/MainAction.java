@@ -18,29 +18,42 @@ public class MainAction implements Action {
 		forward.setPath("main.jsp");
 		forward.setRedirect(false);
 		
+		final int newCategory = 1000;
+		final int mdCategory = 300;
+		final int lowNum = 300;
+		final int highNum = 600;
+		int initPageCnt = 16;
+		int newPageCnt = 8;
+		
 		//NEW 상품 목록
 		ProductVO pvo = new ProductVO();
 		ProductDAO pdao = new ProductDAO();
-		pvo.setCateNum(1000);
-		pvo.setPageCnt(8);
+		pvo.setCateNum(newCategory);
+		pvo.setPageCnt(newPageCnt);
 		request.setAttribute("newList", pdao.selectAll(pvo));
 		
 		
 		//MD 추천 목록
-		pvo.setCateNum(300);
-		pvo.setLowNum(300);
-		pvo.setHighNum(600);
-		pvo.setPageCnt(13);
+		pvo.setCateNum(mdCategory);
+		pvo.setLowNum(lowNum);
+		pvo.setHighNum(highNum);
+		pvo.setPageCnt(initPageCnt);
+		
 		if(request.getSession().getAttribute("mNum") != null) {
 			pvo.setDib((int)request.getSession().getAttribute("mNum"));
 		}
+		
+		request.setAttribute("cateNum", mdCategory);
+		request.setAttribute("lowNum", lowNum);
+		request.setAttribute("highNum", highNum);
+		request.setAttribute("pageCnt", initPageCnt);
 		request.setAttribute("pList", pdao.selectAll(pvo));
 		
 		
 		//MD 추천 목록 카테고리 대분류		
 		CategoryVO cvo = new CategoryVO();
-		cvo.setLowNum(300);
-		cvo.setHighNum(600);
+		cvo.setLowNum(lowNum);
+		cvo.setHighNum(highNum);
 		request.setAttribute("cList", pdao.selectAll(cvo));
 		
 		return forward;
