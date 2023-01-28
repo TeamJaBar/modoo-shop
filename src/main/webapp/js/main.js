@@ -407,6 +407,7 @@
 	});
 
 	$('.js-hide-quickView').on('click', function() {
+		$('.num-product').val(1);
 		$('.js-quickView').removeClass('show-modal1');
 	});
 
@@ -427,7 +428,7 @@
 					$(".pImg-a").attr("href", data.pImg);
 					$('.fixPrice').html(data.fixPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 					$('.selPrice').html(data.selPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-					$('.totalPrice').html(data.selPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('.totalPrice').html((data.selPrice+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 					$('.rePerson').html(data.rePerson);
 					$('.reAge').html(data.reAge);
 					$('.pName').html(data.pName);
@@ -495,7 +496,7 @@
 	});
 
 
-	$('.js-addwish-detail').off('click').on('click', function() {
+	$('.js-addwish-quickView').off('click').on('click', function() {
 		var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 		var pNum = $(this).prop("id");
 		var isDib = $(this).val();
@@ -521,6 +522,41 @@
 							$.getScript("../js/main.js");
 							initIsotope();
 						});
+					}
+					else if (result == -1) {
+						alert("로그인이 필요한 서비스입니다.");
+					}
+					else {
+						alert("찜 추가 실패. 관리자에게 문의하세요.");
+					}
+				}
+			})
+		}
+
+	})
+	
+	$('.js-addwish-detail').off('click').on('click', function() {
+		//var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+		//var pNum = $(this).prop("id");
+		var isDib = $(this).val();
+
+		console.log("pNum : " + pNum);
+		if (isDib == 1) {
+			swal(pName, "이미 찜한 상품입니다.", "warning");
+		} else {
+			$.ajax({
+				type: 'POST', //POST 방식으로 보낼래
+				url: 'dibInsert',
+				async: false,
+				data: {
+					pNum: pNum
+				},
+				context: this,
+				success: function(result) {
+					if (result == 1) {
+						//현재 페이지에서 상품목록 부분만 새로고침
+						swal(pName, "찜 목록에 추가되었습니다!", "success");
+						$(this).val(1);
 					}
 					else if (result == -1) {
 						alert("로그인이 필요한 서비스입니다.");

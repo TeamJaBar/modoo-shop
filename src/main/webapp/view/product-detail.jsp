@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
 <head>
 <title>제품상세</title>
@@ -237,10 +238,10 @@
 					<div class="wrap-slick3 flex-sb flex-w">
 						<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 						<div class="slick3 gallery-lb">
-							<div class="item-slick3" data-thumb="">
+							<div class="item-slick3" data-thumb="${product.pImg}">
 								<div class="wrap-pic-w pos-relative">
 									<img src="${product.pImg}" alt="${product.pName}">
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="">
+									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${product.pImg}">
 										<i class="fa fa-expand"></i>
 									</a>
 								</div>
@@ -258,30 +259,29 @@
 							<td>정가</td>
 							<td colspan="2">
 								<del>
-									<span>${product.fixPrice}</span>
-									원
+									<span><fmt:formatNumber value="${product.fixPrice}" type="number" /></span>원
 								</del>
 							</td>
 						</tr>
 						<tr>
 							<td>판매가</td>
 							<td colspan="2" class="item_price">
-								<span id="price"> ${product.selPrice}</span>
+								<span id="price"> <fmt:formatNumber value="${product.selPrice}" type="number" /> </span>
 								원
 							</td>
 						</tr>
 						<tr>
 							<td>게임 인원</td>
-							<td colspan="2">${product.rePerson}명</td>
+							<td colspan="2">${product.rePerson}</td>
 						</tr>
 						<tr>
 							<td>게임 연령</td>
-							<td colspan="2">${product.reAge}세이상</td>
+							<td colspan="2">${product.reAge}세 이상</td>
 						</tr>
 						<tr>
 							<td>배송비</td>
 							<td colspan="2">
-								<strong id="deliveryFee">2,500</strong>
+								<strong id="deliveryFee">2,500원</strong>
 							</td>
 						</tr>
 						<tr>
@@ -298,7 +298,7 @@
 							</td>
 							<td>결제 예정금액</td>
 							<td>
-								<span id="totalPrice">${product.selPrice}</span>
+								<span id="totalPrice"><fmt:formatNumber value="${product.selPrice+2500}" type="number" /></span>
 								원
 							</td>
 						</tr>
@@ -307,7 +307,7 @@
 					<div class="p-t-33">
 						<div class="row flex-c">
 							<button onclick="function addCart()" class="flex-c-m m-r-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addcart-detail">장바구니</button>
-							<button onclick="function addDib()" class="flex-c-m m-lr-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addwish-b2">찜하기</button>
+							<button onclick="function addDib()" class="flex-c-m m-lr-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addwish-detail dib-btn" value="${product.dib}">찜하기</button>
 							<button type="submit" onclick="function order()" class="flex-c-m m-l-10 stext-105 cl0 size-101 bg1 bor20 hov-btn4 p-lr-15 trans-04" type="submit">결제하기</button>
 						</div>
 					</div>
@@ -391,6 +391,9 @@
 <%@include file="common//footer.jsp"%>
 
 <script>
+	var pName = '${product.pName}';
+	var pNum = '${product.pNum}';
+	
 	function order(pNum, pCnt) {
 		location.href = "shOrder.do?pNum=${product.pNum}&pcnt=${pCnt}"
 	}
