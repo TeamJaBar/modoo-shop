@@ -511,10 +511,12 @@
 				data: {
 					pNum: pNum
 				},
+				context: this,
 				success: function(result) {
 					if (result == 1) {
 						//현재 페이지에서 상품목록 부분만 새로고침
 						swal(nameProduct, "찜 목록에 추가되었습니다!", "success");
+						$(this).val(1);
 						$('#md-product').load(location.href + ' #md-product>*', function() {
 							$.getScript("../js/main.js");
 							initIsotope();
