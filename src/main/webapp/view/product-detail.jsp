@@ -201,9 +201,7 @@
 	margin-top: -40px;
 }
 </style>
-
 <%@include file="common//header.jsp"%>
-
 <!-- breadcrumb -->
 <div class="container">
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -236,8 +234,18 @@
 			<div class="col-md-6 col-lg-7 p-b-30">
 				<div class="p-l-25 p-r-30 p-lr-0-lg">
 					<div class="wrap-slick3 flex-sb flex-w">
+						<div class="wrap-slick3-dots"></div>
 						<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 						<div class="slick3 gallery-lb">
+							<div class="item-slick3" data-thumb="${product.pImg}">
+								<div class="wrap-pic-w pos-relative">
+									<img src="${product.pImg}" alt="${product.pName}">
+									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${product.pImg}">
+										<i class="fa fa-expand"></i>
+									</a>
+								</div>
+							</div>
+							
 							<div class="item-slick3" data-thumb="${product.pImg}">
 								<div class="wrap-pic-w pos-relative">
 									<img src="${product.pImg}" alt="${product.pName}">
@@ -259,14 +267,19 @@
 							<td>정가</td>
 							<td colspan="2">
 								<del>
-									<span><fmt:formatNumber value="${product.fixPrice}" type="number" /></span>원
+									<span>
+										<fmt:formatNumber value="${product.fixPrice}" type="number" />
+									</span>
+									원
 								</del>
 							</td>
 						</tr>
 						<tr>
 							<td>판매가</td>
 							<td colspan="2" class="item_price">
-								<span id="price"> <fmt:formatNumber value="${product.selPrice}" type="number" /> </span>
+								<span id="price">
+									<fmt:formatNumber value="${product.selPrice}" type="number" />
+								</span>
 								원
 							</td>
 						</tr>
@@ -276,7 +289,7 @@
 						</tr>
 						<tr>
 							<td>게임 연령</td>
-							<td colspan="2">${product.reAge}세 이상</td>
+							<td colspan="2">${product.reAge}세이상</td>
 						</tr>
 						<tr>
 							<td>배송비</td>
@@ -298,7 +311,9 @@
 							</td>
 							<td>결제 예정금액</td>
 							<td>
-								<span id="totalPrice"><fmt:formatNumber value="${product.selPrice+2500}" type="number" /></span>
+								<span id="totalPrice">
+									<fmt:formatNumber value="${product.selPrice+2500}" type="number" />
+								</span>
 								원
 							</td>
 						</tr>
@@ -311,12 +326,10 @@
 							<button type="submit" onclick="function order()" class="flex-c-m m-l-10 stext-105 cl0 size-101 bg1 bor20 hov-btn4 p-lr-15 trans-04" type="submit">결제하기</button>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<div class="bor18 m-t-50 p-t-43 p-b-40">
 		<!-- Tab01 -->
 		<div class="tab01">
@@ -325,12 +338,10 @@
 				<li class="nav-item p-b-10">
 					<a class="nav-link active" data-toggle="tab" href="#description" role="tab">제품소개</a>
 				</li>
-
 				<li class="nav-item p-b-10">
 					<a class="nav-link" data-toggle="tab" href="#delivery" role="tab">배송정보</a>
 				</li>
 			</ul>
-
 			<!-- Tab panes -->
 			<div class="tab-content p-t-43">
 				<!-- - -->
@@ -341,8 +352,6 @@
 						</p>
 					</div>
 				</div>
-
-
 				<div class="tab-pane fade" id="delivery" role="tabpanel">
 					<div class="row">
 						<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto flex-c ">
@@ -356,7 +365,6 @@
 											&nbsp;
 										</p>
 									</div>
-
 									<!-- 
 										<h3 class="ltext-102 m-t-40">교환/반품안내</h3>
 										<div class="admin_msg">
@@ -383,13 +391,8 @@
 			</div>
 		</div>
 	</div>
-
 </section>
-
-
-
 <%@include file="common//footer.jsp"%>
-
 <script>
 	var pName = '${product.pName}';
 	var pNum = '${product.pNum}';
@@ -406,7 +409,6 @@
 		location.href = "shopping.do?pNum=${product.pNum}&pcnt=${product.pNum}"
 	}
 </script>
-
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
