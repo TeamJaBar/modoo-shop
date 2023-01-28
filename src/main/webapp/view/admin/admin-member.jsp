@@ -135,8 +135,7 @@
 									</tr>
 								</tfoot>
 								<tbody>
-									<c:forEach var="memberSet" items="${mList}">
-										<c:set var="member" value="${memberSet.datas}" />
+									<c:forEach var="member" items="${members}">
 										<tr>
 											<td>${member.mId}</td>
 											<td>${member.mName}</td>
@@ -146,7 +145,7 @@
 											<td>${member.mDate}</td>
 											<td>${member.mPoint}</td>
 											<td>
-												<a class="btn btn-primary" href="memUpdate.do?mNum='${member}'">변경</a>
+												<a class="btn btn-primary" href="memUpdate.do?mNum='${member.mNum}'">변경</a>
 												<a class="btn btn-danger" onclick="return con();" href="memDelete.do?mNum='${member.mNum}'">삭제</a>
 											</td>
 										</tr>
