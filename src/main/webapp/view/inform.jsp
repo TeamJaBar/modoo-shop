@@ -108,7 +108,7 @@
 												</th>
 												<td class="member_email">
 													<div class="member_warning">
-														<input type="text" name="email" id="email" value="" tabindex="-1" required>
+														<input type="text" name="email" id="email" value="" required>
 														<select id="emailDomain" name="emailDomain" class="chosen_select" required>
 															<option value="self">직접입력</option>
 															<option value="naver.com" selected>naver.com</option>
