@@ -17,7 +17,7 @@ public class ChangeInfoAction implements Action {
 
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
-		mvo.setmId((String)request.getSession().getAttribute("mId"));
+		mvo.setmNum((int)request.getSession().getAttribute("mNum"));
 		
 		request.setAttribute("member", mdao.selectOneInfo(mvo));
 
