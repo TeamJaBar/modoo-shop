@@ -29,8 +29,10 @@ public class QuickViewController extends HttpServlet {
 		ProductDAO pdao = new ProductDAO();
 		ProductVO pvo = new ProductVO();
 		
-		int pNum  = Integer.parseInt(request.getParameter("pNum"));
-		pvo.setpNum(pNum);
+		pvo.setpNum(Integer.parseInt(request.getParameter("pNum")));
+		if(request.getSession().getAttribute("mNum") != null) {
+			pvo.setDib((int)(request.getSession().getAttribute("mNum")));
+		}
 		
 		pvo = pdao.selectOne(pvo);
 		

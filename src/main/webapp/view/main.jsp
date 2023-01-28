@@ -910,6 +910,11 @@
 	bottom: 0px;
 	background-color: #c8c8c8;
 }
+
+.gutter-sizer {
+	width: 12%;
+}
+
 </style>
 <jsp:include page="common/header.jsp" flush="false">
 	<jsp:param name="page" value="main" />
@@ -1117,7 +1122,7 @@
 	</div>
 </div>
 <!-- Product -->
-<section class="bg0 p-t-23 p-b-140">
+<section class="bg0 p-t-23 p-b-140" id="md-product">
 	<div class="container">
 		<div class="p-b-10">
 			<h3 class="ltext-103 cl5">MD 추천</h3>
@@ -1149,8 +1154,8 @@
 		<div class="row isotope-grid flex-sa">
 			<div class="gutter-sizer"></div>
 			<c:forEach var="product" items="${pList}">
-				<fmt:parseNumber var="cateNum" value="${(product.cateNum div 100)}" integerOnly="true" />
-				<div class="col-sm-5 col-md-5 col-lg-3 p-b-35 isotope-item ${cateNum*100}">
+				<fmt:parseNumber var="cNum" value="${(product.cateNum div 100)}" integerOnly="true" />
+				<div class="col-sm-5 col-md-5 col-lg-3 p-b-35 isotope-item ${cNum*100}">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
@@ -1176,11 +1181,9 @@
 		</div>
 	</div>
 </section>
-
 <jsp:include page="common/footer.jsp" flush="false">
 	<jsp:param name="page" value="main" />
 </jsp:include>
-
 <!--QuickView Modal -->
 <div class="wrap-modal1 js-quickView p-t-60 p-b-20">
 	<div class="overlay-modal1 js-hide-quickView"></div>
@@ -1195,7 +1198,7 @@
 						<div class="wrap-slick3 flex-sb flex-w">
 							<div class="gallery-lb">
 								<div class="pImg-div">
-									<div class="wrap-pic-w pos-relative">
+									<div class="wrap-pic-w pos-relative m-l-30">
 										<img src="" class="pImg-img">
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04 pImg-a" href="">
 											<i class="fa fa-expand"></i>
@@ -1214,15 +1217,13 @@
 							<tr>
 								<td>정가</td>
 								<td colspan="2">
-									<span class="fixPrice"></span>
-									원
+									<span class="fixPrice"></span>원
 								</td>
 							</tr>
 							<tr>
 								<td>판매가</td>
 								<td colspan="2" class="item_price">
-									<span id="price" class="selPrice"></span>
-									원
+									<span id="price" class="selPrice"></span>원
 								</td>
 							</tr>
 							<tr>
@@ -1263,7 +1264,7 @@
 						<div class="p-t-33">
 							<div class="row flex-c">
 								<button class="flex-c-m m-r-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-detail">장바구니</button>
-								<button class="flex-c-m m-lr-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-b2">찜하기</button>
+								<button class="flex-c-m m-lr-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-detail dib-btn">찜하기</button>
 								<button class="flex-c-m m-l-10 stext-104 cl0 size-101 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">결제하기</button>
 							</div>
 						</div>
@@ -1273,6 +1274,12 @@
 		</div>
 	</div>
 </div>
+<script>
+	var cateNum = '${cateNum}';
+	var lowNum = '${lowNum}';
+	var highNum = '${highNum}';
+	var pageCnt = '${pageCnt}';
+</script>
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -1321,13 +1328,6 @@
 <script src="../vendor/sweetalert/sweetalert.min.js"></script>
 <script>
 	/*---------------------------------------------*/
-
-	$('.js-addcart-detail').each(function() {
-		var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-		$(this).on('click', function() {
-			swal(nameProduct, "장바구니에 추가되었습니다!", "success");
-		});
-	});
 </script>
 <!--===============================================================================================-->
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>

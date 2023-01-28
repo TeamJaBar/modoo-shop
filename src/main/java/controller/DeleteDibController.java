@@ -29,8 +29,11 @@ public class DeleteDibController extends HttpServlet {
 		DibVO dvo=new DibVO();
 		DibDAO ddao=new DibDAO();
 		
-		dvo.setDibNum(Integer.parseInt(request.getParameter("dibNum")));
+		dvo.setmNum((int)(request.getSession().getAttribute("mNum")));	
+		System.out.println("로그 : DeleteDibController - mNum: " + (int)(request.getSession().getAttribute("mNum")));
 		
+		dvo.setpNum(Integer.parseInt(request.getParameter("pNum")));
+		System.out.println("로그 : DeleteDibController - pNum: " + Integer.parseInt(request.getParameter("pNum")));
 		if(ddao.delete(dvo)) {
 			response.getWriter().println("1");
 		}
