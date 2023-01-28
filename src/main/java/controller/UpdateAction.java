@@ -26,7 +26,7 @@ public class UpdateAction implements Action {
 			forward.setPath("login.jsp");
 			mvo.setmId(request.getParameter("mId"));
 			mvo.setmPw(request.getParameter("mPw"));
-		} else if (request.getParameter("mNum") == null) { // change-inform
+		} else { // change-inform
 			forward.setPath("changeInfo.do");
 			mvo.setmPw(request.getParameter("mPw"));
 			mvo.setmEmail(request.getParameter("mEmail"));
