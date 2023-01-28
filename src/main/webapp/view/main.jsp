@@ -1040,14 +1040,14 @@
 							<li>
 								<div class="item_cont" style="text-align: center;">
 									<div class="item_photo_box">
-										<a href="prDetail.do?pNum=${product.pNum}">
+										<a href="productDetail.do?pNum=${product.pNum}">
 											<img src="${product.pImg}" width="180" alt="${product.pName}" title="${product.pName}" class="middle" />
 										</a>
 									</div>
 									<!-- //item_photo_box -->
 									<div class="item_info_cont" style="display: block; text-align: center;">
 										<div class="item_tit_box">
-											<a href="prDetail.do&pNum=${product.pNum}">
+											<a href="productDetail.do?pNum=${product.pNum}">
 												<strong class="item_name" style="direction: ltr;">${product.pName}</strong>
 											</a>
 										</div>
@@ -1055,14 +1055,10 @@
 										<div class="item_money_box">
 											<strong class="item_price">
 												<strong class="discount_rate">
-													<fmt:parseNumber value="${product.selPrice div product.fixPrice * 100}" integerOnly="true" />
-													%
+													<fmt:parseNumber value="${product.selPrice div product.fixPrice * 100}" integerOnly="true" />%
 												</strong>
 												<span>
-													<strong>
-														<fmt:formatNumber value="${product.selPrice}" type="number" />
-													</strong>
-													원
+													<strong><fmt:formatNumber value="${product.selPrice}" type="number" /></strong>원
 												</span>
 											</strong>
 										</div>
@@ -1263,9 +1259,9 @@
 						<!--  -->
 						<div class="p-t-33">
 							<div class="row flex-c">
-								<button class="flex-c-m m-r-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-detail">장바구니</button>
-								<button class="flex-c-m m-lr-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-detail dib-btn">찜하기</button>
-								<button class="flex-c-m m-l-10 stext-104 cl0 size-101 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">결제하기</button>
+								<button class="flex-c-m m-r-10 stext-106 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-detail">장바구니</button>
+								<button class="flex-c-m m-lr-10 stext-106 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-quickView dib-btn">찜하기</button>
+								<button class="flex-c-m m-l-10 stext-106 cl0 size-101 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">결제하기</button>
 							</div>
 						</div>
 					</div>
@@ -1275,10 +1271,6 @@
 	</div>
 </div>
 <script>
-	var cateNum = '${cateNum}';
-	var lowNum = '${lowNum}';
-	var highNum = '${highNum}';
-	var pageCnt = '${pageCnt}';
 </script>
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>

@@ -365,11 +365,12 @@ address, caption, cite, code, dfn, em, var {
 	border-top: 1px solid #999999;
 	border-bottom: 1px solid #dbdbdb;
 	background: #f7f7f7;
+	text-align:center;
 }
 
 .mypage_table_type td {
 	height: 31px;
-	padding: 15px 10px 14px 10px;
+	padding: 15px 5px 14px 5px;
 	color: #777777;
 	border-bottom: 1px solid #dbdbdb;
 	/*border-left:1px dotted #ededed;*/
@@ -547,3 +548,18 @@ address, caption, cite, code, dfn, em, var {
 .sub_menu_box_tit h2 {
 	font-size: 18px;
 } 
+
+
+/*-----찜 목록 표 -----------*/
+.mypage_table_type th,td {
+	text-align:center !important;
+}
+
+td.empty {
+	height:150px;
+	font-size:15px;
+}
+
+input[type=checkbox] {
+	margin: 0 auto;
+}

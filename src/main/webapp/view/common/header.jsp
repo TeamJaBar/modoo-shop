@@ -255,15 +255,22 @@
 				<i class="zmdi zmdi-search"></i>
 			</div>
 
-			<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="2">
+			<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
 				<a href="shoping-cart.jsp">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</a>
 			</div>
-
-			<a href="dibs-list.jsp" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-				<i class="zmdi zmdi-favorite-outline"></i>
-			</a>
+			
+			<c:if test="${mId == null}">
+				<a href="login.jsp" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
+			</c:if>
+			<c:if test="${mId != null}">
+				<a href="dibList.do" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
+			</c:if>
 		</div>
 		</nav>
 	</div>
