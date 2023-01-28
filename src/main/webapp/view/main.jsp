@@ -1263,9 +1263,9 @@
 						<!--  -->
 						<div class="p-t-33">
 							<div class="row flex-c">
-								<button class="flex-c-m m-r-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-detail">장바구니</button>
-								<button class="flex-c-m m-lr-10 stext-101 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-detail dib-btn">찜하기</button>
-								<button class="flex-c-m m-l-10 stext-104 cl0 size-101 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">결제하기</button>
+								<button class="flex-c-m m-r-10 stext-106 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-detail">장바구니</button>
+								<button class="flex-c-m m-lr-10 stext-106 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-detail dib-btn">찜하기</button>
+								<button class="flex-c-m m-l-10 stext-106 cl0 size-101 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">결제하기</button>
 							</div>
 						</div>
 					</div>
@@ -1275,10 +1275,6 @@
 	</div>
 </div>
 <script>
-	var cateNum = '${cateNum}';
-	var lowNum = '${lowNum}';
-	var highNum = '${highNum}';
-	var pageCnt = '${pageCnt}';
 </script>
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
