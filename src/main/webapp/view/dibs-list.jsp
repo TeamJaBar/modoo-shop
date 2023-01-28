@@ -22,40 +22,41 @@
 					<div class="mypage_shipping_cont">
 						<!-- <h6 class="m-b-30 stext-106 p-l-12">찜하기 총 ${fn:length(dList)}개</h6> -->
 						<div class="mypage_table_type">
-								<table style="text-align: center;">
-									<tbody>
-										<tr class="table_head">
-											<th class="column-0">선택</th>
-											<th class="column-1">상품</th>
-											<th class="column-2">상품명</th>
-											<th class="column-3">상품금액</th>
+							<table style="text-align: center;">
+								<tbody>
+									<tr class="table_head">
+										<th class="column-0">선택</th>
+										<th class="column-1">상품</th>
+										<th class="column-2">상품명</th>
+										<th class="column-3">상품금액</th>
+									</tr>
+									<c:if test="${fn:length(dList) == 0}">
+										<tr class="table_row start">
+											<td colspan="6" class="empty">찜한 상품이 없습니다.</td>
 										</tr>
-										<c:if test="${fn:length(dList) == 0}">
+									</c:if>
+									<c:if test="${fn:length(dList) != 0 }">
+										<c:forEach var="dibs" items="${dList}">
 											<tr class="table_row start">
-												<td colspan="6" class="empty">찜한 상품이 없습니다.</td>
+												<td class="column-0" align="center">
+													<input type="checkbox" id="dib" value="${dibs.dibNum}" name="dib" checked>
+												</td>
+												<td class="column-1">
+													<img src="${dibs.pNumPimg}" alt="${dibs.pNumPname}" style="width: 100px; height: 100px;">
+												</td>
+												<td class="column-2">${dibs.pNumPname}</td>
+												<td class="column-3">
+													<fmt:formatNumber value="${dibs.pNumSelPrice}" type="number" />
+													원
+												</td>
 											</tr>
-										</c:if>
-										<c:if test="${fn:length(dList) != 0 }">
-											<c:forEach var="dibs" items="${dList}">
-												<tr class="table_row start">
-													<td class="column-0" align="center">
-														<input type="checkbox" id="dib" value="${dibs.dibNum}" name="dib" checked>
-													</td>
-													<td class="column-1">
-														<img src="${dibs.pNumPimg}" alt="${dibs.pNumPname}" style="width: 100px; height: 100px;">
-													</td>
-													<td class="column-2">${dibs.pNumPname}</td>
-													<td class="column-3">
-														<fmt:formatNumber value="${dibs.pNumSelPrice}" type="number" />원
-													</td>
-												</tr>
-											</c:forEach>
-										</c:if>
-									</tbody>
-								</table>
+										</c:forEach>
+									</c:if>
+								</tbody>
+							</table>
 						</div>
 						<div class="flex-w flex-c p-t-10 m-t-30">
-							<button class="flex-c-m stext-106 cl2 size-118 bg0 bor22  hov-btn4 p-lr-15 trans-04 pointer m-r-8" onclick="alert('삭제하시겠습니까?');">삭제</button>
+							<button class="flex-c-m stext-106 cl2 size-118 bg0 bor22  hov-btn4 p-lr-15 trans-04 pointer m-r-8" onclick="del()">삭제</button>
 							<button class="flex-c-m stext-106 cl2 size-118 bg0 bor22 hov-btn4 p-lr-15 trans-04 pointer m-l-8" onclick="alert('장바구니에 추가하시겠습니까?');">장바구니</button>
 						</div>
 					</div>
@@ -66,6 +67,45 @@
 	</div>
 </section>
 <%@include file="common/footer.jsp"%>
+<script>
+	function del() {
+		var dibProduct = new Array();
+		
+		$("input[name='dib']:checked").each(function() {
+			var item = $(this).val();
+			dibProduct.push(item);
+		})
+		
+		console.log(dibProduct);
+		
+		if(dibProduct.length<1) {
+			alert("선택한 상품이 없습니다.");
+			return;
+		} else {
+			if(confirm("정말 삭제하시겠습니까?")) {
+				$.ajax({
+					type: 'POST',
+					url: 'dibDelete',
+					traditional: true,
+					data: {
+						dibProduct: dibProduct
+					},
+					success: function(result) {
+						if (result == 1) {
+							$('.mypage_table_type').load(location.href + ' .mypage_table_type>*', function() {
+								$.getScript("../js/main.js");
+								initIsotope();
+							});
+							alert("삭제되었습니다.");
+						}
+					}
+				});
+			} else {
+				alert("취소되었습니다.");
+			}
+		}
+	}
+</script>
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
