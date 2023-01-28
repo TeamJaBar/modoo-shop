@@ -206,18 +206,28 @@
 <!-- breadcrumb -->
 <div class="container">
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-		<a href="main.jsp" class="stext-109 cl8 hov-cl1 trans-04">
-			Home <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+		<a href="main.do" class="stext-109 cl8 hov-cl1 trans-04">
+			Home
+			<!-- <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i> -->
 		</a>
 		<!-- 대분류 게임 눌렀을 때 넘어가는 페이지 -->
-		<a href="product.jsp" class="stext-109 cl8 hov-cl1 trans-04">
-			${product.cateL}<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-		</a>
-		<span class="stext-109 cl4"> ${product.cateM} </span>
+		<c:if test="${category.cateL!=null}">
+			<a href="product.do" class="stext-109 cl8 hov-cl1 trans-04">
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+				${category.cateL}
+			</a>
+		</c:if>
+		<c:if test="${category.cateM!=null}">
+			<a href="product.do" class="stext-109 cl8 hov-cl1 trans-04">
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+				${category.cateM}
+			</a>
+		</c:if>
+		<%-- <span class="stext-109 cl4">
+			${category.cateM}
+		</span> --%>
 	</div>
 </div>
-
-
 <!-- Product Detail -->
 <section class="sec-product-detail bg0 p-t-65 p-b-60">
 	<div class="container">
@@ -225,34 +235,12 @@
 			<div class="col-md-6 col-lg-7 p-b-30">
 				<div class="p-l-25 p-r-30 p-lr-0-lg">
 					<div class="wrap-slick3 flex-sb flex-w">
-						<div class="wrap-slick3-dots"></div>
 						<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
 						<div class="slick3 gallery-lb">
-							<div class="item-slick3" data-thumb="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/19/02/08//1000006569/register_detail_025.jpg">
+							<div class="item-slick3" data-thumb="">
 								<div class="wrap-pic-w pos-relative">
-									<img src="${product.infoimg}" alt="${product.pName}">
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-										href="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/19/02/08//1000006569/register_detail_025.jpg">
-										<i class="fa fa-expand"></i>
-									</a>
-								</div>
-							</div>
-
-							<div class="item-slick3" data-thumb="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/1000000014_magnify_046.jpg">
-								<div class="wrap-pic-w pos-relative">
-									<img src="${product.infoimg}" alt="${product.pName}">
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04">
-										<i class="fa fa-expand"></i>
-									</a>
-								</div>
-							</div>
-
-							<div class="item-slick3" data-thumb="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/21/08/33//1000007566/register_detail_046.jpg">
-								<div class="wrap-pic-w pos-relative">
-									<img src="${product.infoimg}" alt="${product.pName}">
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-										href="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/21/08/33//1000007566/register_detail_046.jpg">
+									<img src="${product.pImg}" alt="${product.pName}">
+									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="">
 										<i class="fa fa-expand"></i>
 									</a>
 								</div>
@@ -261,19 +249,16 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="col-md-6 col-lg-5 p-b-30">
 				<div class="p-r-50 p-t-5 p-lr-0-lg item_detail_tit">
 					<h4 class="mtext-105 cl2 js-name-detail p-b-14">${product.pName}</h4>
-
 					<hr>
-
 					<table class="item_detail_list">
 						<tr>
 							<td>정가</td>
 							<td colspan="2">
-								<d el>
-									<span> ${product.fixPrice}</span>
+								<del>
+									<span>${product.fixPrice}</span>
 									원
 								</del>
 							</td>
@@ -287,11 +272,11 @@
 						</tr>
 						<tr>
 							<td>게임 인원</td>
-							<td colspan="2">${product.reperson}명</td>
+							<td colspan="2">${product.rePerson}명</td>
 						</tr>
 						<tr>
 							<td>게임 연령</td>
-							<td colspan="2">${product.reage}세이상</td>
+							<td colspan="2">${product.reAge}세이상</td>
 						</tr>
 						<tr>
 							<td>배송비</td>
@@ -305,8 +290,7 @@
 									<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 										<i class="fs-16 zmdi zmdi-minus"></i>
 									</div>
-									
-									<input type="hidden" id="num-product" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" >
+									<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
 									<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m ">
 										<i class="fs-16 zmdi zmdi-plus"></i>
 									</div>
@@ -318,12 +302,8 @@
 								원
 							</td>
 						</tr>
-
 					</table>
-
 					<hr>
-
-				
 					<div class="p-t-33">
 						<div class="row flex-c">
 							<button onclick="function addCart()" class="flex-c-m m-r-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addcart-detail">장바구니</button>
@@ -331,7 +311,7 @@
 							<button type="submit" onclick="function order()" class="flex-c-m m-l-10 stext-105 cl0 size-101 bg1 bor20 hov-btn4 p-lr-15 trans-04" type="submit">결제하기</button>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
@@ -357,12 +337,12 @@
 				<div class="tab-pane fade show active" id="description" role="tabpanel">
 					<div class="how-pos2 flex-c  p-lr-15-md">
 						<p class="stext-102 cl6">
-							<img src="${product.infoimg}" alt="${product.pName}">
+							<img src="${product.infoImg}" alt="${product.pName}">
 						</p>
 					</div>
 				</div>
 
-			
+
 				<div class="tab-pane fade" id="delivery" role="tabpanel">
 					<div class="row">
 						<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto flex-c ">
@@ -411,19 +391,18 @@
 <%@include file="common//footer.jsp"%>
 
 <script>
-	function order(pNum,pCnt){
-		location.href="shOrder.do?pNum=${product.pNum}&pcnt=${product.pCnt}"
+	function order(pNum, pCnt) {
+		location.href = "shOrder.do?pNum=${product.pNum}&pcnt=${pCnt}"
 	}
-	
-	function addDib(pNum){
-		location.href="dib.do?pNum=${product.pNum}"
+
+	function addDib(pNum) {
+		location.href = "dib.do?pNum=${product.pNum}"
 	}
-	
-	function addCart(pNum){
-		location.href="shopping.do?pNum=${product.pNum}&pcnt=${product.pNum}"
+
+	function addCart(pNum) {
+		location.href = "shopping.do?pNum=${product.pNum}&pcnt=${product.pNum}"
 	}
-	
-	</script>
+</script>
 
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -435,13 +414,13 @@
 <!--===============================================================================================-->
 <script src="../vendor/select2/select2.min.js"></script>
 <script>
-		$(".js-select2").each(function() {
-			$(this).select2({
-				minimumResultsForSearch : 20,
-				dropdownParent : $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
+	$(".js-select2").each(function() {
+		$(this).select2({
+			minimumResultsForSearch : 20,
+			dropdownParent : $(this).next('.dropDownSelect2')
+		});
+	})
+</script>
 <!--===============================================================================================-->
 <script src="../vendor/daterangepicker/moment.min.js"></script>
 <script src="../vendor/daterangepicker/daterangepicker.js"></script>
@@ -451,104 +430,97 @@
 <!--===============================================================================================-->
 <script src="../vendor/parallax100/parallax100.js"></script>
 <script>
-		$('.parallax100').parallax100();
-	</script>
+	$('.parallax100').parallax100();
+</script>
 <!--===============================================================================================-->
 <script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <script>
-		$('.gallery-lb').each(function() { // the containers for all your galleries
-			$(this).magnificPopup({
-				delegate : 'a', // the selector for gallery item
-				type : 'image',
-				gallery : {
-					enabled : true
-				},
-				mainClass : 'mfp-fade'
-			});
+	$('.gallery-lb').each(function() { // the containers for all your galleries
+		$(this).magnificPopup({
+			delegate : 'a', // the selector for gallery item
+			type : 'image',
+			gallery : {
+				enabled : true
+			},
+			mainClass : 'mfp-fade'
 		});
-	</script>
+	});
+</script>
 <!--===============================================================================================-->
 <script src="../vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
 <script src="../vendor/sweetalert/sweetalert.min.js"></script>
 <script>
-		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e) {
-			e.preventDefault();
+	$('.js-addwish-b2, .js-addwish-detail').on('click', function(e) {
+		e.preventDefault();
+	});
+
+	$('.js-addwish-b2').each(function() {
+		var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+		$(this).on('click', function() {
+			swal(nameProduct, "is added to wishlist !", "success");
+
+			$(this).addClass('js-addedwish-b2');
+			$(this).off('click');
 		});
+	});
 
-		$('.js-addwish-b2').each(
-				function() {
-					var nameProduct = $(this).parent().parent().find(
-							'.js-name-b2').html();
-					$(this).on('click', function() {
-						swal(nameProduct, "is added to wishlist !", "success");
+	$('.js-addwish-detail').each(function() {
+		var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
-						$(this).addClass('js-addedwish-b2');
-						$(this).off('click');
-					});
-				});
+		$(this).on('click', function() {
+			swal(nameProduct, "is added to wishlist !", "success");
 
-		$('.js-addwish-detail').each(
-				function() {
-					var nameProduct = $(this).parent().parent().parent().find(
-							'.js-name-detail').html();
+			$(this).addClass('js-addedwish-detail');
+			$(this).off('click');
+		});
+	});
 
-					$(this).on('click', function() {
-						swal(nameProduct, "is added to wishlist !", "success");
+	/*---------------------------------------------*/
 
-						$(this).addClass('js-addedwish-detail');
-						$(this).off('click');
-					});
-				});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(
-				function() {
-					var nameProduct = $(this).parent().parent().parent()
-							.parent().find('.js-name-detail').html();
-					$(this).on('click', function() {
-						swal(nameProduct, "is added to cart !", "success");
-					});
-				});
-	</script>
+	$('.js-addcart-detail').each(function() {
+		var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+		$(this).on('click', function() {
+			swal(nameProduct, "is added to cart !", "success");
+		});
+	});
+</script>
 <!--===============================================================================================-->
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
-		$('.js-pscroll').each(function() {
-			$(this).css('position', 'relative');
-			$(this).css('overflow', 'hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed : 1,
-				scrollingThreshold : 1000,
-				wheelPropagation : false,
-			});
-
-			$(window).on('resize', function() {
-				ps.update();
-			})
+	$('.js-pscroll').each(function() {
+		$(this).css('position', 'relative');
+		$(this).css('overflow', 'hidden');
+		var ps = new PerfectScrollbar(this, {
+			wheelSpeed : 1,
+			scrollingThreshold : 1000,
+			wheelPropagation : false,
 		});
-	</script>
+
+		$(window).on('resize', function() {
+			ps.update();
+		})
+	});
+</script>
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
 <!-- ============================================================================================== -->
 <script>
-		$(function() {
-			$("div").slice(0, 10).show(); // 최초 10개 선택
-			$("#load").click(function(e) { // Load More를 위한 클릭 이벤트e
-				e.preventDefault();
-				$("div:hidden").slice(0, 10).show(); // 숨김 설정된 다음 10개를 선택하여 표시
-				if ($("div:hidden").length == 0) { // 숨겨진 DIV가 있는지 체크
-					alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
-				}
-			});
-			
-			
-			var price = parseInt($('#price' + current).text().replace(',', ''));
-			var totalPrice = (price + 2500) 
-			totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-			$('#totalPrice').text(totalPrice);
+	$(function() {
+		$("div").slice(0, 10).show(); // 최초 10개 선택
+		$("#load").click(function(e) { // Load More를 위한 클릭 이벤트e
+			e.preventDefault();
+			$("div:hidden").slice(0, 10).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+			if ($("div:hidden").length == 0) { // 숨겨진 DIV가 있는지 체크
+				alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
+			}
 		});
-	</script>
+
+		var price = parseInt($('#price' + current).text().replace(',', ''));
+		var totalPrice = (price + 2500)
+		totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		$('#totalPrice').text(totalPrice);
+	});
+</script>
 </body>
 </html>
