@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
 <head>
 <title>장바구니</title>
@@ -28,125 +31,116 @@
 								<th class="column-4">수량</th>
 								<th class="column-5">합계금액</th>
 							</tr>
-							<tr class="cartTable_row">
-								<td class="column-1">
-									<input type="checkbox" class="chk1" id="chk" name="chk" value="1" checked />
-								</td>
-								<td class="column-2">
-									<img src="/ModooShop/images/p001.jpg" alt="샘플 데이터1" style="width: 90px; height: 70px;">
-								</td>
-								<td class="column-3">
-									<span id="price1">40,000</span>
-									원<br>
-									<span style="font-size: 10px;">
-										/
-										<span id="salePrice1">12,800</span>
-										원
-									</span>
-								</td>
-								<td class="column-4">
-									<div class="wrap-num-product flex-c m-tb-10 m-l-10">
-										<div id="1" class="btn-num-cart-down cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-minus"></i>
-										</div>
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-										<div id="1" class="btn-num-cart-up cl8 hov-btn3 trans-04 flex-c-m ">
-											<i class="fs-16 zmdi zmdi-plus"></i>
-										</div>
-									</div>
-								</td>
-								<td class="column-5">
-									<span id="totalPrice1">27,200</span>
-									원<br>
-								</td>
-							</tr>
-							<tr class="cartTable_row">
-								<td class="column-1">
-									<input type="checkbox" class="chk2" id="chk" name="chk" value="2" checked />
-								</td>
-								<td class="column-2">
-									<img src="/ModooShop/images/p002.jpg" alt="샘플 데이터2" style="width: 90px; height: 70px;">
-								</td>
-								<td class="column-3">
-									<span id="price2">7,000</span>
-									원<br>
-									<span style="font-size: 10px; text-align: right;">
-										/
-										<span id="salePrice2">2,800</span>
-										원
-									</span>
-								</td>
-								<td class="column-4">
-									<div class="wrap-num-product flex-c m-tb-10 m-l-10">
-										<div id="2" class="btn-num-cart-down cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-minus"></i>
-										</div>
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-										<div id="2" class="btn-num-cart-up cl8 hov-btn3 trans-04 flex-c-m">
-											<i class="fs-16 zmdi zmdi-plus"></i>
-										</div>
-									</div>
-								</td>
-								<td class="column-5">
-									<span id="totalPrice2">4,200</span>
-									원<br>
-									<!--<span id="totalSaleprice" style="font-size: 10px; text-align: right;"></span>-->
-								</td>
-							</tr>
+							<c:if test="${fn:length(cart) == 0}">
+								<tr class="cartTable_row">
+									<td colspan="5" class="empty">장바구니에 담긴 상품이 없습니다.</td>
+								</tr>
+							</c:if>
+							<c:if test="${fn:length(cart) != 0 }">
+								<c:set var="sumPrice" value="0" />
+								<c:set var="totalSale" value="0" />
+								<c:forEach var="cart" items="${cart}">
+									<c:set var="sumPrice" value="${sumPrice+cart.fixPrice*cart.pCnt}" />
+									<c:set var="totalSale" value="${totalSale+((cart.fixPrice-cart.selPrice)*cart.pCnt)}" />
+									<tr class="cartTable_row">
+										<td class="column-1">
+											<input type="checkbox" class="chk${cart.pNum}" id="chk" name="chk" value="${cart.pNum}" checked />
+										</td>
+										<td class="column-2">
+											<img src="${cart.pImg}" alt="${cart.pName}" style="width: 90px; height: 70px;">
+										</td>
+										<td class="column-3">
+											<span id="price${cart.pNum}"><fmt:formatNumber value="${cart.fixPrice}" type="number" /></span>
+											원<br>
+											<span style="font-size: 10px;">
+												/
+												<span id="salePrice${cart.pNum}"><fmt:formatNumber value="${cart.fixPrice - cart.selPrice}" type="number" /></span>
+												원
+											</span>
+										</td>
+										<td class="column-4">
+											<div class="wrap-num-product flex-c m-tb-10 m-l-10">
+												<div id="${cart.pNum}" class="btn-num-cart-down cl8 hov-btn3 trans-04 flex-c-m">
+													<i class="fs-16 zmdi zmdi-minus"></i>
+												</div>
+												<input id="pCnt${cart.pNum}" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="${cart.pCnt}">
+												<div id="${cart.pNum}" class="btn-num-cart-up cl8 hov-btn3 trans-04 flex-c-m ">
+													<i class="fs-16 zmdi zmdi-plus"></i>
+												</div>
+											</div>
+										</td>
+										<td class="column-5">
+											<span id="totalPrice${cart.pNum}"><fmt:formatNumber value="${cart.selPrice * cart.pCnt}" type="number"/></span>
+											원<br>
+										</td>
+									</tr>
+								</c:forEach>
+							</c:if>
 						</table>
 					</div>
 					<div class="flex-w flex-c m-t-50 p-lr-15-sm">
-						<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer" onclick="del()" href="#">선택 상품 삭제</div>
+						<div class="flex-c-m stext-106 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer" onclick="del()" href="#">선택 상품 삭제</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50 receipt">
 				<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-					<h4 class="mtext-109 cl2 p-b-30">최종 결제 금액</h4>
-					<div class="flex-w flex-t bor12 p-b-13">
+					<h4 class="mtext-115 cl2 p-b-30 receipt-title">최종 결제 금액</h4>
+					<div class="flex-w flex-t bor12 p-b-13 m-lr-10">
 						<div class="size-210">
-							<span class="stext-110 cl2" style="font-size: 12px;"> 총 상품금액: </span>
+							<span class="stext-121 cl2" style="font-size: 12px;"> 총 상품금액: </span>
 						</div>
 						<div class="size-210">
-							<span class="mtext-110 cl2">
-								<span id="sumPrice"> &nbsp;47,000</span>
+							<span class="mtext-114 cl2 price-area">
+								<span id="sumPrice">
+									<fmt:formatNumber value="${sumPrice}" type="number" />
+								</span>
 								원
 							</span>
 						</div>
 						<div class="size-210">
-							<span class="stext-110 cl2" style="font-size: 12px;"> 할인금액: </span>
+							<span class="stext-121 cl2" style="font-size: 12px;"> 할인금액: </span>
 						</div>
 						<div class="size-210">
-							<span class="mtext-110 cl2">
+							<span class="mtext-114 cl2  price-area">
 								-
-								<span id="totalSale">15,600</span>
+								<span id="totalSale">
+								<fmt:formatNumber value="${totalSale}" type="number" />
+								</span>
 								원
 							</span>
 						</div>
 						<div class="size-210">
-							<span class="stext-110 cl2" style="font-size: 12px;"> 배송비: </span>
+							<span class="stext-121 cl2" style="font-size: 12px;"> 배송비: </span>
 						</div>
 						<div class="size-210">
-							<span class="mtext-110 cl2">
-								<span id="deliveryFee">&nbsp;&nbsp;&nbsp;2500</span>
-								원
-							</span>
+							<c:if test="${fn:length(cart) == 0}">
+								<span id="deliveryFee">0</span>원>
+						</c:if>
+							<c:if test="${fn:length(cart) != 0}">
+								<span class="mtext-114 cl2  price-area">
+									<span id="deliveryFee">2,500</span>
+									원
+								</span>
+							</c:if>
 						</div>
 					</div>
-					<div class="flex-w flex-t p-t-27 p-b-33">
+					<div class="flex-w flex-t p-t-27 p-b-33 m-lr-10">
 						<div class="size-210">
-							<span class="mtext-101 cl2">합계</span>
+							<span class="mtext-114 cl2">합계</span>
 						</div>
 						<div class="size-210 p-t-1">
-							<span class="mtext-110 cl2">
-								<span id="payment">33,900</span>
+							<span class="mtext-114 cl2  price-area">
+								<span id="payment">
+									<fmt:formatNumber value="${sumPrice - totalSale + 2500}" type="number" />
+								</span>
 								원
 							</span>
 						</div>
 					</div>
-					<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" onclick="return check()" href="order.jsp">선택 상품 주문</button>
+					<button class="flex-c-m stext-106 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" onclick="return check()" href="order.jsp">선택 상품 주문</button>
 					<div>&nbsp;</div>
-					<button id="all" onclick="allselect()" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" href="order.jsp">전체 상품 주문</button>
+					<button id="all" onclick="allselect()" class="flex-c-m stext-106 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" href="order.jsp">전체 상품 주문</button>
 				</div>
 			</div>
 		</div>
@@ -192,7 +186,56 @@
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
 <script>
-	
+	/*==========체크 변경=========== */
+	$("input[name='chk']").each(function() {
+		//var totalPrice = (price - salePrice) * cnt;
+		$(this).on('change', function() {
+			var chkProduct = new Array();
+
+			$("input[name='chk']:checked").each(function() {
+				var items = $(this).val();
+				chkProduct.push(items);
+
+			});
+			
+			if(chkProduct.length == 0) {
+				$('#deliveryFee').text(0);
+			} else {
+				$('#deliveryFee').text('2,500');
+			}
+			
+			var current = $(this).val();
+			var price = parseInt($('#price' + current).text().replace(',', ''));
+			var salePrice = parseInt($('#salePrice' + current).text().replace(',', ''));
+			var pCnt = $('#pCnt' + current).val();
+			var sumPrice = parseInt($('#sumPrice').text().replace(',', ''));
+			var totalSale = parseInt($('#totalSale').text().replace(',', ''));
+			var deliveryFee = parseInt($('#deliveryFee').text().replace(',', ''));
+			
+			if ($(this).is(":checked")) {
+				console.log(current);
+				console.log(price);
+				console.log(salePrice);
+				console.log(pCnt);
+				console.log((price * pCnt));
+				$('#sumPrice').text((sumPrice + (price * pCnt)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+				$('#totalSale').text((totalSale + salePrice * pCnt).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+
+				var sumPrice = parseInt($('#sumPrice').text().replace(',', ''));
+				var totalSale = parseInt($('#totalSale').text().replace(',', ''));
+				$('#payment').text((sumPrice - totalSale + deliveryFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+			} else {
+				$('#sumPrice').text((sumPrice - (price * pCnt)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+				$('#totalSale').text((totalSale - salePrice * pCnt).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+
+				var sumPrice = parseInt($('#sumPrice').text().replace(',', ''));
+				var totalSale = parseInt($('#totalSale').text().replace(',', ''));
+				var deliveryFee = parseInt($('#totalSale').text().replace(',', ''));
+				$('#payment').text((sumPrice - totalSale + deliveryFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+			}
+		});
+	})
+
 	function allselect() {
 
 		// 체크박스의 이름과 prop 메서드를 사용하여 전체 선택
@@ -202,18 +245,18 @@
 
 	function del() {
 		var chkProduct = new Array();
-		
+
 		$("input[name='chk']:checked").each(function() {
 			var items = $(this).val();
 			chkProduct.push(items);
-			
+
 		});
-		
-		if(chkProduct.length<1) {
+
+		if (chkProduct.length < 1) {
 			alert("선택한 상품이 없습니다.");
 			return;
 		} else {
-			if(confirm("정말 삭제하시겠습니까?")) {
+			if (confirm("정말 삭제하시겠습니까?")) {
 				alert("삭제되었습니다.");
 			} else {
 				alert("취소되었습니다.");
