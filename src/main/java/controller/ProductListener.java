@@ -48,9 +48,9 @@ public class ProductListener implements ServletContextListener {
 		Connection conn = JDBCUtil.connect();
 		PreparedStatement pstmt = null;
 
-		for (int a = 1; a < 4; a++) {
+		for (int a = 1; a < 7; a++) {
 			// 타겟 사이트
-			String url = "https://www.boardgamemall.co.kr/goods/goods_list.php?page=" + a + "&cateCd=047001"; // 페이지 넘어가는 url
+			String url = "https://www.boardgamemall.co.kr/goods/goods_list.php?page=" + a + "&cateCd=047"; // 페이지 넘어가는 url
 			String url2 = "https://www.boardgamemall.co.kr"; // 상세페이지로 넘어가기 위한 url
 
 			Document doc = null;
