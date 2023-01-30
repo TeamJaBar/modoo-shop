@@ -62,7 +62,7 @@
 							<div class="member_login_box">
 								<div class="login_input_sec">
 									<div>
-										<input type="text" id="loginId" name="mId" placeholder="아이디" required>
+										<input type="text" id="loginId" name="mId" placeholder="아이디" value="${cookie.mId.value}"required>
 										<input type="password" id="loginPwd" name="mPw" placeholder="비밀번호" required>
 									</div>
 									<button type="submit" id="btnSubmit" class="btn_submit">로그인</button>
@@ -70,7 +70,7 @@
 								<div class="id_chk">
 									<!-- 나중에 쿠키 -->
 									<span class="form_element">
-										<input type="checkbox" id="saveId" name="saveId" value="y" checked>
+										<input type="checkbox" id="saveId" name="saveId" value="true" ${empty cookie.mId.value ? "" : "checked" } >
 										<label for="saveId" class="check on">아이디 저장</label>
 									</span>
 									<!-- 숨겨져 있다가 실패하면 뿅 -->

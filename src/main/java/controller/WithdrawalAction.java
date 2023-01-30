@@ -24,8 +24,8 @@ public class WithdrawalAction implements Action {
 
 		mvo=mdao.selectOneLogin(mvo);//탈퇴하려는 id랑 pw랑 같고 그게 멤버 테이블에 있으면
 		if(mvo !=null ) {
-			Cookie cookie=new Cookie("mId",mId);
 			if (mdao.delete(mvo)) {
+				Cookie cookie=new Cookie("mId",mId);
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 				request.getSession().invalidate();
