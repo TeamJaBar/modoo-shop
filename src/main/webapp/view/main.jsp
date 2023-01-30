@@ -1172,9 +1172,10 @@
 				</div>
 			</c:forEach>
 		</div>
+		<!-- 
 		<div class="flex-c-m flex-w w-full p-t-45">
 			<a id="more" href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn3 p-lr-15 trans-04"> Load More </a>
-		</div>
+		</div> -->
 	</div>
 </section>
 <jsp:include page="common/footer.jsp" flush="false">
@@ -1259,7 +1260,7 @@
 						<!--  -->
 						<div class="p-t-33">
 							<div class="row flex-c">
-								<button class="flex-c-m m-r-10 stext-106 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-detail cart-btn">장바구니</button>
+								<button class="flex-c-m m-r-10 stext-106 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-quickView cart-btn">장바구니</button>
 								<button class="flex-c-m m-lr-10 stext-106 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-quickView dib-btn">찜하기</button>
 								<button class="flex-c-m m-l-10 stext-106 cl0 size-101 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">결제하기</button>
 							</div>

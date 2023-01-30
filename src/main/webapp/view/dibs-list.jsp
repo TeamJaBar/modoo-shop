@@ -57,7 +57,7 @@
 						</div>
 						<div class="flex-w flex-c p-t-10 m-t-30">
 							<button class="flex-c-m stext-106 cl2 size-118 bg0 bor22  hov-btn4 p-lr-15 trans-04 pointer m-r-8" onclick="del()">삭제</button>
-							<button class="flex-c-m stext-106 cl2 size-118 bg0 bor22 hov-btn4 p-lr-15 trans-04 pointer m-l-8" onclick="alert('장바구니에 추가하시겠습니까?');">장바구니</button>
+							<button class="flex-c-m stext-106 cl2 size-118 bg0 bor22 hov-btn4 p-lr-15 trans-04 pointer m-l-8" onclick="addCart()">장바구니</button>
 						</div>
 					</div>
 				</div>
@@ -67,7 +67,58 @@
 	</div>
 </section>
 <%@include file="common/footer.jsp"%>
+<script src="../vendor/sweetalert/sweetalert.min.js"></script>
 <script>
+function addCart() {
+	var dibProduct = new Array();
+	
+	$("input[name='dib']:checked").each(function() {
+		var item = $(this).val();
+		dibProduct.push(item);
+	})
+	
+	console.log(dibProduct);
+	
+	if(dibProduct.length<1) {
+		alert("선택한 상품이 없습니다.");
+		return;
+	} else {
+			$.ajax({
+				type: 'POST',
+				url: 'cartInsertDips',
+				traditional: true,
+				data: {
+					dList : dibProduct
+				},
+				success: function(result) {
+					if (result == 1) {
+						swal({
+							title:'장바구니에 담겼습니다!',
+							text:'장바구니로 이동하시겠습니까?',
+							icon : 'success',
+							buttons : {
+								cancle: {
+									text : '취소',
+									value : 'false',
+								},
+								confirm : {
+									text:'이동',
+									value : 'true',
+
+								}
+							}
+						}).then((result) => {
+							if(result) {
+								location.href='shopping-cart.jsp';
+							}
+						})
+						
+					}
+				}
+			});
+		}
+	}
+	
 	function del() {
 		var dibProduct = new Array();
 		
@@ -92,10 +143,7 @@
 					},
 					success: function(result) {
 						if (result == 1) {
-							$('.mypage_table_type').load(location.href + ' .mypage_table_type>*', function() {
-								$.getScript("../js/main.js");
-								initIsotope();
-							});
+							$('.mypage_table_type').load(location.href + ' .mypage_table_type>*');
 							alert("삭제되었습니다.");
 						}
 					}

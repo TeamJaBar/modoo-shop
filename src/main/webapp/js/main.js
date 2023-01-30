@@ -508,7 +508,7 @@
 	});
 
 	/*========================= [ QuickView 찜 ] ==============================*/
-	$('.js-addcart-detail').off('click').on('click', function() {
+	$('.js-addcart-quickView').off('click').on('click', function() {
 		var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 		var pNum = $(this).prop("id");
 		var pCnt = $(this).parent().parent().parent().find('.num-product').val();
@@ -524,7 +524,7 @@
 			},
 			success: function(result) {
 				if (result == 1) {
-					swal(nameProduct, "찜 목록에 추가되었습니다!", "success");
+					swal(nameProduct, "장바구니에 추가되었습니다!", "success");
 				}
 				else {
 					alert("장바구니 추가 실패. 관리자에게 문의하세요.");
