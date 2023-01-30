@@ -97,22 +97,19 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("addrsInsert.do")) {
-			// 배송지 추가 완료 > address-list
+		} else if (command.equals("addrsInsert.do")) { // 배송지 추가 완료 > address-list
 			try {
 				forward = new AddrsInsertAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("addrsUpdate.do")) {
-			// 배송지 수정 완료 > address-list
+		} else if (command.equals("addrsUpdate.do")) { // 배송지 수정 완료 > address-list
 			try {
 				forward = new AddrsUpdateAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("addrsDelete.do")) {
-			// 배송지 삭제 > address-list
+		} else if (command.equals("addrsDelete.do")) { // 배송지 삭제 > address-list
 			try {
 				forward = new AddrsDeleteAction().execute(request, response);
 			} catch (Exception e) {
@@ -163,6 +160,24 @@ public class FrontController extends HttpServlet {
 		} else if (command.equals("dibList.do")) { // 찜 목록
 			try {
 				forward = new DibListAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("cart.do")) { // 장바구니 목록
+			try {
+				forward = new CartAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("cartDelete.do")) { // 장바구니 삭제
+			try {
+				forward = new CartDeleteAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("orderSelect.do")) { // 결제 목록
+			try {
+				forward = new OrListAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

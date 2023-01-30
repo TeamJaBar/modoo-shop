@@ -18,11 +18,12 @@ public class ProductDAO {
 	final String INSERT = "INSERT INTO PRODUCT VALUES(PNUM_SEQ.NEXTVAL, ?, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)";
 	// R : Product
 	final String SELECTONE = "SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG, INFOIMG FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) WHERE PNUM=?";
+	final String SELECTONE_CART = "SELECT PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, BRAND, PIMG FROM PRODUCT WHERE PNUM=?";
 	final String SELECTALL_NEW = "SELECT * FROM (SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG "
 			+ "FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) ORDER BY RDATE DESC) WHERE ROWNUM<?";
 	final String SELECTALL_BEST = "SELECT * FROM (SELECT DIB, P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT, DECODE(SUM(CNT), NULL, 0, SUM(CNT))  A"
-			+ "FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) P FULL JOIN ORDERDETAIL O ON P.PNUM=O.PNUM" + "GROUP BY P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT"
-			+ "ORDER BY A DESC) WHERE ROWNUM<?";
+			+ "FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) P FULL JOIN ORDERDETAIL O ON P.PNUM=O.PNUM"
+			+ "GROUP BY P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT" + "ORDER BY A DESC) WHERE ROWNUM<?";
 	final String SELECTALL_CATEALL = "SELECT * FROM (SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG "
 			+ "FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM) WHERE CATENUM BETWEEN ? AND ? ORDER BY RDATE DESC) WHERE ROWNUM<?";
 	final String SELECTALL_CATE = "SELECT * FROM (SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG "
@@ -70,7 +71,7 @@ public class ProductDAO {
 		}
 		return true;
 	}
-	
+
 	public CategoryVO selectOneCate(ProductVO pvo) {
 		CategoryVO data = null;
 		conn = JDBCUtil.connect();
@@ -111,7 +112,31 @@ public class ProductDAO {
 				data.setReAge(rs.getInt("REAGE"));
 				data.setBrand(rs.getString("BRAND"));
 				data.setpImg(rs.getString("PIMG"));
-                data.setInfoImg(rs.getString("INFOIMG"));
+				data.setInfoImg(rs.getString("INFOIMG"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return data;
+	}
+
+	public ProductVO selectOneCart(ProductVO pvo) {
+		ProductVO data = null;
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(SELECTONE_CART);
+			pstmt.setInt(1, pvo.getpNum());
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				data = new ProductVO();
+				data.setpNum(rs.getInt("PNUM"));
+				data.setCateNum(rs.getInt("CATENUM"));
+				data.setpName(rs.getString("PNAME"));
+				data.setFixPrice(rs.getInt("FIXPRICE"));
+				data.setSelPrice(rs.getInt("SELPRICE"));
+				data.setBrand(rs.getString("BRAND"));
+				data.setpImg(rs.getString("PIMG"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -170,7 +195,7 @@ public class ProductDAO {
 				data.setReAge(rs.getInt("REAGE"));
 				data.setBrand(rs.getString("BRAND"));
 				data.setpImg(rs.getString("PIMG"));
-				if(cnt==1) {
+				if (cnt == 1) {
 					data.setInfoImg(rs.getString("INFOIMG"));
 					data.setProductCnt(rs.getInt("PRODUCTCNT"));
 				}
@@ -188,17 +213,17 @@ public class ProductDAO {
 		conn = JDBCUtil.connect();
 		try {
 			int cnt = 0;
-			if(cvo.getLowNum() != 0) {
+			if (cvo.getLowNum() != 0) {
 				pstmt = conn.prepareStatement(SELECTALL_LCATE);
 				pstmt.setInt(1, cvo.getLowNum());
 				pstmt.setInt(2, cvo.getHighNum());
-			} else if(cvo.getCateL()==null){
+			} else if (cvo.getCateL() == null) {
 				pstmt = conn.prepareStatement(SELECTALL_MCATENUM);
-				pstmt.setInt(1, cvo.getCateNum());				
-				pstmt.setInt(2, cvo.getCateNum());				
+				pstmt.setInt(1, cvo.getCateNum());
+				pstmt.setInt(2, cvo.getCateNum());
 			} else {
 				pstmt = conn.prepareStatement(SELECTALL_MCATENAME);
-				pstmt.setString(1, cvo.getCateL());								
+				pstmt.setString(1, cvo.getCateL());
 			}
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -206,7 +231,7 @@ public class ProductDAO {
 				data = new CategoryVO();
 				data.setCateNum(rs.getInt("CATENUM"));
 				data.setCateL(rs.getString("CATEL"));
-				if(cnt==1) {
+				if (cnt == 1) {
 					data.setCateM(rs.getString("CATEM"));
 				}
 				datas.add(data);
@@ -316,12 +341,12 @@ public class ProductDAO {
 				filter += " AND SELPRICE > 40000";
 			}
 
-			if(pvo.getpName() != null) {
+			if (pvo.getpName() != null) {
 				filter += " AND PNAME LIKE '%'||?||'%' ";
 				cnt++;
 			}
 
-			if (pvo.getFilterSortBy() == 11) {				
+			if (pvo.getFilterSortBy() == 11) {
 				filter += " ORDER BY RDATE DESC";
 			} else if (pvo.getFilterSortBy() == 12) {
 				str1 = "P2.";
@@ -334,7 +359,7 @@ public class ProductDAO {
 			}
 
 			pstmt = conn.prepareStatement(filter);
-			if(cnt==1) {
+			if (cnt == 1) {
 				pstmt.setString(1, pvo.getpName());
 			}
 

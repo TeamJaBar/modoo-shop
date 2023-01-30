@@ -23,6 +23,7 @@ public class ProductVO {
 	private int FilterPrice; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 price
 	private int FilterTags; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 tags
 	private int pageCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 더보기
+	private int pCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 구매 수량(purchaseCnt)
 
 	public int getpNum() {
 		return pNum;
@@ -174,6 +175,21 @@ public class ProductVO {
 
 	public void setPageCnt(int pageCnt) {
 		this.pageCnt = pageCnt;
+	}
+
+	public int getpCnt() {
+		return pCnt;
+	}
+
+	public void setpCnt(int pCnt) {
+		this.pCnt = pCnt;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductVO [pNum=" + pNum + ", cateNum=" + cateNum + ", pName=" + pName + ", fixPrice=" + fixPrice + ", selPrice=" + selPrice + ", rDate=" + rDate + ", rePerson=" + rePerson
+				+ ", reAge=" + reAge + ", brand=" + brand + ", pImg=" + pImg + ", infoImg=" + infoImg + ", productCnt=" + productCnt + ", dib=" + dib + ", lowNum=" + lowNum + ", highNum=" + highNum
+				+ ", FilterSortBy=" + FilterSortBy + ", FilterPrice=" + FilterPrice + ", FilterTags=" + FilterTags + ", pageCnt=" + pageCnt + ", pCnt=" + pCnt + "]";
 	}
 
 }
