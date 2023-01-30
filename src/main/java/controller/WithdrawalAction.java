@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,13 +18,16 @@ public class WithdrawalAction implements Action {
 
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
-		int mNum = (int)request.getSession().getAttribute("mId");
+		String mId = (String)request.getSession().getAttribute("mId");
 		mvo.setmPw(request.getParameter("mPw"));
-		mvo.setmNum(mNum);
+		mvo.setmId(mId);
 
 		mvo=mdao.selectOneLogin(mvo);//탈퇴하려는 id랑 pw랑 같고 그게 멤버 테이블에 있으면
 		if(mvo !=null ) {
+			Cookie cookie=new Cookie("mId",mId);
 			if (mdao.delete(mvo)) {
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
 				request.getSession().invalidate();
 				return forward;
 			}
