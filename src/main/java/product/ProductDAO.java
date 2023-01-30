@@ -34,7 +34,8 @@ public class ProductDAO {
 	// R : Category
 	final String SELECTONE_CATE = "SELECT CATEL, CATEM FROM CATEGORY WHERE CATENUM=?";
 	final String SELECTALL_LCATE = "SELECT DISTINCT CATEL, DECODE(MOD(CATENUM, 100) , 0 , CATENUM , CATENUM-MOD(CATENUM, 100)) CATENUM FROM CATEGORY WHERE CATENUM BETWEEN ? AND ?";
-	final String SELECTALL_MCATE = "SELECT CATEL, CATEM, CATENUM FROM CATEGORY WHERE CATEL=?";
+	final String SELECTALL_MCATENAME = "SELECT CATEL, CATEM, CATENUM FROM CATEGORY WHERE CATEL=?";
+	final String SELECTALL_MCATENUM = "SELECT CATEM, CATENUM FROM CATEGORY WHERE CATENUM BETWEEN ? AND (?+99)";
 	// U : Product
 	final String UPDATE = "UPDATE PRODUCT SET CATAENUM=?, PNAME=?, FIXPRICE=?, SELPRICE=?, REPERSON=?, REAGE=?, BRAND=?, PIMG=?, INFOIMG=?, PRODUCTCNT=? WHERE PNUM=?";
 	// D : Product
@@ -191,10 +192,13 @@ public class ProductDAO {
 				pstmt = conn.prepareStatement(SELECTALL_LCATE);
 				pstmt.setInt(1, cvo.getLowNum());
 				pstmt.setInt(2, cvo.getHighNum());
+			} else if(cvo.getCateL()==null){
+				pstmt = conn.prepareStatement(SELECTALL_MCATENUM);
+				pstmt.setInt(1, cvo.getCateNum());				
+				pstmt.setInt(2, cvo.getCateNum());				
 			} else {
-				pstmt = conn.prepareStatement(SELECTALL_MCATE);
-				pstmt.setString(1, cvo.getCateL());				
-
+				pstmt = conn.prepareStatement(SELECTALL_MCATENAME);
+				pstmt.setString(1, cvo.getCateL());								
 			}
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
