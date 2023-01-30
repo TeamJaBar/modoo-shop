@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +53,7 @@
 	<div class="container">
 		<div class="sub_content">
 			<div class="content_box">
-				<form id="frmOrder" name="frmOrder" action="order-ok.html">
+				<form id="frmOrder" name="frmOrder" action="shOrder.do">
 					<div class="order_wrap">
 						<div class="order_tit">
 							<h2>주문서작성/결제</h2>
@@ -96,14 +97,14 @@
 												<th>상품/옵션 정보</th>
 												<th class="js-relative-none-mobile">수량</th>
 												<th>상품금액</th>
-												<th class="js-relative-none-mobile">할인/적립</th>
+												<th class="js-relative-none-mobile">적립</th>
 												<th class="js-relative-none-mobile">합계금액</th>
 												<th class="js-relative-none-mobile">배송비</th>
 											</tr>
 										</thead>
 										<tbody>
 
-
+										<c:forEach items="list" var="productDto">
 											<tr>
 												<td class="td_left">
 													<div class="pick_add_cont">
@@ -113,7 +114,7 @@
 															class="middle">
 														</span>
 														<div class="pick_add_info">
-															<em><span>방방곡곡 세계유랑</span></em>
+															<em><span></span></em>
 
 															<!-- //icon_pick_list -->
 
@@ -124,69 +125,30 @@
 													</div> <!-- //pick_add_cont -->
 												</td>
 												<td class="js-relative-none-mobile td_order_amount">
-													<div class="order_goods_num">
-														<strong>1개</strong>
+													<div class="order_goods_num" name="cnt">
+													           <!-- 담긴 상품 수량 -->
+														<strong>${order.pNumcnt}개</strong>
 													</div>
 												</td>
 												<td>
 													<div class="js-relative-block-mobile">
-														<strong>1개</strong>
-													</div> <strong class="order_sum_txt price">16,320원</strong>
+												            	<!-- 담긴 상품별 수량 -->
+														<strong>${order.pNumcnt}개</strong>
+													</div> <strong class="order_sum_txt price">${order.total}원</strong>
 												</td>
 												<td class="td_benefit js-relative-none-mobile">
 													<ul class="benefit_list">
 														<li class="benefit_mileage js_mileage"><em>적립</em><br>
-															<span>상품 <strong>+160원</strong></span></li>
+															<span>상품 <strong>+${order.mNummpoint}원</strong></span></li>
 													</ul>
 												</td>
 												<td class="js-relative-none-mobile"><strong
-													class="order_sum_txt">16,320원</strong></td>
+													class="order_sum_txt">원</strong></td>
 												<td class="td_delivery js-relative-none-mobile" rowspan="2">
-													기본_3만무배<br> 2,500원 <br> (택배)
+													<br> 2,500원 <br> (택배)
 												</td>
 											</tr>
-											<tr>
-												<td class="td_left">
-													<div class="pick_add_cont">
-														<span class="pick_add_img"> <img
-															src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/19/01/05//1000006528/modify_list_017.jpg"
-															width="40" alt="모두의마블 베이직" title="모두의마블 베이직"
-															class="middle">
-														</span>
-														<div class="pick_add_info">
-
-
-															<em><span>모두의마블 베이직</span></em>
-
-															<div class="pick_option_box"></div>
-
-															<div class="pick_option_box"></div>
-														</div>
-													</div> <!-- //pick_add_cont -->
-
-												</td>
-												<td class="js-relative-none-mobile td_order_amount">
-													<div class="order_goods_num">
-														<strong>1개</strong>
-													</div>
-												</td>
-												<td>
-
-													<div class="js-relative-block-mobile">
-														<strong>1개</strong>
-													</div> <strong class="order_sum_txt price">6,600원</strong>
-												</td>
-												<td class="td_benefit js-relative-none-mobile">
-													<ul class="benefit_list">
-														<li class="benefit_mileage js_mileage"><em>적립</em><br>
-															<span>상품 <strong>+60원</strong></span></li>
-													</ul>
-												</td>
-												<td class="js-relative-none-mobile"><strong
-													class="order_sum_txt">6,600원</strong></td>
-											</tr>
-
-
+										</c:forEach>										
 										</tbody>
 									</table>
 									<!-- 장바구니 상품리스트 끝 -->
@@ -196,7 +158,7 @@
 							<!-- //cart_cont_list -->
 
 							<div class="btn_left_box">
-								<a href="shoping-cart.html" class="shop_go_link"><em>&lt;
+								<a href="shoping-cart.jsp" class="shop_go_link"><em>&lt;
 										장바구니 가기</em></a>
 							</div>
 
@@ -205,10 +167,10 @@
 									<div class="price_sum_list">
 										<dl>
 											<dt>
-												총 <strong>2</strong> 개의 상품금액
+												총 <strong>${order.pNumcnt}</strong> 개의 상품금액
 											</dt>
 											<dd>
-												<strong>22,920</strong>원
+												<strong>${order.pTotal}</strong>원
 											</dd>
 										</dl>
 										<span><img
@@ -224,11 +186,12 @@
 										<dl class="price_total">
 											<dt>합계</dt>
 											<dd>
-												<strong>25,420</strong>원
+												<strong>${order.totalPrice}</strong>원
 											</dd>
 										</dl>
 									</div>
-									<em class="tobe_mileage js_mileage">적립예정 적립금 : <span>220</span>
+									                                                        <!-- 총 예정 적립금 -->
+									<em class="tobe_mileage js_mileage">적립예정 적립금 : <span>${order.setPoint}</span>
 										원
 									</em>
 								</div>
@@ -254,13 +217,12 @@
 											<tbody>
 												<tr>
 													<th scope="row"><span class="important">주문하시는 분</span></th>
-													<td><input type="text" name="orderName" value="이성훈"
-														data-pattern="gdEngKor" maxlength="20" required></td>
+													<td><input type="text" name="orderName" 
+														data-pattern="gdEngKor" maxlength="20" required>${member.mName}</td>
 												</tr>
 												<tr>
 													<th scope="row">주소</th>
-													<td style="font-size: 12px;">[06236] 서울 강남구 테헤란로 146
-														3층</td>
+													<td style="font-size: 12px;">[${member.ZipCode}] ${member.UserAddr} ${member.DetailAddr}</td>
 												</tr>
 												<!-- <tr>
 													<th scope="row">전화번호</th>
@@ -273,11 +235,11 @@
 												<tr>
 													<th scope="row"><span class="important">휴대폰 번호</span></th>
 													<td><input type="text" id="mobileNum"
-														name="orderCellPhone" value="010-2611-9577" maxlength="20" required>
+														name="orderCellPhone" maxlength="20" required>${member.mTel}
 													</td>
 												</tr>
 												<tr>
-													<th scope="row"><span class="important">이메일</span></th>
+													<th scope="row"><span class="important">${member.mEmail}</span></th>
 													<td class="member_email"><input type="text"
 														name="orderEmail" value="polodltjdgns@naver.com" disabled>
 														<!-- <select id="emailDomain" class="chosen-select">
@@ -345,9 +307,8 @@
 																		동일</label></li>
 															</ul>
 															<button class="btn_gray_list">
-																<a href="add-address.html"
-																	class="btn_gray_small btn_open_layer js_shipping"
-																	style="border: 1px 0188CB; color: #0188CB">배송지 관리</a>
+																<a href="add-address.jsp"
+																	class="btn_gray_small btn_open_layer js_shipping" style="border: 1px 0188CB; color: #0188CB">배송지 관리</a>
 															</button>
 														</div>
 													</td>
@@ -529,7 +490,7 @@
 													<td class="td_last_say"><input type="text"
 														name="orderMemo"></td>
 												</tr>
-												<!-- 
+												<!--  
 												<tr id="memberinfoApplyTr">
 													<th scope="row">회원정보 반영</th>
 													<td>
@@ -574,7 +535,7 @@
 												<tr>
 													<th scope="row">상품 합계 금액</th>
 													<td><strong id="totalGoodsPrice"
-														class="order_payment_sum">22,920원</strong></td>
+														class="order_payment_sum">${order.setTotal}원</strong></td>
 												</tr>
 												<tr>
 													<th scope="row">배송비</th>
@@ -591,19 +552,18 @@
 														</td>
 													</tr> -->
 												<tr>
-													<th scope="row">할인 및 적립</th>
+													<th scope="row">적립</th>
 													<td>
 														<ul class="order_benefit_list">
-															<li class="order_benefit_sale"><em id="saleDefault">
+															<!-- <li class="order_benefit_sale"><em id="saleDefault">
 																	할인 : <strong>(-) <b
 																		class="total-member-dc-price">0</b>원
 																</strong> <span>( 상품 0원 , 회원 <span class="member-dc-price">0원 )</span>
-															</em></li>
+															</em></li> -->
 															<li class="order_benefit_mileage js_mileage"><em
 																id="mileageDefault"> 적립 적립금 : <strong>(+)
-																		<b class="total-member-mileage">220</b>원
-																</strong> <span> ( 상품 <span class="goods-mileage">220</span>원,
-																		회원 <span class="member-mileage">0</span>원 )
+																		<b class="total-member-mileage">${order.mNummpoint}</b>원
+																</strong>
 																</span>
 															</em></li>
 														</ul>
@@ -613,20 +573,21 @@
 													<th scope="row">적립금 사용</th>
 													<td>
 														<div class="order_money_use">
-															<b><input type="text" name="useMileage"
-																onblur="gd_mileage_use_check('y', 'y', 'y');"> 원</b>
-															<div class="form_element">
+															<b><input type="text" name="useMileage" id="useMileageSelect"
+																onblur="gd_mileage_use_check('y', 'y', 'y');"> 원</b> <input type="button" id="useMileagePoint" 
+																	onclick="gd_mileage_use_point();" value="적립금 적용하기">
+															<div class="form_element">															
 																<input type="checkbox" id="useMileageAll"
 																	onclick="gd_mileage_use_all();"> <label
 																	for="useMileageAll" class="check_s">전액 사용하기</label> <span
-																	class="money_use_sum">(보유 적립금 : 1,000 원)</span>
+																	class="money_use_sum">(보유 적립금 : ${order.point} 원)</span>
 															</div>
 															<em class="money_use_txt js-mileageInfoArea">※
-																1,000원까지 사용 가능합니다.</em>
+																${order.point}원까지 사용 가능합니다.</em>
 														</div>
 													</td>
 												</tr>
-												<tr>
+								 				<!-- <tr>
 													<th scope="row">예치금 사용</th>
 													<td>
 														<div class="order_money_use">
@@ -640,14 +601,14 @@
 															</div>
 														</div>
 													</td>
-												</tr>
+												</tr> -->
 												<tr>
 													<th scope="row">최종 결제 금액</th>
 													<td><input type="hidden" name="settlePrice"
 														value="25420"> <input type="hidden"
 														name="overseasSettlePrice" value="0"> <input
-														type="hidden" name="overseasSettleCurrency" value="KRW">
-														<strong id="totalSettlePrice" class="order_payment_sum">25,420</strong>원
+														type="hidden" name="overseasSettleCurrency" value="KRW">											
+															<strong id="totalSettlePrice" class="order_payment_sum"></strong>원						
 													</td>
 												</tr>
 											</tbody>
@@ -659,8 +620,6 @@
 								<div class="payment_progress">
 									<div class="order_zone_tit">
 										<h4>결제수단 선택 / 결제</h4>
-										<p class="js_pay_content">※ 고객님은 안전거래를 위해 현금으로 결제시 저희
-											쇼핑몰에서 가입한 구매안전서비스인 KG 이니시스의 구매안전(에스크로)서비스를 이용하실 수 있습니다.</p>
 									</div>
 
 									<div class="payment_progress_list">
@@ -719,7 +678,7 @@
 											<dl>
 												<dt>최종 결제 금액</dt>
 												<dd>
-													<span><strong id="totalSettlePriceView">25,420</strong>원</span>
+													<span><strong id="totalSettlePriceView"></strong>원</span>
 												</dd>
 											</dl>
 										</div>
@@ -732,7 +691,8 @@
 											</div>
 										</div>
 										<div class="btn_center_box">
-											<button class="btn_order_buy order-buy">결제하기</button>
+											<!-- <button class="btn_order_buy order-buy">결제하기</button> -->
+											<input type="submit" class="btn_order_buy order-buy" value="결제하기">
 										</div>
 									</div>
 									<!-- //payment_final -->
@@ -767,6 +727,7 @@
 <!--===============================================================================================-->
 <script src="../vendor/select2/select2.min.js"></script>
 <script>
+
 		$(".js-select2").each(function () {
 			$(this).select2({
 				minimumResultsForSearch: 20,
@@ -797,6 +758,29 @@
 	</script>
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
+<script>
+function gd_mileage_use_point() {
+	var useMileagePoint = document.getElementById('useMileageSelect').value;
+	var useMileage = parseInt(useMileagePoint); // 사용 적용한 적립금
+	
+	var totalPricePoint = ${order.totalPrice}; 
+	var totalPrice = parseInt(totalPricePoint); // 합계금액
+	
+	var sumTotalPrice = totalPrice - useMileage; // 합계금액 - 적립금 = 최종 금액
+	document.getElementById('totalSettlePrice').innerHTML = sumTotalPrice; //최종금액 HTML 태그에 넣기
+}
+
+function gd_mileage_use_all() {
+	var useMileagePoint = ${order.point};
+	var useMileage = parseInt(useMileagePoint); // 사용 적용한 적립금
+	
+	var totalPricePoint = ${order.totalPrice}; 
+	var totalPrice = parseInt(totalPricePoint); // 합계금액
+	
+	var sumTotalPrice = totalPrice - useMileage; // 합계금액 - 적립금 = 최종 금액
+	document.getElementById('totalSettlePrice').innerHTML = sumTotalPrice; //최종금액 HTML 태그에 넣기
+}
+</script>
 </body>
 
 </html>
