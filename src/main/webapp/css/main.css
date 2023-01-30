@@ -2689,6 +2689,19 @@ input.num-product::-webkit-inner-spin-button {
   text-transform: uppercase;
 }
 
+.mtext-114 {
+  font-family: GmarketSansMedium;
+  font-size: 18px;
+  line-height: 1.222222;
+}
+
+.mtext-115 {
+  font-family:GmarketSansMedium;
+  font-size: 20px;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
 
 /*//////////////////////////////////////////////////////////////////
 [ L-Text >= 26 ]*/

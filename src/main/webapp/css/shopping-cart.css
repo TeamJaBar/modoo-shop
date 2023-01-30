@@ -1,3 +1,7 @@
+.receipt {
+	font-family: GmarketSansMedium !important;
+}
+
 .wrap-num-cart,
 .wrap-num-cart2
  {
@@ -170,4 +174,18 @@ input.num-cart2::-webkit-inner-spin-button {
 
 input[type=checkbox] {
     margin: 0 auto;
+}
+
+.receipt-title {
+	text-align:center;
+}
+
+.price-area {
+	display:block;
+	text-align:right;
+}
+
+td.empty {
+	height:150px;
+	font-size:15px;
 }
