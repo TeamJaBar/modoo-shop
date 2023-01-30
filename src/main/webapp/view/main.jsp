@@ -1242,7 +1242,7 @@
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="pCnt" value="1">
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m ">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
@@ -1259,7 +1259,7 @@
 						<!--  -->
 						<div class="p-t-33">
 							<div class="row flex-c">
-								<button class="flex-c-m m-r-10 stext-106 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-detail">장바구니</button>
+								<button class="flex-c-m m-r-10 stext-106 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addcart-detail cart-btn">장바구니</button>
 								<button class="flex-c-m m-lr-10 stext-106 cl2 size-126 bg0 bor20 hov-btn3 p-lr-15 trans-04 js-addwish-quickView dib-btn">찜하기</button>
 								<button class="flex-c-m m-l-10 stext-106 cl0 size-101 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">결제하기</button>
 							</div>

@@ -256,7 +256,7 @@
 			</div>
 
 			<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
-				<a href="shoping-cart.jsp">
+				<a href="shopping-cart.jsp">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</a>
 			</div>
@@ -295,12 +295,12 @@
 			</div>
 
 			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="2">
-				<a href="shoping-cart.jsp">
+				<a href="shopping-cart.jsp">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</a>
 			</div>
 
-			<a href="dibs-list.jsp" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+			<a href="dibList.do" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
 				<i class="zmdi zmdi-favorite-outline"></i>
 			</a>
 		</div>
