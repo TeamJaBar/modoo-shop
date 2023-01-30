@@ -608,7 +608,29 @@
 	})
 
 
+	/*========================= [ cart Detail ] ==============================*/
+	$('.js-addcart-detail').off('click').on('click', function() {
+		var pCnt = $(this).parent().parent().parent().find('.num-product').val();
+		console.log("pNum : "+pNum);
+		console.log(pCnt);
 
+		$.ajax({
+			type: 'POST', //POST 방식으로 보낼래
+			url: 'cartInsertOne',
+			data: {
+				pNum: pNum,
+				pCnt: pCnt
+			},
+			success: function(result) {
+				if (result == 1) {
+					swal(pName, "장바구니에 추가되었습니다!", "success");
+				}
+				else {
+					alert("장바구니 추가 실패. 관리자에게 문의하세요.");
+				}
+			}
+		});
+	});
 
 
 })(jQuery);

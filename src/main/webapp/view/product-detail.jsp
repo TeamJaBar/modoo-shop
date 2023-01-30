@@ -205,21 +205,15 @@
 <!-- breadcrumb -->
 <div class="container">
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-		<a href="main.do" class="stext-109 cl8 hov-cl1 trans-04">
-			Home
-			<!-- <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i> -->
+		<a href="main.do" class="stext-109 cl8 hov-cl1 trans-04"> Home <!-- <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i> -->
 		</a>
 		<!-- 대분류 게임 눌렀을 때 넘어가는 페이지 -->
 		<c:if test="${category.cateL!=null}">
-			<a href="product.do" class="stext-109 cl8 hov-cl1 trans-04">
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-				${category.cateL}
+			<a href="product.do" class="stext-109 cl8 hov-cl1 trans-04"> <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i> ${category.cateL}
 			</a>
 		</c:if>
 		<c:if test="${category.cateM!=null}">
-			<a href="product.do" class="stext-109 cl8 hov-cl1 trans-04">
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-				${category.cateM}
+			<a href="product.do" class="stext-109 cl8 hov-cl1 trans-04"> <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i> ${category.cateM}
 			</a>
 		</c:if>
 		<%-- <span class="stext-109 cl4">
@@ -239,18 +233,14 @@
 						<div class="slick3 gallery-lb">
 							<div class="item-slick3" data-thumb="${product.pImg}">
 								<div class="wrap-pic-w pos-relative">
-									<img src="${product.pImg}" alt="${product.pName}">
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${product.pImg}">
-										<i class="fa fa-expand"></i>
+									<img src="${product.pImg}" alt="${product.pName}"> <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${product.pImg}"> <i class="fa fa-expand"></i>
 									</a>
 								</div>
 							</div>
-							
+
 							<div class="item-slick3" data-thumb="${product.pImg}">
 								<div class="wrap-pic-w pos-relative">
-									<img src="${product.pImg}" alt="${product.pName}">
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${product.pImg}">
-										<i class="fa fa-expand"></i>
+									<img src="${product.pImg}" alt="${product.pName}"> <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="${product.pImg}"> <i class="fa fa-expand"></i>
 									</a>
 								</div>
 							</div>
@@ -265,23 +255,15 @@
 					<table class="item_detail_list">
 						<tr>
 							<td>정가</td>
-							<td colspan="2">
-								<del>
-									<span>
-										<fmt:formatNumber value="${product.fixPrice}" type="number" />
-									</span>
-									원
-								</del>
-							</td>
+							<td colspan="2"><del>
+									<span> <fmt:formatNumber value="${product.fixPrice}" type="number" />
+									</span> 원
+								</del></td>
 						</tr>
 						<tr>
 							<td>판매가</td>
-							<td colspan="2" class="item_price">
-								<span id="price">
-									<fmt:formatNumber value="${product.selPrice}" type="number" />
-								</span>
-								원
-							</td>
+							<td colspan="2" class="item_price"><span id="price"> <fmt:formatNumber value="${product.selPrice}" type="number" />
+							</span> 원</td>
 						</tr>
 						<tr>
 							<td>게임 인원</td>
@@ -293,9 +275,7 @@
 						</tr>
 						<tr>
 							<td>배송비</td>
-							<td colspan="2">
-								<strong id="deliveryFee">2,500원</strong>
-							</td>
+							<td colspan="2"><strong id="deliveryFee">2,500원</strong></td>
 						</tr>
 						<tr>
 							<td>
@@ -303,27 +283,23 @@
 									<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 										<i class="fs-16 zmdi zmdi-minus"></i>
 									</div>
-									<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+									<input class="mtext-104 cl3 txt-center num-product" type="number" name="pCnt" value="1">
 									<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m ">
 										<i class="fs-16 zmdi zmdi-plus"></i>
 									</div>
 								</div>
 							</td>
 							<td>결제 예정금액</td>
-							<td>
-								<span id="totalPrice">
-									<fmt:formatNumber value="${product.selPrice+2500}" type="number" />
-								</span>
-								원
-							</td>
+							<td><span id="totalPrice"> <fmt:formatNumber value="${product.selPrice+2500}" type="number" />
+							</span> 원</td>
 						</tr>
 					</table>
 					<hr>
 					<div class="p-t-33">
 						<div class="row flex-c">
-							<button onclick="function addCart()" class="flex-c-m m-r-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addcart-detail">장바구니</button>
-							<button onclick="function addDib()" class="flex-c-m m-lr-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addwish-detail dib-btn" value="${product.dib}">찜하기</button>
-							<button type="submit" onclick="function order()" class="flex-c-m m-l-10 stext-105 cl0 size-101 bg1 bor20 hov-btn4 p-lr-15 trans-04" type="submit">결제하기</button>
+							<button class="flex-c-m m-r-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addcart-detail cart-btn">장바구니</button>
+							<button class="flex-c-m m-lr-10 stext-120 cl14 size-126 bg0 bor21 hov-btn4 p-lr-15 trans-04 js-addwish-detail dib-btn" value="${product.dib}">찜하기</button>
+							<button class="flex-c-m m-l-10 stext-120 cl0 size-101 bg1 bor20 hov-btn1 p-lr-15 trans-04 ">결제하기</button>
 						</div>
 					</div>
 				</div>
@@ -335,12 +311,8 @@
 		<div class="tab01">
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-				<li class="nav-item p-b-10">
-					<a class="nav-link active" data-toggle="tab" href="#description" role="tab">제품소개</a>
-				</li>
-				<li class="nav-item p-b-10">
-					<a class="nav-link" data-toggle="tab" href="#delivery" role="tab">배송정보</a>
-				</li>
+				<li class="nav-item p-b-10"><a class="nav-link active" data-toggle="tab" href="#description" role="tab">제품소개</a></li>
+				<li class="nav-item p-b-10"><a class="nav-link" data-toggle="tab" href="#delivery" role="tab">배송정보</a></li>
 			</ul>
 			<!-- Tab panes -->
 			<div class="tab-content p-t-43">
@@ -361,8 +333,7 @@
 									<h3 class="ltext-102 m-t-40">배송안내</h3>
 									<div class="admin_msg">
 										<p>
-											<img title="f635a4941f370667.jpg" class="js-smart-img" src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/editor/policy/f635a4941f370667.jpg">
-											&nbsp;
+											<img title="f635a4941f370667.jpg" class="js-smart-img" src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/editor/policy/f635a4941f370667.jpg"> &nbsp;
 										</p>
 									</div>
 									<!-- 
