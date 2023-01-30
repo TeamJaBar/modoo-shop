@@ -37,7 +37,7 @@ public class DibDAO {
 		return true;
 	}
 	
-	public DibVO selectOneLogin(DibVO dvo) {
+	public DibVO selectOne(DibVO dvo) {
 		DibVO data = null;
 		conn = JDBCUtil.connect();
 		try {
