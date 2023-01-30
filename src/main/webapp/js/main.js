@@ -290,6 +290,16 @@
 			var totalPrice = (price - salePrice) * Number($(this).prev().val());
 			totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 			$('#totalPrice' + current).text(totalPrice);
+
+			if ($("input[class='chk" + current + "']").is(":checked")) {
+				var sumPrice = parseInt($('#sumPrice').text().replace(',', ''));
+				var totalSale = parseInt($('#totalSale').text().replace(',', ''));
+				$('#sumPrice').text((sumPrice - (price * numProduct) + (price * Number($(this).prev().val()))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+				sumPrice = parseInt($('#sumPrice').text().replace(',', ''));
+				totalSale = parseInt($('#totalSale').text().replace(',', ''));
+				$('#totalSale').text((totalSale - (salePrice * numProduct) + (salePrice * Number($(this).prev().val()))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+				$('#payment').text((sumPrice - totalSale + 2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+			}
 		});
 	});
 
@@ -313,6 +323,16 @@
 			var totalPrice = (price - salePrice) * Number($(this).next().val());
 			totalPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 			$('#totalPrice' + current).text(totalPrice);
+
+			if ($("input[class='chk" + current + "']").is(":checked")) {
+				var sumPrice = parseInt($('#sumPrice').text().replace(',', ''));
+				var totalSale = parseInt($('#totalSale').text().replace(',', ''));
+				$('#sumPrice').text((sumPrice - (price * numProduct) + (price * Number($(this).next().val()))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+				$('#totalSale').text((totalSale - (salePrice * numProduct) + (salePrice * Number($(this).next().val()))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+				var sumPrice = parseInt($('#sumPrice').text().replace(',', ''));
+				var totalSale = parseInt($('#totalSale').text().replace(',', ''));
+				$('#payment').text((sumPrice - totalSale + 2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+			}
 		});
 	});
 
@@ -428,11 +448,12 @@
 					$(".pImg-a").attr("href", data.pImg);
 					$('.fixPrice').html(data.fixPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 					$('.selPrice').html(data.selPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-					$('.totalPrice').html((data.selPrice+2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					$('.totalPrice').html((data.selPrice + 2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 					$('.rePerson').html(data.rePerson);
 					$('.reAge').html(data.reAge);
 					$('.pName').html(data.pName);
 					$('.dib-btn').val(data.dib);
+					$('.cart-btn').attr("id", data.pNum);
 					$('.dib-btn').attr("id", data.pNum);
 					console.log("isDib? : " + $('.dib-btn').val());
 				}
@@ -487,11 +508,28 @@
 	});
 
 	/*========================= [ QuickView 찜 ] ==============================*/
-	$('.js-addcart-detail').each(function() {
+	$('.js-addcart-detail').off('click').on('click', function() {
 		var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+		var pNum = $(this).prop("id");
+		var pCnt = $(this).parent().parent().parent().find('.num-product').val();
+		console.log(pNum);
+		console.log($('.num-product').val());
 
-		$(this).on('click', function() {
-			swal(nameProduct, "장바구니에 추가되었습니다!", "success");
+		$.ajax({
+			type: 'POST', //POST 방식으로 보낼래
+			url: 'cartInsertOne',
+			data: {
+				pNum: pNum,
+				pCnt: pCnt
+			},
+			success: function(result) {
+				if (result == 1) {
+					swal(nameProduct, "찜 목록에 추가되었습니다!", "success");
+				}
+				else {
+					alert("장바구니 추가 실패. 관리자에게 문의하세요.");
+				}
+			}
 		});
 	});
 
@@ -534,7 +572,7 @@
 		}
 
 	})
-	
+
 	$('.js-addwish-detail').off('click').on('click', function() {
 		//var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 		//var pNum = $(this).prop("id");
@@ -554,7 +592,6 @@
 				context: this,
 				success: function(result) {
 					if (result == 1) {
-						//현재 페이지에서 상품목록 부분만 새로고침
 						swal(pName, "찜 목록에 추가되었습니다!", "success");
 						$(this).val(1);
 					}
@@ -569,6 +606,8 @@
 		}
 
 	})
+
+
 
 
 
