@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,10 +17,23 @@ public class LoginAction implements Action {
 
 		MemberDAO mdao = new MemberDAO();
 		MemberVO mvo = new MemberVO();
-		mvo.setmId(request.getParameter("mId"));
+		String mId = request.getParameter("mId");//mId 입력값을 Parmeter로 가져온거
+		mvo.setmId(mId);
 		mvo.setmPw(request.getParameter("mPw"));
 		MemberVO member = mdao.selectOneLogin(mvo);
+		
+		String saveId=request.getParameter("saveId");
+		Cookie cookie=new Cookie("mId",mId);
 
+		if(saveId !=null) {//saveId가 있을때(아이디저장 체크가 되어있을때)
+			request.setCharacterEncoding("UTF-8");
+			cookie.setMaxAge(60*60*24*30);
+			response.addCookie(cookie);
+			return forward;
+		} else {//체크가 되어있지 않을때
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
 		if(member == null) {
 			forward.setRedirect(false);
 			forward.setPath("alert.jsp");		
