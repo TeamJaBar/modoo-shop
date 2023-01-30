@@ -25,6 +25,12 @@ public class MainAction implements Action {
 		int initPageCnt = 16;
 		int newPageCnt = 8;
 		
+		// 장바구니
+		if (request.getSession().getAttribute("cart") == null) {
+			ArrayList<ProductVO> cart = new ArrayList<ProductVO>();
+			request.getSession().setAttribute("cart", cart);
+		}
+		
 		//NEW 상품 목록
 		ProductVO pvo = new ProductVO();
 		ProductDAO pdao = new ProductDAO();
