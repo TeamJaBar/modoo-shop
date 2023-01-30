@@ -367,6 +367,7 @@ address, caption, cite, code, dfn, em, var {
 	border-top: 1px solid #999999;
 	border-bottom: 1px solid #dbdbdb;
 	background: #f7f7f7;
+	text-align: center;
 }
 
 .mypage_table_type td {
@@ -374,6 +375,7 @@ address, caption, cite, code, dfn, em, var {
 	padding: 15px 10px 14px 10px;
 	color: #777777;
 	border-bottom: 1px solid #dbdbdb;
+	text-align: center;
 	/*border-left:1px dotted #ededed;*/
 }
 
@@ -633,7 +635,7 @@ label[for="today"] {
 
 								<div class="bor12 p-t-15 p-b-50">
 
-									<form class="select-container flex-c m-t-20">
+									<form class="select-container flex-c m-t-20" action="canList.do">
 										<input type="radio" class="search_duration" name="search_duration" id="today" value="0"> 
 										<label for="today">오늘</label> 
 										<input type="radio" class="search_duration" name="search_duration" id="week" value="7"> 
@@ -646,9 +648,10 @@ label[for="today"] {
 										<label for="3months">3개월</label> 
 										<input type="radio" class="search_duration" name="search_duration" id="year" value="365"> 
 										<label for="year">1년</label>
-										<button class="lookup">
+										<!-- <button class="lookup">
 											조회 <i class="fa-solid fa-magnifying-glass icon"></i>
-										</button>
+										</button> -->
+										<input type="submit" class="lookup" value="조회">
 									</form>
 								</div>
 							</div>
@@ -660,7 +663,6 @@ label[for="today"] {
 									<table>
 										<tbody>
 											<tr class="table_head">
-												<th class="column-0">선택</th>
 												<th class="column-1">주문번호</th>
 												<th class="column-2">상품명</th>
 												<th class="column-3">수량</th>
@@ -668,12 +670,11 @@ label[for="today"] {
 												<th class="column-5">합계</th>
 											</tr>
 											<tr class="table_row">
-												<td class="column-0"><input type="checkbox" id="check" name="check"></td>
-												<td class="column-1">20230105</td>
-												<td class="column-2">모두의 마블</td>
-												<td class="column-3">2 개</td>
-												<td class="column-4">52500원</td>
-												<td class="column-5">105000원</td>
+												<td class="column-1">${order.pNum}</td>
+												<td class="column-2">${order.pNumPname}</td>
+												<td class="column-3">${order.pNumcnt}개</td>
+												<td class="column-4">${order.pNumSelPrice}원</td>
+												<td class="column-5">${order.totalPrice}원</td>
 											</tr>
 										</tbody>
 									</table>
