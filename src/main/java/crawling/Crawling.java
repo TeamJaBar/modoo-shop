@@ -21,10 +21,10 @@ public class Crawling {
 		Random rd = new Random();
 		Connection conn = JDBCUtil.connect();
 		PreparedStatement pstmt = null;
-
-		for (int a = 1; a < 4; a++) {
+		int cnt = 0;
+		for (int a = 1; a < 7; a++) {
 			// 타겟 사이트
-			String url = "https://www.boardgamemall.co.kr/goods/goods_list.php?page=" + a + "&cateCd=047001"; // 페이지 넘어가는 url
+			String url = "https://www.boardgamemall.co.kr/goods/goods_list.php?page=" + a + "&cateCd=047"; // 페이지 넘어가는 url
 			String url2 = "https://www.boardgamemall.co.kr"; // 상세페이지로 넘어가기 위한 url
 
 			Document doc = null;
@@ -50,8 +50,7 @@ public class Crawling {
 					int fixPrice = Integer.parseInt(info.get(0).select("span").text().replace(",", ""));
 					int selPrice = Integer.parseInt(info.get(1).select("b").text().replace(",", ""));
 					String rePerson = info.get(4).select("dd").text();
-					int reAge = Integer.parseInt(
-							info.get(5).select("dd").text().replace("이상", "").replace("세", "").replace("만", "").trim());
+					int reAge = Integer.parseInt(info.get(5).select("dd").text().replace("이상", "").replace("세", "").replace("만", "").trim());
 					String brand = info.get(6).select("dd").text();
 					String pImg = img.select("a").select("img").attr("src");
 					String infoImg = all.select(".txt-manual").select("img").get(1).attr("src");
@@ -65,9 +64,8 @@ public class Crawling {
 					cal1.add(Calendar.DATE, -(rd.nextInt(365)));
 					Date rDate = new Date(cal1.getTimeInMillis());
 
-					pstmt = conn.prepareStatement(
-							"INSERT INTO PRODUCT VALUES((SELECT NVL(MAX(PNUM),1000)+1 FROM PRODUCT), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 50)");
-					
+					pstmt = conn.prepareStatement("INSERT INTO PRODUCT VALUES(PNUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 50)");
+
 					pstmt.setInt(1, cateNum);
 					pstmt.setString(2, pName);
 					pstmt.setInt(3, fixPrice);
@@ -78,7 +76,7 @@ public class Crawling {
 					pstmt.setString(8, brand);
 					pstmt.setString(9, pImg);
 					pstmt.setString(10, infoImg);
-					
+					cnt++;
 					pstmt.executeUpdate();
 				}
 			} catch (
@@ -90,6 +88,7 @@ public class Crawling {
 				e.printStackTrace();
 			}
 		}
+		System.out.println(cnt);
 		System.out.println("   로그: 크롤링 완료");
 	}
 }
