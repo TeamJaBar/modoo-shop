@@ -37,7 +37,7 @@
 									</c:if>
 									<c:if test="${fn:length(dList) != 0 }">
 										<c:forEach var="dibs" items="${dList}">
-											<tr class="table_row start">
+											<tr class="table_row start" id="${dibs.pNum}">
 												<td class="column-0" align="center">
 													<input type="checkbox" id="dib" value="${dibs.dibNum}" name="dib" checked>
 												</td>
@@ -69,29 +69,29 @@
 <%@include file="common/footer.jsp"%>
 <script src="../vendor/sweetalert/sweetalert.min.js"></script>
 <script>
-function addCart() {
-	var dibProduct = new Array();
-	
-	$("input[name='dib']:checked").each(function() {
-		var item = $(this).val();
-		dibProduct.push(item);
-	})
-	
-	console.log(dibProduct);
-	
-	if(dibProduct.length<1) {
-		alert("선택한 상품이 없습니다.");
-		return;
-	} else {
+	/* 장바구니에 추가 */
+	function addCart() {
+		var dibProduct = new Array();
+		
+		$("input[name='dib']:checked").each(function() {
+			var item = $(this).parent().parent().prop("id");
+			dibProduct.push(item);
+		});
+		
+		if (dibProduct.length < 1) {
+			alert("선택한 상품이 없습니다.");
+			return;
+		} else {
 			$.ajax({
 				type: 'POST',
 				url: 'cartInsertDips',
 				traditional: true,
 				data: {
-					dList : dibProduct
+					dibProduct: dibProduct
 				},
 				success: function(result) {
 					if (result == 1) {
+						console.log(dibProduct);
 						swal({
 							title:'장바구니에 담겼습니다!',
 							text:'장바구니로 이동하시겠습니까?',
@@ -104,7 +104,7 @@ function addCart() {
 								confirm : {
 									text:'이동',
 									value : 'true',
-
+	
 								}
 							}
 						}).then((result) => {
@@ -118,7 +118,8 @@ function addCart() {
 			});
 		}
 	}
-	
+
+	/* 체크한 상품 제거 */
 	function del() {
 		var dibProduct = new Array();
 		
@@ -129,7 +130,7 @@ function addCart() {
 		
 		console.log(dibProduct);
 		
-		if(dibProduct.length<1) {
+		if(dibProduct.length < 1) {
 			alert("선택한 상품이 없습니다.");
 			return;
 		} else {
