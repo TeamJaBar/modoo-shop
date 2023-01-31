@@ -16,6 +16,7 @@
 				columnWidth: '.isotope-item'
 			}
 		});
+		return;
 	}
 
 
@@ -31,7 +32,7 @@
 		loading: true,
 		loadingParentElement: 'html',
 		loadingClass: 'animsition-loading-1',
-		loadingInner: '<div class="loader05"></div>',
+		//loadingInner: '<div class="loader05"></div>',
 		timeout: false,
 		timeoutCountdown: 5000,
 		onLoadEvent: true,
@@ -162,7 +163,6 @@
 			var filterValue = $(this).attr('data-filter');
 			$topeContainer.isotope({ filter: filterValue });
 		});
-
 	});
 
 	// init Isotope
@@ -554,12 +554,13 @@
 				success: function(result) {
 					if (result == 1) {
 						//현재 페이지에서 상품목록 부분만 새로고침
-						swal(nameProduct, "찜 목록에 추가되었습니다!", "success");
 						$(this).val(1);
 						$('#md-product').load(location.href + ' #md-product>*', function() {
-							$.getScript("../js/main.js");
-							initIsotope();
+							$.getScript("../js/main.js", function() {
+								initIsotope();
+							});
 						});
+						swal(nameProduct, "찜 목록에 추가되었습니다!", "success");
 					}
 					else if (result == -1) {
 						alert("로그인이 필요한 서비스입니다.");
