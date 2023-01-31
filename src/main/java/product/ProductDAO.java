@@ -33,10 +33,10 @@ public class ProductDAO {
 	final String SELECTALL = "SELECT DIB, PNUM, CATENUM, PNAME, FIXPRICE, SELPRICE, RDATE, REPERSON, REAGE, BRAND, PIMG, INFOIMG, PRODUCTCNT "
 			+ "FROM (SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.* FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM)";
 	// R : Category
-	final String SELECTONE_CATE = "SELECT CATEL, CATEM FROM CATEGORY WHERE CATENUM=?";
+	final String SELECTONE_CATE = "SELECT TRUNC(CATENUM, -2) AS CATENUM, CATEL, CATEM FROM CATEGORY WHERE CATENUM=?";
 	final String SELECTALL_LCATE = "SELECT DISTINCT CATEL, DECODE(MOD(CATENUM, 100) , 0 , CATENUM , CATENUM-MOD(CATENUM, 100)) CATENUM FROM CATEGORY WHERE CATENUM BETWEEN ? AND ?";
 	final String SELECTALL_MCATENAME = "SELECT CATEL, CATEM, CATENUM FROM CATEGORY WHERE CATEL=?";
-	final String SELECTALL_MCATENUM = "SELECT CATEM, CATENUM FROM CATEGORY WHERE CATENUM BETWEEN ? AND (?+99)";
+	final String SELECTALL_MCATENUM = "SELECT CATENUM, CATEL, CATEM FROM CATEGORY WHERE CATENUM BETWEEN ? AND (?+99)";
 	// U : Product
 	final String UPDATE = "UPDATE PRODUCT SET CATAENUM=?, PNAME=?, FIXPRICE=?, SELPRICE=?, REPERSON=?, REAGE=?, BRAND=?, PIMG=?, INFOIMG=?, PRODUCTCNT=? WHERE PNUM=?";
 	// D : Product
@@ -81,6 +81,7 @@ public class ProductDAO {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new CategoryVO();
+				data.setCateNum(rs.getInt("CATENUM"));
 				data.setCateL(rs.getString("CATEL"));
 				data.setCateM(rs.getString("CATEM"));
 			}
@@ -212,15 +213,10 @@ public class ProductDAO {
 		ArrayList<CategoryVO> datas = new ArrayList<CategoryVO>();
 		conn = JDBCUtil.connect();
 		try {
-			int cnt = 0;
 			if (cvo.getLowNum() != 0) {
 				pstmt = conn.prepareStatement(SELECTALL_LCATE);
 				pstmt.setInt(1, cvo.getLowNum());
 				pstmt.setInt(2, cvo.getHighNum());
-			} else if (cvo.getCateL() == null) {
-				pstmt = conn.prepareStatement(SELECTALL_MCATENUM);
-				pstmt.setInt(1, cvo.getCateNum());
-				pstmt.setInt(2, cvo.getCateNum());
 			} else {
 				pstmt = conn.prepareStatement(SELECTALL_MCATENAME);
 				pstmt.setString(1, cvo.getCateL());
@@ -231,9 +227,30 @@ public class ProductDAO {
 				data = new CategoryVO();
 				data.setCateNum(rs.getInt("CATENUM"));
 				data.setCateL(rs.getString("CATEL"));
-				if (cnt == 1) {
-					data.setCateM(rs.getString("CATEM"));
-				}
+				datas.add(data);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return datas;
+	}
+
+	public ArrayList<CategoryVO> selectAllCateNum(CategoryVO cvo) {
+		ArrayList<CategoryVO> datas = new ArrayList<CategoryVO>();
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(SELECTALL_MCATENUM);
+			pstmt.setInt(1, cvo.getCateNum());
+			pstmt.setInt(2, cvo.getCateNum());
+
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				CategoryVO data = new CategoryVO();
+				data = new CategoryVO();
+				data.setCateNum(rs.getInt("CATENUM"));
+				data.setCateL(rs.getString("CATEL"));
+				data.setCateM(rs.getString("CATEM"));
 				datas.add(data);
 			}
 		} catch (SQLException e) {

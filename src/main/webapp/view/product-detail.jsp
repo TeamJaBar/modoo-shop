@@ -209,11 +209,11 @@
 		</a>
 		<!-- 대분류 게임 눌렀을 때 넘어가는 페이지 -->
 		<c:if test="${category.cateL!=null}">
-			<a href="product.do" class="stext-109 cl8 hov-cl1 trans-04"> <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i> ${category.cateL}
+			<a href="product.do?cateNum=${category.cateNum}" class="stext-109 cl8 hov-cl1 trans-04"> <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i> ${category.cateL}
 			</a>
 		</c:if>
 		<c:if test="${category.cateM!=null}">
-			<a href="product.do" class="stext-109 cl8 hov-cl1 trans-04"> <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i> ${category.cateM}
+			<a href="product.do?cateNum=${category.cateNum}" class="stext-109 cl8 hov-cl1 trans-04"> <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i> ${category.cateM}
 			</a>
 		</c:if>
 		<%-- <span class="stext-109 cl4">
