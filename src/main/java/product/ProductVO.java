@@ -24,6 +24,8 @@ public class ProductVO {
 	private int FilterTags; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 tags
 	private int pageCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 더보기
 	private int pCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 구매 수량(purchaseCnt)
+	private int cateAge; // JAVA에서만 저장용으로 사용하는 데이터 : 나이별 카테고리
+	
 
 	public int getpNum() {
 		return pNum;
@@ -183,6 +185,16 @@ public class ProductVO {
 
 	public void setpCnt(int pCnt) {
 		this.pCnt = pCnt;
+	}
+	
+	
+
+	public int getCateAge() {
+		return cateAge;
+	}
+
+	public void setCateAge(int cateAge) {
+		this.cateAge = cateAge;
 	}
 
 	@Override

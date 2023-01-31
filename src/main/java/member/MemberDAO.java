@@ -105,7 +105,7 @@ public class MemberDAO {
 				data.setUserAddr(rs.getString("USERADDR"));
 				data.setDetailAddr(rs.getString("DETAILADDR"));
 				data.setmDate(rs.getDate("MDATE"));
-				data.setKakao(rs.getString("KAKAOLOIN"));
+				data.setKakao(rs.getString("KAKAOLOGIN"));
 				datas.add(data);
 			}
 		} catch (SQLException e) {

@@ -181,6 +181,12 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("search.do")) { // 사이드바 검색
+			try {
+				forward = new ShResultAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward == null) {
