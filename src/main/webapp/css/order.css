@@ -924,6 +924,16 @@ th>.important {
 	width: 217px;
 }
 
+#useMileagePoint{
+	width: 115px;
+	height: 25px;
+	font-size: 15px;
+	color: #0188CB; border : none;
+	background: #ffffff;
+	border: none;
+	cursor: pointer;
+}
+
 #find_address {
 	width: 96px;
 	height: 20px;
@@ -931,6 +941,7 @@ th>.important {
 	color: #0188CB; border : none;
 	background: #ffffff;
 	border: none;
+	cursor: pointer;
 }
 
 /* 남기실 말씀 */
