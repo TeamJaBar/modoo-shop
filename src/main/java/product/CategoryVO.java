@@ -47,4 +47,9 @@ public class CategoryVO {
 		this.highNum = highNum;
 	}
 
+	@Override
+	public String toString() {
+		return "CategoryVO [cateNum=" + cateNum + ", cateL=" + cateL + ", cateM=" + cateM + ", lowNum=" + lowNum + ", highNum=" + highNum + "]";
+	}
+	
 }
