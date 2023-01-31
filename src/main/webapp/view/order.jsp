@@ -14,7 +14,6 @@
 			$(this).toggleClass("on");
 		});
 
-
 		// 아이디 정규식
 		const idCheck = /^[a-z][a-z0-9]+$/m
 
@@ -47,7 +46,6 @@
 	<h2 class="ltext-105 cl0 txt-center">주문서 작성/결제</h2>
 </section>
 
-
 <!-- Content page -->
 <section class="bg0 p-t-75 p-b-120">
 	<div class="container">
@@ -58,21 +56,33 @@
 						<div class="order_tit">
 							<h2>주문서작성/결제</h2>
 							<ol>
-								<li><span>01</span> 장바구니 <span><img src="/ModooShop/images/icons/icon_join_step_off.png" alt=""></span></li>
-								<li class="page_on"><span>02</span> 주문서작성/결제<span><img src="/ModooShop/images/icons/icon_join_step_on.png" alt=""></span></li>
-								<li><span>03</span> 주문완료</li>
+								<li>
+									<span>01</span>
+									장바구니
+									<span>
+										<img src="/ModooShop/images/icons/icon_join_step_off.png" alt="">
+									</span>
+								</li>
+								<li class="page_on">
+									<span>02</span>
+									주문서작성/결제
+									<span>
+										<img src="/ModooShop/images/icons/icon_join_step_on.png" alt="">
+									</span>
+								</li>
+								<li>
+									<span>03</span>
+									주문완료
+								</li>
 							</ol>
 						</div>
 						<!-- //order_tit -->
-
 						<div class="order_cont">
-
 							<div class="cart_cont_list">
 								<div class="order_cart_tit">
 									<h3>주문상세내역</h3>
 								</div>
 								<!-- //order_cart_tit -->
-
 								<div class="order_table_type">
 									<!-- 장바구니 상품리스트 시작 -->
 									<table>
@@ -101,24 +111,16 @@
 											</tr>
 										</thead>
 										<tbody>
-
 											<c:forEach items="list" var="productDto">
 												<tr>
 													<td class="td_left">
 														<div class="pick_add_cont">
-															<span class="pick_add_img"> <img src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/20/07/29//1000007239/modify_list_053.jpg" width="40"
-																alt="${product.pName}" title="방방곡곡 세계유랑" class="middle">
+															<span class="pick_add_img">
+																<img src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/20/07/29//1000007239/modify_list_053.jpg" width="40" alt="${product.pName}"
+																	title="방방곡곡 세계유랑" class="middle">
 															</span>
-															<div class="pick_add_info">
-																<em><span></span></em>
-
-																<!-- //icon_pick_list -->
-
-																<div class="pick_option_box"></div>
-
-																<div class="pick_option_box"></div>
-															</div>
-														</div> <!-- //pick_add_cont -->
+														</div>
+														<!-- //pick_add_cont -->
 													</td>
 													<td class="js-relative-none-mobile td_order_amount">
 														<div class="order_goods_num" name="cnt">
@@ -130,72 +132,90 @@
 														<div class="js-relative-block-mobile">
 															<!-- 담긴 상품별 수량 -->
 															<strong>${product.pNumcnt}개</strong>
-														</div> <strong class="order_sum_txt price">${product.total}원</strong>
+														</div>
+														<strong class="order_sum_txt price">${product.total}원</strong>
 													</td>
 													<td class="td_benefit js-relative-none-mobile">
 														<ul class="benefit_list">
-															<li class="benefit_mileage js_mileage"><em>적립</em><br> <span>상품 <strong>+${product.mNummpoint}원</strong></span></li>
+															<li class="benefit_mileage js_mileage">
+																<em>적립</em>
+																<br>
+																<span>
+																	상품
+																	<strong>+${product.mNummpoint}원</strong>
+																</span>
+															</li>
 														</ul>
 													</td>
-													<td class="js-relative-none-mobile"><strong class="order_sum_txt">원</strong></td>
-													<td class="td_delivery js-relative-none-mobile" rowspan="2"><br> 2,500원 <br> (택배)</td>
+													<td class="js-relative-none-mobile">
+														<strong class="order_sum_txt">원</strong>
+													</td>
+													<td class="td_delivery js-relative-none-mobile" rowspan="2">
+														<br> 2,500원 <br> (택배)
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 									<!-- 장바구니 상품리스트 끝 -->
 								</div>
-
 							</div>
 							<!-- //cart_cont_list -->
-
 							<div class="btn_left_box">
-								<a href="shoping-cart.jsp" class="shop_go_link"><em>&lt; 장바구니 가기</em></a>
+								<a href="shoping-cart.jsp" class="shop_go_link">
+									<em>&lt; 장바구니 가기</em>
+								</a>
 							</div>
-
 							<div class="price_sum">
 								<div class="price_sum_cont">
 									<div class="price_sum_list">
 										<dl>
 											<dt>
-												총 <strong>${product.pNumcnt}</strong> 개의 상품금액
+												총
+												<strong>${product.pNumcnt}</strong>
+												개의 상품금액
 											</dt>
 											<dd>
-												<strong>${product.pTotal}</strong>원
+												<strong>${product.pTotal}</strong>
+												원
 											</dd>
 										</dl>
-										<span><img src="/ModooShop/images/icons/order_price_plus.png" alt="더하기"></span>
+										<span>
+											<img src="/ModooShop/images/icons/order_price_plus.png" alt="더하기">
+										</span>
 										<dl>
 											<dt>배송비</dt>
 											<dd>
-												<strong>2,500</strong>원
+												<strong>2,500</strong>
+												원
 											</dd>
 										</dl>
-										<span><img src="/ModooShop/images/icons/order_price_total.png" alt="합계"></span>
+										<span>
+											<img src="/ModooShop/images/icons/order_price_total.png" alt="합계">
+										</span>
 										<dl class="price_total">
 											<dt>합계</dt>
 											<dd>
-												<strong>${product.totalPrice}</strong>원
+												<strong>${product.totalPrice}</strong>
+												원
 											</dd>
 										</dl>
 									</div>
 									<!-- 총 예정 적립금 -->
-									<em class="tobe_mileage js_mileage">적립예정 적립금 : <span>${product.setPoint}</span> 원
+									<em class="tobe_mileage js_mileage">
+										적립예정 적립금 :
+										<span>${product.setPoint}</span>
+										원
 									</em>
 								</div>
 								<!-- //price_sum_cont -->
 							</div>
 							<!-- //price_sum -->
-
-
 							<div class="order_view_info">
-
-
 								<div class="order_info">
 									<div class="order_zone_tit">
 										<h4>주문자 정보</h4>
 									</div>
-
 									<div class="order_table_type">
 										<table class="table_left">
 											<colgroup>
@@ -204,8 +224,12 @@
 											</colgroup>
 											<tbody>
 												<tr>
-													<th scope="row"><span class="important">주문하시는 분</span></th>
-													<td><input type="text" name="mName" data-pattern="gdEngKor" maxlength="20" required>${member.mName}</td>
+													<th scope="row">
+														<span class="important">주문하시는 분</span>
+													</th>
+													<td>
+														<input type="text" name="mName" data-pattern="gdEngKor" maxlength="20" required>${member.mName}
+													</td>
 												</tr>
 												<tr>
 													<th scope="row">주소</th>
@@ -220,12 +244,20 @@
 														</div></td>
 												</tr> -->
 												<tr>
-													<th scope="row"><span class="important">휴대폰 번호</span></th>
-													<td><input type="text" id="mobileNum" name="orderCellPhone" maxlength="20" required>${member.mTel}</td>
+													<th scope="row">
+														<span class="important">휴대폰 번호</span>
+													</th>
+													<td>
+														<input type="text" id="mobileNum" name="orderCellPhone" maxlength="20" required>${member.mTel}
+													</td>
 												</tr>
 												<tr>
-													<th scope="row"><span class="important">이메일</span></th>
-													<td class="member_email"><input type="text" name="orderEmail" id="mEmail" value="subiiin6085@naver.com" disabled> <!-- <select id="emailDomain" class="chosen-select">
+													<th scope="row">
+														<span class="important">이메일</span>
+													</th>
+													<td class="member_email">
+														<input type="text" name="orderEmail" id="mEmail" value="subiiin6085@naver.com" disabled>
+														<!-- <select id="emailDomain" class="chosen-select">
 															<option value="self" selected>직접입력</option>
 															<option value="naver.com">naver.com</option>
 															<option value="hanmail.net">hanmail.net</option>
@@ -234,7 +266,8 @@
 															<option value="hotmail.com">hotmail.com</option>
 															<option value="gmail.com">gmail.com</option>
 															<option value="icloud.com">icloud.com</option>
-													</select> --> <!-- <div class="chosen-container chosen-container-single chosen-container-single-nosearch"
+													</select> -->
+														<!-- <div class="chosen-container chosen-container-single chosen-container-single-nosearch"
 															title="" id="emailDomain_chosen" style="width: 120px;">
 															<a class="chosen-single">
 																<span>직접입력</span>
@@ -247,19 +280,18 @@
 																</div>
 																<ul class="chosen-results"></ul>
 															</div>
-														</div> --></td>
+														</div> -->
+													</td>
 												</tr>
 											</tbody>
 										</table>
 									</div>
 								</div>
 								<!-- //order_info -->
-
 								<div class="delivery_info">
 									<div class="order_zone_tit">
 										<h4>배송정보</h4>
 									</div>
-
 									<div class="order_table_type shipping_info">
 										<table class="table_left shipping_info_table">
 											<colgroup>
@@ -272,13 +304,22 @@
 													<td>
 														<div class="form_element">
 															<ul>
-																<li><input type="radio" name="shipping" id="shippingBasic" value="1"> <label for="shippingBasic" class="choice_s">기본 배송지</label></li>
+																<li>
+																	<input type="radio" name="shipping" id="shippingBasic" value="1">
+																	<label for="shippingBasic" class="choice_s">기본 배송지</label>
+																</li>
 																<!-- 	<li><input type="radio" name="shipping"
 																	id="shippingRecently"> <label
 																	for="shippingRecently" class="choice_s">최근 배송지</label>
 																</li> -->
-																<li><input type="radio" name="shipping" id="shippingNew" value="2"> <label for="shippingNew" class="choice_s on">직접 입력</label></li>
-																<li><input type="radio" name="shipping" id="shippingSameCheck" value="3" checked > <label for="shippingSameCheck" class="choice_s">주문자정보와 동일</label></li>
+																<li>
+																	<input type="radio" name="shipping" id="shippingNew" value="2">
+																	<label for="shippingNew" class="choice_s on">직접 입력</label>
+																</li>
+																<li>
+																	<input type="radio" name="shipping" id="shippingSameCheck" value="3" checked>
+																	<label for="shippingSameCheck" class="choice_s">주문자정보와 동일</label>
+																</li>
 															</ul>
 															<button class="btn_gray_list">
 																<a href="add-address.jsp" class="btn_gray_small btn_open_layer js_shipping" style="border: 1px 0188CB; color: #0188CB">배송지 관리</a>
@@ -287,16 +328,23 @@
 													</td>
 												</tr>
 												<tr>
-													<th scope="row"><span class="important">받으실분</span></th>
-													<td><input type="text" id="receiverName" name="receiverName" data-pattern="gdEngKor" maxlength="20" required></td>
+													<th scope="row">
+														<span class="important">받으실분</span>
+													</th>
+													<td>
+														<input type="text" id="receiverName" name="receiverName" data-pattern="gdEngKor" maxlength="20" required>
+													</td>
 												</tr>
 												<tr>
-													<th scope="row"><span class="important">받으실 곳</span></th>
+													<th scope="row">
+														<span class="important">받으실 곳</span>
+													</th>
 													<td class="member_address">
 														<div class="address_postcode find_address">
-															<input type="text" name="zonecode" id="sample3_postcode" placeholder="우편번호" value="" required> <input type="button" id="find_address" onclick="sample3_execDaumPostcode()"
-																value="우편번호 찾기" required>
-														</div> <!-- //base_info_box -->
+															<input type="text" name="zonecode" id="sample3_postcode" placeholder="우편번호" value="" required>
+															<input type="button" id="find_address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required>
+														</div>
+														<!-- //base_info_box -->
 														<div id="wrapPost" style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
 															<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
 																onclick="foldDaumPostcode()" alt="접기 버튼">
@@ -309,8 +357,9 @@
 																<input type="text" name="addressSub" id="sample3_detailAddress" placeholder="상세주소" value="" required style="display: block">
 																<!-- <input type="text" id="sample3_extraAddress"
 																	placeholder="참고항목" style="display: block"> -->
-															</div> 
-														</div> <!-- <div class="address_postcode find_address">
+															</div>
+														</div>
+														<!-- <div class="address_postcode find_address">
 															<input type="text" id="sample3_postcode"
 																name="receiverZonecode" readonly="readonly" required>
 															<input type="hidden" name="receiverZipcode" required>
@@ -334,7 +383,9 @@
 																id="btnFoldWrap"
 																style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
 																onclick="foldDaumPostcode()" alt="접기 버튼">
-														</div> --> <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <script>
+														</div> -->
+														<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+														<script>
 															// 우편번호 찾기 찾기 화면을 넣을 element
 															var element_wrap = document
 																.getElementById('wrapPost');
@@ -405,12 +456,18 @@
 														name="receiverPhone"></td>
 												</tr> -->
 												<tr>
-													<th scope="row"><span class="important">휴대폰 번호</span></th>
-													<td><input type="text" id="receiverCellPhone" name="receiverCellPhone"></td>
+													<th scope="row">
+														<span class="important">휴대폰 번호</span>
+													</th>
+													<td>
+														<input type="text" id="receiverCellPhone" name="receiverCellPhone">
+													</td>
 												</tr>
 												<tr>
 													<th scope="row">남기실 말씀</th>
-													<td class="td_last_say"><input type="text" name="orderMemo"></td>
+													<td class="td_last_say">
+														<input type="text" name="orderMemo">
+													</td>
 												</tr>
 												<!--  
 												<tr id="memberinfoApplyTr">
@@ -439,14 +496,10 @@
 									</div>
 								</div>
 								<!-- //delivery_info -->
-
-								<!-- //addition_info -->
-
 								<div class="payment_info">
 									<div class="order_zone_tit">
 										<h4>결제정보</h4>
 									</div>
-
 									<div class="order_table_type">
 										<table class="table_left">
 											<colgroup>
@@ -456,11 +509,17 @@
 											<tbody>
 												<tr>
 													<th scope="row">상품 합계 금액</th>
-													<td><strong id="totalGoodsPrice" class="order_payment_sum">${order.setTotal}원</strong></td>
+													<td>
+														<strong id="totalGoodsPrice" class="order_payment_sum">${order.setTotal}원</strong>
+													</td>
 												</tr>
 												<tr>
 													<th scope="row">배송비</th>
-													<td><span id="totalDeliveryCharge">2,500</span>원 <span class="multi_shipping_text"></span></td>
+													<td>
+														<span id="totalDeliveryCharge">2,500</span>
+														원
+														<span class="multi_shipping_text"></span>
+													</td>
 												</tr>
 												<!-- <tr id="rowDeliverAreaCharge" class="dn">
 														<th scope="row">지역별 배송비</th>
@@ -480,9 +539,15 @@
 																		class="total-member-dc-price">0</b>원
 																</strong> <span>( 상품 0원 , 회원 <span class="member-dc-price">0원 )</span>
 															</em></li> -->
-															<li class="order_benefit_mileage js_mileage"><em id="mileageDefault"> 적립 적립금 : <strong>(+) <b class="total-member-mileage">${order.mNummpoint}</b>원
-																</strong> </span>
-															</em></li>
+															<li class="order_benefit_mileage js_mileage">
+																<em id="mileageDefault">
+																	적립 적립금 :
+																	<strong>
+																		(+) <b class="total-member-mileage">${order.mNummpoint}</b>원
+																	</strong>
+																	</span>
+																</em>
+															</li>
 														</ul>
 													</td>
 												</tr>
@@ -490,11 +555,13 @@
 													<th scope="row">적립금 사용</th>
 													<td>
 														<div class="order_money_use">
-															<input type="text" name="useMileage" id="useMileageSelect" onblur="gd_mileage_use_check('y', 'y', 'y');"> 원 <input type="button" id="useMileagePoint"
-																onclick="gd_mileage_use_point();" value="적립금 적용하기">
+															<input type="text" name="useMileage" id="useMileageSelect" onblur="gd_mileage_use_check('y', 'y', 'y');">
+															원
+															<input type="button" id="useMileagePoint" onclick="gd_mileage_use_point();" value="적립금 적용하기">
 															<div class="form_element">
-																<input type="checkbox" id="useMileageAll" onclick="gd_mileage_use_all();"> <label for="useMileageAll" class="check_s">전액 사용하기</label> <span class="money_use_sum">(보유 적립금
-																	: ${order.point} 원)</span>
+																<input type="checkbox" id="useMileageAll" onclick="gd_mileage_use_all();">
+																<label for="useMileageAll" class="check_s">전액 사용하기</label>
+																<span class="money_use_sum">(보유 적립금 : ${order.point} 원)</span>
 															</div>
 															<em class="money_use_txt js-mileageInfoArea">※ ${order.point}원까지 사용 가능합니다.</em>
 														</div>
@@ -517,20 +584,23 @@
 												</tr> -->
 												<tr>
 													<th scope="row">최종 결제 금액</th>
-													<td><input type="hidden" name="settlePrice" value="25420"> <input type="hidden" name="overseasSettlePrice" value="0"> <input type="hidden"
-														name="overseasSettleCurrency" value="KRW"> <strong id="totalSettlePrice" class="order_payment_sum"></strong>원</td>
+													<td>
+														<input type="hidden" name="settlePrice" value="25420">
+														<input type="hidden" name="overseasSettlePrice" value="0">
+														<input type="hidden" name="overseasSettleCurrency" value="KRW">
+														<strong id="totalSettlePrice" class="order_payment_sum"></strong>
+														원
+													</td>
 												</tr>
 											</tbody>
 										</table>
 									</div>
 								</div>
 								<!-- //payment_info -->
-
 								<div class="payment_progress">
 									<div class="order_zone_tit">
 										<h4>결제수단 선택 / 결제</h4>
 									</div>
-
 									<div class="payment_progress_list">
 										<div class="js_pay_content">
 											<!-- N : 일반결제 시작 -->
@@ -540,8 +610,14 @@
 													<dd>
 														<div class="form_element">
 															<ul class="payment_progress_select">
-																<li id="settlekindType_pk"><input type="radio" id="settleKind_pk" name="settleKind" value="pk" checked> <label for="settleKind_pk" class="choice_s">카카오페이</label></li>
-																<li id="settlekindType_pc"><input type="radio" id="settleKind_pc" name="settleKind" value="pc"> <label for="settleKind_pc" class="choice_s">신용카드</label></li>
+																<li id="settlekindType_pk">
+																	<input type="radio" id="settleKind_pk" name="settleKind" value="pk" checked>
+																	<label for="settleKind_pk" class="choice_s">카카오페이</label>
+																</li>
+																<li id="settlekindType_pc">
+																	<input type="radio" id="settleKind_pc" name="settleKind" value="pc">
+																	<label for="settleKind_pc" class="choice_s">신용카드</label>
+																</li>
 																<!-- <li id="settlekindType_pb">
 																		<input type="radio" id="settleKind_pb"
 																			name="settleKind" value="pb">
@@ -581,13 +657,19 @@
 											<dl>
 												<dt>최종 결제 금액</dt>
 												<dd>
-													<span><strong id="totalSettlePriceView"></strong>원</span>
+													<span>
+														<strong id="totalSettlePriceView"></strong>
+														원
+													</span>
 												</dd>
 											</dl>
 										</div>
 										<div class="payment_final_check">
 											<div class="form_element">
-												<input type="checkbox" id="termAgree_orderCheck" class="require" required> <label for="termAgree_orderCheck" class="check_s"><b>(필수)</b> 구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
+												<input type="checkbox" id="termAgree_orderCheck" class="require" required>
+												<label for="termAgree_orderCheck" class="check_s">
+													<b>(필수)</b> 구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.
+												</label>
 											</div>
 										</div>
 										<div class="btn_center_box">
@@ -597,10 +679,8 @@
 										</div>
 									</div>
 									<!-- //payment_final -->
-
 								</div>
 								<!-- //payment_progress -->
-
 							</div>
 							<!-- //order_view_info -->
 						</div>
@@ -612,9 +692,7 @@
 		</div>
 </section>
 
-
 <%@include file="common/footer.jsp"%>
-
 
 <link rel="stylesheet" type="text/css" href="../css/order.css">
 
@@ -627,9 +705,7 @@
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script src="../vendor/select2/select2.min.js"></script>
-
 <script>
-
 		$(".js-select2").each(function () {
 			$(this).select2({
 				minimumResultsForSearch: 20,
@@ -641,8 +717,6 @@
 <script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
-
 <script>
 		$('.js-pscroll').each(function () {
 			$(this).css('position', 'relative');
@@ -721,15 +795,14 @@ function gd_mileage_use_all() {
 	document.getElementById('totalSettlePrice').innerHTML = sumTotalPrice; //최종금액 HTML 태그에 넣기
 }  
  */
-
 </script>
 
 <!-- jQuery -->
-	<script type="text/javascript"src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<!-- iamport.payment.js -->
-	<script type="text/javascript"src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	
-	<script type="text/javascript">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+<script type="text/javascript">
 		//문서가 준비되면 제일 먼저 실행
 		$(document).ready(function() {
 
@@ -804,14 +877,5 @@ function gd_mileage_use_all() {
 			form.submit();
 		}
 	</script>
-
-
-
-
-
-
-
-
 </body>
-
 </html>
