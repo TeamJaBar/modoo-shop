@@ -18,9 +18,11 @@
 								<li>
 									<a href="order-list.jsp">- 주문목록/배송조회</a>
 								</li>
+								<!-- 
 								<li>
 									<a href="cancel-list.jsp">- 취소 내역</a>
 								</li>
+								-->
 								<li>
 									<a href="dibList.do">- 찜리스트</a>
 								</li>
