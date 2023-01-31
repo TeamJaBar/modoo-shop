@@ -13,7 +13,7 @@ import product.ProductDAO;
 import product.ProductVO;
 
 // 찜 목록
-@WebServlet("/view/cartInsertDips")
+@WebServlet("/view/cartInsertDibs")
 public class CartInsertDibsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,14 +28,17 @@ public class CartInsertDibsController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductVO pvo = new ProductVO();
 		ProductDAO pdao = new ProductDAO();
-		ArrayList<ProductVO> dip = (ArrayList<ProductVO>)request.getAttribute("dList");
 		ArrayList<ProductVO> cart = (ArrayList<ProductVO>)request.getSession().getAttribute("cart");
+//		System.out.println("dListparamval: " + request.getParameterValues("dibProduct"));
 
-		int pNum = 0;
+		String[] arDibs = request.getParameterValues("dibProduct");
+//		for (int i = 0; i < arDib.length; i++) {
+//			System.out.println("arDib[" + i + "]: " + arDib[i]);
+//		}
 
-		for (int i = 0; i < dip.size(); i++) {
+		for (int i = 0; i < arDibs.length; i++) {
 			boolean isExisting = false;
-			pNum = dip.get(i).getpNum();
+			int pNum = Integer.parseInt(arDibs[i]);
 
 			for (int j = 0; j < cart.size(); j++) {
 				if (cart.get(j).getpNum() == pNum) { // 추가하려는 상품이 장바구니에 있다면
@@ -44,6 +47,7 @@ public class CartInsertDibsController extends HttpServlet {
 					break;
 				}
 			}
+
 			if (!isExisting) { // 장바구니에 없다면
 				pvo.setpNum(pNum); // 상품 번호(PK)
 				cart.add(pdao.selectOne(pvo)); // 해당 상품 정보 추가
