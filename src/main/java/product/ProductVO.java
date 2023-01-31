@@ -1,9 +1,13 @@
 package product;
 
+import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
 
-public class ProductVO {
+public class ProductVO implements Serializable {
+	// 직렬화: 자바 시스템 내부에서 사용되는 Object 또는 Data를 외부의 자바 시스템에서도 사용할 수 있도록 바이트 형태로 데이터를
+	// 변환하는 기술로써, JVM의 메모리에 상주되어 있는 객체 데이터를 바이트 형태로 변환하는 기술
+	private static final long serialVersionUID = 1L;
+	
 	private int pNum; // 상품번호(PK)
 	private int cateNum; // 카테고리(FK)
 	private String pName; // 상품명
@@ -25,7 +29,6 @@ public class ProductVO {
 	private int pageCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 더보기
 	private int pCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 구매 수량(purchaseCnt)
 	private int cateAge; // JAVA에서만 저장용으로 사용하는 데이터 : 나이별 카테고리
-	
 
 	public int getpNum() {
 		return pNum;
@@ -186,8 +189,6 @@ public class ProductVO {
 	public void setpCnt(int pCnt) {
 		this.pCnt = pCnt;
 	}
-	
-	
 
 	public int getCateAge() {
 		return cateAge;
