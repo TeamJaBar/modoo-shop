@@ -169,12 +169,6 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("cartDelete.do")) { // 장바구니 삭제
-			try {
-				forward = new CartDeleteAction().execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else if (command.equals("orderSelect.do")) { // 결제 목록
 			try {
 				forward = new OrListAction().execute(request, response);
