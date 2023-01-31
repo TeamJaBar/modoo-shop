@@ -49,7 +49,7 @@ public class CartInsertOneController extends HttpServlet {
 		if (!isExisting) {
 			pvo.setpNum(pNum); // 상품 번호(PK)
 			cart.add(pdao.selectOne(pvo)); // 해당 상품 정보 추가
-			cart.get(cart.size() - 1).setpCnt(1); // 구매 수량 = 1
+			cart.get(cart.size() - 1).setpCnt(pCnt); // 구매 수량 = pCnt
 		}
 
 		request.getSession().setAttribute("cart", cart);
