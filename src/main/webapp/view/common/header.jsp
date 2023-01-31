@@ -422,15 +422,15 @@
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			<form action="search.do" id="search-form">
+			<form action="search.do" id="search-form" method="post">
 				<div class="p-t-33 w-full">
 					<div class="p-b-10 m-b-20">
 						<div class="size-203 respon6 m-b-10">Category</div>
 						<div class="rs1-select2 bor8 bg0">
 							<select form="search-form" class="js-select2" name="cateNum">
 								<option value="0">카테고리</option>
-								<option value="1000">New</option>
-								<option value="11000">Best</option>
+								<!--<option value="1000">New</option>-->
+								<!--<option value="11000">Best</option>-->
 								<!-- <option value="100">연령별</option> -->
 								<option value="200">1인 추천</option>
 								<option value="300">전략</option>
