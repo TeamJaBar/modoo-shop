@@ -119,19 +119,9 @@
 										<tbody>
 											<tr>
 												<!-- 받아온 데이터로 표시되게 수정 -->
-												<c:set var="order" value="statusList"/>
-												<c:if test="${order.oStaus} == 1">
-												<td>${order.tempCnt}</td>
-												</c:if>
-												<c:if test="${order.oStaus} == 2">
-												<td>${order.tempCnt}</td>
-												</c:if>
-												<c:if test="${order.oStaus} == 3">
-												<td>${order.tempCnt}</td>
-												</c:if>
-												<c:if test="${order.oStaus} == 4">
-												<td>${order.tempCnt}</td>
-												</c:if>
+												<c:forEach items="${statusList}" var="order">
+													<td>${order.tempCnt}</td>
+												</c:forEach>
 											</tr>
 										</tbody>
 									</table>
