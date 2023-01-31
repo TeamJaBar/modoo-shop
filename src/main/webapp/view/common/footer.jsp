@@ -13,7 +13,7 @@
 					</li>
 
 					<li class="p-b-10">
-						<a href="use-guidelines.jsp" class="stext-107 cl6 hov-cl1 trans-04">이용안내</a>
+						<a href="use-guidlines.jsp" class="stext-107 cl6 hov-cl1 trans-04">이용안내</a>
 					</li>
 
 					<li class="p-b-10">
@@ -42,13 +42,13 @@
 					</c:if>
 					<c:if test="${mId == 'admin'}">
 						<li class="p-b-10">
-							<span class="stext-107 cl6 hov-cl1 trans-04">배송조회</span>
+							<a href="order-list.jsp" class="stext-107 cl6 hov-cl1 trans-04">배송조회</a>
 						</li>
 						<li class="p-b-10">
-							<span class="stext-107 cl6 hov-cl1 trans-04">취소내역</span>
+							<a href="cancel-list.jsp" class="stext-107 cl6 hov-cl1 trans-04">취소내역</a>
 						</li>
 						<li class="p-b-10">
-							<span class="stext-107 cl6 hov-cl1 trans-04">마이페이지</span>
+							<a href="adMain.do" class="stext-107 cl6 hov-cl1 trans-04">관리자페이지</a>
 						</li>
 					</c:if>
 					<c:if test="${mId != null && mId != 'admin'}">

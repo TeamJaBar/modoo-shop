@@ -25,19 +25,19 @@
 						</h3>
 
 						<p class="stext-113 cl6 p-b-26">
-							보드게임몰은 ㈜피에스컴퍼니의 보드게임 전문 브랜드입니다.
+							모두의 보드는 ㈜피에스컴퍼니의 보드게임 전문 브랜드입니다.
 							2011년 온라인 판매 전문 회사로 창립해
 							점차 물류, 유통, 영업, 마케팅으로 사업 영역을 확장해왔습니다.
 							그리고 마침내 창립 10주년인 2021년,
-							보드게임몰은 좋은 보드게임을 한국 시장에 출판하는 레이블로 거듭 태어났습니다.
+							모두의 보드는 좋은 보드게임을 한국 시장에 출판하는 레이블로 거듭 태어났습니다.
 						</p>
 
 						<p class="stext-113 cl6 p-b-26">
-							"Boardgame Mall" is the boardgame-specialized brand of PS company Inc.
+							"Modoo Shop" is the boardgame-specialized brand of PS company Inc.
 							In 2011, we stepped into boardgame industry as an e-commerce retailer in the first place.
 							Ever since then, our business coverage has developed into various fields of the industry,
 							such as warehousing, distribution, sales and marketing.
-							Based on our achievement, since 2021, the monumental 10th year of Boardgame Mall,
+							Based on our achievement, since 2021, the monumental 10th year of Modoo Shop,
 							we started to become one of the Korean boardgame labels to publish well-made boardgames in
 							the market.
 						</p>
@@ -67,9 +67,9 @@
 							</p>
 						</div>
 						<p class="stext-113 cl6 p-b-26">
-							우리가 걸어온 길이 보여주듯, 보드게임몰의 사업 영역은 과거에도, 현재에도 그리고 미래에도 보드게임에 관한 모든 것입니다.
+							우리가 걸어온 길이 보여주듯, 모두의 보드의 사업 영역은 과거에도, 현재에도 그리고 미래에도 보드게임에 관한 모든 것입니다.
 							<br>
-							As our history proves it, Boardgame Mall's business portfolio is all about boardgames.
+							As our history proves it, Modoo Shop's business portfolio is all about boardgames.
 							This principle will be forever in the past, now and in the future as well.
 						</p>
 						<p class="stext-113 cl6 p-b-26">
@@ -81,13 +81,13 @@
 							</p>
 						</div>
 						<p class="stext-113 cl6 p-b-26">
-							국내 최다 판매 유통망, 대형 창고 운영과 물류 노하우를 바탕으로 충분한 재고 확보, 다양한 향유층에 맞춤형 마케팅 - 보드게임몰은 보드게임을 사랑하는 모두가 좋은
+							국내 최다 판매 유통망, 대형 창고 운영과 물류 노하우를 바탕으로 충분한 재고 확보, 다양한 향유층에 맞춤형 마케팅 - 모두의 보드는 보드게임을 사랑하는 모두가 좋은
 							환경과 토양에서 그 문화를 즐길 수 있게 최선을 다합니다.
 							<br>
-							Boardgame mall has the largest sales network overwhelming the other competitors with a
+							Modoo Shop has the largest sales network overwhelming the other competitors with a
 							great-scale warehousing and logistics know-how.
 							We also perform adjusted marketing solutions to the tarketing consumers.
-							Boardgame Mall is doing the best to make a thriving environment and fertile basis where all
+							Modoo Shop is doing the best to make a thriving environment and fertile basis where all
 							boardgame lovers can enjoy the culture better than yesterday.
 						</p>
 
@@ -97,12 +97,12 @@
 							</p>
 						</div>
 						<p class="stext-113 cl6 p-b-26">
-							좋은 보드게임 한 편은 감명깊게 읽은 책이나 잔잔한 감동을 주는 영화처럼 사람의 기억에 오랫동안 남습니다. 보드게임몰은 양질의 콘텐츠로서 보드게임이 사랑받을 수 있게
-							좋은 보드게임을 출판하는 일에 최선을 다하겠습니다. 소장과 플레이의 감동이 동시에 전해지는 보드게임, 보드게임몰이 만들겠습니다.
+							좋은 보드게임 한 편은 감명깊게 읽은 책이나 잔잔한 감동을 주는 영화처럼 사람의 기억에 오랫동안 남습니다. 모두의 보드는 양질의 콘텐츠로서 보드게임이 사랑받을 수 있게
+							좋은 보드게임을 출판하는 일에 최선을 다하겠습니다. 소장과 플레이의 감동이 동시에 전해지는 보드게임, 모두의 보드가 만들겠습니다.
 							<br>
 							A good boardgame could be everlastingly rememberable to a person or a group of people as if
 							a deeply appreciative book or movie could be.
-							Boardgame Mall is doing the best it can to publish well-made boardgames so that boardgames
+							Modoo Shop is doing the best it can to publish well-made boardgames so that boardgames
 							are said to be the fine-quality cultural items by all the people.
 							It is our duty to publish the boardgames that can give you mind-blowing satisfaction in
 							terms of collection and playing.

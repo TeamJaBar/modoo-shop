@@ -671,65 +671,49 @@ address, caption, cite, code, dfn, em, var {
 }
 </style>
 <%@include file="common/header.jsp"%>
-
 <script>
 	function check() {
 		var result = confirm("정말 탈퇴 하시겠습니까?");
 
 		if (result) {
-			alert("탈퇴가 완료되었습니다");
-			location.href="/ModooShop/view/main.jsp";
+			return true;
 		} else {
 			alert("취소 되었습니다.");
-			history.go(-1);
-		}		
+			return false;
+		}
 	}
 </script>
-
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/bg-img-01.png');">
 	<h2 class="ltext-105 cl0 txt-center">회원탈퇴</h2>
 </section>
-
-
 <!-- Content page -->
 <section class="bg0 p-t-62 p-b-60 p-r-50">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-lg-9 p-b-80">
-
-
 				<!-- Content page -->
 				<section class="bg0 p-t-65 p-b-120">
 					<div class="container">
 						<div class="sub-content">
 							<div class="content-box">
 								<div class="join-agreement-wrap">
-
-
-									<form id="formHackOut" name="formHackOut" action="withdrawal.do" method="post">
+									<form id="formHackOut" name="formHackOut" action="withdrawal.do" method="post" onsubmit="return check();">
 										<div class="hack_out">
-
 											<div class="mypage_zone_tit">
 												<h2>회원탈퇴</h2>
 											</div>
-
 											<div class="mypage_unregister">
 												<div class="mypage_zone_tit">
 													<h3>01.회원탈퇴 안내</h3>
 												</div>
-
 												<div class="unregister_info">
-													모두의보드 탈퇴안내<br> <br> 회원님께서 회원 탈퇴를 원하신다니 저희 쇼핑몰의 서비스가 많이 부족하고 미흡했나 봅니다.<br> 불편하셨던 점이나 불만사항을 알려주시면 적극 반영해서 고객님의 불편함을 해결해 드리도록 노력하겠습니다.<br> <br> ■ 아울러 회원 탈퇴시의 아래 사항을
-													숙지하시기 바랍니다.<br> 1. 회원 탈퇴 시 회원님의 정보는 상품 반품 및 A/S를 위해 전자상거래 등에서의 소비자 보호에 관한 법률에 의거한 <br> 고객정보 보호정책에따라 관리 됩니다.<br> 2. 탈퇴 시 회원님께서 보유하셨던 마일리지는 삭제 됩니다
+													모두의보드 탈퇴안내<br> <br> 회원님께서 회원 탈퇴를 원하신다니 저희 쇼핑몰의 서비스가 많이 부족하고 미흡했나 봅니다.<br> 불편하셨던 점이나 불만사항을 알려주시면 적극 반영해서 고객님의 불편함을 해결해 드리도록 노력하겠습니다.<br> <br> ■ 아울러 회원 탈퇴시의 아래 사항을 숙지하시기 바랍니다.<br> 1. 회원 탈퇴 시 회원님의 정보는 상품 반품 및 A/S를 위해 전자상거래 등에서의 소비자 보호에 관한 법률에 의거한 <br> 고객정보 보호정책에따라 관리 됩니다.<br> 2. 탈퇴 시 회원님께서 보유하셨던 마일리지는 삭제 됩니다
 												</div>
 												<!-- //unregister_info -->
-
 												<div class="mypage_zone_tit m-t-30">
 													<h3>02.회원탈퇴 하기</h3>
 												</div>
-
-
 												<div class="mypage_table_type">
 													<table class="table_left">
 														<colgroup>
@@ -739,7 +723,9 @@ address, caption, cite, code, dfn, em, var {
 														<tbody>
 															<tr>
 																<th scope="row">비밀번호</th>
-																<td><input type="password" name="mPw" /></td>
+																<td>
+																	<input type="password" name="mPw" required/>
+																</td>
 																<!-- //find_password_box -->
 															</tr>
 															<tr>
@@ -747,15 +733,33 @@ address, caption, cite, code, dfn, em, var {
 																<td>
 																	<div class="form_element">
 																		<ul class="hack_out_list">
-																			<li><input type="checkbox" id="reasonCd01003001" name="reasonCd[]" class="checkbox" value="01003001"> <label for="reasonCd01003001" class="check-s">고객서비스(상담,포장
-																					등) 불만</label></li>
-																			<li><input type="checkbox" id="reasonCd01003002" name="reasonCd[]" class="checkbox" value="01003002"> <label for="reasonCd01003002" class="check-s">배송불만</label></li>
-																			<li><input type="checkbox" id="reasonCd01003003" name="reasonCd[]" class="checkbox" value="01003003"> <label for="reasonCd01003003" class="check-s">교환/환불/반품 불만</label>
+																			<li>
+																				<input type="checkbox" id="reasonCd01003001" name="reasonCd[]" class="checkbox" value="01003001">
+																				<label for="reasonCd01003001" class="check-s">고객서비스(상담,포장 등) 불만</label>
 																			</li>
-																			<li><input type="checkbox" id="reasonCd01003004" name="reasonCd[]" class="checkbox" value="01003004"> <label for="reasonCd01003004" class="check-s">방문 빈도가 낮음</label></li>
-																			<li><input type="checkbox" id="reasonCd01003005" name="reasonCd[]" class="checkbox" value="01003005"> <label for="reasonCd01003005" class="check-s">상품가격 불만</label></li>
-																			<li><input type="checkbox" id="reasonCd01003006" name="reasonCd[]" class="checkbox" value="01003006"> <label for="reasonCd01003006" class="check-s">개인 정보유출 우려</label></li>
-																			<li><input type="checkbox" id="reasonCd01003007" name="reasonCd[]" class="checkbox" value="01003007"> <label for="reasonCd01003007" class="check-s">쇼핑몰의 신뢰도 불만</label>
+																			<li>
+																				<input type="checkbox" id="reasonCd01003002" name="reasonCd[]" class="checkbox" value="01003002">
+																				<label for="reasonCd01003002" class="check-s">배송불만</label>
+																			</li>
+																			<li>
+																				<input type="checkbox" id="reasonCd01003003" name="reasonCd[]" class="checkbox" value="01003003">
+																				<label for="reasonCd01003003" class="check-s">교환/환불/반품 불만</label>
+																			</li>
+																			<li>
+																				<input type="checkbox" id="reasonCd01003004" name="reasonCd[]" class="checkbox" value="01003004">
+																				<label for="reasonCd01003004" class="check-s">방문 빈도가 낮음</label>
+																			</li>
+																			<li>
+																				<input type="checkbox" id="reasonCd01003005" name="reasonCd[]" class="checkbox" value="01003005">
+																				<label for="reasonCd01003005" class="check-s">상품가격 불만</label>
+																			</li>
+																			<li>
+																				<input type="checkbox" id="reasonCd01003006" name="reasonCd[]" class="checkbox" value="01003006">
+																				<label for="reasonCd01003006" class="check-s">개인 정보유출 우려</label>
+																			</li>
+																			<li>
+																				<input type="checkbox" id="reasonCd01003007" name="reasonCd[]" class="checkbox" value="01003007">
+																				<label for="reasonCd01003007" class="check-s">쇼핑몰의 신뢰도 불만</label>
 																			</li>
 																		</ul>
 																	</div>
@@ -763,20 +767,22 @@ address, caption, cite, code, dfn, em, var {
 															</tr>
 															<tr>
 																<th scope="row">남기실 말씀</th>
-																<td><textarea cols="30" rows="5" name="reasonDesc"></textarea></td>
+																<td>
+																	<textarea cols="30" rows="5" name="reasonDesc"></textarea>
+																</td>
 															</tr>
 														</tbody>
 													</table>
 												</div>
 											</div>
 											<!-- //mypage_unregister -->
-
 										</div>
 										<!-- //hack_out -->
-
 										<div class="btn_center_box flex-c">
-											<a href="#;" class="btn_claim_cancel btn_prev hov-btn3"><em>이전으로</em></a>
-											<button type='submit' onclick="check()" class="btn_claim_ok hov-btn3">탈퇴</button>
+											<a href="#;" class="btn_claim_cancel btn_prev hov-btn3">
+												<em>이전으로</em>
+											</a>
+											<button type='submit' class="btn_claim_ok hov-btn3">탈퇴</button>
 										</div>
 									</form>
 								</div>
@@ -784,55 +790,12 @@ address, caption, cite, code, dfn, em, var {
 						</div>
 					</div>
 				</section>
-
-
-
 			</div>
-
-			<div class="col-md-4 col-lg-3 p-b-80">
-				<div class="side-menu">
-
-
-					<div class="sub_content">
-
-						<div class="side_cont">
-							<span class="btn_side_mobile"></span>
-							<div class="sub_menu_box">
-								<div class="sub_menu_box_tit">
-									<h2>
-										<i class="fa fa-bars m-r-10"></i>마이페이지
-									</h2>
-
-								</div>
-								<ul class="sub_menu_mypage">
-									<li>쇼핑정보
-										<ul class="sub_depth1">
-											<li><a href="order-list.jsp">- 주문목록/배송조회</a></li>
-											<li><a href="cancel-list.jsp">- 취소 내역</a></li>
-											<li><a href="dibs-list.jsp">- 찜리스트</a></li>
-										</ul>
-									</li>
-									<li>회원정보
-										<ul class="sub_depth1">
-											<li><a href="change-inform.jsp">- 회원정보 변경</a></li>
-											<li><a href="withdrawal.jsp">- 회원 탈퇴</a></li>
-											<li><a href="manage-address.jsp">- 배송지 관리</a></li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%@include file="common/mypage.jsp"%>
 		</div>
 	</div>
 </section>
-
-
-
 <%@include file="common/footer.jsp"%>
-
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -843,34 +806,32 @@ address, caption, cite, code, dfn, em, var {
 <!--===============================================================================================-->
 <script src="../vendor/select2/select2.min.js"></script>
 <script>
-		$(".js-select2").each(function() {
-			$(this).select2({
-				minimumResultsForSearch : 20,
-				dropdownParent : $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
+	$(".js-select2").each(function() {
+		$(this).select2({
+			minimumResultsForSearch : 20,
+			dropdownParent : $(this).next('.dropDownSelect2')
+		});
+	})
+</script>
 <!--===============================================================================================-->
 <script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
-
 <script>
-		$('.js-pscroll').each(function() {
-			$(this).css('position', 'relative');
-			$(this).css('overflow', 'hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed : 1,
-				scrollingThreshold : 1000,
-				wheelPropagation : false,
-			});
-
-			$(window).on('resize', function() {
-				ps.update();
-			})
+	$('.js-pscroll').each(function() {
+		$(this).css('position', 'relative');
+		$(this).css('overflow', 'hidden');
+		var ps = new PerfectScrollbar(this, {
+			wheelSpeed : 1,
+			scrollingThreshold : 1000,
+			wheelPropagation : false,
 		});
-	</script>
+
+		$(window).on('resize', function() {
+			ps.update();
+		})
+	});
+</script>
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
 </body>

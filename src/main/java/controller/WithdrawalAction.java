@@ -23,16 +23,21 @@ public class WithdrawalAction implements Action {
 		mvo.setmId(mId);
 
 		mvo=mdao.selectOneLogin(mvo);//탈퇴하려는 id랑 pw랑 같고 그게 멤버 테이블에 있으면
-		if(mvo !=null ) {
+		if(mvo !=null) {
 			if (mdao.delete(mvo)) {
 				Cookie cookie=new Cookie("mId",mId);
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 				request.getSession().invalidate();
-				return forward;
 			}
+		} else {
+			forward.setRedirect(false);
+			forward.setPath("alert.jsp");		
+			request.setAttribute("title", "탈퇴 실패");
+			request.setAttribute("msg", "비밀번호를 확인하세요");
+			request.setAttribute("url", "withdrawal.jsp");
 		}
-		return null;
+		return forward;
 	}
 
 }
