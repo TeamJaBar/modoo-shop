@@ -151,25 +151,28 @@
 				<li>
 					<a href="product.do?cateNum=1100">BEST</a>
 				</li>
-				<li>
-					<a href="product.do?cateNum=200">1인 추천</a>
-				</li>
 				<li class="active-menu">
-					<a href="product.do?cateNum=100">연령별</a>
+					<a href="product.do?cateNum=101">연령별</a>
 					<ul class="sub-menu">
 						<li>
-							<a href="product.do?cateNum=100">~4세 이상</a>
+							<a href="product.do?cateNum=101&mcNum=1">4세 미만</a>
 						</li>
 						<li>
-							<a href="product.do?cateNum=100">미취학 아동</a>
+							<a href="product.do?cateNum=101&mcNum=2">미취학 아동</a>
 						</li>
 						<li>
-							<a href="product.do?cateNum=100">초등학교 저학년</a>
+							<a href="product.do?cateNum=101&mcNum=3">초등학교 저학년</a>
 						</li>
 						<li>
-							<a href="product.do?cateNum=100">초등학교 고학년</a>
+							<a href="product.do?cateNum=101&mcNum=4">초등학교 고학년</a>
+						</li>
+						<li>
+							<a href="product.do?cateNum=101&mcNum=5">12세 이상</a>
 						</li>
 					</ul>
+				</li>
+				<li>
+					<a href="product.do?cateNum=200">1인 추천</a>
 				</li>
 				<li>
 					<a href="product.do?cateNum=300">전략</a>
@@ -178,19 +181,19 @@
 					<a href="product.do?cateNum=400">두뇌</a>
 					<ul class="sub-menu">
 						<li>
-							<a href="product.do?cateNum=400">퍼즐게임</a>
+							<a href="product.do?cateNum=400&mcNum=401">퍼즐게임</a>
 						</li>
 						<li>
-							<a href="product.do?cateNum=400">창의수학</a>
+							<a href="product.do?cateNum=400&mcNum=402">창의수학</a>
 						</li>
 						<li>
-							<a href="product.do?cateNum=400">코딩게임</a>
+							<a href="product.do?cateNum=400&mcNum=403">코딩게임</a>
 						</li>
 						<li>
-							<a href="product.do?cateNum=400">방탈출/추리</a>
+							<a href="product.do?cateNum=400&mcNum=404">방탈출/추리</a>
 						</li>
 						<li>
-							<a href="product.do?cateNum=400">기억력게임</a>
+							<a href="product.do?cateNum=400&mcNum=405">기억력게임</a>
 						</li>
 					</ul>
 				</li>
@@ -198,7 +201,7 @@
 					<a href="product.do?cateNum=500">파티게임</a>
 					<ul class="sub-menu">
 						<li>
-							<a href="product.do?cateNum=500">복불복</a>
+							<a href="product.do?cateNum=500&mcNum=501">복불복</a>
 						</li>
 					</ul>
 				</li>
@@ -212,13 +215,13 @@
 					<a href="product.do?cateNum=800">언어/정서</a>
 					<ul class="sub-menu">
 						<li>
-							<a href="product.do?cateNum=800">언어쑥쑥</a>
+							<a href="product.do?cateNum=800&mcNum=801">언어쑥쑥</a>
 						</li>
 						<li>
-							<a href="product.do?cateNum=800">스토리텔링 (감정/대화)</a>
+							<a href="product.do?cateNum=800&mcNum=802">스토리텔링 (감정/대화)</a>
 						</li>
 						<li>
-							<a href="product.do?cateNum=800">학지사 상담교구</a>
+							<a href="product.do?cateNum=800&mcNum=803">학지사 상담교구</a>
 						</li>
 					</ul>
 				</li>
@@ -270,12 +273,12 @@
 			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-search-slide">
 				<i class="zmdi zmdi-search"></i>
 			</div>
-			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="2">
+			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10">
 				<a href="shopping-cart.jsp">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</a>
 			</div>
-			<a href="dibList.do" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+			<a href="dibList.do" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10">
 				<i class="zmdi zmdi-favorite-outline"></i>
 			</a>
 		</div>
@@ -300,7 +303,7 @@
 					<c:if test="${mId == 'admin'}">
 						<a href="about.jsp" class="flex-c-m p-lr-10 trans-04">ABOUT US</a>
 						<a href="logout.do" class="flex-c-m p-lr-10 trans-04">LOGOUT</a>
-						<a href="admin/admin-home.jsp" class="flex-c-m p-lr-10 trans-04">ADMIN</a>
+						<a href="adMain.do" class="flex-c-m p-lr-10 trans-04">ADMIN</a>
 					</c:if>
 					<c:if test="${mId != null && mId != 'admin'}">
 						<a href="about.jsp" class="flex-c-m p-lr-10 trans-04">ABOUT US</a>
@@ -318,22 +321,22 @@
 				<a href="product.do?cateNum=1100">BEST</a>
 			</li>
 			<li>
-				<a href="product.do?cateNum=200">1인 추천</a>
+				<a href="product.do?cateNum=101">연령별</a>
 				<ul class="sub-menu-m">
 					<li>
-						<a href="product.do?cateNum=200">~4세 이상</a>
+						<a href="product.do?cateNum=101&mcNum=1">4세 미만</a>
 					</li>
 					<li>
-						<a href="product.do?cateNum=200">미취학 아동</a>
+						<a href="product.do?cateNum=101&mcNum=2">미취학 아동</a>
 					</li>
 					<li>
-						<a href="product.do?cateNum=200">초등학교 저학년</a>
+						<a href="product.do?cateNum=101&mcNum=3">초등학교 저학년</a>
 					</li>
 					<li>
-						<a href="product.do?cateNum=200">초등학교 고학년</a>
+						<a href="product.do?cateNum=101&mcNum=4">초등학교 고학년</a>
 					</li>
 					<li>
-						<a href="product.do?cateNum=200">만 12세 이상</a>
+						<a href="product.do?cateNum=101&mcNum=5">12세 이상</a>
 					</li>
 				</ul>
 				<span class="arrow-main-menu-m">
@@ -341,22 +344,28 @@
 				</span>
 			</li>
 			<li>
+				<a href="product.do?cateNum=200">1인 추천</a>
+			</li>
+			<li>
+				<a href="product.do?cateNum=300">전략</a>
+			</li>
+			<li>
 				<a href="product.do?cateNum=400">두뇌</a>
 				<ul class="sub-menu-m">
 					<li>
-						<a href="product.do?cateNum=400">퍼즐게임</a>
+						<a href="product.do?cateNum=400&mcNum=401">퍼즐게임</a>
 					</li>
 					<li>
-						<a href="product.do?cateNum=400">창의수학</a>
+						<a href="product.do?cateNum=400&mcNum=402">창의수학</a>
 					</li>
 					<li>
-						<a href="product.do?cateNum=400">코딩게임</a>
+						<a href="product.do?cateNum=400&mcNum=403">코딩게임</a>
 					</li>
 					<li>
-						<a href="product.do?cateNum=400">방탈출/추리</a>
+						<a href="product.do?cateNum=400&mcNum=404">방탈출/추리</a>
 					</li>
 					<li>
-						<a href="product.do?cateNum=400">기억력게임</a>
+						<a href="product.do?cateNum=400&mcNum=405">기억력게임</a>
 					</li>
 				</ul>
 				<span class="arrow-main-menu-m">
@@ -367,7 +376,7 @@
 				<a href="product.do?cateNum=500">파티게임</a>
 				<ul class="sub-menu-m">
 					<li>
-						<a href="product.do?cateNum=500">복불복</a>
+						<a href="product.do?cateNum=500&mcNum=501">복불복</a>
 					</li>
 				</ul>
 				<span class="arrow-main-menu-m">
@@ -384,13 +393,13 @@
 				<a href="product.do?cateNum=800">언어/정서</a>
 				<ul class="sub-menu-m">
 					<li>
-						<a href="product.do?cateNum=800">언어쑥쑥</a>
+						<a href="product.do?cateNum=800&mcNum=801">언어쑥쑥</a>
 					</li>
 					<li>
-						<a href="product.do?cateNum=800">스토리텔링 (감정/대화)</a>
+						<a href="product.do?cateNum=800&mcNum=802">스토리텔링 (감정/대화)</a>
 					</li>
 					<li>
-						<a href="product.do?cateNum=800">학지사 상담교구</a>
+						<a href="product.do?cateNum=800&mcNum=803">학지사 상담교구</a>
 					</li>
 				</ul>
 				<span class="arrow-main-menu-m">
@@ -422,7 +431,7 @@
 								<option value="0">카테고리</option>
 								<option value="1000">New</option>
 								<option value="11000">Best</option>
-								<option value="100">연령별</option>
+								<!-- <option value="100">연령별</option> -->
 								<option value="200">1인 추천</option>
 								<option value="300">전략</option>
 								<option value="400">두뇌</option>
@@ -498,12 +507,8 @@
 				
 				if ($('#highNum').val() != 0 && $(this).val() > $('#highNum').val()) {
 					alert("최소 가격은 최대 가격보다 커야 합니다.");
-					//$('#lowNum option:eq(0)').prop("selected", true);
-					//$('#lowNum option:eq(0)').prop("selected", true);
-					//$('#lownum').html("최소 가격");
 					$('#lowNum opiton[value=0]').attr("selected", true);
 					$('#lowNum').val('0').trigger('change');
-					//$('#lowNum').html('').select2({data: [{id:'0', text:'최소 가격'}, {id:'10000', text:'10000'}]});
 				}	
 			})
 			

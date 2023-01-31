@@ -948,7 +948,7 @@
 							<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">슈뢰딩거의 고양이</h2>
 						</div>
 						<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-							<a href="product/product.jsp" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 슬리브 + 밴드 증정 </a>
+							<div class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> 슬리브 + 밴드 증정 </div>
 						</div>
 					</div>
 				</div>
@@ -963,7 +963,7 @@
 							<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">캐스캐디아</h2>
 						</div>
 						<div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-							<a href="product/product.jsp" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> Shop Now </a>
+							<div class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"> Shop Now </div>
 						</div>
 					</div>
 				</div>
@@ -979,7 +979,7 @@
 				<!-- Block1 -->
 				<div class="block1 wrap-pic-w">
 					<img src="/ModooShop/images/banner-img-01.png" alt="베스트 상품">
-					<a href="product/product.jsp" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+					<a href="product.do?cateNum=1100" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 						<div class="block1-txt-child1 flex-col-l">
 							<span class="block1-name ltext-102 trans-04 p-b-8"> Best </span>
 							<span class="block1-info stext-102 trans-04"> 모두의 보드's PICK </span>
@@ -994,7 +994,7 @@
 				<!-- Block1 -->
 				<div class="block1 wrap-pic-w">
 					<img src="/ModooShop/images/banner-img-02.png" alt="혼자서 즐기는 게임">
-					<a href="product/product.jsp" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+					<a href="product.do?cateNum=200" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 						<div class="block1-txt-child1 flex-col-l">
 							<span class="block1-name ltext-102 trans-04 p-b-8"> 1 Player </span>
 							<span class="block1-info stext-102 trans-04"> 혼자서 즐겨요! </span>
@@ -1009,7 +1009,7 @@
 				<!-- Block1 -->
 				<div class="block1 wrap-pic-w">
 					<img src="/ModooShop/images/banner-img-04.png" alt="악세사리">
-					<a href="product/product.jsp" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+					<a href="product.do?cateNum=900" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 						<div class="block1-txt-child1 flex-col-l">
 							<span class="block1-name ltext-102 trans-04 p-b-8"> Accessories </span>
 							<span class="block1-info stext-102 trans-04"> 게임을 더 재밌게! </span>

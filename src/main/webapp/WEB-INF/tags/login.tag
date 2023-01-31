@@ -24,7 +24,7 @@
 				<a href="logout.do">LOGOUT</a>
 			</li>
 			<li>
-				<a href="admin/admin-home.jsp">ADMIN</a>
+				<a href="adMain.do">ADMIN</a>
 			</li>
 		</c:when>
 		<c:otherwise>
@@ -47,7 +47,7 @@
 						<a href="changeInfo.do">내정보수정</a>
 					</li>
 					<li>
-						<a href="dibs-list.jsp">찜리스트</a>
+						<a href="dibList.do">찜리스트</a>
 					</li>
 				</ul>
 			</li>
