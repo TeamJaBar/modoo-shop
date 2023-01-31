@@ -270,12 +270,12 @@
 			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-search-slide">
 				<i class="zmdi zmdi-search"></i>
 			</div>
-			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="2">
+			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10">
 				<a href="shopping-cart.jsp">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</a>
 			</div>
-			<a href="dibList.do" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+			<a href="dibList.do" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10">
 				<i class="zmdi zmdi-favorite-outline"></i>
 			</a>
 		</div>
@@ -300,7 +300,7 @@
 					<c:if test="${mId == 'admin'}">
 						<a href="about.jsp" class="flex-c-m p-lr-10 trans-04">ABOUT US</a>
 						<a href="logout.do" class="flex-c-m p-lr-10 trans-04">LOGOUT</a>
-						<a href="admin/admin-home.jsp" class="flex-c-m p-lr-10 trans-04">ADMIN</a>
+						<a href="adMain.do" class="flex-c-m p-lr-10 trans-04">ADMIN</a>
 					</c:if>
 					<c:if test="${mId != null && mId != 'admin'}">
 						<a href="about.jsp" class="flex-c-m p-lr-10 trans-04">ABOUT US</a>
