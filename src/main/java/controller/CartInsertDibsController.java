@@ -9,10 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-
 import product.ProductDAO;
 import product.ProductVO;
 
@@ -30,29 +26,19 @@ public class CartInsertDibsController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String jsonStr = request.getParameter("dList");
-		System.out.println("\t로그 " + jsonStr);
-		JSONArray arJson = (JSONArray)JSONValue.parse(jsonStr);
-
-		// 로그
-		for (int i = 0; i < arJson.size(); i++) {
-			JSONObject jobj = (JSONObject)arJson.get(i);
-			System.out.print("\t로그 pCnt: ");
-			System.out.print(jobj.get("pCnt"));
-		}
-
 		ProductVO pvo = new ProductVO();
 		ProductDAO pdao = new ProductDAO();
+		ArrayList<ProductVO> dip = (ArrayList<ProductVO>)request.getAttribute("dList");
 		ArrayList<ProductVO> cart = (ArrayList<ProductVO>)request.getSession().getAttribute("cart");
 
-		boolean isExisting = false;
-		int pNum = Integer.parseInt(request.getParameter("pNum"));
+		int pNum = 0;
 
-		for (int i = 0; i < arJson.size(); i++) {
-			JSONObject jobj = (JSONObject)arJson.get(i);
-			isExisting = false;
+		for (int i = 0; i < dip.size(); i++) {
+			boolean isExisting = false;
+			pNum = dip.get(i).getpNum();
+
 			for (int j = 0; j < cart.size(); j++) {
-				if (cart.get(j).getpNum() == (int)jobj.get("pNum")) { // 추가하려는 상품이 장바구니에 있다면
+				if (cart.get(j).getpNum() == pNum) { // 추가하려는 상품이 장바구니에 있다면
 					isExisting = true;
 					cart.get(i).setpCnt(cart.get(i).getpCnt() + 1); // 기존 장바구니 구매 수량 + pCnt
 					break;
