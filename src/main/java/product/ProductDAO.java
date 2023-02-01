@@ -338,7 +338,7 @@ public class ProductDAO {
 		int cnt = 0;
 		String str1 = "", str2 = "";
 		try {
-			String filter = "SELECT " + str1 + "* FROM PRODUCT " + str2 + " WHERE 1=1";
+			String filter = "SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT " + str1 + " FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM " + str2 + " WHERE P.CATENUM=? ";
 
 			if (pvo.getFilterTags() == 31) {
 				filter += " AND REPERSON LIKE '1명' ";
@@ -346,9 +346,7 @@ public class ProductDAO {
 				filter += " AND REPERSON NOT LIKE '1명' ";
 			}
 
-			if (pvo.getFilterPrice() == 21) {
-				filter += " AND 1+1";
-			} else if (pvo.getFilterPrice() == 22) {
+			 if (pvo.getFilterPrice() == 22) {
 				filter += " AND SELPRICE BETWEEN 0 AND 10000";
 			} else if (pvo.getFilterPrice() == 23) {
 				filter += " AND SELPRICE BETWEEN 10000 AND 20000";
@@ -368,9 +366,8 @@ public class ProductDAO {
 			if (pvo.getFilterSortBy() == 11) {
 				filter += " ORDER BY RDATE DESC";
 			} else if (pvo.getFilterSortBy() == 12) {
-				str1 = "P2.";
-				str2 = " P, (SELECT P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT, DECODE(SUM(CNT), NULL, 0, SUM(CNT))  A FROM PRODUCT P FULL JOIN ORDERDETAIL O ON P.PNUM=O.PNUM GROUP BY P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT ORDER BY A DESC) P2";
-				filter += " AND  P.PNUM = P2.PNUM ORDER BY P2.A DESC";
+				str1 = ", DECODE(O.CNT, NULL, 0, O.CNT) OCNT ";
+				str2 = " FULL JOIN (SELECT PNUM, SUM(CNT) CNT FROM ORDERDETAIL GROUP BY PNUM) O ON P.PNUM=O.PNUM ORDER BY OCNT DESC ";
 			} else if (pvo.getFilterSortBy() == 13) {
 				filter += " ORDER BY SELPRICE ASC";
 			} else if (pvo.getFilterSortBy() == 14) {
@@ -379,13 +376,19 @@ public class ProductDAO {
 
 			pstmt = conn.prepareStatement(filter);
 			if (cnt == 1) {
-				pstmt.setString(1, pvo.getpName());
+				pstmt.setInt(1, pvo.getDib());
+				pstmt.setString(2, pvo.getpName());
+				pstmt.setInt(3, pvo.getCateNum());
+			} else {
+				pstmt.setInt(1, pvo.getDib());				
+				pstmt.setInt(2, pvo.getCateNum());
 			}
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				ProductVO data = new ProductVO();
 				data = new ProductVO();
+				data.setDib(rs.getInt("DIB"));
 				data.setpNum(rs.getInt("PNUM"));
 				data.setCateNum(rs.getInt("CATENUM"));
 				data.setpName(rs.getString("PNAME"));
