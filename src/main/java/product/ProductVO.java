@@ -23,9 +23,9 @@ public class ProductVO implements Serializable {
 	private int dib; // JAVA에서만 저장용으로 사용하는 데이터 : 좋아요(하트) 1: true, 0, false
 	private int lowNum; // JAVA에서만 저장용으로 사용하는 데이터 : 최저 연령, 최저 가격
 	private int highNum; // JAVA에서만 저장용으로 사용하는 데이터 : 최고 연령, 최고 가격
-	private int FilterSortBy; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 sortBy
-	private int FilterPrice; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 price
-	private int FilterTags; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 tags
+	private int filterSortyBy; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 sortBy
+	private int filterPrice; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 price
+	private int filterTags; // JAVA에서만 저장용으로 사용하는 데이터 : 검색필터 tags
 	private int pageCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 더보기
 	private int pCnt; // JAVA에서만 저장용으로 사용하는 데이터 : 구매 수량(purchaseCnt)
 	private int cateAge; // JAVA에서만 저장용으로 사용하는 데이터 : 나이별 카테고리
@@ -143,27 +143,27 @@ public class ProductVO implements Serializable {
 	}
 
 	public int getFilterSortBy() {
-		return FilterSortBy;
+		return filterSortyBy;
 	}
 
 	public void setFilterSortBy(int filterSortBy) {
-		FilterSortBy = filterSortBy;
+		this.filterSortyBy = filterSortBy;
 	}
 
 	public int getFilterPrice() {
-		return FilterPrice;
+		return filterPrice;
 	}
 
 	public void setFilterPrice(int filterPrice) {
-		FilterPrice = filterPrice;
+		this.filterPrice = filterPrice;
 	}
 
 	public int getFilterTags() {
-		return FilterTags;
+		return filterTags;
 	}
 
 	public void setFilterTags(int filterTags) {
-		FilterTags = filterTags;
+		this.filterTags = filterTags;
 	}
 
 	public int getDib() {
@@ -202,7 +202,7 @@ public class ProductVO implements Serializable {
 	public String toString() {
 		return "ProductVO [pNum=" + pNum + ", cateNum=" + cateNum + ", pName=" + pName + ", fixPrice=" + fixPrice + ", selPrice=" + selPrice + ", rDate=" + rDate + ", rePerson=" + rePerson
 				+ ", reAge=" + reAge + ", brand=" + brand + ", pImg=" + pImg + ", infoImg=" + infoImg + ", productCnt=" + productCnt + ", dib=" + dib + ", lowNum=" + lowNum + ", highNum=" + highNum
-				+ ", FilterSortBy=" + FilterSortBy + ", FilterPrice=" + FilterPrice + ", FilterTags=" + FilterTags + ", pageCnt=" + pageCnt + ", pCnt=" + pCnt + "]";
+				+ ", FilterSortBy=" + filterSortyBy + ", filterPrice=" + filterPrice + ", filterTags=" + filterTags + ", pageCnt=" + pageCnt + ", pCnt=" + pCnt + "]";
 	}
 
 }

@@ -15,20 +15,23 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script>
-// init Isotope
-$(window).on('load', function() {
-	var mcNum = '${param.mcNum}'
-	var category = '${param.cateNum}'
-	var $topeContainer = $('.isotope-grid');
-	
-	if(mcNum != null) {		
-		$topeContainer.isotope({ filter: '.'+mcNum });
-		$('#btn-0').removeClass('how-active1');
-		$('#btn-'+mcNum).addClass('how-active1');
-	}
-	
-});
+	// init Isotope
+	$(window).on('load', function() {
+		var mcNum = ${param.mcNum};
+		var filterMCNum = '.' + mcNum;
+		var category = '${param.cateNum}'
+		var $topeContainer = $('.isotope-grid');
+		console.log(mcNum);
 
+		if (mcNum != null) {
+			$topeContainer.isotope({
+				filter : filterMCNum
+			});
+			$('#btn-0').removeClass('how-active1');
+			$('#btn-' + mcNum).addClass('how-active1');
+		}
+
+	});
 </script>
 <title>상품목록</title>
 <%@include file="common/header.jsp"%>
@@ -41,16 +44,16 @@ $(window).on('load', function() {
 		<div id="product-list" class="container">
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button id="btn-0" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">전체 상품</button>
+					<button id="btn-0" class="btn-category stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">전체 상품</button>
 					<c:if test="${param.cateNum == 101}">
 						<c:forEach var="category" items="${cList}" varStatus="status">
-							<button id="btn-${status.count}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".${status.count}">${category.cateM}</button>
+							<button id="btn-${status.count}" class="btn-category stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".${status.count}">${category.cateM}</button>
 						</c:forEach>
 					</c:if>
 					<c:if test="${param.cateNum != 101}">
 						<c:forEach var="category" items="${cList}">
 							<c:if test="${category.cateM != NULL}">
-								<button id="btn-${category.cateNum}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".${category.cateNum}">${category.cateM}</button>
+								<button id="btn-${category.cateNum}" class="btn-category stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".${category.cateNum}">${category.cateM}</button>
 							</c:if>
 						</c:forEach>
 					</c:if>
@@ -74,7 +77,7 @@ $(window).on('load', function() {
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 							<i class="zmdi zmdi-search"></i>
 						</button>
-						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search" onKeyup="javascript:if(window.event.keyCode==13){search()}">
 					</div>
 				</div>
 				<!-- Filter -->
@@ -82,25 +85,25 @@ $(window).on('load', function() {
 					<div class="wrap-filter bg10 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div id="sortbyFilter" class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">Sort By</div>
-							<a href="#" onclick="search()" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="sortBy" data-value="1"> 추천순 </a>
-							<a href="#" onclick="search()" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="sortBy" data-value="2"> 판매인기순 </a>
-							<a href="#" onclick="search()" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="sortBy" data-value="3"> 낮은가격순 </a>
-							<a href="#" onclick="search()" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="sortBy" data-value="4"> 높은가격순 </a>
+							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="sortBy" data-value="11"> 추천순 </a>
+							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="sortBy" data-value="12"> 판매인기순 </a>
+							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="sortBy" data-value="13"> 낮은가격순 </a>
+							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="sortBy" data-value="14"> 높은가격순 </a>
 						</div>
 						<div id="priceFilter" class="filter-col2 p-r-15 p-b-27 m-t-10">
 							<div class="mtext-102 cl2 p-b-15">Price</div>
-							<a href="#" onclick="search()" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="1"> All </a>
-							<a href="#" onclick="search()" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="2"> 0 ~ 10,000 &#8361; </a>
-							<a href="#" onclick="search()" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="3"> 10,000 ~ 20,000 &#8361; </a>
-							<a href="#" onclick="search()" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="4"> 20,000 ~ 30,000 &#8361; </a>
-							<a href="#" onclick="search()" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="5"> 30,000 ~ 40,000 &#8361; </a>
-							<a href="#" onclick="search()" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="6"> 40,000 &#8361; ~ </a>
+							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="21"> All </a>
+							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="22"> 0 ~ 10,000 &#8361; </a>
+							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="23"> 10,000 ~ 20,000 &#8361; </a>
+							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="24"> 20,000 ~ 30,000 &#8361; </a>
+							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="25"> 30,000 ~ 40,000 &#8361; </a>
+							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="price" data-value="26"> 40,000 &#8361; ~ </a>
 						</div>
 						<div class="filter-col4 p-b-27 m-t-10">
 							<div class="mtext-102 cl2 p-b-15">Tags</div>
 							<div id="tagsFilter" class="flex-w p-t-4 m-r--5">
-								<a href="#" onclick="search()" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" id="tags" data-value="1"> 1인용 </a>
-								<a href="#" onclick="search()" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" id="tags" data-value="2"> 2인용 </a>
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" id="tags" data-value="31"> 1인용 </a>
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" id="tags" data-value="32"> 2인용 </a>
 							</div>
 						</div>
 					</div>
@@ -147,7 +150,6 @@ $(window).on('load', function() {
 </div>
 </c:if>
 </div>
-<%@include file="common/footer.jsp"%>
 <!--QuickView Modal -->
 <div class="wrap-modal1 js-quickView p-t-60 p-b-20">
 	<div class="overlay-modal1 js-hide-quickView"></div>
@@ -249,19 +251,6 @@ $(window).on('load', function() {
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script src="../vendor/select2/select2.min.js"></script>
-<!-- 	<script>
-		function order(pNum, pCnt) {
-			location.href = "shOrder.do?pNum=${product.pNum}&pcnt=${product.pCnt}"
-		}
-
-		function addDib(pNum) {
-			location.href = "dib.do?pNum=${product.pNum}"
-		}
-
-		function addCart(pNum) {
-			location.href = "shopping.do?pNum=${product.pNum}&pcnt=${product.pNum}"
-		}
-	</script> -->
 <script>
 	$(".js-select2").each(function() {
 		$(this).select2({
@@ -269,6 +258,218 @@ $(window).on('load', function() {
 			dropdownParent : $(this).next('.dropDownSelect2')
 		});
 	})
+	
+	
+
+	function search() {
+		var pName = $('input[name=search-product]').val();
+
+		console.log("검색 입력 : " + pName);
+
+		$('.isotope-grid').isotope({filter : '*'});
+		$('.btn-category').removeClass('how-active1');
+		$('#btn-0').addClass('how-active1');
+
+		var cateNum = ${param.cateNum};
+
+		var filterSortBy = $('#sortbyFilter').find('.tag1-active').data('value');
+		var filterPrice = $('#priceFilter').find('.tag1-active').data('value');
+		var filterTags = $('#tagsFilter').find('.tag1-active').data('value');
+
+		if (filterPrice == null) {
+			filterPrice = 0;
+		}
+		if (filterTags == null) {
+			filterTags = 0;
+		}
+		if (filterSortBy == null) {
+			filterSortBy = 0;
+		}
+
+		console.log(filterSortBy + " " + filterPrice + " " + filterTags);
+
+		$.ajax({
+			type : 'POST', //POST 방식으로 보낼래
+			url : 'searchFilter', // 임의로 했음
+			async : false,
+			data : {
+				pName : pName,
+				cateNum : cateNum,
+				filterSortBy : filterSortBy,
+				filterPrice : filterPrice,
+				filterTags : filterTags
+			},
+			success : function(result) {
+				console.log("검색결과 확인");
+				var html = jQuery('<div>').html(result);
+				var contents = html.find("#md-product").html();
+				$("#md-product").html(contents);
+			}
+		});
+
+	}
+
+	$('#sortbyFilter').find("a").click(function() {
+
+		if ($(this).hasClass("tag1-active") === true) {
+			$(this).removeClass("tag1-active");
+		} else {
+			//모든 class 초기화
+			$('#sortbyFilter').find("a").not(this).removeClass("tag1-active");
+
+			//선택한 탭만 class 추가
+			$(this).addClass("tag1-active");
+		}
+
+		var cateNum = ${param.cateNum};
+
+		var filterSortBy = $('#sortbyFilter').find('.tag1-active').data('value');
+		var filterPrice = $('#priceFilter').find('.tag1-active').data('value');
+		var filterTags = $('#tagsFilter').find('.tag1-active').data('value');
+
+		if (filterPrice == null) {
+			filterPrice = 0;
+		}
+		if (filterTags == null) {
+			filterTags = 0;
+		}
+		if (filterSortBy == null) {
+			filterSortBy = 0;
+		}
+
+		console.log(filterSortBy + ' : ' + filterPrice + ' : ' + filterTags);
+
+		$('.isotope-grid').isotope({
+			filter : '*'
+		});
+		$('.btn-category').removeClass('how-active1');
+		$('#btn-0').addClass('how-active1');
+
+		$.ajax({
+			type : 'POST', //POST 방식으로 보낼래
+			url : 'searchFilter', // 임의로 했음
+			async : false,
+			data : {
+				cateNum : cateNum,
+				filterSortBy : filterSortBy,
+				filterPrice : filterPrice,
+				filterTags : filterTags
+			},
+			success : function(result) {
+				console.log("필터결과 확인");
+				var html = jQuery('<div>').html(result);
+				var contents = html.find("#md-product").html();
+				$("#md-product").html(contents);
+			}
+		});
+	});
+
+	$('#priceFilter').find("a").click(function() {
+		if ($(this).hasClass("tag1-active") === true) {
+			$(this).removeClass("tag1-active");
+		} else {
+			//모든 class 초기화
+			$('#priceFilter').find("a").not(this).removeClass("tag1-active");
+
+			//선택한 탭만 class 추가
+			$(this).addClass("tag1-active");
+		}
+
+		var cateNum = ${param.cateNum};
+
+		var filterSortBy = $('#sortbyFilter').find('.tag1-active').data('value');
+		var filterPrice = $('#priceFilter').find('.tag1-active').data('value');
+		var filterTags = $('#tagsFilter').find('.tag1-active').data('value');
+
+		if (filterPrice == null) {
+			filterPrice = 0;
+		}
+		if (filterTags == null) {
+			filterTags = 0;
+		}
+		if (filterSortBy == null) {
+			filterSortBy = 0;
+		}
+
+		console.log(filterSortBy + ' : ' + filterPrice + ' : ' + filterTags);
+
+		$('.isotope-grid').isotope({
+			filter : '*'
+		});
+		$('.btn-category').removeClass('how-active1');
+		$('#btn-0').addClass('how-active1');
+
+		$.ajax({
+			type : 'POST', //POST 방식으로 보낼래
+			url : 'searchFilter', // 임의로 했음
+			async : false,
+			data : {
+				cateNum : cateNum,
+				filterSortBy : filterSortBy,
+				filterPrice : filterPrice,
+				filterTags : filterTags
+			},
+			success : function(result) {
+				console.log("필터결과 확인");
+				var html = jQuery('<div>').html(result);
+				var contents = html.find("#md-product").html();
+				$("#md-product").html(contents);
+			}
+		});
+	});
+
+	$('#tagsFilter').find("a").click(function() {
+		if ($(this).hasClass("tag1-active") === true) {
+			$(this).removeClass("tag1-active");
+		} else {
+			//모든 class 초기화
+			$('#tagsFilter').find("a").not(this).removeClass("tag1-active");
+			//선택한 탭만 class 추가
+			$(this).addClass("tag1-active");
+		}
+
+		var cateNum = ${param.cateNum};
+
+		var filterSortBy = $('#sortbyFilter').find('.tag1-active').data('value');
+		var filterPrice = $('#priceFilter').find('.tag1-active').data('value');
+		var filterTags = $('#tagsFilter').find('.tag1-active').data('value');
+
+		if (filterPrice == null) {
+			filterPrice = 0;
+		}
+		if (filterTags == null) {
+			filterTags = 0;
+		}
+		if (filterSortBy == null) {
+			filterSortBy = 0;
+		}
+
+		console.log(filterSortBy + ' : ' + filterPrice + ' : ' + filterTags);
+
+		$('.isotope-grid').isotope({
+			filter : '*'
+		});
+		$('.btn-category').removeClass('how-active1');
+		$('#btn-0').addClass('how-active1');
+
+		$.ajax({
+			type : 'POST', //POST 방식으로 보낼래
+			url : 'searchFilter', // 임의로 했음
+			async : false,
+			data : {
+				cateNum : cateNum,
+				filterSortBy : filterSortBy,
+				filterPrice : filterPrice,
+				filterTags : filterTags
+			},
+			success : function(result) {
+				console.log("필터결과 확인");
+				var html = jQuery('<div>').html(result);
+				var contents = html.find("#md-product").html();
+				$("#md-product").html(contents);
+			}
+		});
+	});
 </script>
 <!--===============================================================================================-->
 <script src="../vendor/daterangepicker/moment.min.js"></script>
@@ -315,33 +516,6 @@ $(window).on('load', function() {
 			ps.update();
 		})
 	});
-
-	function search() {
-		var pSortBy = document.getElementById("sortBy").getAttribute('data-value');
-		var pPrice = document.getElementById("price").getAttribute('data-value');
-		var pTags = document.getElementById("tags").getAttribute('data-value');
-
-		$.ajax({
-			type : 'POST', //POST 방식으로 보낼래
-			url : 'search', // 임의로 했음
-			async : false,
-			data : {
-				pSortBy : pSortBy,
-				pPrice : pPrice,
-				pTags : pTags
-			},
-			success : function(result) {
-				console.log('로그 : 조회 성공');
-				console.log(result);
-				if (result == 1) {
-					return true;
-				} else {
-					alert("조회정보를 찾을 수 없습니다.")
-					return false;
-				}
-			}
-		});
-	}
 </script>
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
