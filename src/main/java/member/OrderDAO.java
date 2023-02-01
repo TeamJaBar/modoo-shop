@@ -23,7 +23,7 @@ public class OrderDAO {
 			+ " FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? ORDER BY ODNUM ASC"; // 주문 목록
 	final String SELECTALL_CAN = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  "
 			+ "FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS=4 AND MNUM=? ORDER BY ODNUM ASC"; // 취소 목록
-	final String SELECTALL_ORDER_CAL = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS=4 AND MNUM=? AND M.ODATE BETWEEN SYSDATE-? AND SYSDATE ORDER BY ODNUM ASC"; // 주문목록: 날짜별 검색
+	final String SELECTALL_ORDER_CAL = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? AND M.ODATE BETWEEN SYSDATE-? AND SYSDATE ORDER BY ODNUM ASC"; // 주문목록: 날짜별 검색
 	final String SELECTALL_CAN_CAL = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  "
 			+ "FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? AND M.ODATE BETWEEN SYSDATE-? AND SYSDATE ORDER BY ODNUM ASC"; // 취소목록:날짜별검색
 	final String UPDATE = "UPDATE MORDER SET OSTATUS=? WHERE ONUM=?"; // 주문상태 변경: 1: 배송준비중, 2: 배송대기, 3 : 배송중, 4:취소
@@ -110,7 +110,7 @@ public class OrderDAO {
 		ArrayList<OrderVO> datas = new ArrayList<OrderVO>();
 		conn = JDBCUtil.connect();
 		try {
-			if (ovo.getoStatus() == 4) {
+			if (ovo.getoStatus() != 4) {
 				if (ovo.getSearchCal() != 0) {
 					pstmt = conn.prepareStatement(SELECTALL_ORDER_CAL);
 					pstmt.setInt(1, ovo.getmNum());
@@ -119,7 +119,7 @@ public class OrderDAO {
 					pstmt = conn.prepareStatement(SELECTALL_ORDER);
 					pstmt.setInt(1, ovo.getmNum());
 				}
-			} else if (ovo.getoStatus() < 4) {
+			} else if (ovo.getoStatus() == 4) {
 				if (ovo.getSearchCal() != 0) {
 					pstmt = conn.prepareStatement(SELECTALL_CAN_CAL);
 					pstmt.setInt(1, ovo.getmNum());
@@ -133,7 +133,7 @@ public class OrderDAO {
 			while (rs.next()) {
 				OrderVO data = new OrderVO();
 				data = new OrderVO();
-				data.setoDate(rs.getDate("ODate"));
+				data.setoDate(rs.getTimestamp("ODate"));
 				data.setoNum(rs.getInt("ONUM"));
 				data.setoStatus(rs.getInt("OSTATUS"));
 				data.setpNumPimg(rs.getString("PIMG"));
