@@ -19,6 +19,7 @@ public class OrListAction implements Action{
 		OrderVO ovo=new OrderVO();
 		OrderDAO odao=new OrderDAO();
 
+		ovo.setoStatus(4);
 		ovo.setmNum((int)request.getSession().getAttribute("mNum"));
 
 		ArrayList<OrderVO> orders=odao.selectAll(ovo);
