@@ -84,7 +84,7 @@
 		} else {
 			$.ajax({
 				type: 'POST',
-				url: 'cartInsertDips',
+				url: 'cartInsertDibs',
 				traditional: true,
 				data: {
 					dibProduct: dibProduct
