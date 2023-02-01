@@ -232,7 +232,7 @@
 								</script>
 							<!-- //base_info_sec -->
 							<div class="btn_center_box">
-								<button type="button" id="btnCancel" class="btn_member_cancel" onclick="location.href='main.html'">취소</button>
+								<button type="button" id="btnCancel" class="btn_member_cancel" onclick="location.href='main.do'">취소</button>
 								<button type="submit" class="btn_comfirm js_btn_join">정보변경</button>
 							</div>
 						</form>

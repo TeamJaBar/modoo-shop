@@ -27,6 +27,7 @@ public class UpdateAction implements Action {
 			mvo.setmPw(request.getParameter("mPw"));
 		} else { // change-inform
 			forward.setPath("changeInfo.do");
+			mvo.setmNum((int)request.getSession().getAttribute("mNum"));
 			mvo.setmPw(request.getParameter("mPw"));
 			mvo.setmEmail(request.getParameter("mEmail"));
 			mvo.setmTel(request.getParameter("mTel"));
