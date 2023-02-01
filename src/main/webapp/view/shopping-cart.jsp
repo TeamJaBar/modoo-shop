@@ -13,7 +13,7 @@
 </section>
 <!-- Shoping Cart -->
 <section class="bg0 p-t-62 p-b-60">
-	<form class="bg0 p-t-75 p-b-85">
+	<form class="bg0 p-t-75 p-b-85" action="order.do" method="post">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -139,9 +139,16 @@
 								</span>
 							</div>
 						</div>
-						<button class="flex-c-m stext-106 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" onclick="return check()">선택 상품 주문</button>
-						<div>&nbsp;</div>
-						<button id="all" onclick="allselect()" class="flex-c-m stext-106 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit">전체 상품 주문</button>
+						<c:if test="${mId == null}">
+							<button class="flex-c-m stext-106 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" onclick="location.href='login.jsp'">선택 상품 주문</button>
+							<div>&nbsp;</div>
+							<button class="flex-c-m stext-106 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="all" onclick="location.href='login.jsp'">전체 상품 주문</button>
+						</c:if>
+						<c:if test="${mId != null}">
+							<button type="submit" class="flex-c-m stext-106 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" onclick="return check()">선택 상품 주문</button>
+							<div>&nbsp;</div>
+							<button type="submit" class="flex-c-m stext-106 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="all" onclick="allselect()">전체 상품 주문</button>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -246,15 +253,15 @@
 			let pCnt = input.val(); // pCnt
 			console.log(pNum);
 			console.log(pCnt);
-			
+
 			$.ajax({
-				type: 'POST', //POST 방식으로 보낼래
-				url: 'cartUpdate',
-				data: {
-					pNum: pNum,
-					pCnt: pCnt
+				type : 'POST', //POST 방식으로 보낼래
+				url : 'cartUpdate',
+				data : {
+					pNum : pNum,
+					pCnt : pCnt
 				},
-				success: function(result) {
+				success : function(result) {
 					if (result == 1) {
 						console.log('적용 성공');
 					}
@@ -305,7 +312,7 @@
 	/* 선택 상품 주문 */
 	function check() {
 		if ($("#chk").is(":checked") == true) {
-			
+			console.log($(".chk").is(":checked"));
 			return true;
 		} else {
 			alert("선택된 상품이 없습니다.");
@@ -318,7 +325,6 @@
 		// 체크박스의 이름과 prop 메서드를 사용하여 전체 선택
 		$('[name=chk]').prop('checked', true);
 	}
-
 </script>
 </body>
 </html>
