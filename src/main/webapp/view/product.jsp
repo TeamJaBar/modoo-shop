@@ -17,9 +17,9 @@
 <script>
 	// init Isotope
 	$(window).on('load', function() {
-		var mcNum = ${param.mcNum};
+		var mcNum = '${param.mcNum}';
 		var filterMCNum = '.' + mcNum;
-		var category = '${param.cateNum}'
+		var category = '${param.cateNum}';
 		var $topeContainer = $('.isotope-grid');
 		console.log(mcNum);
 
