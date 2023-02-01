@@ -380,44 +380,6 @@
 		});
 	});
 
-	/*==================================================================
-	[ Filter Click ]*/
-	$('#sortbyFilter').find("a").click(function() {
-		if ($(this).hasClass("tag1-active") === true) {
-			$(this).removeClass("tag1-active");
-			return;
-		}
-		//모든 class 초기화
-		$('#sortbyFilter').find("a").not(this).removeClass("tag1-active");
-
-		//선택한 탭만 class 추가
-		$(this).addClass("tag1-active");
-	});
-
-	$('#priceFilter').find("a").click(function() {
-		if ($(this).hasClass("tag1-active") === true) {
-			$(this).removeClass("tag1-active");
-			return;
-		}
-		//모든 class 초기화
-		$('#priceFilter').find("a").not(this).removeClass("tag1-active");
-
-		//선택한 탭만 class 추가
-		$(this).addClass("tag1-active");
-	});
-
-	$('#tagsFilter').find("a").click(function() {
-		if ($(this).hasClass("tag1-active") === true) {
-			$(this).removeClass("tag1-active");
-			return;
-		}
-		//모든 class 초기화
-		$('#tagsFilter').find("a").not(this).removeClass("tag1-active");
-
-		//선택한 탭만 class 추가
-		$(this).addClass("tag1-active");
-	});
-
 
 	/*==================================================================
 	[ QuickView ]*/
@@ -612,7 +574,7 @@
 	/*========================= [ cart Detail ] ==============================*/
 	$('.js-addcart-detail').off('click').on('click', function() {
 		var pCnt = $(this).parent().parent().parent().find('.num-product').val();
-		console.log("pNum : "+pNum);
+		console.log("pNum : " + pNum);
 		console.log(pCnt);
 
 		$.ajax({
