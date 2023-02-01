@@ -18,7 +18,7 @@
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="admin-home.jsp">관리자 페이지</a>
+		<a class="navbar-brand ps-3" href="admin-main.do">관리자 페이지</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
 			<i class="fas fa-bars"></i>
@@ -44,7 +44,7 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">홈</div>
-						<a class="nav-link" href="admin-home.jsp">
+						<a class="nav-link" href="admin-main.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div>
@@ -62,7 +62,7 @@
 						</a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="admin-member.jsp">사용자 목록</a>
+								<a class="nav-link" href="adMemberMain.do">사용자 목록</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -81,7 +81,7 @@
 						</div>
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-								<a class="nav-link" href="admin-product.jsp">상품 목록</a>
+								<a class="nav-link" href="prSelectAll.do">상품 목록</a>
 							</nav>
 						</div>
 					</div>
@@ -106,61 +106,63 @@
 						</div>
 						<div class="card-body">
 							<div class="control-group">
-								<form action="prUpdate.do" id="prUpdate.do" name="prUpdate.do">
+								<form action="prUpdate.do" id="prUpdate" name="pr-update" method="post">
+									<input type="hidden" value="${infoproduct.cateNum}" name="cateNum"/>
+									<input type="hidden" value="${infoproduct.pNum}" name="pNum"/>
 									<label class="control-label" for="typeahead">브랜드</label>
 									<div class="controls">
-										<input type="text" class="form-control" id="brand" name="brand" value="${product.brand}">
+										<input type="text" class="form-control" id="brand" name="brand" value="${infoproduct.brand}">
 										<p></p>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="typeahead">상품명</label>
 										<div class="controls">
-											<input type="text" class="form-control" id="name" name="pName" value="${product.pName}">
+											<input type="text" class="form-control" id="name" name="pName" value="${infoproduct.pName}">
 											<p></p>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="typeahead">정가</label>
 										<div class="controls">
-											<input type="text" class="form-control" id="price" name="fixPrice" value="${product.fixPrice}">
+											<input type="text" class="form-control" id="price" name="fixPrice" value="${infoproduct.fixPrice}">
 											<p></p>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="typeahead">판매가</label>
 										<div class="controls">
-											<input type="text" class="form-control" id="price" name="selPrice" value="${product.selPrice}">
+											<input type="text" class="form-control" id="price" name="selPrice" value="${infoproduct.selPrice}">
 											<p></p>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="typeahead">게임연령</label>
 										<div class="controls">
-											<input type="text" class="form-control" id="game-age" name="reAge" value="${product.reAge}">
+											<input type="text" class="form-control" id="game-age" name="reAge" value="${infoproduct.reAge}">
 											<p></p>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="typeahead">게임인원</label>
 										<div class="controls">
-											<input type="text" class="form-control" id="game-count" name="rePerson" value="${product.rePerson}">
+											<input type="text" class="form-control" id="game-count" name="rePerson" value="${infoproduct.rePerson}">
 											<p></p>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="typeahead">재고</label>
 										<div class="controls">
-											<input type="text" class="form-control" id="product-count" name="productCNT" value="${product.productCNT}">
+											<input type="text" class="form-control" id="product-count" name="productCnt" value="${infoproduct.productCnt}">
 											<p></p>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="textarea2">상품상세설명</label>
 										<div class="controls">
-											<textarea class="form-control textarea" id="classic" name="infoImg">${product.infoImg}</textarea>
+											<textarea class="form-control textarea" id="classic" name="infoImg">${infoproduct.infoImg}</textarea>
 											<p></p>
 										</div>
-										<div class="control-group">
+										<%-- <div class="control-group">
 											<label class="control-label" for="select01">카테고리</label>
 											<div class="controls">
 												<select id="lageSelect">
@@ -182,11 +184,11 @@
 												</select>
 												<p></p>
 											</div>
-										</div>
+										</div> --%>
 										<div class="control-group">
 											<label class="control-label" for="fileInput">상품이미지등록</label>
 											<div class="controls">
-												<input class="input-file uniform_on" id="fileInput" type="file" name="pImg" value="${product.pImg}" />
+												<input class="input-file uniform_on" id="fileInput" type="file" name="pImg" value="${infoproduct.pImg}" />
 												<P></P>
 											</div>
 										</div>
@@ -199,7 +201,7 @@
 									</div>
 									<div class="mt-4 mb-0">
 										<div class="d-grid">
-											<a class="btn btn-danger btn-block" onClick="return con()" href="admin-product.jsp">등록 취소</a>
+											<a class="btn btn-danger btn-block" onClick="return con()" href="prSelectAll.do">등록 취소</a>
 										</div>
 									</div>
 								</form>
