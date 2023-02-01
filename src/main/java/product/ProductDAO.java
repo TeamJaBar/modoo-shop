@@ -339,9 +339,16 @@ public class ProductDAO {
 		int cnt1 =0;
 		String str1 = "", str2 = "";
 		try {
+			if(pvo.getFilterSortBy()==12) {
+				str1 = ", DECODE(O.CNT, NULL, 0, O.CNT) OCNT ";
+				str2 = " FULL JOIN (SELECT PNUM, SUM(CNT) CNT FROM ORDERDETAIL GROUP BY PNUM) O ON P.PNUM=O.PNUM ";
+			}
+			
 			String filter = "SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT " + str1 + " FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM " + str2 + " WHERE 1=1 ";
 
-			if(pvo.getCateNum()%100==0) {
+			if((pvo.getCateNum()>99 && pvo.getCateNum()<300)||(pvo.getCateNum()>999 && pvo.getCateNum()<1200)) {
+				filter += " AND 1+1 ";
+			} else if(pvo.getCateNum()%100==0) {
 				filter += " AND CATENUM BETWEEN ? AND ?";
 				cnt1++;
 			} else {
@@ -374,8 +381,6 @@ public class ProductDAO {
 			if (pvo.getFilterSortBy() == 11) {
 				filter += " ORDER BY RDATE DESC";
 			} else if (pvo.getFilterSortBy() == 12) {
-				str1 = ", DECODE(O.CNT, NULL, 0, O.CNT) OCNT ";
-				str2 = " FULL JOIN (SELECT PNUM, SUM(CNT) CNT FROM ORDERDETAIL GROUP BY PNUM) O ON P.PNUM=O.PNUM ";
 				filter += " ORDER BY OCNT DESC ";
 			} else if (pvo.getFilterSortBy() == 13) {
 				filter += " ORDER BY SELPRICE ASC";
@@ -387,7 +392,7 @@ public class ProductDAO {
 			if (cnt == 1) {
 				pstmt.setInt(1, pvo.getDib());
 				if(cnt1==1) {
-					pstmt.setInt(2, pvo.getCateNum()+1);
+					pstmt.setInt(2, pvo.getCateNum());
 					pstmt.setInt(3, pvo.getCateNum()+99);
 					pstmt.setString(4, pvo.getpName());					
 				} else {
@@ -397,7 +402,7 @@ public class ProductDAO {
 			} else {
 				pstmt.setInt(1, pvo.getDib());				
 				if(cnt1==1) {
-					pstmt.setInt(2, pvo.getCateNum()+1);
+					pstmt.setInt(2, pvo.getCateNum());
 					pstmt.setInt(3, pvo.getCateNum()+99);
 				} else {
 					pstmt.setInt(2, pvo.getCateNum());
