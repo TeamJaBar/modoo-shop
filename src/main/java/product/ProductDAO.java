@@ -336,10 +336,18 @@ public class ProductDAO {
 		ArrayList<ProductVO> datas = new ArrayList<ProductVO>();
 		conn = JDBCUtil.connect();
 		int cnt = 0;
+		int cnt1 =0;
 		String str1 = "", str2 = "";
 		try {
-			String filter = "SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT " + str1 + " FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM " + str2 + " WHERE P.CATENUM=? ";
+			String filter = "SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT " + str1 + " FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM " + str2 + " WHERE 1=1 ";
 
+			if(pvo.getCateNum()%100==0) {
+				filter += " AND CATENUM BETWEEN ? AND ?";
+				cnt1++;
+			} else {
+				filter += " AND CATENUM=?";				
+			}
+			
 			if (pvo.getFilterTags() == 31) {
 				filter += " AND REPERSON LIKE '1명' ";
 			} else if (pvo.getFilterTags() == 32) {
@@ -367,7 +375,8 @@ public class ProductDAO {
 				filter += " ORDER BY RDATE DESC";
 			} else if (pvo.getFilterSortBy() == 12) {
 				str1 = ", DECODE(O.CNT, NULL, 0, O.CNT) OCNT ";
-				str2 = " FULL JOIN (SELECT PNUM, SUM(CNT) CNT FROM ORDERDETAIL GROUP BY PNUM) O ON P.PNUM=O.PNUM ORDER BY OCNT DESC ";
+				str2 = " FULL JOIN (SELECT PNUM, SUM(CNT) CNT FROM ORDERDETAIL GROUP BY PNUM) O ON P.PNUM=O.PNUM ";
+				filter += " ORDER BY OCNT DESC ";
 			} else if (pvo.getFilterSortBy() == 13) {
 				filter += " ORDER BY SELPRICE ASC";
 			} else if (pvo.getFilterSortBy() == 14) {
@@ -377,11 +386,22 @@ public class ProductDAO {
 			pstmt = conn.prepareStatement(filter);
 			if (cnt == 1) {
 				pstmt.setInt(1, pvo.getDib());
-				pstmt.setString(2, pvo.getpName());
-				pstmt.setInt(3, pvo.getCateNum());
+				if(cnt1==1) {
+					pstmt.setInt(2, pvo.getCateNum()+1);
+					pstmt.setInt(3, pvo.getCateNum()+99);
+					pstmt.setString(4, pvo.getpName());					
+				} else {
+					pstmt.setInt(2, pvo.getCateNum());
+					pstmt.setString(3, pvo.getpName());
+				}
 			} else {
 				pstmt.setInt(1, pvo.getDib());				
-				pstmt.setInt(2, pvo.getCateNum());
+				if(cnt1==1) {
+					pstmt.setInt(2, pvo.getCateNum()+1);
+					pstmt.setInt(3, pvo.getCateNum()+99);
+				} else {
+					pstmt.setInt(2, pvo.getCateNum());
+				}
 			}
 
 			ResultSet rs = pstmt.executeQuery();
