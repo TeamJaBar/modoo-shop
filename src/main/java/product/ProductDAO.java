@@ -347,7 +347,7 @@ public class ProductDAO {
 			String filter = "SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT " + str1 + " FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM " + str2 + " WHERE 1=1 ";
 
 			if((pvo.getCateNum()>99 && pvo.getCateNum()<300)||(pvo.getCateNum()>999 && pvo.getCateNum()<1200)) {
-				filter += " AND 1+1 ";
+				filter += " AND 1=1 ";
 			} else if(pvo.getCateNum()%100==0) {
 				filter += " AND CATENUM BETWEEN ? AND ?";
 				cnt1++;
