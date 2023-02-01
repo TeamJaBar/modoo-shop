@@ -107,7 +107,7 @@
 						</div>
 						<div class="card-body">
 							<div class="card-body">
-								<form action="memUpdate.do" id="memUpdate.do" name="memUpdate.do" method="post">
+								<form action="memUpdate.do" id="memUpdate.do" name="memUpdate.do" method="post" onsubmit="return ch();">
 									<input type="hidden" value="${infomember.mNum}" name="mNum" />
 									아이디
 									<div class="form-floating mb-3">
