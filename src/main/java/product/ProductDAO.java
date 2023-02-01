@@ -335,14 +335,9 @@ public class ProductDAO {
 	public ArrayList<ProductVO> selectAllFilter(ProductVO pvo) {
 		ArrayList<ProductVO> datas = new ArrayList<ProductVO>();
 		conn = JDBCUtil.connect();
-		String str1 = "", str2 = "";
+
 		try {
-			if(pvo.getFilterSortBy()==12) {
-				str1 = ", DECODE(O.CNT, NULL, 0, O.CNT) OCNT ";
-				str2 = " FULL JOIN (SELECT PNUM, SUM(CNT) CNT FROM ORDERDETAIL GROUP BY PNUM) O ON P.PNUM=O.PNUM ";
-			}
-			
-			String filter = "SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT " + str1 + " FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM " + str2 + " WHERE 1=1 ";
+			String filter = "SELECT DECODE(D.MNUM, ?, 1, 0) DIB, P.PNUM, P.CATENUM, P.PNAME, P.FIXPRICE, P.SELPRICE, P.RDATE, P.REPERSON, P.REAGE, P.BRAND, P.PIMG, P.PRODUCTCNT, DECODE(O.CNT, NULL, 0, O.CNT) OCNT FROM PRODUCT P LEFT OUTER JOIN DIB D ON P.PNUM = D.PNUM  FULL JOIN (SELECT PNUM, SUM(CNT) CNT FROM ORDERDETAIL GROUP BY PNUM) O ON P.PNUM=O.PNUM WHERE 1=1 ";
 
 			if((pvo.getCateNum()>99 && pvo.getCateNum()<300)||(pvo.getCateNum()>999 && pvo.getCateNum()<1200)) {
 				filter += " AND 1=1 ";
@@ -386,7 +381,7 @@ public class ProductDAO {
 
 			pstmt = conn.prepareStatement(filter);
 			
-			int num=1;
+			int num=2;
 			pstmt.setInt(1, pvo.getDib());
 			
 			if((pvo.getCateNum()>99 && pvo.getCateNum()<300)||(pvo.getCateNum()>999 && pvo.getCateNum()<1200)) {
