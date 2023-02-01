@@ -4,14 +4,11 @@
 <head>
 <title>회원가입</title>
 <link rel="stylesheet" type="text/css" href="../css/login-join.css">
-
 <%@include file="common/header.jsp"%>
-
 <!--화면 타이틀-->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/ModooShop/images/bg-img-01.png');">
 	<h2 class="ltext-105 cl0 txt-center">회원가입</h2>
 </section>
-
 <!-- Content page -->
 <section class="bg0 p-t-75 p-b-120">
 	<div class="container">
@@ -30,7 +27,7 @@
 								</div>
 							</div>
 						</form>
-						<!-- 나중에 span 태그 > a 태그 -->
+						<!-- 나중에 span 태그 > a 태그
 						<div class="member_sns_login">
 							<span href="" class="btn_payco_login js_btn_payco_login">
 								<img src="/ModooShop/images/icons/pc_payco.png" alt="PAYCO 아이디 로그인">
@@ -44,26 +41,23 @@
 							<span href="" class="btn_kakao_login js_btn_kakao_login">
 								<img src="/ModooShop/images/icons/pc_kakao.png" alt="카카오 아이디 로그인">
 							</span>
-						</div>
-						<strong class="chk_none">
 							SNS계정을 연동하여 빠르고 쉽고 안전하게 회원가입할 수 있습니다. <br> 이 과정에서 고객님의 데이터는 철저하게 보호됩니다.
-						</strong>
+						</div> -->
+						<div class="member_guide_txt">
+							<p>
+								<strong class="chk_none"> 모두의 보드의 회원이 되어 다양한 혜택을 만나보세요. </strong>
+								이미 쇼핑몰 회원이세요?
+								<a href="login.jsp" id="btnLoginMember"> 로그인</a>
+							</p>
+						</div>
 					</div>
 					<!-- //member_cont -->
-					<div class="member_guide_txt">
-						<p>
-							이미 쇼핑몰 회원이세요?
-							<a href="login.jsp" id="btnLoginMember"> 로그인</a>
-						</p>
-					</div>
 				</div>
 				<!-- //member_wrap -->
 			</div>
 		</div>
 </section>
-
 <%@include file="common/footer.jsp"%>
-
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

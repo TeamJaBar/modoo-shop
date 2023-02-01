@@ -108,7 +108,7 @@ a.sub_content:active {
 }
 
 .member_cont .member_login_box .id_chk {
-	padding: 0 0 26px 0;
+	padding: 0 0 15px 0;
 }
 
 .member_cont .member_login_box .id_chk span {
@@ -142,9 +142,10 @@ span.form_element {
 }
 
 .member_cont .member_login_box .member_login_shop {
+	/*
 	margin: 0 0 20px 0;
 	padding: 0 0 20px 0;
-	border-bottom: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;*/
 }
 
 .shop_mall_join { /*color랑 border 바꿈*/
@@ -247,12 +248,12 @@ span.form_element {
 	padding: 5px 0 5px 19px;
 	color: #181818;
 	font-weight: normal;
-	background: url("/ModooShop/images/icon_warning.png") no-repeat left 8px;
+	/*background: url("/ModooShop/images/icons/icon_warning.png") no-repeat left 8px;*/
 }
 
 .member_guide_txt {
 	text-align: center;
-	padding: 18px 0 20px 0;
+	padding: 10px;
 	color: #666666;
 }
 

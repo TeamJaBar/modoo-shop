@@ -78,7 +78,7 @@
 								</div>
 							</div>
 						</form>
-						<!-- 나중에 span 태그 > a 태그 -->
+						<!-- 나중에 span 태그 > a 태그
 						<div class="member_sns_login">
 							<span href="" class="btn_naver_login js_btn_naver_login">
 								<img src="/ModooShop/images/icons/pc_naver.png" alt="네이버 아이디 로그인">
@@ -86,7 +86,7 @@
 							<span href="" class="btn_kakao_login js_btn_kakao_login">
 								<img src="/ModooShop/images/icons/pc_kakao.png" alt="카카오 아이디 로그인">
 							</span>
-						</div>
+						</div>-->
 						<div class="btn_login_box">
 							<ul>
 								<li><button id="btnJoinMember" class="btn_member_join hov-btn4" onclick="location.href='join.jsp'">회원가입</button></li>
