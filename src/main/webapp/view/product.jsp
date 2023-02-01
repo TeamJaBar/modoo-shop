@@ -108,7 +108,7 @@
 						</div>
 						<div class="flex-c">
 							<button id="btn-filterSearch" class="stext-106 cl0 size-102 bg1 bor2 hov-btn4 p-lr-15">검색</button>
-					</div>
+						</div>
 					</div>
 				</div>
 			</div>
