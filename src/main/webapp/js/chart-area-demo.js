@@ -4,14 +4,12 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
-var label = '${salesList.tempDate}';
-var datas = '${salesList.tempCnt}';
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: label,
+    labels: dates,
     datasets: [{
-      label: "Sessions",
+      label: "원",
       lineTension: 0.3,
       backgroundColor: "rgba(2,117,216,0.2)",
       borderColor: "rgba(2,117,216,1)",
@@ -22,7 +20,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
-      data: datas,
+	      data: cnts,
     }],
   },
   options: {
@@ -41,8 +39,8 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 100,
-          maxTicksLimit: 5
+          max: 1000000,
+          maxTicksLimit: 10
         },
         gridLines: {
           color: "rgba(0, 0, 0, .125)",
