@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>주문서작성/결제</title>
 
@@ -52,7 +51,8 @@
 	<div class="container">
 		<div class="sub_content">
 			<div class="content_box">
-				<form id="frmOrder" name="frmOrder" method="post">
+				<form id="frmOrder" name="frmOrder" action="orderOk.do" method="post">
+					<%-- <input type="hidden" name="prodList" value="${prodList}" /> --%>
 					<div class="order_wrap">
 						<div class="order_tit">
 							<h2>주문서작성/결제</h2>
@@ -122,9 +122,11 @@
 												<c:set var="sumPrice" value="${sumPrice + product.selPrice * product.pCnt}" />
 												<c:set var="totalPrice" value="${totalPrice + product.selPrice * product.pCnt}" />
 												<c:set var="totalCnt" value="${totalCnt + product.pCnt}" />
-												<c:set var="totalPoint" value="${(product.selPrice - (product.selPrice % 1000)) / 100}" />
+												<c:set var="totalPoint" value="${totalPoint + (product.selPrice - (product.selPrice % 1000)) / 100}" />
 												<tr>
 													<td class="td_left">
+														<input type="hidden" name="pNum" value="${product.pNum}" />
+														<input type="hidden" name="pCnt" value="${product.pCnt}" />
 														<div class="pick_add_cont">
 															<span class="pick_add_img">
 																<img src="${product.pImg}" width="40" alt="${product.pName}" title="${product.pName}" class="middle">
@@ -575,11 +577,11 @@
 													<th scope="row">적립금 사용</th>
 													<td>
 														<div class="order_money_use">
-															<input type="text" name="useMileage" id="useMileageSelect">
+															<input type="text" name="useMileage" id="useMileageSelect" value="0">
 															원
-															<!-- <input type="button" id="useMileagePoint" onclick="gd_mileage_use_point()" value="적립금 적용하기"> -->
+															<input type="button" id="useMileagePoint" onclick="gd_mileage_use_point()" value="적립금 적용하기">
 															<div class="form_element">
-																<input type="checkbox" id="useMileageAll">
+																<input type="checkbox" id="useMileageAll" onclick="gd_mileage_use_all()">
 																<label for="useMileageAll" class="check_s">전액 사용하기</label>
 																<span class="money_use_sum">
 																	(보유 적립금 :
@@ -610,12 +612,12 @@
 														</div>
 													</td>
 												</tr> -->
-												<tr>
+												<tr id="purchase">
 													<th scope="row">최종 결제 금액</th>
 													<td>
-														<input type="hidden" name="settlePrice" value="${totalPrice + deliveryFee - member.mPoint}">
+														<input type="hidden" name="settlePrice" value="${totalPrice + deliveryFee}" required>
 														<strong id="totalSettlePrice" class="order_payment_sum">
-															<fmt:formatNumber value="${totalPrice + deliveryFee - member.mPoint}" type="number" />
+															<fmt:formatNumber value="${totalPrice + deliveryFee}" type="number" />
 														</strong>
 														원
 													</td>
@@ -790,42 +792,27 @@ $("input[name='shipping']").change(function () {
 	}
 });
 
-// 적립금 사용
-/* $('#useMileageAll').each(function() {
-	$(this).click(function() {
-		if ($('#useMileageAll').is(':checked')) {
-			$('#useMileageSelect').val('${member.mPoint}');
-		} else {
-			$('#useMileageSelect').val('${}');
-		}
-		
-		
-		
-	});
-}); */
-
-
-/* function gd_mileage_use_point() {
-	var useMileagePoint = $('#useMileageSelect').val;
+function gd_mileage_use_point() {
+	var useMileagePoint = $('#useMileageSelect').val();
 	var useMileage = parseInt(useMileagePoint); // 사용 적용한 적립금
 
-	var totalPricePoint = ${order.totalPrice};
-	var totalPrice = parseInt(totalPricePoint); // 합계금액
-
-	var sumTotalPrice = totalPrice - useMileage; // 합계금액 - 적립금 = 최종 금액
-	document.getElementById('totalSettlePrice').innerHTML = sumTotalPrice; //최종금액 HTML 태그에 넣기
-}
-
-function gd_mileage_use_all() {
-	var useMileagePoint = ${order.point};
-	var useMileage = parseInt(useMileagePoint); // 사용 적용한 적립금
-
-	var totalPricePoint = ${order.totalPrice};
+	var totalPricePoint = '${totalPrice}';
 	var totalPrice = parseInt(totalPricePoint); // 합계금액
 
 	var sumTotalPrice = totalPrice - useMileage; // 합계금액 - 적립금 = 최종 금액
 	$('#totalSettlePrice').innerHTML = sumTotalPrice; //최종금액 HTML 태그에 넣기
-} */
+}
+
+function gd_mileage_use_all() {
+	var useMileagePoint = '${member.mPoint}';
+	var useMileage = parseInt(useMileagePoint); // 사용 적용한 적립금
+
+	var totalPricePoint = '${totalPrice}';
+	var totalPrice = parseInt(totalPricePoint); // 합계금액
+
+	var sumTotalPrice = totalPrice - useMileage; // 합계금액 - 적립금 = 최종 금액
+	$('#totalSettlePrice').innerHTML = sumTotalPrice; //최종금액 HTML 태그에 넣기
+}
 </script>
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -839,13 +826,13 @@ function gd_mileage_use_all() {
 			$("#settleKind_pc").click(function () {
 				console.log("a");
 				data = '카드';
-				//payment(data); //버튼 클릭하면 호출 
+				payment(data); //버튼 클릭하면 호출 
 				console.log("b");
 			});
 			$("#settleKind_pk").click(function () {
 				console.log("c");
 				data = '카카오';
-				//payment(data); //버튼 클릭하면 호출
+				payment(data); //버튼 클릭하면 호출
 				console.log("d");
 			});
 			/* $("#iamportPayment3").click(function() {
@@ -900,9 +887,7 @@ function gd_mileage_use_all() {
 				alert("실패 : 코드(" + rsp.error_code + ") / 메세지("
 					+ rsp.error_msg + ")");
 			}
-	
 		});
-	
 		var form = document.getElementById("frmOrder");
 		form.submit();
 	}
