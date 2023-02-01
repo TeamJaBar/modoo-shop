@@ -19,11 +19,14 @@ public class OrderDAO {
 	final String SELECTALL_STATUS = "SELECT OSTATUS, COUNT(*) AS CNT FROM MORDER GROUP BY OSTATUS";
 	final String SELECTALL_SALES = "SELECT TO_CHAR(ODATE, 'YY/MM/DD') AS TDATE, SUM(P.SELPRICE*O.CNT) CNT FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND ROWNUM<=14 GROUP BY TO_CHAR(ODATE, 'YY/MM/DD') ORDER BY TO_CHAR(ODATE, 'YY/MM/DD') ASC";
 	// 사용자 페이지
+	final String SELECTONE_ONUM = "SELECT ONUM, MNUM FROM (SELECT ONUM, MNUM FROM MORDER WHERE MNUM=? ORDER BY ODATE DESC) WHERE ROWNUM=1";
 	final String SELECTALL_ORDER = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS"
 			+ " FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? ORDER BY ODNUM ASC"; // 주문 목록
 	final String SELECTALL_CAN = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  "
 			+ "FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS=4 AND MNUM=? ORDER BY ODNUM ASC"; // 취소 목록
-	final String SELECTALL_ORDER_CAL = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? AND M.ODATE BETWEEN SYSDATE-? AND SYSDATE ORDER BY ODNUM ASC"; // 주문목록: 날짜별 검색
+	final String SELECTALL_ORDER_CAL = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? AND M.ODATE BETWEEN SYSDATE-? AND SYSDATE ORDER BY ODNUM ASC"; // 주문목록:
+																																																																						// 날짜별
+																																																																						// 검색
 	final String SELECTALL_CAN_CAL = "SELECT ODate, PIMG, M.ONUM, PNAME, SELPRICE, CNT, OSTATUS  "
 			+ "FROM MORDER M, ORDERDETAIL O, PRODUCT P WHERE M.ONUM=O.ONUM AND O.PNUM=P.PNUM AND M.OSTATUS BETWEEN 1 AND 3 AND MNUM=? AND M.ODATE BETWEEN SYSDATE-? AND SYSDATE ORDER BY ODNUM ASC"; // 취소목록:날짜별검색
 	final String UPDATE = "UPDATE MORDER SET OSTATUS=? WHERE ONUM=?"; // 주문상태 변경: 1: 배송준비중, 2: 배송대기, 3 : 배송중, 4:취소
@@ -64,6 +67,25 @@ public class OrderDAO {
 			JDBCUtil.disconnect(conn, pstmt);
 		}
 		return true;
+	}
+
+	public OrderVO selectOne(OrderVO ovo) {
+		OrderVO data = null;
+		try {
+			conn = JDBCUtil.connect();
+			pstmt = conn.prepareStatement(SELECTONE_ONUM);
+			pstmt.setInt(1, ovo.getmNum());
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				data = new OrderVO();
+				data.setoNum(rs.getInt("ONUM"));
+				data.setmNum(rs.getInt("MNUM"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBCUtil.disconnect(conn, pstmt);
+		return data;
 	}
 
 	public ArrayList<OrderVO> selectAll_ADMIN(OrderVO ovo) {
