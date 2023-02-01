@@ -15,6 +15,7 @@ public class AddressDAO {
 
 	final String INSERT = "INSERT INTO ADDRESS VALUES(ANUM_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
 	final String SELECTONE = "SELECT ANUM, SHIPNAME, DESTINATION, ZIPCODE, USERADDR, DETAILADDR, TEL, ISDEFAULT FROM ADDRESS WHERE ANUM=?";
+	final String SELECTONE_DEFAULT = "SELECT ANUM, SHIPNAME, DESTINATION, ZIPCODE, USERADDR, DETAILADDR, TEL, ISDEFAULT FROM ADDRESS WHERE ISDEFAULT=1 AND MNUM=?";
 	final String SELECTALL = "SELECT ANUM, SHIPNAME, DESTINATION, ZIPCODE, USERADDR, DETAILADDR, TEL, ISDEFAULT FROM ADDRESS WHERE MNUM=? ORDER BY ISDEFAULT DESC, ANUM ASC";
 	final String UPDATE = "UPDATE ADDRESS SET SHIPNAME=?, DESTINATION=?, ZIPCODE=?, USERADDR=?, DETAILADDR=?, TEL=?, ISDEFAULT=? WHERE ANUM=?";
 	final String UPDATE_DEFAULT = "UPDATE ADDRESS SET ISDEFAULT=0 WHERE MNUM=? AND ISDEFAULT=1";
@@ -48,10 +49,15 @@ public class AddressDAO {
 		AddressVO data = null;
 		conn = JDBCUtil.connect();
 		try {
-			pstmt = conn.prepareStatement(SELECTONE);
-			pstmt.setInt(1, avo.getaNum());
-			ResultSet rs = pstmt.executeQuery();
+			if (avo.getaNum() == 0) {
+				pstmt = conn.prepareStatement(SELECTONE_DEFAULT);
+				pstmt.setInt(1, avo.getmNum());
+			} else {
+				pstmt = conn.prepareStatement(SELECTONE);
+				pstmt.setInt(1, avo.getaNum());
+			}
 
+			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				data = new AddressVO();
 				data.setaNum(rs.getInt("ANUM"));

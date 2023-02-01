@@ -29,6 +29,7 @@ public class MainAction implements Action {
 		if (request.getSession().getAttribute("cart") == null) {
 			ArrayList<ProductVO> cart = new ArrayList<ProductVO>();
 			request.getSession().setAttribute("cart", cart);
+			System.out.println("\t로그: cart 생성 완료");
 		}
 		
 		//NEW 상품 목록
