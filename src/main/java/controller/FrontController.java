@@ -24,6 +24,8 @@ public class FrontController extends HttpServlet {
 		if (uri.contains("admin/")) {
 			// 관리자 페이지 경로 때문에 추가한 로직
 			cp += "admin/";
+		} else if(uri.contains("/view/admin/view/admin")) {
+			cp += "admin/view/admin/";
 		}
 		System.out.println("cp: " + cp);
 		String command = uri.substring(cp.length());

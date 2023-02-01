@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,30 +18,18 @@ import org.jsoup.select.Elements;
 
 import common.JDBCUtil;
 
-/**
- * Application Lifecycle Listener implementation class ProductListener
- *
- */
 @WebListener
 public class ProductListener implements ServletContextListener {
 
-	/**
-	 * Default constructor.
-	 */
+
 	public ProductListener() {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see ServletContextListener#contextDestroyed(ServletContextEvent)
-	 */
 	public void contextDestroyed(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
-	 */
 	public void contextInitialized(ServletContextEvent sce) {
 		int[] category = { 300, 401, 402, 403, 404, 405, 501, 600, 700, 801, 802, 803 };
 		Random rd = new Random();
@@ -118,3 +106,4 @@ public class ProductListener implements ServletContextListener {
 	}
 
 }
+*/

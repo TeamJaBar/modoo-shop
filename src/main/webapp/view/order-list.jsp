@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -408,6 +409,12 @@ label[for="today"] {
 	margin-left: 10px;
 	margin-top: 2px;
 }
+
+.order-list-img {
+	width:100px;
+	height:100px;
+	border:1px solid #D3D3D3;
+}
 </style>
 <%@include file="common/header.jsp"%>
 <!-- Title page -->
@@ -456,29 +463,32 @@ label[for="today"] {
 							</div>
 							<div>
 								<h6 class="m-b-10 stext-106 p-l-12">주문목록</h6>
-								<div class="mypage_table_type">
+								<div class="mypage_table_type order-list-table">
 									<table>
 										<thead>
 											<tr class="table_head">
 												<th class="column-1">주문번호</th>
-												<th class="column-2">상품명</th>
-												<th class="column-3">수량</th>
-												<th class="column-4">상품금액</th>
-												<th class="column-5">합계</th>
+												<th class="column-2">주문날짜</th>
+												<th class="column-3" colspan="2">상품명</th>
+												<th class="column-4">수량</th>
+												<th class="column-5">상품금액</th>
+												<th class="column-6">합계</th>
 											</tr>
 										</thead>
 										<tbody id="#order-table">
 											<c:if test="${fn:length(orders) == 0}">
-												<td colspan="5" class="empty">주문목록이 비어있습니다.</td>
+												<td colspan="5" class="empty">주문기록이 없습니다.</td>
 											</c:if>
 											<c:if test="${fn:length(orders) != 0 }">
 												<c:forEach var="orders" items="${orders}">
 													<tr class="table_row">
 														<td class="column-1">${orders.oNum}</td>
-														<td class="column-2">${orders.pNumPname}</td>
-														<td class="column-3">${orders.pNumcnt}개</td>
-														<td class="column-4">${orders.pNumSelPrice}원</td>
-														<td class="column-5">${orders.pNumcnt * orders.pNumSelPrice}원</td>
+														<td class="column-2">${orders.oDate}</td>
+														<td class="column-31"><img class="order-list-img" src="${orders.pNumPimg}"/></td>
+														<td class="column-32">${orders.pNumPname}</td>
+														<td class="column-4">${orders.pNumcnt}개</td>
+														<td class="column-5"><fmt:formatNumber value="${orders.pNumSelPrice}" type="number" />원</td>
+														<td class="column-6"><fmt:formatNumber value="${orders.pNumcnt * orders.pNumSelPrice}" type="number" />원</td>
 													</tr>
 												</c:forEach>
 											</c:if>

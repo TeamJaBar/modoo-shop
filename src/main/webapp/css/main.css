@@ -2299,6 +2299,48 @@ input.num-product::-webkit-inner-spin-button {
   line-height: 1.6;
 }
 
+.order-list-table .column-1 {
+  width: 10%;
+  text-align: center;
+}
+
+.order-list-table .column-2 {
+  width: 20%;
+  text-align: center;
+}
+
+.order-list-table .column-3 {
+  width:30%x;
+  text-align: center;
+}
+
+.order-list-table .column-31 {
+  width:10%x;
+  text-align: center;
+}
+
+.order-list-table .column-32 {
+  width:20%x;
+  padding-left:10px;
+  text-align: left;
+}
+
+.order-list-table .column-4 {
+  width:10%;
+  text-align: center;
+  margin:0 auto;
+}
+
+.order-list-table .column-5 {
+  width: 15%;
+  text-align: center;
+}
+
+.order-list-table .column-6 {
+  width: 15%;
+  text-align: center;
+}
+
 
 
 /*//////////////////////////////////////////////////////////////////

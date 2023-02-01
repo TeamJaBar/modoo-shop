@@ -16,7 +16,7 @@
 		$('.btn-category').removeClass('how-active1');
 		$('#btn-0').addClass('how-active1');
 
-		var cateNum = ${param.cateNum};
+		var cateNum = '${param.cateNum}';
 
 		var filterSortBy = $('#sortbyFilter').find('.tag1-active').data('value');
 		var filterPrice = $('#priceFilter').find('.tag1-active').data('value');
@@ -56,7 +56,7 @@
 	}
 	
 	$('#btn-filterSearch').click(function() {
-		var cateNum = ${param.cateNum};
+		var cateNum = '${param.cateNum}';
 
 		var filterSortBy = $('#sortbyFilter').find('.tag1-active').data('value');
 		var filterPrice = $('#priceFilter').find('.tag1-active').data('value');

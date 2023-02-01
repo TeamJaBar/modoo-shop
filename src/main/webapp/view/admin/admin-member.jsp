@@ -11,7 +11,7 @@
 <meta name="author" content="" />
 <title>사용자 목록</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-<link href="../../css/styles.css" rel="stylesheet" />
+<link href="/ModooShop/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
@@ -39,7 +39,7 @@
 		</ul>
 	</nav>
 	<div id="layoutSidenav">
-		<div id="layoutSidenav_nav">
+				<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
@@ -61,7 +61,7 @@
 							</div>
 						</a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
+							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 								<a class="nav-link" href="adMemberMain.do">사용자 목록</a>
 							</nav>
 						</div>
@@ -74,11 +74,12 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
+						<!-- 
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 								<a class="nav-link" href="admin-product-insert.jsp">상품 등록</a>
 							</nav>
-						</div>
+						</div> -->
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 								<a class="nav-link" href="prSelectAll.do">상품 목록</a>
@@ -116,6 +117,7 @@
 										<th>이름</th>
 										<th>이메일</th>
 										<th>전화번호</th>
+										<th>우편번호</th>
 										<th>주소</th>
 										<th>가입일</th>
 										<th>포인트</th>
@@ -128,6 +130,7 @@
 										<th>이름</th>
 										<th>이메일</th>
 										<th>전화번호</th>
+										<th>우편번호</th>
 										<th>주소</th>
 										<th>가입일</th>
 										<th>포인트</th>
@@ -141,7 +144,8 @@
 											<td>${member.mName}</td>
 											<td>${member.mEmail}</td>
 											<td>${member.mTel}</td>
-											<td>${member.zipCode}${member.userAddr}${member.detailAddr}</td>
+											<td>${member.zipCode}</td>
+											<td>${member.userAddr} ${member.detailAddr}</td>
 											<td>${member.mDate}</td>
 											<td>${member.mPoint}</td>
 											<td>
@@ -166,8 +170,8 @@
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="../../js/scripts.js"></script>
-	<script src="../../js/datatables-simple-demo.js"></script>
+	<script src="/ModooShop/js/scripts.js"></script>
+	<script src="/ModooShop/js/datatables-simple-demo.js"></script>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>

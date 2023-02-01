@@ -4,17 +4,15 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
-var label = '${mList.tempDate}';
-var datas = '${mList.tempCnt}';
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: label,
+    labels: mdates,
     datasets: [{
-      label: "Revenue",
+      label: "명",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: datas,
+      data: mcnts,
     }],
   },
   options: {

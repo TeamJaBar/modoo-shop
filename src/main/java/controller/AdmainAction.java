@@ -12,7 +12,7 @@ public class AdmainAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-		forward.setPath("admin-home.jsp");
+		forward.setPath("/view/admin/admin-home.jsp");
 		forward.setRedirect(false);
 		
 		// 쇼핑몰 현황

@@ -10,7 +10,7 @@
 <meta name="author" content="" />
 <title>상품 변경</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-<link href="../../css/styles.css" rel="stylesheet" />
+<link href="/ModooShop/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
 </head>
@@ -39,7 +39,7 @@
 		</ul>
 	</nav>
 	<div id="layoutSidenav">
-		<div id="layoutSidenav_nav">
+				<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
@@ -61,7 +61,7 @@
 							</div>
 						</a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
+							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 								<a class="nav-link" href="adMemberMain.do">사용자 목록</a>
 							</nav>
 						</div>
@@ -74,11 +74,12 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
+						<!-- 
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 								<a class="nav-link" href="admin-product-insert.jsp">상품 등록</a>
 							</nav>
-						</div>
+						</div> -->
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 								<a class="nav-link" href="prSelectAll.do">상품 목록</a>
@@ -156,13 +157,14 @@
 											<p></p>
 										</div>
 									</div>
+									<%--
 									<div class="control-group">
 										<label class="control-label" for="textarea2">상품상세설명</label>
 										<div class="controls">
 											<textarea class="form-control textarea" id="classic" name="infoImg">${infoproduct.infoImg}</textarea>
 											<p></p>
 										</div>
-										<%-- <div class="control-group">
+										 <div class="control-group">
 											<label class="control-label" for="select01">카테고리</label>
 											<div class="controls">
 												<select id="lageSelect">
@@ -184,7 +186,7 @@
 												</select>
 												<p></p>
 											</div>
-										</div> --%>
+										</div>
 										<div class="control-group">
 											<label class="control-label" for="fileInput">상품이미지등록</label>
 											<div class="controls">
@@ -193,6 +195,7 @@
 											</div>
 										</div>
 									</div>
+									--%>
 									<p></p>
 									<div class="mt-4 mb-0">
 										<div class="d-grid">
@@ -220,8 +223,8 @@
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="../../js/scripts.js"></script>
-	<script src="../../js/datatables-simple-demo.js"></script>
+	<script src="/ModooShop/js/scripts.js"></script>
+	<script src="/ModooShop/js/datatables-simple-demo.js"></script>
 </body>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
