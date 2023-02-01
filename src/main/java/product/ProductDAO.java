@@ -437,6 +437,7 @@ public class ProductDAO {
 			pstmt.setString(8, pvo.getpImg());
 			pstmt.setString(9, pvo.getInfoImg());
 			pstmt.setInt(10, pvo.getProductCnt());
+			pstmt.setInt(10, pvo.getpNum());
 
 			int res = pstmt.executeUpdate();
 			if (res <= 0) {
