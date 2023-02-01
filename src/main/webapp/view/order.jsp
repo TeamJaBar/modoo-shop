@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,14 +61,14 @@
 									<span>01</span>
 									장바구니
 									<span>
-										<img src="/ModooShop/images/icons/icon_join_step_off.png" alt="">
+										<img src="/ModooShop/images/icons/icon_join_step_off.png" alt="화살표_진행완료">
 									</span>
 								</li>
 								<li class="page_on">
 									<span>02</span>
 									주문서작성/결제
 									<span>
-										<img src="/ModooShop/images/icons/icon_join_step_on.png" alt="">
+										<img src="/ModooShop/images/icons/icon_join_step_on.png" alt="화살표_진행중">
 									</span>
 								</li>
 								<li>
@@ -77,6 +78,7 @@
 							</ol>
 						</div>
 						<!-- //order_tit -->
+
 						<div class="order_cont">
 							<div class="cart_cont_list">
 								<div class="order_cart_tit">
@@ -104,36 +106,52 @@
 											<tr>
 												<th>상품/옵션 정보</th>
 												<th class="js-relative-none-mobile">수량</th>
-												<th>상품금액</th>
+												<th>개별 상품금액</th>
 												<th class="js-relative-none-mobile">적립</th>
 												<th class="js-relative-none-mobile">합계금액</th>
 												<th class="js-relative-none-mobile">배송비</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="list" var="productDto">
+											<c:set var="sumPrice" value="0" />
+											<c:set var="totalPrice" value="0" />
+											<c:set var="totalCnt" value="0" />
+											<c:set var="totalPoint" value="0" />
+											<c:set var="deliveryFee" value="2500" />
+											<c:forEach var="product" items="${prodList}" varStatus="status">
+												<c:set var="sumPrice" value="${sumPrice + product.selPrice * product.pCnt}" />
+												<c:set var="totalPrice" value="${totalPrice + product.selPrice * product.pCnt}" />
+												<c:set var="totalCnt" value="${totalCnt + product.pCnt}" />
+												<c:set var="totalPoint" value="${(product.selPrice - (product.selPrice % 1000)) / 100}" />
 												<tr>
 													<td class="td_left">
 														<div class="pick_add_cont">
 															<span class="pick_add_img">
-																<img src="https://cdn-pro-web-251-104.cdn-nhncommerce.com/boardgtr9139_godomall_com/data/goods/20/07/29//1000007239/modify_list_053.jpg" width="40" alt="${product.pName}"
-																	title="방방곡곡 세계유랑" class="middle">
+																<img src="${product.pImg}" width="40" alt="${product.pName}" title="${product.pName}" class="middle">
 															</span>
+															<div class="pick_add_info">
+																<em>
+																	<span>${product.pName}</span>
+																</em>
+															</div>
 														</div>
 														<!-- //pick_add_cont -->
 													</td>
 													<td class="js-relative-none-mobile td_order_amount">
 														<div class="order_goods_num" name="cnt">
 															<!-- 담긴 상품 수량 -->
-															<strong>${product.pNumcnt}개</strong>
+															<strong>${product.pCnt}개</strong>
 														</div>
 													</td>
 													<td>
 														<div class="js-relative-block-mobile">
 															<!-- 담긴 상품별 수량 -->
-															<strong>${product.pNumcnt}개</strong>
+															<!-- <strong>1개</strong> -->
 														</div>
-														<strong class="order_sum_txt price">${product.total}원</strong>
+														<strong class="order_sum_txt price">
+															<fmt:formatNumber value="${product.selPrice}" type="number" />
+															원
+														</strong>
 													</td>
 													<td class="td_benefit js-relative-none-mobile">
 														<ul class="benefit_list">
@@ -142,17 +160,30 @@
 																<br>
 																<span>
 																	상품
-																	<strong>+${product.mNummpoint}원</strong>
+																	<strong>
+																		+
+																		<fmt:formatNumber value="${(product.selPrice - (product.selPrice % 1000)) / 100}" type="number" />
+																		원
+																	</strong>
 																</span>
 															</li>
 														</ul>
 													</td>
 													<td class="js-relative-none-mobile">
-														<strong class="order_sum_txt">원</strong>
+														<strong class="order_sum_txt">
+															<fmt:formatNumber value="${product.selPrice * product.pCnt}" type="number" />
+															원
+														</strong>
 													</td>
-													<td class="td_delivery js-relative-none-mobile" rowspan="2">
-														<br> 2,500원 <br> (택배)
-													</td>
+													<c:if test="${status.first}">
+														<td class="td_delivery js-relative-none-mobile" rowspan="${fn:length(prodList)}">
+															<br>
+															<span id="deliveryFee">
+																<fmt:formatNumber value="${deliveryFee}" type="number" />
+															</span>
+															원 <br> (택배)
+														</td>
+													</c:if>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -162,7 +193,7 @@
 							</div>
 							<!-- //cart_cont_list -->
 							<div class="btn_left_box">
-								<a href="shoping-cart.jsp" class="shop_go_link">
+								<a href="cart.do" class="shop_go_link">
 									<em>&lt; 장바구니 가기</em>
 								</a>
 							</div>
@@ -172,11 +203,15 @@
 										<dl>
 											<dt>
 												총
-												<strong>${product.pNumcnt}</strong>
+												<strong>
+													<fmt:formatNumber value="${totalCnt}" type="number" />
+												</strong>
 												개의 상품금액
 											</dt>
 											<dd>
-												<strong>${product.pTotal}</strong>
+												<strong>
+													<fmt:formatNumber value="${totalPrice}" type="number" />
+												</strong>
 												원
 											</dd>
 										</dl>
@@ -186,7 +221,9 @@
 										<dl>
 											<dt>배송비</dt>
 											<dd>
-												<strong>2,500</strong>
+												<strong>
+													<fmt:formatNumber value="${deliveryFee}" type="number" />
+												</strong>
 												원
 											</dd>
 										</dl>
@@ -196,7 +233,9 @@
 										<dl class="price_total">
 											<dt>합계</dt>
 											<dd>
-												<strong>${product.totalPrice}</strong>
+												<strong>
+													<fmt:formatNumber value="${totalPrice + deliveryFee}" type="number" />
+												</strong>
 												원
 											</dd>
 										</dl>
@@ -204,7 +243,9 @@
 									<!-- 총 예정 적립금 -->
 									<em class="tobe_mileage js_mileage">
 										적립예정 적립금 :
-										<span>${product.setPoint}</span>
+										<span>
+											<fmt:formatNumber value="${totalPoint}" type="number" />
+										</span>
 										원
 									</em>
 								</div>
@@ -228,12 +269,12 @@
 														<span class="important">주문하시는 분</span>
 													</th>
 													<td>
-														<input type="text" name="mName" data-pattern="gdEngKor" maxlength="20" required>${member.mName}
+														<input type="text" name="mName" data-pattern="gdEngKor" maxlength="20" value="${member.mName}" required>
 													</td>
 												</tr>
 												<tr>
 													<th scope="row">주소</th>
-													<td style="font-size: 12px;">[${member.ZipCode}] ${member.UserAddr} ${member.DetailAddr}</td>
+													<td style="font-size: 12px;">[${member.zipCode}] ${member.userAddr} ${member.detailAddr}</td>
 												</tr>
 												<!-- <tr>
 													<th scope="row">전화번호</th>
@@ -248,7 +289,7 @@
 														<span class="important">휴대폰 번호</span>
 													</th>
 													<td>
-														<input type="text" id="mobileNum" name="orderCellPhone" maxlength="20" required>${member.mTel}
+														<input type="text" id="mobileNum" name="mTel" maxlength="20" value="${member.mTel}" required>
 													</td>
 												</tr>
 												<tr>
@@ -256,7 +297,7 @@
 														<span class="important">이메일</span>
 													</th>
 													<td class="member_email">
-														<input type="text" name="orderEmail" id="mEmail" value="subiiin6085@naver.com" disabled>
+														<input type="text" name="mEmail" id="mEmail" value="${member.mEmail}" disabled>
 														<!-- <select id="emailDomain" class="chosen-select">
 															<option value="self" selected>직접입력</option>
 															<option value="naver.com">naver.com</option>
@@ -321,9 +362,9 @@
 																	<label for="shippingSameCheck" class="choice_s">주문자정보와 동일</label>
 																</li>
 															</ul>
-															<button class="btn_gray_list">
+															<!-- <button class="btn_gray_list">
 																<a href="add-address.jsp" class="btn_gray_small btn_open_layer js_shipping" style="border: 1px 0188CB; color: #0188CB">배송지 관리</a>
-															</button>
+															</button> -->
 														</div>
 													</td>
 												</tr>
@@ -332,7 +373,7 @@
 														<span class="important">받으실분</span>
 													</th>
 													<td>
-														<input type="text" id="receiverName" name="receiverName" data-pattern="gdEngKor" maxlength="20" required>
+														<input type="text" id="receiverName" name="receiverName" data-pattern="gdEngKor" maxlength="20" value="${member.mName}" required>
 													</td>
 												</tr>
 												<tr>
@@ -341,7 +382,7 @@
 													</th>
 													<td class="member_address">
 														<div class="address_postcode find_address">
-															<input type="text" name="zonecode" id="sample3_postcode" placeholder="우편번호" value="" required>
+															<input type="text" name="zipCode" id="sample3_postcode" placeholder="우편번호" value="${member.zipCode}" required>
 															<input type="button" id="find_address" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" required>
 														</div>
 														<!-- //base_info_box -->
@@ -351,39 +392,14 @@
 														</div>
 														<div class="address_input detailed_address">
 															<div class="member_warning">
-																<input type="text" name="address" id="sample3_address" placeholder="주소" value="" required>
+																<input type="text" name="userAddr" id="sample3_address" placeholder="주소" value="${member.userAddr}" required>
 															</div>
 															<div class="member_warning js_address_sub">
-																<input type="text" name="addressSub" id="sample3_detailAddress" placeholder="상세주소" value="" required style="display: block">
+																<input type="text" name="detailAddr" id="sample3_detailAddress" placeholder="상세주소" value="${member.detailAddr}" required style="display: block">
 																<!-- <input type="text" id="sample3_extraAddress"
 																	placeholder="참고항목" style="display: block"> -->
 															</div>
 														</div>
-														<!-- <div class="address_postcode find_address">
-															<input type="text" id="sample3_postcode"
-																name="receiverZonecode" readonly="readonly" required>
-															<input type="hidden" name="receiverZipcode" required>
-															<span id="receiverZipcodeText" class="old_post_code"></span>
-															<button type="button" class="btn_post_search"
-																onclick="sample3_execDaumPostcode()"
-																style="color: #0188CB; padding-left: 20px;">우편번호검색</button>
-															<button type="button" class="btn_post_search"
-																	onclick="gd_postcode_search('receiverZonecode', 'receiverAddress', 'receiverZipcode');">우편번호검색</button>
-														</div>
-														<div class="address_input">
-															<input type="text" id="sample3_address"
-																name="receiverAddress" readonly="readonly"> <input
-																type="text" id="sample3_detailAddress"
-																name="receiverAddressSub">
-														</div>
-														<div id="wrapPost"
-															style="display: none; border: 1px solid; max-width: 500px; height: 300px; margin: 5px 0; position: relative">
-															<img
-																src="//t1.daumcdn.net/postcode/resource/images/close.png"
-																id="btnFoldWrap"
-																style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
-																onclick="foldDaumPostcode()" alt="접기 버튼">
-														</div> -->
 														<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 														<script>
 															// 우편번호 찾기 찾기 화면을 넣을 element
@@ -460,7 +476,7 @@
 														<span class="important">휴대폰 번호</span>
 													</th>
 													<td>
-														<input type="text" id="receiverCellPhone" name="receiverCellPhone">
+														<input type="text" id="receiverCellPhone" name="receiverCellPhone" value="${member.mTel}">
 													</td>
 												</tr>
 												<tr>
@@ -510,15 +526,20 @@
 												<tr>
 													<th scope="row">상품 합계 금액</th>
 													<td>
-														<strong id="totalGoodsPrice" class="order_payment_sum">${order.setTotal}원</strong>
+														<strong id="totalGoodsPrice" class="order_payment_sum">
+															<fmt:formatNumber value="${totalPrice}" type="number" />
+															원
+														</strong>
 													</td>
 												</tr>
 												<tr>
 													<th scope="row">배송비</th>
 													<td>
-														<span id="totalDeliveryCharge">2,500</span>
+														<span id="totalDeliveryCharge">
+															<fmt:formatNumber value="${deliveryFee}" type="number" />
+														</span>
 														원
-														<span class="multi_shipping_text"></span>
+														<!-- <span class="multi_shipping_text"></span> -->
 													</td>
 												</tr>
 												<!-- <tr id="rowDeliverAreaCharge" class="dn">
@@ -543,9 +564,8 @@
 																<em id="mileageDefault">
 																	적립 적립금 :
 																	<strong>
-																		(+) <b class="total-member-mileage">${order.mNummpoint}</b>원
+																		(+) <b class="total-member-mileage"><fmt:formatNumber value="${totalPoint}" type="number" /></b>원
 																	</strong>
-																	</span>
 																</em>
 															</li>
 														</ul>
@@ -555,15 +575,23 @@
 													<th scope="row">적립금 사용</th>
 													<td>
 														<div class="order_money_use">
-															<input type="text" name="useMileage" id="useMileageSelect" onblur="gd_mileage_use_check('y', 'y', 'y');">
+															<input type="text" name="useMileage" id="useMileageSelect">
 															원
-															<input type="button" id="useMileagePoint" onclick="gd_mileage_use_point();" value="적립금 적용하기">
+															<!-- <input type="button" id="useMileagePoint" onclick="gd_mileage_use_point()" value="적립금 적용하기"> -->
 															<div class="form_element">
-																<input type="checkbox" id="useMileageAll" onclick="gd_mileage_use_all();">
+																<input type="checkbox" id="useMileageAll">
 																<label for="useMileageAll" class="check_s">전액 사용하기</label>
-																<span class="money_use_sum">(보유 적립금 : ${order.point} 원)</span>
+																<span class="money_use_sum">
+																	(보유 적립금 :
+																	<fmt:formatNumber value="${member.mPoint}" type="number" />
+																	원)
+																</span>
 															</div>
-															<em class="money_use_txt js-mileageInfoArea">※ ${order.point}원까지 사용 가능합니다.</em>
+															<em class="money_use_txt js-mileageInfoArea">
+																※
+																<fmt:formatNumber value="${member.mPoint}" type="number" />
+																원까지 사용 가능합니다.
+															</em>
 														</div>
 													</td>
 												</tr>
@@ -585,10 +613,10 @@
 												<tr>
 													<th scope="row">최종 결제 금액</th>
 													<td>
-														<input type="hidden" name="settlePrice" value="25420">
-														<input type="hidden" name="overseasSettlePrice" value="0">
-														<input type="hidden" name="overseasSettleCurrency" value="KRW">
-														<strong id="totalSettlePrice" class="order_payment_sum"></strong>
+														<input type="hidden" name="settlePrice" value="${totalPrice + deliveryFee - member.mPoint}">
+														<strong id="totalSettlePrice" class="order_payment_sum">
+															<fmt:formatNumber value="${totalPrice + deliveryFee - member.mPoint}" type="number" />
+														</strong>
 														원
 													</td>
 												</tr>
@@ -658,7 +686,9 @@
 												<dt>최종 결제 금액</dt>
 												<dd>
 													<span>
-														<strong id="totalSettlePriceView"></strong>
+														<strong id="totalSettlePriceView">
+															<fmt:formatNumber value="${totalPrice + deliveryFee}" type="number" />
+														</strong>
 														원
 													</span>
 												</dd>
@@ -690,6 +720,7 @@
 				</form>
 			</div>
 		</div>
+	</div>
 </section>
 
 <%@include file="common/footer.jsp"%>
@@ -706,114 +737,112 @@
 <!--===============================================================================================-->
 <script src="../vendor/select2/select2.min.js"></script>
 <script>
-		$(".js-select2").each(function () {
-			$(this).select2({
-				minimumResultsForSearch: 20,
-				dropdownParent: $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
+	$(".js-select2").each(function () {
+		$(this).select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $(this).next('.dropDownSelect2')
+		});
+	})
+</script>
 <!--===============================================================================================-->
 <script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
-		$('.js-pscroll').each(function () {
-			$(this).css('position', 'relative');
-			$(this).css('overflow', 'hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed: 1,
-				scrollingThreshold: 1000,
-				wheelPropagation: false,
-			});
-
-			$(window).on('resize', function () {
-				ps.update();
-			})
+	$('.js-pscroll').each(function () {
+		$(this).css('position', 'relative');
+		$(this).css('overflow', 'hidden');
+		var ps = new PerfectScrollbar(this, {
+			wheelSpeed: 1,
+			scrollingThreshold: 1000,
+			wheelPropagation: false,
 		});
-	</script>
+
+		$(window).on('resize', function () {
+			ps.update();
+		})
+	});
+</script>
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
 <script>
-$("input[name='shipping']").change(function(){
-	var chk = $("input[name='shipping']:checked").val();
+$("input[name='shipping']").change(function () {
+	let chk = $("input[name='shipping']:checked").val();
 	// 라디오 버튼 누를때마다 text 초기화
 	$("#receiverName").val("");
 	$("#sample3_postcode").val("");
 	$("#sample3_address").val("");
 	$("#sample3_detailAddress").val("");
 	$("#receiverCellPhone").val("");
-	//라디오 버튼 체크
-	if(chk == 1){ // 기본 배송지
-		$.ajax({
-			type: 'POST',
-			url: 'order',
-			async: false,
-			dataType: 'json',
-			data: {
-				mNum: mNum 
-			},
-			success: function(data) {
-				$("#receiverName").val(data.mName);
-				$("#sample3_postcode").val(data.ZipCode);
-				$("#sample3_address").val(data.UserAddr);
-				$("#sample3_detailAddress").val(data.DetailAddr);
-				$("#receiverCellPhone").val(data.mTel);
-			}
-		});
-		
-	} else if(chk == 3){ // 주문자정보와 동일
-		$("#receiverName").val(${member.mName});
-		$("#sample3_postcode").val(${member.ZipCode});
-		$("#sample3_address").val(${member.UserAddr});
-		$("#sample3_detailAddress").val(${member.DetailAddr});
-		$("#receiverCellPhone").val(${member.mTel});	 	
+	// 라디오 버튼 체크
+	if (chk == 1) { // 기본 배송지
+		$("#receiverName").val('${defAddr.shipName}');
+		$("#sample3_postcode").val('${defAddr.zipCode}');
+		$("#sample3_address").val('${defAddr.userAddr}');
+		$("#sample3_detailAddress").val('${defAddr.detailAddr}');
+		$("#receiverCellPhone").val('${defAddr.tel}');
+	} else if (chk == 3) { // 주문자정보와 동일
+		$("#receiverName").val('${member.mName}');
+		$("#sample3_postcode").val('${member.zipCode}');
+		$("#sample3_address").val('${member.userAddr}');
+		$("#sample3_detailAddress").val('${member.detailAddr}');
+		$("#receiverCellPhone").val('${member.mTel}');
 	}
-				
 });
 
 // 적립금 사용
+/* $('#useMileageAll').each(function() {
+	$(this).click(function() {
+		if ($('#useMileageAll').is(':checked')) {
+			$('#useMileageSelect').val('${member.mPoint}');
+		} else {
+			$('#useMileageSelect').val('${}');
+		}
+		
+		
+		
+	});
+}); */
+
+
 /* function gd_mileage_use_point() {
-	var useMileagePoint = document.getElementById('useMileageSelect').value;
+	var useMileagePoint = $('#useMileageSelect').val;
 	var useMileage = parseInt(useMileagePoint); // 사용 적용한 적립금
-	
-	var totalPricePoint = ${order.totalPrice}; 
+
+	var totalPricePoint = ${order.totalPrice};
 	var totalPrice = parseInt(totalPricePoint); // 합계금액
-	
+
 	var sumTotalPrice = totalPrice - useMileage; // 합계금액 - 적립금 = 최종 금액
 	document.getElementById('totalSettlePrice').innerHTML = sumTotalPrice; //최종금액 HTML 태그에 넣기
-} 
+}
 
 function gd_mileage_use_all() {
 	var useMileagePoint = ${order.point};
 	var useMileage = parseInt(useMileagePoint); // 사용 적용한 적립금
-	
-	var totalPricePoint = ${order.totalPrice}; 
-	var totalPrice = parseInt(totalPricePoint); // 합계금액
-	
-	var sumTotalPrice = totalPrice - useMileage; // 합계금액 - 적립금 = 최종 금액
-	document.getElementById('totalSettlePrice').innerHTML = sumTotalPrice; //최종금액 HTML 태그에 넣기
-}  
- */
-</script>
 
+	var totalPricePoint = ${order.totalPrice};
+	var totalPrice = parseInt(totalPricePoint); // 합계금액
+
+	var sumTotalPrice = totalPrice - useMileage; // 합계금액 - 적립금 = 최종 금액
+	$('#totalSettlePrice').innerHTML = sumTotalPrice; //최종금액 HTML 태그에 넣기
+} */
+</script>
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-
 <script type="text/javascript">
-		//문서가 준비되면 제일 먼저 실행
-		$(document).ready(function() {
-
+	//문서가 준비되면 제일 먼저 실행
+	$(document).ready(
+		function () {
 			var data;
-		    $("#settleKind_pc").click(function() {
-		    	console.log("a");
+			$("#settleKind_pc").click(function () {
+				console.log("a");
 				data = '카드';
 				//payment(data); //버튼 클릭하면 호출 
 				console.log("b");
 			});
-			$("#settleKind_pk").click(function() {
+			$("#settleKind_pk").click(function () {
 				console.log("c");
 				data = '카카오';
 				//payment(data); //버튼 클릭하면 호출
@@ -827,55 +856,56 @@ function gd_mileage_use_all() {
 				data = '자동결제';
 				payment(data); //버튼 클릭하면 호출 
 			}); */
-		})
-
-		//버튼 클릭하면 실행
-		function payment(data) {
-			console.log("e "+data);
-			var pay = data;
-			if (pay == '카카오') {
-				pay = 'kakaopay.TC0ONETIME';
-			} else if (pay == '카드') {
-				console.log('dd');
-				pay = 'kcp.T0000';
-			}
-
-			IMP.init('imp00247054');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
-			console.log(pay);
-			IMP.request_pay({// param
-				pg : pay, //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
-				pay_method : "card", //지불 방법
-				merchant_uid : "iamport_test_id12446", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-				name : "${product[0].pName} 외 ${fn:length(product)-1}건", //결제창에 노출될 상품명
-				amount : "10000", //금액
-				buyer_email : $('#mEmail').val(),
-				buyer_name : $('#mName').val(),
-				buyer_tel : $('#mTel').val()
-
-			}, function(rsp) { // callback
-				if (rsp.success) {
-					sessionStorage.setItem("imp_uid", rsp.imp_uid);
-					sessionStorage.setItem("merchant_uid", rsp.merchant_uid);
-					sessionStorage.setItem("paid_amount", rsp.paid_amount);
-					sessionStorage.setItem("apply_num", rsp.apply_num);
-					sessionStorage.setItem("buyer_name", rsp.buyer_name);
-					sessionStorage.setItem("buyer_email", rsp.buyer_email);
-					sessionStorage.setItem("buyer_tel", rsp.buyer_tel);
-					console.log(sessionStorage.getItem("buyer_name"));
-					var link = 'shOrder-ok.do';
-
-					location.href = link;
-
-				} else {
-					alert("실패 : 코드(" + rsp.error_code + ") / 메세지("
-							+ rsp.error_msg + ")");
-				}
-
-			});
-			
-			var form=document.getElementById("frmOrder");
-			form.submit();
 		}
-	</script>
+	)
+	
+	//버튼 클릭하면 실행
+	function payment(data) {
+		console.log("e " + data);
+		var pay = data;
+		if (pay == '카카오') {
+			pay = 'kakaopay.TC0ONETIME';
+		} else if (pay == '카드') {
+			console.log('dd');
+			pay = 'kcp.T0000';
+		}
+	
+		IMP.init('imp00247054');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
+		console.log(pay);
+		IMP.request_pay({// param
+			pg: pay, //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
+			pay_method: "card", //지불 방법
+			merchant_uid: "iamport_test_id12446", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+			name: "${product[0].pName} 외 ${fn:length(product)-1}건", //결제창에 노출될 상품명
+			amount: "10000", //금액
+			buyer_email: $('#mEmail').val(),
+			buyer_name: $('#mName').val(),
+			buyer_tel: $('#mTel').val()
+	
+		}, function (rsp) { // callback
+			if (rsp.success) {
+				sessionStorage.setItem("imp_uid", rsp.imp_uid);
+				sessionStorage.setItem("merchant_uid", rsp.merchant_uid);
+				sessionStorage.setItem("paid_amount", rsp.paid_amount);
+				sessionStorage.setItem("apply_num", rsp.apply_num);
+				sessionStorage.setItem("buyer_name", rsp.buyer_name);
+				sessionStorage.setItem("buyer_email", rsp.buyer_email);
+				sessionStorage.setItem("buyer_tel", rsp.buyer_tel);
+				console.log(sessionStorage.getItem("buyer_name"));
+				var link = 'shOrder-ok.do';
+	
+				location.href = link;
+	
+			} else {
+				alert("실패 : 코드(" + rsp.error_code + ") / 메세지("
+					+ rsp.error_msg + ")");
+			}
+	
+		});
+	
+		var form = document.getElementById("frmOrder");
+		form.submit();
+	}
+</script>
 </body>
 </html>
