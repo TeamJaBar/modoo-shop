@@ -37,7 +37,7 @@ public class ProductDAO {
 	final String SELECTALL_MCATENAME = "SELECT CATEL, CATEM, CATENUM FROM CATEGORY WHERE CATEL=?";
 	final String SELECTALL_MCATENUM = "SELECT CATENUM, CATEL, CATEM FROM CATEGORY WHERE CATENUM BETWEEN ? AND (?+99)";
 	// U : Product
-	final String UPDATE = "UPDATE PRODUCT SET CATAENUM=?, PNAME=?, FIXPRICE=?, SELPRICE=?, REPERSON=?, REAGE=?, BRAND=?, PIMG=?, INFOIMG=?, PRODUCTCNT=? WHERE PNUM=?";
+	final String UPDATE = "UPDATE PRODUCT SET CATENUM=?, PNAME=?, FIXPRICE=?, SELPRICE=?, REPERSON=?, REAGE=?, BRAND=?, PIMG=?, INFOIMG=?, PRODUCTCNT=? WHERE PNUM=?";
 	// D : Product
 	final String DELETE = "DELETE FROM PRODUCT WHERE PNUM=?";
 
@@ -437,16 +437,18 @@ public class ProductDAO {
 			pstmt.setString(8, pvo.getpImg());
 			pstmt.setString(9, pvo.getInfoImg());
 			pstmt.setInt(10, pvo.getProductCnt());
-			pstmt.setInt(10, pvo.getpNum());
+			pstmt.setInt(11, pvo.getpNum());
 
 			int res = pstmt.executeUpdate();
 			if (res <= 0) {
+				System.out.println("로그 업데이트 실패");
 				return false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
+		System.out.println("로그 업테이트 성공");
 		return true;
 	}
 

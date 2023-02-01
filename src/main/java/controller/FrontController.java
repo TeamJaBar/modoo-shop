@@ -145,7 +145,13 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("prUpdate.do")) {// 관리자 상품 변경
+		}else if (command.equals("prSelect.do")) {// 관리자 상품 변경
+			try {
+				forward = new PrSelectAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("prUpdate.do")) {// 관리자 상품 변경 완료
 			try {
 				forward = new PrUpdateAction().execute(request, response);
 			} catch (Exception e) {
@@ -217,7 +223,13 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}else if (command.equals("orderSearch.do")) { // 사이드바 검색
+	         try {
+	             forward = new OrderSearchAction().execute(request, response);
+	          } catch (Exception e) {
+	             e.printStackTrace();
+	          }
+	       }
 
 		// if (forward == null) {
 		// forward = new ActionForward();

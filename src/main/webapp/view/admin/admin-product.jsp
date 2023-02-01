@@ -18,7 +18,7 @@
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="admin-home.jsp">관리자 페이지</a>
+		<a class="navbar-brand ps-3" href="admin-main.do">관리자 페이지</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
 			<i class="fas fa-bars"></i>
@@ -43,7 +43,7 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">홈</div>
-						<a class="nav-link" href="admin-home.jsp">
+						<a class="nav-link" href="admin-main.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div>
@@ -61,7 +61,7 @@
 						</a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="admin-member.jsp">사용자 목록</a>
+								<a class="nav-link" href="adMemberMain.do">사용자 목록</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -80,7 +80,7 @@
 						</div>
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-								<a class="nav-link" href="admin-product.jsp">상품 목록</a>
+								<a class="nav-link" href="prSelectAll.do">상품 목록</a>
 							</nav>
 						</div>
 					</div>
@@ -111,9 +111,6 @@
 							<table id="datatablesSimple">
 								<thead>
 									<tr>
-										<th>
-											<input type="checkbox">
-										</th>
 										<th>상품번호</th>
 										<th>카테고리</th>
 										<th>상품명</th>
@@ -125,9 +122,6 @@
 								</thead>
 								<tfoot>
 									<tr>
-										<th>
-											<input type="checkbox">
-										</th>
 										<th>상품번호</th>
 										<th>카테고리</th>
 										<th>상품명</th>
@@ -139,7 +133,7 @@
 								</tfoot>
 								<tbody>
 									<c:forEach var="product" items="${products}">
-										<tr>
+										<tr id="${product.pNum}">
 											<td>${product.pNum}</td>
 											<td>${product.cateNum}</td>
 											<td>${product.pName}</td>
@@ -147,8 +141,8 @@
 											<td>${product.selPrice}</td>
 											<td>${product.productCnt}</td>
 											<td>
-												<a class="btn btn-primary" href="prUpdate.do?pNum='${product.pNum}'">변경</a>
-												<a class="btn btn-danger" onclick="return con();" href="prDelete.do?pNum='${product.pNum}'">삭제</a>
+												<a class="btn btn-primary" href="prSelect.do?pNum=${product.pNum}">변경</a>
+												<button class="btn btn-danger" onclick="">삭제</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -171,15 +165,22 @@
 	<script src="../../js/scripts.js"></script>
 	<script src="../../js/datatables-simple-demo.js"></script>
 </body>
-<script type="text/javascript">
-	function con() {
-		var result = confirm("정말 삭제하시겠습니까?");
-
-		if (result) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(document).ready(function() {
+	$('.btn-danger').each(function() {
+		let pNum = $(this).parent().parent().prop("id");
+		$(this).on('click', function(e) {
+			e.preventDefault();
+			console.log(pNum);
+			if (confirm('정말 삭제하시겠습니까?')) {
+				alert('삭제되었습니다.');
+				location.href = 'prDelete.do?pNum=' + pNum;
+			} else {
+				alert('취소되었습니다.');
+			}
+		})
+	})
+})
 </script>
 </html>
