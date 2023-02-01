@@ -235,7 +235,7 @@ public class MemberDAO {
 				pstmt = conn.prepareStatement(UPDATE_PW);
 				pstmt.setString(1, mvo.getmPw());
 				pstmt.setInt(2, mvo.getmNum());
-			} else if (mvo.getmNum() == 0) {
+			} else if (mvo.getmName() == null) {
 				pstmt = conn.prepareStatement(UPDATE_USER);
 				pstmt.setString(1, mvo.getmPw());
 				pstmt.setString(2, mvo.getmEmail());

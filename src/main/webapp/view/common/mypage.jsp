@@ -16,7 +16,7 @@
 							쇼핑정보
 							<ul class="sub_depth1">
 								<li>
-									<a href="order-list.jsp">- 주문목록/배송조회</a>
+									<a href="orderSelect.do">- 주문목록/배송조회</a>
 								</li>
 								<!-- 
 								<li>

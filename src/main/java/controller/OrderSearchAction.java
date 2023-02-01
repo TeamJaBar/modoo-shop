@@ -22,7 +22,6 @@ public class OrderSearchAction implements Action{
       
       ArrayList<OrderVO> searchResult = new ArrayList<OrderVO>();
       
-      ovo.setoStatus(4);
       
       if(request.getSession().getAttribute("mNum") != null) {
           ovo.setmNum((int)(request.getSession().getAttribute("mNum")));
