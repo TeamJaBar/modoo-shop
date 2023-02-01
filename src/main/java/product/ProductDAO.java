@@ -335,8 +335,6 @@ public class ProductDAO {
 	public ArrayList<ProductVO> selectAllFilter(ProductVO pvo) {
 		ArrayList<ProductVO> datas = new ArrayList<ProductVO>();
 		conn = JDBCUtil.connect();
-		int cnt = 0;
-		int cnt1 =0;
 		String str1 = "", str2 = "";
 		try {
 			if(pvo.getFilterSortBy()==12) {
@@ -350,7 +348,6 @@ public class ProductDAO {
 				filter += " AND 1=1 ";
 			} else if(pvo.getCateNum()%100==0) {
 				filter += " AND CATENUM BETWEEN ? AND ?";
-				cnt1++;
 			} else {
 				filter += " AND CATENUM=?";				
 			}
@@ -375,7 +372,6 @@ public class ProductDAO {
 
 			if (pvo.getpName() != null) {
 				filter += " AND PNAME LIKE '%'||?||'%' ";
-				cnt++;
 			}
 
 			if (pvo.getFilterSortBy() == 11) {
@@ -389,24 +385,21 @@ public class ProductDAO {
 			}
 
 			pstmt = conn.prepareStatement(filter);
-			if (cnt == 1) {
-				pstmt.setInt(1, pvo.getDib());
-				if(cnt1==1) {
-					pstmt.setInt(2, pvo.getCateNum());
-					pstmt.setInt(3, pvo.getCateNum()+99);
-					pstmt.setString(4, pvo.getpName());					
-				} else {
-					pstmt.setInt(2, pvo.getCateNum());
-					pstmt.setString(3, pvo.getpName());
-				}
+			
+			int num=1;
+			pstmt.setInt(1, pvo.getDib());
+			
+			if((pvo.getCateNum()>99 && pvo.getCateNum()<300)||(pvo.getCateNum()>999 && pvo.getCateNum()<1200)) {
+
+			} else if(pvo.getCateNum()%100==0) {
+				pstmt.setInt(num++, pvo.getCateNum());
+				pstmt.setInt(num++, pvo.getCateNum()+99);
 			} else {
-				pstmt.setInt(1, pvo.getDib());				
-				if(cnt1==1) {
-					pstmt.setInt(2, pvo.getCateNum());
-					pstmt.setInt(3, pvo.getCateNum()+99);
-				} else {
-					pstmt.setInt(2, pvo.getCateNum());
-				}
+				pstmt.setInt(num++, pvo.getCateNum());
+			}
+
+			if (pvo.getpName() != null) {				
+				pstmt.setString(num++, pvo.getpName());					
 			}
 
 			ResultSet rs = pstmt.executeQuery();
