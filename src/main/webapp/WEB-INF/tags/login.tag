@@ -24,7 +24,7 @@
 				<a href="logout.do">LOGOUT</a>
 			</li>
 			<li>
-				<a href="adMain.do">ADMIN</a>
+				<a href="admin-main.do">ADMIN</a>
 			</li>
 		</c:when>
 		<c:otherwise>
@@ -41,7 +41,7 @@
 				<a href="changeInfo.do">MYPAGE</a>
 				<ul class="sub-menu">
 					<li>
-						<a href="order-list.jsp">주문조회</a>
+						<a href="orderSelect.do">주문조회</a>
 					</li>
 					<li>
 						<a href="changeInfo.do">내정보수정</a>
