@@ -21,6 +21,10 @@ public class FrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		System.out.println("uri: " + uri);
 		String cp = request.getContextPath() + "/view/";
+		if (uri.contains("admin/")) {
+			// 관리자 페이지 경로 때문에 추가한 로직
+			cp += "admin/";
+		}
 		System.out.println("cp: " + cp);
 		String command = uri.substring(cp.length());
 		System.out.println("command: " + command);
@@ -115,36 +119,62 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("prSelectAll.do")) {
+		} else if (command.equals("prInsert.do")) { // 관리자: 상품 추가
+			try {
+				forward = new PrInsertAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("admin-main.do")) { // 관리자 메인 화면
+			try {
+				forward = new AdmainAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("prSelectAll.do")) {// 관리자 상품 목록
 			try {
 				forward = new PrSelectAllAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("prDelete.do")) {
+		} else if (command.equals("prDelete.do")) {// 관리자 상품 삭제
 			try {
 				forward = new PrDeleteAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("prUpdate.do")) {
+		} else if (command.equals("prUpdate.do")) {// 관리자 상품 변경
 			try {
 				forward = new PrUpdateAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("memDelete.do")) {
+		} else if (command.equals("memDelete.do")) {// 관리자: 사용자삭제
 			try {
 				forward = new MemDeleteAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("memUpdate.do")) {
+		} else if (command.equals("adMemberMain.do")) {// 관리자: 사용자목록
+			try {
+				forward = new AdMemberMainAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("memUpdate.do")) {// 관리자: 사용자 수정 완료
 			try {
 				forward = new MemUpdateAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("memSelect.do")) {// 관리자: 사용자 수정
+				try {
+					forward = new MemSelectAction().execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		} else if (command.equals("product.do")) { // 상품 목록
 			try {
 				forward = new ProdAction().execute(request, response);
@@ -189,11 +219,11 @@ public class FrontController extends HttpServlet {
 			}
 		}
 
-		if (forward == null) {
-			forward = new ActionForward();
-			forward.setPath("/view/error/error.jsp");
-			forward.setRedirect(false);
-		}
+		// if (forward == null) {
+		// forward = new ActionForward();
+		// forward.setPath("/view/error/error.jsp");
+		// forward.setRedirect(false);
+		// }
 
 		if (forward.isRedirect()) {
 			System.out.println("리다이렉트");

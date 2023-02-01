@@ -61,7 +61,7 @@
 						</a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class=0"nav-link" href="adMemberMain.do">사용자 목록</a>
+								<a class=0 "nav-link" href="adMemberMain.do">사용자 목록</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -128,19 +128,16 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-xl-6">
-							<div class="card mb-4">
-								<div class="card-header">
-									<i class="fas fa-chart-area me-1"></i>
-									일별 매출 현황
-								</div>
-								<div class="card-body">
-									<canvas id="myAreaChart" width="100%" height="40"></canvas>
-								</div>
-							</div>
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-chart-area me-1"></i>
+							일별 매출 현황
 						</div>
-						<div class="col-xl-6">
+						<div class="card-body">
+							<canvas id="myAreaChart" width="100%" height="40"></canvas>
+						</div>
+					</div>
+					<%-- <div class="col-xl-6">
 							<div class="card mb-4">
 								<div class="card-header">
 									<i class="fas fa-chart-bar me-1"></i>
@@ -150,8 +147,8 @@
 									<canvas id="myBarChart" width="100%" height="40"></canvas>
 								</div>
 							</div>
-						</div>
-					</div>
+						</div> --%>
+
 				</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
