@@ -169,12 +169,12 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("memSelect.do")) {// 관리자: 사용자 수정
-				try {
-					forward = new MemSelectAction().execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		} else if (command.equals("memSelect.do")) {// 관리자: 사용자 수정
+			try {
+				forward = new MemSelectAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("product.do")) { // 상품 목록
 			try {
 				forward = new ProdAction().execute(request, response);
@@ -196,6 +196,12 @@ public class FrontController extends HttpServlet {
 		} else if (command.equals("cart.do")) { // 장바구니 목록
 			try {
 				forward = new CartAction().execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("order.do")) { // 주문서 작성 페이지
+			try {
+				forward = new OrderAction().execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
