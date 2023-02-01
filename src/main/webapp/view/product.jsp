@@ -81,8 +81,8 @@
 					</div>
 				</div>
 				<!-- Filter -->
-				<div class="dis-none panel-filter w-full p-t-10">
-					<div class="wrap-filter bg10 w-full p-lr-40 p-t-27 p-lr-15-sm">
+				<div class="dis-none panel-filter w-full p-tb-10">
+					<div class="wrap-filter bg10 w-full p-lr-40 p-tb-27 p-lr-15-sm">
 						<div id="sortbyFilter" class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">Sort By</div>
 							<a href="#" class="hov-tag1 stext-118 cl6 size-304 bor7 p-lr-15 p-tb-3 trans-04 m-b-8 m-r-8" id="sortBy" data-value="11"> 추천순 </a>
@@ -105,6 +105,9 @@
 								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" id="tags" data-value="31"> 1인용 </a>
 								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" id="tags" data-value="32"> 2인용 </a>
 							</div>
+						</div>
+						<div class="flex-c">
+							<button id="btn-filterSearch" class="stext-106 cl0 size-102 bg1 bor2 hov-btn4 p-lr-15">검색</button>
 						</div>
 					</div>
 				</div>
@@ -308,19 +311,8 @@
 		});
 
 	}
-
-	$('#sortbyFilter').find("a").click(function() {
-
-		if ($(this).hasClass("tag1-active") === true) {
-			$(this).removeClass("tag1-active");
-		} else {
-			//모든 class 초기화
-			$('#sortbyFilter').find("a").not(this).removeClass("tag1-active");
-
-			//선택한 탭만 class 추가
-			$(this).addClass("tag1-active");
-		}
-
+	
+	$('#btn-filterSearch').click(function() {
 		var cateNum = ${param.cateNum};
 
 		var filterSortBy = $('#sortbyFilter').find('.tag1-active').data('value');
@@ -362,6 +354,21 @@
 				$("#md-product").html(contents);
 			}
 		});
+	})
+
+	
+	
+	$('#sortbyFilter').find("a").click(function() {
+
+		if ($(this).hasClass("tag1-active") === true) {
+			$(this).removeClass("tag1-active");
+		} else {
+			//모든 class 초기화
+			$('#sortbyFilter').find("a").not(this).removeClass("tag1-active");
+
+			//선택한 탭만 class 추가
+			$(this).addClass("tag1-active");
+		}
 	});
 
 	$('#priceFilter').find("a").click(function() {
@@ -374,48 +381,6 @@
 			//선택한 탭만 class 추가
 			$(this).addClass("tag1-active");
 		}
-
-		var cateNum = ${param.cateNum};
-
-		var filterSortBy = $('#sortbyFilter').find('.tag1-active').data('value');
-		var filterPrice = $('#priceFilter').find('.tag1-active').data('value');
-		var filterTags = $('#tagsFilter').find('.tag1-active').data('value');
-
-		if (filterPrice == null) {
-			filterPrice = 0;
-		}
-		if (filterTags == null) {
-			filterTags = 0;
-		}
-		if (filterSortBy == null) {
-			filterSortBy = 0;
-		}
-
-		console.log(filterSortBy + ' : ' + filterPrice + ' : ' + filterTags);
-
-		$('.isotope-grid').isotope({
-			filter : '*'
-		});
-		$('.btn-category').removeClass('how-active1');
-		$('#btn-0').addClass('how-active1');
-
-		$.ajax({
-			type : 'POST', //POST 방식으로 보낼래
-			url : 'searchFilter', // 임의로 했음
-			async : false,
-			data : {
-				cateNum : cateNum,
-				filterSortBy : filterSortBy,
-				filterPrice : filterPrice,
-				filterTags : filterTags
-			},
-			success : function(result) {
-				console.log("필터결과 확인");
-				var html = jQuery('<div>').html(result);
-				var contents = html.find("#md-product").html();
-				$("#md-product").html(contents);
-			}
-		});
 	});
 
 	$('#tagsFilter').find("a").click(function() {
@@ -427,48 +392,6 @@
 			//선택한 탭만 class 추가
 			$(this).addClass("tag1-active");
 		}
-
-		var cateNum = ${param.cateNum};
-
-		var filterSortBy = $('#sortbyFilter').find('.tag1-active').data('value');
-		var filterPrice = $('#priceFilter').find('.tag1-active').data('value');
-		var filterTags = $('#tagsFilter').find('.tag1-active').data('value');
-
-		if (filterPrice == null) {
-			filterPrice = 0;
-		}
-		if (filterTags == null) {
-			filterTags = 0;
-		}
-		if (filterSortBy == null) {
-			filterSortBy = 0;
-		}
-
-		console.log(filterSortBy + ' : ' + filterPrice + ' : ' + filterTags);
-
-		$('.isotope-grid').isotope({
-			filter : '*'
-		});
-		$('.btn-category').removeClass('how-active1');
-		$('#btn-0').addClass('how-active1');
-
-		$.ajax({
-			type : 'POST', //POST 방식으로 보낼래
-			url : 'searchFilter', // 임의로 했음
-			async : false,
-			data : {
-				cateNum : cateNum,
-				filterSortBy : filterSortBy,
-				filterPrice : filterPrice,
-				filterTags : filterTags
-			},
-			success : function(result) {
-				console.log("필터결과 확인");
-				var html = jQuery('<div>').html(result);
-				var contents = html.find("#md-product").html();
-				$("#md-product").html(contents);
-			}
-		});
 	});
 </script>
 <!--===============================================================================================-->

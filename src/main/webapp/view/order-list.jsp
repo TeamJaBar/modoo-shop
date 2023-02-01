@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>주문목록/배송조회</title>
 <script src="https://kit.fontawesome.com/2a349c84d6.js" crossorigin="anonymous"></script>
@@ -11,32 +11,26 @@
 	padding: 0 0 0 40px;
 }
 
-#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth1
-	{
+#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth1 {
 	right: 200px;
 }
 
-#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth2
-	{
+#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth2 {
 	right: 160px;
 }
 
-#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth3
-	{
+#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth3 {
 	right: 160px;
 }
 
-#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth4
-	{
+#contents .sub_content>.content+.side_cont .sub_menu_box.layer_type .sub_depth4 {
 	right: 160px;
 }
 
 /* CSS Document */
 
 /* reset */
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
-	form, fieldset, legend, textarea, p, blockquote, th, td, input, select,
-	textarea, button {
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
 	margin: 0;
 	padding: 0
 }
@@ -99,61 +93,43 @@ address, caption, cite, code, dfn, em, var {
 	font-family: 'SUIT';
 	font-weight: 500;
 	font-style: normal;
-	src:
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot');
-	src:
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot?#iefix')
-		format('embedded-opentype'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff2')
-		format('woff2'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff')
-		format('woff'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.ttf')
-		format("truetype");
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot');
+	src: url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.eot?#iefix') format('embedded-opentype'), url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff2') format('woff2'),
+		url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.woff') format('woff'), url('https://cdn.jsdelivr.net/gh/webfontworld/sunn/SUIT-Medium.ttf') format("truetype");
 	font-display: swap;
 }
 
 @font-face {
 	font-family: 'NEXON Lv1 Gothic OTF';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'NEXON Lv2 Gothic';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'GmarketSansLight';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'GmarketSansMedium';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'GmarketSansBold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -198,8 +174,7 @@ address, caption, cite, code, dfn, em, var {
 	}
 }
 
-
-//* ------------- 테이블 공통(텍스트 센터 기본) ------------- */
+/ /* ------------- 테이블 공통(텍스트 센터 기본) ------------- */
 .mypage_table_type {
 	
 }
@@ -276,7 +251,6 @@ address, caption, cite, code, dfn, em, var {
 	margin: 7px 0 0 0;
 }
 
-
 /* 서브사이드  마이페이지 */
 .side_cont .sub_menu_box .sub_menu_mypage {
 	margin: 7px 0 0 0;
@@ -298,8 +272,7 @@ address, caption, cite, code, dfn, em, var {
 	font-size: 14px;
 }
 
-.side_cont .sub_menu_box .sub_menu_mypage a:hover, .side_cont .sub_menu_box .sub_menu_mypage .active
-	{
+.side_cont .sub_menu_box .sub_menu_mypage a:hover, .side_cont .sub_menu_box .sub_menu_mypage .active {
 	font-weight: bold;
 	background: #f8f8f8;
 	color: #212121;
@@ -346,8 +319,7 @@ address, caption, cite, code, dfn, em, var {
 	font-size: 14px;
 }
 
-.side_cont .sub_menu_box .sub_menu a:hover, .side_cont .sub_menu_box .sub_menu .active
-	{
+.side_cont .sub_menu_box .sub_menu a:hover, .side_cont .sub_menu_box .sub_menu .active {
 	font-weight: bold;
 	background: #f8f8f8;
 	color: #212121;
@@ -411,7 +383,7 @@ label[for="year"] {
 }
 
 label[for="today"] {
-	border-left:none !important;
+	border-left: none !important;
 }
 
 .lookup {
@@ -426,9 +398,9 @@ label[for="today"] {
 	font-size: 12px;
 }
 
-.lookup:hover{
+.lookup:hover {
 	background-color: #0188CB;
-	border-color:#0188CB;
+	border-color: #0188CB;
 	color: white;
 }
 
@@ -437,16 +409,11 @@ label[for="today"] {
 	margin-top: 2px;
 }
 </style>
-
-
 <%@include file="common/header.jsp"%>
-
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/ModooShop/images/bg-img-01.png');">
 	<h2 class="ltext-105 cl0 txt-center">주문목록</h2>
 </section>
-
-
 <!-- breadcrumb
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-1 p-r-15 p-t-30 p-lr-0-lg">
@@ -457,46 +424,41 @@ label[for="today"] {
 			</span> <span class="stext-109 cl4"> 주문목록/배송조회 </span>
 		</div>
 	</div>-->
-
 <!-- Content page -->
 <section class="bg0 p-t-62 p-b-60">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-lg-9 p-b-80 p-r-50">
-				
 				<!-- 주문 조회 -->
 				<div class="bg0 p-b-120">
 					<div class="sub-content">
 						<div class="mypage_shipping">
 							<div class="m-b-110">
 								<h6 class="p-l-12 stext-106">조회기간</h6>
-
 								<div class="bor12 p-t-15 p-b-50">
-									<form class="select-container flex-c m-t-20" action="orList.do">
-										<input type="radio" class="search_duration" name="search_duration" id="today" value="0"> 
-										<label for="today">오늘</label> 
-										<input type="radio" class="search_duration" name="search_duration" id="week" value="7"> 
-										<label for="week">7일</label> 
-										<input type="radio" class="search_duration" name="search_duration" id="fortnight" value="15"> 
+									<form class="select-container flex-c m-t-20" action="orderSearch.do" method="post">
+										<input type="radio" class="search_duration" name="searchCal" id="today" value="0">
+										<label for="today">오늘</label>
+										<input type="radio" class="search_duration" name="searchCal" id="week" value="7">
+										<label for="week">7일</label>
+										<input type="radio" class="search_duration" name="searchCal" id="fortnight" value="15">
 										<label for="fortnight">15일</label>
-										<input type="radio" class="search_duration" name="search_duration" id="month" value="30"> 
-										<label for="month">1개월</label> 
-										<input type="radio" class="search_duration" name="search_duration" id="3months" value="90"> 
-										<label for="3months">3개월</label> 
-										<input type="radio" class="search_duration" name="search_duration" id="year" value="365"> 
+										<input type="radio" class="search_duration" name="searchCal" id="month" value="30">
+										<label for="month">1개월</label>
+										<input type="radio" class="search_duration" name="searchCal" id="3months" value="90">
+										<label for="3months">3개월</label>
+										<input type="radio" class="search_duration" name="searchCal" id="year" value="365">
 										<label for="year">1년</label>
 										<!-- <button class="lookup"> 조회 <i class="fa-solid fa-magnifying-glass icon"></i> </button> -->
-									    <input type="submit" class="lookup" value="조회">
+										<input type="submit" class="lookup" value="조회">
 									</form>
 								</div>
 							</div>
-						
-						<div>
-							<h6 class="m-b-10 stext-106 p-l-12">주문목록</h6>
-							<div class="mypage_table_type">
-
+							<div>
+								<h6 class="m-b-10 stext-106 p-l-12">주문목록</h6>
+								<div class="mypage_table_type">
 									<table>
-										<tbody>
+										<thead>
 											<tr class="table_head">
 												<th class="column-1">주문번호</th>
 												<th class="column-2">상품명</th>
@@ -504,13 +466,22 @@ label[for="today"] {
 												<th class="column-4">상품금액</th>
 												<th class="column-5">합계</th>
 											</tr>
-											<tr class="table_row">
-												<td class="column-1">${order.pNum}</td>
-												<td class="column-2">${order.pNumPname}</td>
-												<td class="column-3">${order.pNumcnt}개</td>
-												<td class="column-4">${order.pNumSelPrice}원</td>
-												<td class="column-5">${order.totalPrice}원</td>
-											</tr>
+										</thead>
+										<tbody id="#order-table">
+											<c:if test="${fn:length(orders) == 0}">
+												<td colspan="5" class="empty">주문목록이 비어있습니다.</td>
+											</c:if>
+											<c:if test="${fn:length(orders) != 0 }">
+												<c:forEach var="orders" items="${orders}">
+													<tr class="table_row">
+														<td class="column-1">${orders.oNum}</td>
+														<td class="column-2">${orders.pNumPname}</td>
+														<td class="column-3">${orders.pNumcnt}개</td>
+														<td class="column-4">${orders.pNumSelPrice}원</td>
+														<td class="column-5">${orders.pNumcnt * orders.pNumSelPrice}원</td>
+													</tr>
+												</c:forEach>
+											</c:if>
 										</tbody>
 									</table>
 								</div>
@@ -523,17 +494,12 @@ label[for="today"] {
 					</div>
 				</div>
 			</div>
-
 			<!-- 메뉴 -->
 			<%@include file="common/mypage.jsp"%>
 		</div>
 	</div>
 </section>
-
-
-
 <%@include file="common/footer.jsp"%>
-
 <!--===============================================================================================-->
 <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -573,5 +539,4 @@ label[for="today"] {
 <!--===============================================================================================-->
 <script src="../js/main.js"></script>
 </body>
-
 </html>
