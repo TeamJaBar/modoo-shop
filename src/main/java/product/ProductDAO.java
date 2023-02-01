@@ -37,7 +37,7 @@ public class ProductDAO {
 	final String SELECTALL_MCATENAME = "SELECT CATEL, CATEM, CATENUM FROM CATEGORY WHERE CATEL=?";
 	final String SELECTALL_MCATENUM = "SELECT CATENUM, CATEL, CATEM FROM CATEGORY WHERE CATENUM BETWEEN ? AND (?+99)";
 	// U : Product
-	final String UPDATE = "UPDATE PRODUCT SET CATENUM=?, PNAME=?, FIXPRICE=?, SELPRICE=?, REPERSON=?, REAGE=?, BRAND=?, PIMG=?, INFOIMG=?, PRODUCTCNT=? WHERE PNUM=?";
+	final String UPDATE = "UPDATE PRODUCT SET CATENUM=?, PNAME=?, FIXPRICE=?, SELPRICE=?, REPERSON=?, REAGE=?, BRAND=?, PRODUCTCNT=? WHERE PNUM=?";
 	// D : Product
 	final String DELETE = "DELETE FROM PRODUCT WHERE PNUM=?";
 
@@ -434,10 +434,10 @@ public class ProductDAO {
 			pstmt.setString(5, pvo.getRePerson());
 			pstmt.setInt(6, pvo.getReAge());
 			pstmt.setString(7, pvo.getBrand());
-			pstmt.setString(8, pvo.getpImg());
-			pstmt.setString(9, pvo.getInfoImg());
-			pstmt.setInt(10, pvo.getProductCnt());
-			pstmt.setInt(11, pvo.getpNum());
+			//pstmt.setString(8, pvo.getpImg());
+			//pstmt.setString(9, pvo.getInfoImg());
+			pstmt.setInt(8, pvo.getProductCnt());
+			pstmt.setInt(9, pvo.getpNum());
 
 			int res = pstmt.executeUpdate();
 			if (res <= 0) {

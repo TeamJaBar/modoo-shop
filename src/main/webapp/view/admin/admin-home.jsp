@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,11 +11,30 @@
 <meta name="author" content="" />
 <title>관리자 페이지</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-<link href="../../css/styles.css" rel="stylesheet" />
+<link href="/ModooShop/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-
 <body class="sb-nav-fixed">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+	<script>
+		var dates = new Array();
+		var cnts = new Array();
+		var mdates = new Array();
+		var mcnts = new Array();
+		
+		<c:forEach items="${salesList}" var="salesList">
+			dates.push("${salesList.tempDate}");
+			cnts.push("${salesList.tempCnt}");
+		</c:forEach>
+		
+		console.log(dates);
+
+		
+		<c:forEach items="${mList}" var="mList">
+			mdates.push("${mList.tempDate}");
+			mcnts.push("${mList.tempCnt}");
+		</c:forEach>
+	</script>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
 		<a class="navbar-brand ps-3" href="admin-main.do">관리자 페이지</a>
@@ -60,8 +79,8 @@
 							</div>
 						</a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
-								<a class=0 "nav-link" href="adMemberMain.do">사용자 목록</a>
+							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+								<a class="nav-link" href="adMemberMain.do">사용자 목록</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -73,11 +92,12 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
+						<!-- 
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 								<a class="nav-link" href="admin-product-insert.jsp">상품 등록</a>
 							</nav>
-						</div>
+						</div> -->
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 								<a class="nav-link" href="prSelectAll.do">상품 목록</a>
@@ -101,7 +121,7 @@
 					<div class="card mb-4">
 						<div class="card-header">
 							<i class="fas fa-table me-1"></i>
-							오늘의 할 일
+							배송 현황
 						</div>
 						<div class="card-body">
 							<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -117,6 +137,12 @@
 										</thead>
 										<tbody>
 											<tr>
+												<c:if test="${fn:length(order) == 0}">
+													<td>0</td>
+													<td>0</td>
+													<td>0</td>
+													<td>0</td>
+												</c:if>
 												<!-- 받아온 데이터로 표시되게 수정 -->
 												<c:forEach items="${statusList}" var="order">
 													<td>${order.tempCnt}</td>
@@ -128,27 +154,30 @@
 							</div>
 						</div>
 					</div>
-					<div class="card mb-4">
-						<div class="card-header">
-							<i class="fas fa-chart-area me-1"></i>
-							일별 매출 현황
+					<div class="row">
+						<div class="col-xl-6">
+							<div class="card mb-4">
+								<div class="card-header">
+									<i class="fas fa-chart-area me-1"></i>
+									일별 매출 현황
+								</div>
+								<div class="card-body">
+									<canvas id="myAreaChart" width="100%" height="40"></canvas>
+								</div>
+							</div>
 						</div>
-						<div class="card-body">
-							<canvas id="myAreaChart" width="100%" height="40"></canvas>
-						</div>
-					</div>
-					<%-- <div class="col-xl-6">
+						<div class="col-xl-6">
 							<div class="card mb-4">
 								<div class="card-header">
 									<i class="fas fa-chart-bar me-1"></i>
-									게시물 현황
+									신규 회원 현황
 								</div>
 								<div class="card-body">
 									<canvas id="myBarChart" width="100%" height="40"></canvas>
 								</div>
 							</div>
-						</div> --%>
-
+						</div>
+					</div>
 				</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
@@ -161,12 +190,10 @@
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="../../js/scripts.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="../../js/chart-area-demo.js"></script>
-	<script src="../../js/chart-bar-demo.js"></script>
+	<script src="/ModooShop/js/scripts.js"></script>
+	<script src="/ModooShop/js/chart-area-demo.js"></script>
+	<script src="/ModooShop/js/chart-bar-demo.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-	<script src="../../js/datatables-simple-demo.js"></script>
+	<script src="/ModooShop/js/datatables-simple-demo.js"></script>
 </body>
-
 </html>

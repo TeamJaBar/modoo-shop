@@ -10,7 +10,7 @@
 <meta name="author" content="" />
 <title>상품 등록</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-<link href="../../css/styles.css" rel="stylesheet" />
+<link href="/ModooShop/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
 
@@ -40,12 +40,12 @@
 		</ul>
 	</nav>
 	<div id="layoutSidenav">
-		<div id="layoutSidenav_nav">
+				<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">홈</div>
-						<a class="nav-link" href="admin-home.jsp">
+						<a class="nav-link" href="admin-main.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div>
@@ -62,8 +62,8 @@
 							</div>
 						</a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="admin-member.jsp">사용자 목록</a>
+							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+								<a class="nav-link" href="adMemberMain.do">사용자 목록</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -75,14 +75,15 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
+						<!-- 
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 								<a class="nav-link" href="admin-product-insert.jsp">상품 등록</a>
 							</nav>
-						</div>
+						</div> -->
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-								<a class="nav-link" href="admin-product.jsp">상품 목록</a>
+								<a class="nav-link" href="prSelectAll.do">상품 목록</a>
 							</nav>
 						</div>
 					</div>
@@ -223,8 +224,8 @@
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="../../js/scripts.js"></script>
-	<script src="../../js/datatables-simple-demo.js"></script>
+	<script src="/ModooShop/js/scripts.js"></script>
+	<script src="/ModooShop/js/datatables-simple-demo.js"></script>
 </body>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>

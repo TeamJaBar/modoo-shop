@@ -11,7 +11,7 @@ public class MemSelectAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward=new ActionForward();
-		forward.setPath("admin-member-update.jsp");
+		forward.setPath("/view/admin/admin-member-update.jsp");
 		forward.setRedirect(false);
 		
 		MemberVO mvo=new MemberVO();

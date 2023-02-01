@@ -27,8 +27,8 @@ public class PrUpdateAction implements Action{
 		pvo.setRePerson(request.getParameter("rePerson"));
 		pvo.setReAge(Integer.parseInt(request.getParameter("reAge")));
 		pvo.setBrand(request.getParameter("brand"));
-		pvo.setpImg(request.getParameter("pImg"));
-		pvo.setInfoImg(request.getParameter("infoImg"));
+		//pvo.setpImg(request.getParameter("pImg"));
+		//pvo.setInfoImg(request.getParameter("infoImg"));
 		pvo.setProductCnt(Integer.parseInt(request.getParameter("productCnt")));
 		pvo.setpNum(Integer.parseInt(request.getParameter("pNum")));
 		

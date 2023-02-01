@@ -11,7 +11,7 @@ public class PrSelectAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward=new ActionForward();
-		forward.setPath("admin-product-update.jsp");
+		forward.setPath("/view/admin/admin-product-update.jsp");
 		forward.setRedirect(false);
 		
 		ProductVO pvo=new ProductVO();

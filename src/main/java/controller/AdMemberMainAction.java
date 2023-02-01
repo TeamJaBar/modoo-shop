@@ -13,7 +13,7 @@ public class AdMemberMainAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward=new ActionForward();
-		forward.setPath("admin-member.jsp");
+		forward.setPath("/view/admin/admin-member.jsp");
 		forward.setRedirect(false);
 		
 		MemberVO mvo=new MemberVO();
