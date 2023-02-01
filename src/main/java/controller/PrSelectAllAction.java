@@ -8,22 +8,22 @@ import javax.servlet.http.HttpServletResponse;
 import product.ProductDAO;
 import product.ProductVO;
 
-public class PrSelectAllAction implements Action{
+public class PrSelectAllAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward=new ActionForward();
+		ActionForward forward = new ActionForward();
 		forward.setPath("admin-product.jsp");
 		forward.setRedirect(false);
-		
-		ProductVO pvo=new ProductVO();
-		ProductDAO pdao=new ProductDAO();
-		
+
+		ProductVO pvo = new ProductVO();
+		ProductDAO pdao = new ProductDAO();
+
 		pvo.setCateNum(100);
-		
-		ArrayList<ProductVO> products=pdao.selectAll(pvo);
-		
+
+		ArrayList<ProductVO> products = pdao.selectAll(pvo);
+
 		request.setAttribute("products", products);
-		
+
 		return forward;
 	}
 

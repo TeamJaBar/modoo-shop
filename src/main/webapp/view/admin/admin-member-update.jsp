@@ -18,7 +18,7 @@
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="admin-home.jsp">관리자 페이지</a>
+		<a class="navbar-brand ps-3" href="admin-main.do">관리자 페이지</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
 			<i class="fas fa-bars"></i>
@@ -44,7 +44,7 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">홈</div>
-						<a class="nav-link" href="admin-home.jsp">
+						<a class="nav-link" href="admin-main.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div>
@@ -62,7 +62,7 @@
 						</a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="admin-member.jsp">사용자 목록</a>
+								<a class="nav-link" href="adMemberMain.do">사용자 목록</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -81,7 +81,7 @@
 						</div>
 						<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-								<a class="nav-link" href="admin-product.jsp">상품 목록</a>
+								<a class="nav-link" href="prSelectAll.do">상품 목록</a>
 							</nav>
 						</div>
 					</div>
@@ -106,32 +106,33 @@
 						</div>
 						<div class="card-body">
 							<div class="card-body">
-								<form action="memUpdate.do" id="memUpdate.do" name="memUpdate.do">
+								<form action="memUpdate.do" id="memUpdate.do" name="memUpdate.do" method="post">
+									<input type="hidden" value="${infomember.mNum}" name="mNum" />
 									아이디
 									<div class="form-floating mb-3">
-										<input readonly class="form-control" id="id" type="text" placeholder="Enter your id" value="${member.mId}" required="required" name="mId" />
-										<label for="inputName">${member.mId}</label>
+										<input readonly class="form-control" id="id" type="text" placeholder="Enter your id" value="${infomember.mId}" required="required" name="mId" />
+										<label for="inputName">${infomember.mId}</label>
 									</div>
 									비밀번호
 									<div class="form-floating mb-3">
-										<input class="form-control" id="pw" type="password" placeholder="Enter your password" value="${member.mPw}" required="required" name="mPw" />
-										<label for="inputName">${member.mPw}</label>
+										<input class="form-control" id="pw" type="password" placeholder="Enter your password" value="${infomember.mPw}" required="required" name="mPw" />
+										<label for="inputName">${infomember.mPw}</label>
 									</div>
 									이름
 									<div class="form-floating mb-3">
-										<input class="form-control" id="Name" type="text" placeholder="Enter your name" value="${member.mName}" required="required" name="mName" />
-										<label for="inputName">${member.mName}</label>
+										<input class="form-control" id="Name" type="text" placeholder="Enter your name" value="${infomember.mName}" required="required" name="mName" />
+										<label for="inputName">${infomember.mName}</label>
 									</div>
 									이메일
 									<div class="form-floating mb-3">
-										<input class="form-control" id="Email" type="email" placeholder="name@example.com" value="${member.mEmail}" required="required" name="${member.mEmail}" />
-										<label for="inputEmail">${member.mEmail}</label>
+										<input class="form-control" id="Email" type="email" placeholder="name@example.com" value="${infomember.mEmail}" required="required" name="mEmail" />
+										<label for="inputEmail">${infomember.mEmail}</label>
 									</div>
 									전화번호
 									<div class="form-floating mb-3">
-										<input class="form-control" id="Phone" type="text" name="mTel" placeholder="Enter your phone" value="${member.mTel}" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');"
+										<input class="form-control" id="Phone" type="text" name="mTel" placeholder="Enter your phone" value="${infomember.mTel}" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');"
 											required="required" />
-										<label for="inputPhone">${member.mTel}</label>
+										<label for="inputPhone">${infomember.mTel}</label>
 									</div>
 									주소
 									<div class="d-flex align-items-center justify-content-between mt-1 mb-2">
@@ -142,22 +143,22 @@
 											alt="접기 버튼">
 									</div>
 									<div class="form-floating mb-3">
-										<input class="form-control" id="sample3_postcode" name="zipCode" type="text" placeholder="우편번호" value="${member.zipCode}" required />
-										<label for="inputAdd">${member.zipCode}</label>
+										<input class="form-control" id="sample3_postcode" name="zipCode" type="text" placeholder="우편번호" value="${infomember.zipCode}" required />
+										<label for="inputAdd">${infomember.zipCode}</label>
 									</div>
 									<div class="form-floating mb-3">
-										<input class="form-control" name="userAddr" id="sample3_address" type="text" placeholder="주소" value="${member.userAddr}" required />
-										<label for="inputAdd">${member.userAddr}</label>
+										<input class="form-control" name="userAddr" id="sample3_address" type="text" placeholder="주소" value="${infomember.userAddr}" required />
+										<label for="inputAdd">${infomember.userAddr}</label>
 									</div>
 									<div class="form-floating mb-3">
-										<input class="form-control" name="detailAddr" id="sample3_detailAddress" type="text" placeholder="상세주소" value="${member.detailAddr}" required />
-										<label for="inputAdd">${member.detailAddr}</label>
+										<input class="form-control" name="detailAddr" id="sample3_detailAddress" type="text" placeholder="상세주소" value="${infomember.detailAddr}" required />
+										<label for="inputAdd">${infomember.detailAddr}</label>
 									</div>
 									포인트
 									<div class="form-floating mb-3">
-										<input class="form-control" id="Point" type="text" name="mPoint" placeholder="Enter your point" value="${member.mPoint}" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');"
+										<input class="form-control" id="Point" type="text" name="mPoint" placeholder="Enter your point" value="${infomember.mPoint}" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');"
 											required="required" />
-										<label for="inputPoint">${member.mPoint}</label>
+										<label for="inputPoint">${infomember.mPoint}</label>
 									</div>
 									<div class="mt-4 mb-0">
 										<div class="d-grid">
@@ -166,7 +167,7 @@
 									</div>
 									<div class="mt-4 mb-0">
 										<div class="d-grid">
-											<a class="btn btn-danger btn-block" href="admin-member.jsp" onclick="return con();">변경 취소</a>
+											<a class="btn btn-danger btn-block" href="adMemberMain.do" onclick="return con();">변경 취소</a>
 										</div>
 									</div>
 								</form>
