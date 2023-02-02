@@ -294,7 +294,7 @@
 		<ul class="topbar-mobile">
 			<li>
 				<div class="right-top-bar flex-w h-full">
-					<c:if test="${mId == null}">
+					<c:if test="${mNum == null}">
 						<a href="about.jsp" class="flex-c-m p-lr-10 trans-04">ABOUT US</a>
 						<a href="login.jsp" class="flex-c-m p-lr-10 trans-04">LOGIN</a>
 						<a href="join.jsp" class="flex-c-m p-lr-10 trans-04">JOIN</a>
@@ -305,7 +305,7 @@
 						<a href="logout.do" class="flex-c-m p-lr-10 trans-04">LOGOUT</a>
 						<a href="adMain.do" class="flex-c-m p-lr-10 trans-04">ADMIN</a>
 					</c:if>
-					<c:if test="${mId != null && mId != 'admin'}">
+					<c:if test="${mNum != null && mId != 'admin'}">
 						<a href="about.jsp" class="flex-c-m p-lr-10 trans-04">ABOUT US</a>
 						<a href="logout.do" class="flex-c-m p-lr-10 trans-04">LOGOUT</a>
 						<a href="changeInfo.do" class="flex-c-m p-lr-10 trans-04">MYPAGE</a>
