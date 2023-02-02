@@ -1,4 +1,4 @@
-/*package controller;
+package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -20,7 +20,6 @@ import common.JDBCUtil;
 
 @WebListener
 public class ProductListener implements ServletContextListener {
-
 
 	public ProductListener() {
 		// TODO Auto-generated constructor stub
@@ -106,4 +105,3 @@ public class ProductListener implements ServletContextListener {
 	}
 
 }
-*/

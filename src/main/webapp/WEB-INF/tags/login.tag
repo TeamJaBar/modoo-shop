@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <ul class="right-top-bar-menu">
 	<c:choose>
-		<c:when test="${mId == null}">
+		<c:when test="${mNum == null}">
 			<li>
 				<a href="about.jsp">ABOUT US</a>
 			</li>
